@@ -1,0 +1,17 @@
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="tax/list" extends="master.page">	
+		<put-attribute name="title" value="List of taxes" />
+		<put-attribute name="body" value="/views/tax/list.jsp" />
+	</definition>
+	
+	<definition name="tax/edit" extends="master.page">	
+		<put-attribute name="title" value="Edit a tax" />
+		<put-attribute name="body" value="/views/tax/edit.jsp" />
+	</definition>
+	
+</tiles-definitions>

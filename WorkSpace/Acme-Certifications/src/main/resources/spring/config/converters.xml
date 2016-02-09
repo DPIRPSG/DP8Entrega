@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ * converters.xml
+ *
+ * Copyright (C) 2014 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd		
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd		
+	">
+
+	<util:list id="converters">	
+		<bean class="converters.AuthorityToStringConverter" />
+		<bean class="converters.StringToAuthorityConverter" />
+		
+		<bean class="converters.ActorToStringConverter" />
+		<bean class="converters.StringToActorConverter" />
+		
+		<bean class="converters.AdministratorToStringConverter" />
+		<bean class="converters.StringToAdministratorConverter" />
+		
+		<bean class="converters.AnnouncementToStringConverter" />
+		<bean class="converters.StringToAnnouncementConverter" />
+		
+		<bean class="converters.AnswerToStringConverter" />
+		<bean class="converters.StringToAnswerConverter" />
+		
+		<bean class="converters.CertificationToStringConverter" />
+		<bean class="converters.StringToCertificationConverter" />
+				
+		<bean class="converters.CustomerToStringConverter" />
+		<bean class="converters.StringToCustomerConverter" />
+		
+		<bean class="converters.ExamToStringConverter" />
+		<bean class="converters.StringToExamConverter" />
+		
+		<bean class="converters.ExamPaperToStringConverter" />
+		<bean class="converters.StringToExamPaperConverter" />
+		
+		<bean class="converters.OpenAnswerToStringConverter" />
+		<bean class="converters.StringToOpenAnswerConverter" />
+		
+		<bean class="converters.OpenQuestionToStringConverter" />
+		<bean class="converters.StringToOpenQuestionConverter" />
+		
+		<bean class="converters.QuestionToStringConverter" />
+		<bean class="converters.StringToQuestionConverter" />
+		
+		<bean class="converters.RegistrationToStringConverter" />
+		<bean class="converters.StringToRegistrationConverter" />
+		
+		<bean class="converters.ReviewerToStringConverter" />
+		<bean class="converters.StringToReviewerConverter" />
+		
+		<bean class="converters.TestAnswerToStringConverter" />
+		<bean class="converters.StringToTestAnswerConverter" />
+		
+		<bean class="converters.TestQuestionToStringConverter" />
+		<bean class="converters.StringToTestQuestionConverter" />
+	</util:list>
+
+	
+</beans>

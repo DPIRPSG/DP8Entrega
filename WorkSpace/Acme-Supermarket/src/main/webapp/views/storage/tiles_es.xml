@@ -1,0 +1,17 @@
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="storage/list" extends="master.page">	
+		<put-attribute name="title" value="Lista de objetos en el almacén" />
+		<put-attribute name="body" value="/views/storage/list.jsp" />
+	</definition>
+
+	<definition name="storage/edit" extends="master.page">	
+		<put-attribute name="title" value="Objeto en el almacén: editar" />
+		<put-attribute name="body" value="/views/storage/edit.jsp" />
+	</definition>
+		
+</tiles-definitions>
