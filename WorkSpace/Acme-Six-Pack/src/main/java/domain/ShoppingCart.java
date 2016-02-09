@@ -38,16 +38,16 @@ public class ShoppingCart extends DomainEntity{
 	}
 	
 	// Relationships ----------------------------------------------------------
-	private Consumer consumer;
+	private Customer consumer;
 	private Collection<Content> contents;
 
 	@Valid
 	@NotNull
 	@OneToOne(optional = false)
-	public Consumer getConsumer() {
+	public Customer getConsumer() {
 		return consumer;
 	}
-	public void setConsumer(Consumer consumer) {
+	public void setConsumer(Customer consumer) {
 		this.consumer = consumer;
 	}
 	

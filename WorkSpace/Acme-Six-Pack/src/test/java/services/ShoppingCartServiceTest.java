@@ -9,7 +9,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import utilities.AbstractTest;
-import domain.Consumer;
+import domain.Customer;
 import domain.Content;
 import domain.CreditCard;
 import domain.Item;
@@ -42,7 +42,7 @@ public class ShoppingCartServiceTest extends AbstractTest{
 		System.out.println("ShoppingCartServiceTest - testFindByConsumer1 - StartPoint");
 		
 		ShoppingCart shoppingCart;
-		Consumer consumer;
+		Customer consumer;
 		
 		authenticate("admin");
 		consumer = consumerService.findAll().iterator().next();
@@ -66,7 +66,7 @@ public class ShoppingCartServiceTest extends AbstractTest{
 		System.out.println("ShoppingCartServiceTest - testAddItem1 - StartPoint");
 		
 		ShoppingCart shoppingCart;
-		Consumer consumer;
+		Customer consumer;
 		Item item;
 		
 		authenticate("admin");
@@ -101,7 +101,7 @@ public class ShoppingCartServiceTest extends AbstractTest{
 		System.out.println("ShoppingCartServiceTest - testChangeItemQuantity1 - StartPoint");
 		
 		ShoppingCart shoppingCart;
-		Consumer consumer;
+		Customer consumer;
 		Item item;
 		
 		authenticate("admin");
@@ -141,7 +141,7 @@ public class ShoppingCartServiceTest extends AbstractTest{
 		System.out.println("ShoppingCartServiceTest - testDeleteItem1 - StartPoint");
 		
 		ShoppingCart shoppingCart;
-		Consumer consumer;
+		Customer consumer;
 		Item item;
 		
 		authenticate("admin");
@@ -182,7 +182,7 @@ public class ShoppingCartServiceTest extends AbstractTest{
 		System.out.println("ShoppingCartServiceTest - testAddComment1 - StartPoint");
 		
 		ShoppingCart shoppingCart;
-		Consumer consumer;
+		Customer consumer;
 		String comment;
 		
 		authenticate("admin");
@@ -220,7 +220,7 @@ public class ShoppingCartServiceTest extends AbstractTest{
 		System.out.println("ShoppingCartServiceTest - testRemoveComment1 - StartPoint");
 		
 		ShoppingCart shoppingCart;
-		Consumer consumer;
+		Customer consumer;
 		String comment;
 		
 		authenticate("admin");
@@ -258,7 +258,7 @@ public class ShoppingCartServiceTest extends AbstractTest{
 		System.out.println("ShoppingCartServiceTest - testModifyComment1 - StartPoint");
 		
 		ShoppingCart shoppingCart;
-		Consumer consumer;
+		Customer consumer;
 		String commentOld;
 		String commentNew;
 		
@@ -299,7 +299,7 @@ public class ShoppingCartServiceTest extends AbstractTest{
 		System.out.println("Requisito 11.7 - Check his or her shopping cart out and place the corresponding order.");
 		System.out.println("ShoppingCartServiceTest - testCheckOut1 - StartPoint");
 
-		Consumer consumer;
+		Customer consumer;
 		Order order;
 		CreditCard creditCard;
 

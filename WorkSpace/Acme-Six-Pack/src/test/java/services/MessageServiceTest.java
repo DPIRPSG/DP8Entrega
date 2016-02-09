@@ -13,7 +13,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import domain.Actor;
-import domain.Consumer;
+import domain.Customer;
 import domain.Folder;
 import domain.Message;
 
@@ -48,7 +48,7 @@ public class MessageServiceTest extends AbstractTest {
 		Collection<Folder> folders;
 		Collection<Message> messages;
 		Collection<Actor> recipients;
-		Consumer consumer;
+		Customer consumer;
 		Date moment;
 		
 		authenticate("consumer1");
@@ -109,7 +109,7 @@ public class MessageServiceTest extends AbstractTest {
 		Message message;
 		Collection<Folder> folders;
 		Collection<Message> messages;
-		Consumer consumer;
+		Customer consumer;
 		Folder folderToEliminate;
 		
 		authenticate("consumer1");
@@ -171,7 +171,7 @@ public class MessageServiceTest extends AbstractTest {
 		Message message;
 		Collection<Folder> folders;
 		Collection<Message> messages;
-		Consumer consumer;
+		Customer consumer;
 		Folder folderToEliminate;
 		
 		authenticate("consumer2");
@@ -233,7 +233,7 @@ public class MessageServiceTest extends AbstractTest {
 		Message message;
 		Collection<Folder> folders;
 		Collection<Message> messages;
-		Consumer consumer;
+		Customer consumer;
 		Folder folderToEliminate;
 		
 		authenticate("consumer3");
@@ -294,7 +294,7 @@ public class MessageServiceTest extends AbstractTest {
 		Message message;
 		Collection<Folder> folders;
 		Collection<Message> messages;
-		Consumer consumer;
+		Customer consumer;
 		Folder originFolder;
 		Folder destinationFolder;
 		

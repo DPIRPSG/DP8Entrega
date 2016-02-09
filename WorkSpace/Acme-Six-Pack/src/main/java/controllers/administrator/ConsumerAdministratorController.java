@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import services.ConsumerService;
 
 import controllers.AbstractController;
-import domain.Consumer;
+import domain.Customer;
 
 @Controller
 @RequestMapping(value = "/consumer/administrator")
@@ -33,7 +33,7 @@ public class ConsumerAdministratorController extends AbstractController{
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list(){
         ModelAndView result;
-        Collection<Consumer> consumers;
+        Collection<Customer> consumers;
         
         consumers = consumerService.findAll();
         

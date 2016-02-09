@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import controllers.AbstractController;
 
-import domain.Consumer;
+import domain.Customer;
 import domain.Order;
 import services.ConsumerService;
 import domain.ExchangeRate;
@@ -106,7 +106,7 @@ public class OrderConsumerController extends AbstractController {
 	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid Order order, BindingResult binding){
 		ModelAndView result;
-		Consumer actualConsumer;
+		Customer actualConsumer;
 		
 		actualConsumer = order.getConsumer();
 		
@@ -142,7 +142,7 @@ public class OrderConsumerController extends AbstractController {
 	public ModelAndView cancel(@RequestParam int orderId){
 		ModelAndView result;
 		Order order;
-		Consumer actualConsumer;
+		Customer actualConsumer;
 		
 		try{
 			order = orderService.findOne(orderId);

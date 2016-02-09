@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import domain.Clerk;
-import domain.Consumer;
+import domain.Customer;
 import domain.CreditCard;
 import domain.Order;
 import domain.OrderItem;
@@ -144,7 +144,7 @@ public class OrderService {
 	 * Crea una Order desde ShoppingCart. NO USAR. Usar desde ShoppingCartService.createCheckOut.
 	 */
 	//req: 11.7
-	public Order createFromShoppingCart(ShoppingCart shoppingCart, Consumer consumer){
+	public Order createFromShoppingCart(ShoppingCart shoppingCart, Customer consumer){
 		Assert.notNull(shoppingCart);
 		Assert.isTrue(shoppingCart.getId() != 0);
 		Assert.notNull(consumer);
@@ -377,7 +377,7 @@ public class OrderService {
 	
 	public Collection<Order> findAllByConsumer(){
 		Collection<Order> result;
-		Consumer consu;
+		Customer consu;
 		
 		consu = consumerService.findByPrincipal();
 		

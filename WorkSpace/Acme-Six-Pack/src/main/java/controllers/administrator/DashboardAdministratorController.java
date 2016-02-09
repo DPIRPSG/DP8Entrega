@@ -14,7 +14,7 @@ import services.ItemService;
 import services.OrderService;
 import controllers.AbstractController;
 import domain.Clerk;
-import domain.Consumer;
+import domain.Customer;
 import domain.Item;
 
 @Controller
@@ -48,14 +48,14 @@ public class DashboardAdministratorController extends AbstractController {
 		@RequestMapping(value = "/list", method = RequestMethod.GET)
 		public ModelAndView list() {
 			ModelAndView result;
-			Collection<Consumer> consumerMoreOrders;
-			Collection<Consumer> consumerSpentMoreMoney;
+			Collection<Customer> consumerMoreOrders;
+			Collection<Customer> consumerSpentMoreMoney;
 			Collection<Item> bestSellingItem;
 			Collection<Item> worstSellingItem;
 			Collection<Clerk> clerkMoreOrders;
 			Collection<Clerk> clerkLessOrders;
-			Collection<Consumer> consumerCancelledMoreOrders;
-			Collection<Consumer> consumerCancelledLessOrders;
+			Collection<Customer> consumerCancelledMoreOrders;
+			Collection<Customer> consumerCancelledLessOrders;
 			double ratioCancelledCurrentMonth;
 			Collection<Item> itemMoreComment;
 			

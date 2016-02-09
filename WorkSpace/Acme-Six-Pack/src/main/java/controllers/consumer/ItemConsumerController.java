@@ -15,7 +15,7 @@ import services.ConsumerService;
 import services.ExchangeRateService;
 import services.ItemService;
 import services.ShoppingCartService;
-import domain.Consumer;
+import domain.Customer;
 import domain.ExchangeRate;
 import domain.Item;
 import domain.ShoppingCart;
@@ -95,7 +95,7 @@ public class ItemConsumerController extends AbstractController {
 		ModelAndView result;
 		ShoppingCart shoppingCart;
 		Item item;
-		Consumer consumer;
+		Customer consumer;
 		
 		try{
 			consumer = consumerService.findByPrincipal();

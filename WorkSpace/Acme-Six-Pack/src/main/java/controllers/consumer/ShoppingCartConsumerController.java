@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import controllers.AbstractController;
 
-import domain.Consumer;
+import domain.Customer;
 import domain.ShoppingCart;
 
 import services.ConsumerService;
@@ -40,7 +40,7 @@ public class ShoppingCartConsumerController extends AbstractController{
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		ModelAndView result;
-		Consumer consumer;
+		Customer consumer;
 		ShoppingCart shoppingCart;
 		
 		consumer = consumerService.findByPrincipal();

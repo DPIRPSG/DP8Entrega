@@ -18,7 +18,7 @@ import services.ContentService;
 import services.ExchangeRateService;
 
 import controllers.AbstractController;
-import domain.Consumer;
+import domain.Customer;
 import domain.Content;
 import domain.Item;
 import domain.ExchangeRate;
@@ -105,7 +105,7 @@ public class ContentConsumerController extends AbstractController{
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
 	public ModelAndView delete(Content content, BindingResult binding){
 		ModelAndView result;
-		Consumer actualConsumer;
+		Customer actualConsumer;
 		
 		actualConsumer = content.getShoppingCart().getConsumer();
 		

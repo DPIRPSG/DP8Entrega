@@ -12,7 +12,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 
-import domain.Consumer;
+import domain.Customer;
 import domain.Folder;
 import domain.Message;
 
@@ -40,7 +40,7 @@ public class FolderServiceTest extends AbstractTest{
 		System.out.println("Requisito 24.1 - List his or her message folders, and display the messages that they contain.");
 		System.out.println("FolderServiceTest - testListFolders1 - StartPoint");
 		
-		Consumer consumer;
+		Customer consumer;
 		Collection<Folder> folders;
 		
 		authenticate("admin");
@@ -71,7 +71,7 @@ public class FolderServiceTest extends AbstractTest{
 		Folder folder;
 		Collection<Folder> folders;
 		Collection<Message> messages;
-		Consumer consumer;
+		Customer consumer;
 		
 		authenticate("admin");
 		consumer = consumerService.findAll().iterator().next();
@@ -114,7 +114,7 @@ public class FolderServiceTest extends AbstractTest{
 		Folder folder;
 		Collection<Folder> folders;
 		Collection<Message> messages;
-		Consumer consumer;
+		Customer consumer;
 		
 		authenticate("admin");
 		consumer = consumerService.findAll().iterator().next();
@@ -172,7 +172,7 @@ public class FolderServiceTest extends AbstractTest{
 		Folder folder;
 		Collection<Folder> folders;
 		Collection<Message> messages;
-		Consumer consumer;
+		Customer consumer;
 		
 		authenticate("admin");
 		consumer = consumerService.findAll().iterator().next();
@@ -228,7 +228,7 @@ public class FolderServiceTest extends AbstractTest{
 		System.out.println("FolderServiceTest - testManageFoldersAndMessages4 - StartPoint");
 		
 		Message message;
-		Consumer consumer;
+		Customer consumer;
 		Collection<Message> received;
 		Folder folder;
 		

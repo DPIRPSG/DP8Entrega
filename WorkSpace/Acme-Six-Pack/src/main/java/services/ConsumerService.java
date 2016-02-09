@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import domain.Consumer;
+import domain.Customer;
 import domain.Folder;
 import domain.Message;
 import domain.Order;
@@ -54,11 +54,11 @@ public class ConsumerService {
 	 * 
 	 */
 	// req: 10.1
-	public Consumer create(){
-		Consumer result;
+	public Customer create(){
+		Customer result;
 		UserAccount userAccount;
 
-		result = new Consumer();
+		result = new Customer();
 		
 		userAccount = userAccountService.create("CONSUMER");
 		result.setUserAccount(userAccount);
@@ -70,10 +70,10 @@ public class ConsumerService {
 	 * Almacena en la base de datos el cambio
 	 */
 	// req: 10.1
-	public void save(Consumer consumer){
+	public void save(Customer consumer){
 		Assert.notNull(consumer);
 		
-		Consumer modify;
+		Customer modify;
 		
 		boolean result = true;
 		for(Authority a: consumer.getUserAccount().getAuthorities()){
@@ -130,10 +130,10 @@ public class ConsumerService {
 	 * Lista los consumers registrados
 	 */
 	// req: 12.5
-	public Collection<Consumer> findAll(){
+	public Collection<Customer> findAll(){
 		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can list consumers");
 		
-		Collection<Consumer> result;
+		Collection<Customer> result;
 		
 		result = consumerRepository.findAll();
 		
@@ -146,8 +146,8 @@ public class ConsumerService {
 	 * Devuelve el consumer que está realizando la operación
 	 */
 	//req: x
-	public Consumer findByPrincipal(){
-		Consumer result;
+	public Customer findByPrincipal(){
+		Customer result;
 		UserAccount userAccount;
 		
 		userAccount = LoginService.getPrincipal();
@@ -163,9 +163,9 @@ public class ConsumerService {
 	 * Cuenta las orders canceladas y las no canceladas
 	 */
 	//req: 12.7.1
-	public Collection<Consumer> findConsumerMoreOrders(){
+	public Collection<Customer> findConsumerMoreOrders(){
 		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can list consumers");
-		Collection<Consumer> result;
+		Collection<Customer> result;
 		
 		result = consumerRepository.findConsumerMoreOrders();
 		
@@ -177,9 +177,9 @@ public class ConsumerService {
 	 * Solo considera las orders no canceladas
 	 */
 	//req: 12.7.2
-	public Collection<Consumer> findConsumerSpentMoreMoney(){
+	public Collection<Customer> findConsumerSpentMoreMoney(){
 		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can list consumers");
-		Collection<Consumer> result;
+		Collection<Customer> result;
 		
 		result = consumerRepository.findConsumerSpentMoreMoney();
 		
@@ -190,9 +190,9 @@ public class ConsumerService {
 	 * Lista el/los consumer con más order canceladas
 	 */
 	//req: 17.6.3
-	public Collection<Consumer> findConsumerMoreOrdersCancelled(){
+	public Collection<Customer> findConsumerMoreOrdersCancelled(){
 		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can list consumers");
-		Collection<Consumer> result;
+		Collection<Customer> result;
 		
 		result = consumerRepository.findConsumerMoreOrdersCancelled();
 		
@@ -203,9 +203,9 @@ public class ConsumerService {
 	 * Lista el/los consumer con menos order canceladas
 	 */
 	//req: 17.6.4
-	public Collection<Consumer> findConsumerLessOrdersCancelled(){
+	public Collection<Customer> findConsumerLessOrdersCancelled(){
 		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can list consumers");
-		Collection<Consumer> result;
+		Collection<Customer> result;
 		
 		result = consumerRepository.findConsumerLessOrdersCancelled();
 		

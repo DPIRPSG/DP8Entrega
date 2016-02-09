@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import domain.Consumer;
+import domain.Customer;
 import domain.Content;
 import domain.Item;
 import domain.Order;
@@ -50,7 +50,7 @@ public class ShoppingCartService {
 	/**
 	 * Inicializa un carrito
 	 */
-	public ShoppingCart create(Consumer consumer){
+	public ShoppingCart create(Customer consumer){
 		ShoppingCart result;
 		Collection<Content> content;
 		
@@ -85,7 +85,7 @@ public class ShoppingCartService {
 	public Order createCheckOut(){
 		Assert.isTrue(actorService.checkAuthority("CONSUMER"), "Only the consumer can place the order");
 		
-		Consumer consumer;
+		Customer consumer;
 		Order result;
 		ShoppingCart shoppingCart;
 		
@@ -103,7 +103,7 @@ public class ShoppingCartService {
 	 * Guarda el objeto creado con createCheckOut
 	 */
 	//req: 11.7
-	public void saveCheckOut(Order order, Consumer consumer){
+	public void saveCheckOut(Order order, Customer consumer){
 		Assert.notNull(order);
 		Assert.notNull(consumer);
 		Assert.isTrue(order.getConsumer().equals(consumer), "Only the owner can keep order");
@@ -117,7 +117,7 @@ public class ShoppingCartService {
 	 * 
 	 */
 	//req: 11.7
-	private void emptyShoppingCart(Consumer consumer){
+	private void emptyShoppingCart(Customer consumer){
 		Assert.notNull(consumer);
 		Assert.isTrue(consumer.getId() != 0);
 		
@@ -135,7 +135,7 @@ public class ShoppingCartService {
 	 * Devuelve el carrito de un consumer.
 	 */
 	//req: 11.2, 11.7
-	public ShoppingCart findByConsumer(Consumer consumer){
+	public ShoppingCart findByConsumer(Customer consumer){
 		Assert.notNull(consumer);
 		
 		ShoppingCart result;

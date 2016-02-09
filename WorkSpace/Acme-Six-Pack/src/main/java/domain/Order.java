@@ -107,7 +107,7 @@ public class Order extends DomainEntity{
 	// Relationships ----------------------------------------------------------
 	private Clerk clerk;
 	private Collection<OrderItem> orderItems;
-	private Consumer consumer;
+	private Customer consumer;
 	
 	@Valid
 	@ManyToOne(optional = true)
@@ -132,10 +132,10 @@ public class Order extends DomainEntity{
 	@Valid
 	@NotNull
 	@ManyToOne(optional = false)
-	public Consumer getConsumer() {
+	public Customer getConsumer() {
 		return consumer;
 	}
-	public void setConsumer(Consumer consumer) {
+	public void setConsumer(Customer consumer) {
 		this.consumer = consumer;
 	}
 

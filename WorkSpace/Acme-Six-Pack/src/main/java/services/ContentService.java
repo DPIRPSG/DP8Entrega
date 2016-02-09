@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import domain.Consumer;
+import domain.Customer;
 import domain.Content;
 import domain.Item;
 import domain.ShoppingCart;
@@ -52,7 +52,7 @@ public class ContentService {
 	public void save(Content content){
 		Assert.notNull(content);
 		
-		Consumer actualConsumer = content.getShoppingCart().getConsumer();
+		Customer actualConsumer = content.getShoppingCart().getConsumer();
 		
 		Assert.isTrue(actualConsumer.equals(consumerService.findByPrincipal()), "Only the owner of the shopping cart can save the order");
 	
@@ -206,7 +206,7 @@ public class ContentService {
 		
 		content = contentRepository.findOne(contentId);
 		
-		Consumer actualConsumer = content.getShoppingCart().getConsumer();
+		Customer actualConsumer = content.getShoppingCart().getConsumer();
 		
 		Assert.isTrue(actualConsumer.equals(consumerService.findByPrincipal()), "Only the owner of the shopping cart can edit it");
 		

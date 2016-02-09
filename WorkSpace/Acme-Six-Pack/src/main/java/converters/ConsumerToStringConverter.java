@@ -4,14 +4,14 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import domain.Consumer;
+import domain.Customer;
 
 @Component
 @Transactional
-public class ConsumerToStringConverter implements Converter<Consumer, String> {
+public class ConsumerToStringConverter implements Converter<Customer, String> {
 	
 	@Override
-	public String convert(Consumer consumer) {
+	public String convert(Customer consumer) {
 		String result;
 
 		if (consumer == null)
