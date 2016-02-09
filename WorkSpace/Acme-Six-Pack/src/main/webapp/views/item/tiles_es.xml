@@ -1,0 +1,17 @@
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="item/list" extends="master.page">	
+		<put-attribute name="title" value="Lista de Objetos" />
+		<put-attribute name="body" value="/views/item/list.jsp" />
+	</definition>
+	
+	<definition name="item/edit" extends="master.page">	
+		<put-attribute name="title" value="Editar un objeto" />
+		<put-attribute name="body" value="/views/item/edit.jsp" />
+	</definition>
+	
+</tiles-definitions>

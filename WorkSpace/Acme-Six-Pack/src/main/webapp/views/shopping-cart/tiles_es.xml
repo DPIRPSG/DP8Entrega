@@ -1,0 +1,17 @@
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+
+	<definition name="shopping-cart/list" extends="master.page">	
+		<put-attribute name="title" value="Carrito de la Compra" />
+		<put-attribute name="body" value="/views/shopping-cart/list.jsp" />
+	</definition>
+	
+	<definition name="shopping-cart/edit" extends="master.page">	
+		<put-attribute name="title" value="Editar carrito" />
+		<put-attribute name="body" value="/views/shopping-cart/edit.jsp" />
+	</definition>
+	
+</tiles-definitions>

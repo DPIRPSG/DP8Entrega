@@ -1,0 +1,17 @@
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+
+	<definition name="order/list" extends="master.page">	
+		<put-attribute name="title" value="List of Orders placed in the system" />
+		<put-attribute name="body" value="/views/order/list.jsp" />
+	</definition>
+	
+	<definition name="order/create" extends="master.page">	
+		<put-attribute name="title" value="Order's information" />
+		<put-attribute name="body" value="/views/order/create.jsp" />
+	</definition>
+	
+</tiles-definitions>

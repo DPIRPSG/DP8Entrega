@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+
+	<definition name="consumer/create" extends="master.page">	
+		<put-attribute name="title" value="Consumer: Register" />
+		<put-attribute name="body" value="/views/consumer/create.jsp" />
+	</definition>
+	
+	<definition name="consumer/list" extends="master.page">	
+		<put-attribute name="title" value="List of consumers" />
+		<put-attribute name="body" value="/views/consumer/list.jsp" />
+	</definition>
+	
+</tiles-definitions>
