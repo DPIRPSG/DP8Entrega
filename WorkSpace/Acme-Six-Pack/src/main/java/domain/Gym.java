@@ -4,46 +4,30 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Item extends DomainEntity{
+public class Gym extends DomainEntity{
 
 	// Constructors -----------------------------------------------------------
 
 	// Attributes -------------------------------------------------------------
-	private String sku;
 	private String name;
 	private String description;
-	private double price;
-	private Collection<String> tags;
+	private String postalAddress;
+	private double fee;
 	private String picture;
-	private boolean deleted;
-	
-	@NotBlank
-	@Column(unique = true)
-	@Pattern(regexp="^\\w{2}\\-\\w{4}$")
-	@Valid
-	@NotNull
-	public String getSku() {
-		return sku;
-	}
-	public void setSku(String sku) {
-		this.sku = sku;
-	}
+	private String phone;
 	
 	@NotBlank
 	@NotNull
@@ -63,29 +47,24 @@ public class Item extends DomainEntity{
 		this.description = description;
 	}
 	
+	@NotBlank
+	@NotNull
+	public String getPostalAddress() {
+		return postalAddress;
+	}
+	public void setPostalAddress(String postalAddress) {
+		this.postalAddress = postalAddress;
+	}
+	
 	//@NotNull
 	@Min(0)
 	@Digits(integer=9, fraction=2)
 	@Valid
-	public double getPrice() {
-		return price;
+	public double getFee() {
+		return fee;
 	}
-	public void setPrice(double price) {
-		this.price = price;
-	}
-	
-	@ElementCollection
-	public Collection<String> getTags() {
-		return tags;
-	}
-	public void setTags(Collection<String> tags) {
-		this.tags = tags;
-	}
-	public boolean addTags(String e) {
-		return tags.add(e);
-	}
-	public boolean removeTags(Object o) {
-		return tags.remove(o);
+	public void setFee(double fee) {
+		this.fee = fee;
 	}
 	
 	@URL
@@ -97,31 +76,24 @@ public class Item extends DomainEntity{
 		this.picture = picture;
 	}
 	
-	//Al ser primitivo no permite null
-	public boolean getDeleted() {
-		return deleted;
-	}
-	public void setDeleted(boolean deleted) {
-		this.deleted = deleted;
-	}
-	
-	// Relationships ----------------------------------------------------------
-	private Category category;
-	private Collection<Comment> comments;
-	private Collection<Storage> storages;
-	
-	@Valid
+	@NotBlank
 	@NotNull
-	@ManyToOne(optional = false)
-	public Category getCategory() {
-		return category;
+	public String getPhone() {
+		return phone;
 	}
-	public void setCategory(Category category) {
-		this.category = category;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
+
+
+
+	// Relationships ----------------------------------------------------------
+	private Collection<Comment> comments;
+	private Collection<Service> service;
+	private Collection<FeePayment> feePayment;
 	
 	@Valid
-	@OneToMany(mappedBy = "item")
+	@OneToMany(mappedBy = "gym")
 	@NotNull
 	public Collection<Comment> getComments() {
 		return comments;
@@ -131,14 +103,26 @@ public class Item extends DomainEntity{
 	}
 	
 	@Valid
-	@OneToMany(mappedBy = "item")
 	@NotNull
-	public Collection<Storage> getStorages() {
-		return storages;
+	@ManyToMany
+	public Collection<Service> getService() {
+		return service;
 	}
-	public void setStorages(Collection<Storage> storages) {
-		this.storages = storages;
+	public void setService(Collection<Service> service) {
+		this.service = service;
 	}
+	
+	@Valid
+	@OneToMany(mappedBy = "gym")
+	@NotNull	
+	public Collection<FeePayment> getFeePayment() {
+		return feePayment;
+	}
+	public void setFeePayment(Collection<FeePayment> feePayment) {
+		this.feePayment = feePayment;
+	}
+	
+	
 	
 	
 }

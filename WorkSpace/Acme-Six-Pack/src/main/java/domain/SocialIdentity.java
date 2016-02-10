@@ -3,22 +3,23 @@ package domain;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
-import javax.validation.Valid;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.URL;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Tax extends DomainEntity{
+public class SocialIdentity extends DomainEntity{
 
 	// Constructors -----------------------------------------------------------
 
 	// Attributes -------------------------------------------------------------
 	private String name;
-	private double value;
+	private String homePage;
+	private String picture;
+	private String nick;
+
 	
 	@NotBlank
 	@NotNull
@@ -29,17 +30,35 @@ public class Tax extends DomainEntity{
 		this.name = name;
 	}
 	
-	//Al ser primitivo no necesita ser @NotNull
-	@Min(0)
-	@Digits(integer=3, fraction=2)
-	@Valid
-	public double getValue() {
-		return value;
+	@NotBlank
+	@NotNull
+	public String getHomePage() {
+		return homePage;
 	}
-	public void setValue(double value) {
-		this.value = value;
+	public void setHomePage(String homePage) {
+		this.homePage = homePage;
 	}
 	
+	@NotBlank
+	@NotNull
+	@URL
+	public String getPicture() {
+		return picture;
+	}
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+	
+	@NotBlank
+	@NotNull
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
+
 	// Relationships ----------------------------------------------------------
 
+	
 }

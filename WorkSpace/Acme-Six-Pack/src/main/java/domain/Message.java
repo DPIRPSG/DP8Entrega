@@ -26,7 +26,7 @@ public class Message extends DomainEntity{
 	// Attributes -------------------------------------------------------------
 	private String subject;
 	private String body;
-	private Date moment;
+	private Date sentMoment;
 	
 	@NotBlank
 	@NotNull
@@ -49,11 +49,11 @@ public class Message extends DomainEntity{
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
-	public Date getMoment() {
-		return moment;
+	public Date getSentMoment() {
+		return sentMoment;
 	}
-	public void setMoment(Date moment) {
-		this.moment = moment;
+	public void setSentMoment(Date sentMoment) {
+		this.sentMoment = sentMoment;
 	}
 	
 	// Relationships ----------------------------------------------------------	

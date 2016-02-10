@@ -65,7 +65,6 @@ public class Comment extends DomainEntity{
 	}
 	
 	// Relationships ----------------------------------------------------------
-	private Item item;
 	private Actor actor;
 	private Gym gym;
 	private Service service;
