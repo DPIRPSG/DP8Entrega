@@ -141,6 +141,7 @@
 		</property>
 		<property name="feePayment">
 			<list>
+				<ref bean="feePayment1"/>
 			</list>
 		</property>
 		<property name="booking">
@@ -530,5 +531,70 @@
 		<property name="expirationYear" value="2016"/>
 		<property name="cvvCode" value="683"/>
 	</bean>
+	
+	<!-- Gym -->
+	
+	<bean id="gym1" class="domain.Gym">
+		<property name="name" value="Gym Sevilla"/>
+		<property name="description" value="Gimnasio de Sevilla"/>
+		<property name="postalAddress" value="Sevilla"/>
+		<property name="fee" value="30"/>
+		<property name="picture" value="http://www.casacartagena.com/archivo/files/gimnasio-1.jpg"/>
+		<property name="phone" value="666444777"/>
+		<property name="comments">
+			<list>
+			</list>
+		</property>
+		<property name="service">
+			<list>
+				<ref bean="service1"/>
+			</list>
+		</property>
+		<property name="feePayment">
+			<list>
+				<ref bean="feePayment1"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Services -->
+	
+	<bean id="service1" class="domain.Service">
+		<property name="name" value="Fitness"/>
+		<property name="description" value="Servicio de Fitness"/>
+		<property name="pictures">
+			<list>
+			</list>
+		</property>
+		<property name="gyms">
+			<list>
+				<ref bean="gym1"/>
+			</list>
+		</property>
+		<property name="bookings">
+			<list>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- FeePayment -->
+	
+	<bean id="feePayment1" class="domain.FeePayment">
+		<property name="paymentMoment" value="2016/02/10 18:00"/>
+		<property name="creditCard" ref="creditCard1"/>
+		<!-- <property name="activeMoment" value=""/>
+		<property name="inactiveMoment" value=""/>-->
+		<property name="gym" ref="gym1"/>
+		<property name="customer" ref="customer1"/>
+	</bean>
+	
+	<!-- Booking -->
+	
+	<!-- <bean id="booking1" class="domain.Booking">
+	</bean>-->
 
 </beans>
