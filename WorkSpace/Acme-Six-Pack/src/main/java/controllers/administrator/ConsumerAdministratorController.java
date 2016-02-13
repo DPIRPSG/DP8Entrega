@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.ConsumerService;
+import services.CustomerService;
 
 import controllers.AbstractController;
 import domain.Customer;
@@ -20,7 +20,7 @@ public class ConsumerAdministratorController extends AbstractController{
 	//Services ----------------------------------------------------------
 
 	@Autowired
-	private ConsumerService consumerService;
+	private CustomerService consumerService;
 	
 	//Constructors ----------------------------------------------------------
 	

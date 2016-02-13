@@ -30,7 +30,7 @@ public class FolderServiceTest extends AbstractTest{
 	@Autowired
 	private FolderService folderService;
 	@Autowired
-	private ConsumerService consumerService;
+	private CustomerService consumerService;
 	@Autowired
 	private MessageService messageService;
 	

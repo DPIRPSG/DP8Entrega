@@ -16,7 +16,7 @@ import controllers.AbstractController;
 import domain.Customer;
 import domain.ShoppingCart;
 
-import services.ConsumerService;
+import services.CustomerService;
 import services.ShoppingCartService;
 
 @Controller
@@ -27,7 +27,7 @@ public class ShoppingCartConsumerController extends AbstractController{
 	@Autowired
 	private ShoppingCartService shoppingCartService;
 	@Autowired
-	private ConsumerService consumerService;
+	private CustomerService consumerService;
 	
 	// Constructors ----------------------------------------------------------
 

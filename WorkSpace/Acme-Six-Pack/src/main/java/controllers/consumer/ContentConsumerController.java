@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.ConsumerService;
+import services.CustomerService;
 import services.ContentService;
 import services.ExchangeRateService;
 
@@ -31,7 +31,7 @@ public class ContentConsumerController extends AbstractController{
 	@Autowired
 	private ContentService contentService;
 	@Autowired
-	private ConsumerService consumerService;
+	private CustomerService consumerService;
 	
 	@Autowired
 	private ExchangeRateService exchangeRateService;

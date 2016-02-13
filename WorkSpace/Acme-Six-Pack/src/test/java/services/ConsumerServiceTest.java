@@ -28,7 +28,7 @@ public class ConsumerServiceTest extends AbstractTest{
 
 	// Service under test -------------------------
 	@Autowired
-	private ConsumerService consumerService;
+	private CustomerService consumerService;
 		
 	// Test ---------------------------------------
 	@Test

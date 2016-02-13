@@ -31,7 +31,7 @@ public class ShoppingCartServiceTest extends AbstractTest{
 	@Autowired
 	private ItemService itemService;
 	@Autowired
-	private ConsumerService consumerService;
+	private CustomerService consumerService;
 	
 	// Test ---------------------------------------
 	

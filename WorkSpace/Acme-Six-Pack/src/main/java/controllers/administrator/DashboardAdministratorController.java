@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ClerkService;
-import services.ConsumerService;
+import services.CustomerService;
 import services.ItemService;
 import services.OrderService;
 import controllers.AbstractController;
@@ -24,7 +24,7 @@ public class DashboardAdministratorController extends AbstractController {
 	// Services ----------------------------------------------------------
 	
 	@Autowired
-	private ConsumerService consumerService;
+	private CustomerService consumerService;
 	
 	@Autowired
 	private ItemService itemService;

@@ -17,7 +17,7 @@ import controllers.AbstractController;
 
 import domain.Customer;
 import domain.Order;
-import services.ConsumerService;
+import services.CustomerService;
 import domain.ExchangeRate;
 import services.ExchangeRateService;
 import services.OrderService;
@@ -33,7 +33,7 @@ public class OrderConsumerController extends AbstractController {
 	@Autowired
 	private ShoppingCartService ShoppingCartService;
 	@Autowired
-	private ConsumerService consumerService;
+	private CustomerService consumerService;
 	@Autowired
 	private ExchangeRateService exchangeRateService;
 

@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import controllers.AbstractController;
 
-import services.ConsumerService;
+import services.CustomerService;
 import services.ExchangeRateService;
 import services.ItemService;
 import services.ShoppingCartService;
@@ -33,7 +33,7 @@ public class ItemConsumerController extends AbstractController {
 	private ShoppingCartService shoppingCartService;
 	
 	@Autowired
-	private ConsumerService consumerService;
+	private CustomerService consumerService;
 	
 	@Autowired
 	private ExchangeRateService exchangeRateService;
