@@ -45,6 +45,12 @@
 		<bean class="converters.GymToStringConverter" />
 		<bean class="converters.StringToGymConverter" />
 		
+		<bean class="converters.BookingToStringConverter" />
+		<bean class="converters.StringToBookingConverter" />
+		
+		<bean class="converters.FeePaymentToStringConverter" />
+		<bean class="converters.StringToFeePaymentConverter" />
+		
 	</util:list>
 	
 </beans>
