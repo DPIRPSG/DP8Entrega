@@ -84,7 +84,7 @@ public class Message extends DomainEntity{
 	
 	@Valid
 	@NotNull
-	@ManyToMany(mappedBy = "messages")
+	@ManyToMany
 	public Collection<Folder> getFolders() {
 		return folders;
 	}

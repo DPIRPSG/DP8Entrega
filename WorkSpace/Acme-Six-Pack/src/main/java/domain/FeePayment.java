@@ -46,6 +46,7 @@ public class FeePayment extends DomainEntity{
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy/dd/MM HH:mm")
+	@NotNull
 	public Date getActiveMoment() {
 		return activeMoment;
 	}
@@ -55,6 +56,7 @@ public class FeePayment extends DomainEntity{
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy/dd/MM HH:mm")
+	@NotNull
 	public Date getInactiveMoment() {
 		return inactiveMoment;
 	}
