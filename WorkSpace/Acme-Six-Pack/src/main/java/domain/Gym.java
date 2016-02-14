@@ -106,12 +106,20 @@ public class Gym extends DomainEntity{
 	@Valid
 	@NotNull
 	@ManyToMany(mappedBy = "gyms")
-	@Size(min = 1)
+	//@Size(min = 1)
 	public Collection<Service> getService() {
 		return service;
 	}
 	public void setService(Collection<Service> service) {
 		this.service = service;
+	}
+	
+	public void addService(Service service) {
+		this.service.add(service);
+	}
+
+	public void removeService(Service service) {
+		this.service.remove(service);
 	}
 	
 	@Valid

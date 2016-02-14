@@ -8,87 +8,44 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <!-- Form -->
-<form:form action="item/administrator/edit.do" modelAttribute="item">
+<form:form action="gym/administrator/edit.do" modelAttribute="gym">
 	<!-- Hidden Attributes -->
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="deleted"/>
-	<form:hidden path="comments"/>
-	<form:hidden path="storages"/>
+	<form:hidden path="comments" />
+	<form:hidden path="service" />
+	<form:hidden path="feePayment" />
 	
-	<jstl:if test="${item.id != 0}">
-		<form:hidden path="sku"/>
-	</jstl:if>
 	
 	<!-- Editable Attributes -->
-	<jstl:if test="${item.id == 0}">
-		<form:label path="sku">
-			<spring:message code="item.sku" />:
-		</form:label>
-		<form:input path="sku" />
-		<form:errors cssClass="error" path="sku" />
-		<br />
-	</jstl:if>
-
-	<form:label path="name">
-		<spring:message code="item.name" />:
-	</form:label>
-	<form:input path="name" />
-	<form:errors cssClass="error" path="name" />
-	<br />
-
-	<form:label path="description">
-		<spring:message code="item.description" />:
-	</form:label>
-	<form:textarea path="description" />
-	<form:errors cssClass="error" path="description" />
-	<br />
-
-	<form:label path="price">
-		<spring:message code="item.price" />:
-	</form:label>
-	<form:input path="price" />
-	<form:errors cssClass="error" path="price" />
-	<br />
 	
-	<form:label path="tags">
-		<spring:message code="item.tags" />:
-	</form:label>
-	<form:textarea path="tags" />
-	<form:errors cssClass="error" path="tags" />
-	<br />
 
-	<form:label path="picture">
-		<spring:message code="item.picture" />:
-	</form:label>
-	<form:textarea path="picture" />
-	<form:errors cssClass="error" path="picture" />
-	<br />
+	<acme:textbox code="gym.name" path="name" />
+
+	<acme:textbox code="gym.description" path="description" />
+
+	<acme:textbox code="gym.postalAddress" path="postalAddress" />
 	
-	<!-- Select tax -->
-	<form:label path="category">
-		<spring:message code="item.category" />:
-	</form:label>
-	<form:select id="categories" path="category">
-		<form:option value="0" label="----" />		
-		<form:options items="${categories}" itemValue="id" itemLabel="name" />
-	</form:select>
-	<form:errors cssClass="error" path="category" />
-	<br />
+	<acme:textbox code="gym.phone" path="phone" />
+
+	<acme:textbox code="gym.fee" path="fee" />
+	
+	<acme:textbox code="gym.picture" path="picture" />
+	
 	
 	<!-- Action buttons -->
-	<input type="submit" name="save"
-		value="<spring:message code="item.save" />" />&nbsp; 
-	<jstl:if test="${item.id != 0}">
+
+	<acme:submit name="save" code="gym.save"/>	
+
+	<jstl:if test="${gym.id != 0}">
 		<input type="submit" name="delete"
-			value="<spring:message code="item.delete" />"
-			onclick="return confirm('<spring:message code="item.confirm.delete" />')" />&nbsp;
+			value="<spring:message code="gym.delete" />"
+			onclick="return confirm('<spring:message code="gym.confirm.delete" />')" />&nbsp;
 	</jstl:if>
-	<input type="button" name="cancel"
-		value="<spring:message code="item.cancel" />"
-		onclick="javascript: relativeRedir('item/administrator/list.do?keyword=');" />
-	<br />
+	
+	<acme:cancel code="gym.cancel" url="gym/administrator/list.do?"/>
 
 </form:form>
