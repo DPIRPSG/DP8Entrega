@@ -32,13 +32,13 @@
 
 	<spring:message code="gym.description" var="descriptionHeader" />
 	<display:column title="${descriptionHeader}"
-		sortable="true">
+		sortable="false">
 		<jstl:out value="${row_Gym.description}"/>
 	</display:column>
 	
 	<spring:message code="gym.postalAddress" var="postalAddressHeader" />
 	<display:column title="${postalAddressHeader}"
-		sortable="true">
+		sortable="false">
 		<jstl:out value="${row_Gym.postalAddress}"/>
 	</display:column>
 

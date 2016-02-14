@@ -23,21 +23,15 @@
 <div>
 	<ul id="jMenu">
 		<!-- Do not forget the "fNiv" class for the first level links !! -->
-		<security:authorize access="hasRole('CONSUMER')">
-			<li><a class="fNiv" href="item/consumer/list.do?keyword="><spring:message code="master.page.catalogue" /></a></li>
-			<li><a class="fNiv" href="shopping-cart/consumer/list.do"><spring:message code="master.page.shopping-cart" /></a></li>
-			<li><a class="fNiv" href="order/consumer/list.do"><spring:message code="master.page.orders" /></a></li>
-			<li><a class="fNiv" href="folder/actor/list.do"><spring:message code="master.page.messages" /></a></li>
+		<security:authorize access="hasRole('CUSTOMER')">
+			<li><a class="fNiv" href="gym/customer/list.do?"><spring:message code="master.page.manage.gym" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('ADMIN')">
 			<li><a class="fNiv"><spring:message	code="master.page.manage" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="item/administrator/list.do?keyword="><spring:message code="master.page.manage.catalogue" /></a></li>
-					<li><a href="tax/administrator/list.do"><spring:message code="master.page.manage.taxes" /></a></li>			
-					<li><a href="category/administrator/list.do"><spring:message code="master.page.manage.categories" /></a></li>	
-					<li><a href="warehouse/administrator/list.do"><spring:message code="master.page.manage.warehouses" /></a></li>			
+					<li><a href="gym/administrator/list.do?"><spring:message code="master.page.manage.gym" /></a></li>
 				</ul>
 			</li>
 			<li><a class="fNiv"><spring:message	code="master.page.list" /></a>
@@ -52,16 +46,9 @@
 			<li><a class="fNiv" href="folder/actor/list.do"><spring:message code="master.page.messages" /></a></li>
 		</security:authorize>
 		
-		<security:authorize access="hasRole('CLERK')">
-			<li><a class="fNiv" href="item/clerk/list.do?keyword="><spring:message code="master.page.catalogue" /></a></li>
-			<li><a class="fNiv" href="warehouse/clerk/list.do"><spring:message code="master.page.warehouses" /></a></li>
-			<li><a class="fNiv" href="order/clerk/list.do"><spring:message code="master.page.orders" /></a></li>
-			<li><a class="fNiv" href="folder/actor/list.do"><spring:message code="master.page.messages" /></a></li>
-		</security:authorize>
-		
 		<security:authorize access="isAnonymous()">
-			<li><a class="fNiv" href="item/list.do?keyword="><spring:message code="master.page.catalogue" /></a></li>
-			<li><a class="fNiv" href="consumer/create.do"><spring:message code="master.page.register" /></a></li>
+			<li><a class="fNiv" href="gym/list.do?"><spring:message code="master.page.gym" /></a></li>
+			<li><a class="fNiv" href="customer/create.do"><spring:message code="master.page.register" /></a></li>
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
 		</security:authorize>
 		

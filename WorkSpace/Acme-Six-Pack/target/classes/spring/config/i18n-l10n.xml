@@ -30,6 +30,7 @@
 		<value>/views/comment/messages</value>
 		<value>/views/folder/messages</value>
 		<value>/views/message/messages</value>
+		<value>/views/gym/messages</value>
 		
 		
 	</util:list>
