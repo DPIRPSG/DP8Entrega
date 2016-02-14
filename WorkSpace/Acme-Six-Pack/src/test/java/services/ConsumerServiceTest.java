@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import security.UserAccount;
 import utilities.AbstractTest;
-import domain.Consumer;
+import domain.Customer;
 import domain.Message;
 import domain.Order;
 
@@ -28,19 +28,19 @@ public class ConsumerServiceTest extends AbstractTest{
 
 	// Service under test -------------------------
 	@Autowired
-	private ConsumerService consumerService;
+	private CustomerService consumerService;
 		
 	// Test ---------------------------------------
 	@Test
 	public void testConsumerCancelledMoreOrders1(){
 		System.out.println("ConsumerServiceTest - testConsumerCancelledMoreOrders1 - StartPoint");
 		
-		Collection<Consumer> all;
+		Collection<Customer> all;
 		
 		authenticate("admin");
 		
 		all = consumerService.findConsumerMoreOrdersCancelled();
-		for(Consumer c:all){
+		for(Customer c:all){
 			System.out.println(c.getName() + " " + c.getSurname());
 		}
 		
@@ -53,12 +53,12 @@ public class ConsumerServiceTest extends AbstractTest{
 	public void testConsumerCancelledLessOrders1(){
 		System.out.println("ConsumerServiceTest - testConsumerCancelledLessOrders1 - StartPoint");
 		
-		Collection<Consumer> all;
+		Collection<Customer> all;
 		
 		authenticate("admin");
 		
 		all = consumerService.findConsumerLessOrdersCancelled();
-		for(Consumer c:all){
+		for(Customer c:all){
 			System.out.println(c.getName() + " " + c.getSurname());
 		}
 		
@@ -72,14 +72,14 @@ public class ConsumerServiceTest extends AbstractTest{
 		System.out.println("Requisito 12.5 - List the consumers that are registered in the system.");
 		System.out.println("ConsumerServiceTest - testList1 - StartPoint");
 		
-		Collection<Consumer> all;
+		Collection<Customer> all;
 		
 		authenticate("admin");
 		
 		all = consumerService.findAll();
 		
 		System.out.println("Lista de consumer registrados en el sistema:");
-		for(Consumer c:all){
+		for(Customer c:all){
 			System.out.println(c.getName());
 		}
 		authenticate(null);	
@@ -91,8 +91,8 @@ public class ConsumerServiceTest extends AbstractTest{
 		System.out.println("Requisito 10.1 - Register a new consumer to the system.");
 		System.out.println("ConsumerServiceTest - testConsumer1 - StartPoint");
 		
-		Consumer result;
-		Collection<Consumer> all;
+		Customer result;
+		Collection<Customer> all;
 		UserAccount userAccount;
 		Collection<Message> received;
 		Collection<Message> sent;
@@ -105,7 +105,7 @@ public class ConsumerServiceTest extends AbstractTest{
 		authenticate("admin");
 		all = consumerService.findAll();
 		System.out.println("Lista de Consumers antes de la creación de otro");
-		for(Consumer c:all){
+		for(Customer c:all){
 			System.out.println(c.getName());
 		}
 		authenticate(null);
@@ -131,7 +131,7 @@ public class ConsumerServiceTest extends AbstractTest{
 		authenticate("admin");
 		all = consumerService.findAll();
 		System.out.println("Lista de Consumers después de la creación de otro");
-		for(Consumer c:all){
+		for(Customer c:all){
 			System.out.println(c.getName());
 		}
 		authenticate(null);
@@ -144,14 +144,14 @@ public class ConsumerServiceTest extends AbstractTest{
 		System.out.println("Requisito 12.7.1 - The consumer/s who has/have placed more orders.");
 		System.out.println("ConsumerServiceTest - testFindConsumerMoreOrders1 - StartPoint");
 		
-		Collection<Consumer> all;
+		Collection<Customer> all;
 		
 		authenticate("admin");
 		
 		all = consumerService.findConsumerMoreOrders();
 		
 		System.out.println("The consumer/s who has/have placed more orders.");
-		for(Consumer c:all){
+		for(Customer c:all){
 			System.out.println(c.getName());
 		}
 		
@@ -165,14 +165,14 @@ public class ConsumerServiceTest extends AbstractTest{
 		System.out.println("Requisito 12.7.2 - The consumer/s who has/have spent more money on their orders.");
 		System.out.println("ConsumerServiceTest - testFindConsumerSpentMoreMoney1 - StartPoint");
 		
-		Collection<Consumer> all;
+		Collection<Customer> all;
 		
 		authenticate("admin");
 		
 		all = consumerService.findConsumerSpentMoreMoney();
 		
 		System.out.println("The consumer/s who has/have spent more money on their orders.");
-		for(Consumer c:all){
+		for(Customer c:all){
 			System.out.println(c.getName());
 		}
 		

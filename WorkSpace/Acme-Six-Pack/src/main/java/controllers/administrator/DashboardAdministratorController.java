@@ -8,14 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.ClerkService;
-import services.ConsumerService;
-import services.ItemService;
-import services.OrderService;
+import services.CustomerService;
 import controllers.AbstractController;
-import domain.Clerk;
-import domain.Consumer;
-import domain.Item;
+import domain.Customer;
 
 @Controller
 @RequestMapping("/dashboard/administrator")
@@ -23,8 +18,8 @@ public class DashboardAdministratorController extends AbstractController {
 	
 	// Services ----------------------------------------------------------
 	
-	@Autowired
-	private ConsumerService consumerService;
+	/*@Autowired
+	private CustomerService consumerService;
 	
 	@Autowired
 	private ItemService itemService;
@@ -48,14 +43,14 @@ public class DashboardAdministratorController extends AbstractController {
 		@RequestMapping(value = "/list", method = RequestMethod.GET)
 		public ModelAndView list() {
 			ModelAndView result;
-			Collection<Consumer> consumerMoreOrders;
-			Collection<Consumer> consumerSpentMoreMoney;
+			Collection<Customer> consumerMoreOrders;
+			Collection<Customer> consumerSpentMoreMoney;
 			Collection<Item> bestSellingItem;
 			Collection<Item> worstSellingItem;
 			Collection<Clerk> clerkMoreOrders;
 			Collection<Clerk> clerkLessOrders;
-			Collection<Consumer> consumerCancelledMoreOrders;
-			Collection<Consumer> consumerCancelledLessOrders;
+			Collection<Customer> consumerCancelledMoreOrders;
+			Collection<Customer> consumerCancelledLessOrders;
 			double ratioCancelledCurrentMonth;
 			Collection<Item> itemMoreComment;
 			
@@ -84,6 +79,6 @@ public class DashboardAdministratorController extends AbstractController {
 			result.addObject("requestURI", "administrator/list.do");
 			
 			return result;
-		}
+		}*/
 	
 }

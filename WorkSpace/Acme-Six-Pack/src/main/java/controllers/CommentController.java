@@ -14,9 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
 import services.CommentService;
-import services.ItemService;
 import domain.Comment;
-import domain.Item;
 
 @Controller
 @RequestMapping("/comment")
@@ -24,7 +22,7 @@ public class CommentController extends AbstractController {
 	
 	// Services ----------------------------------------------------------
 	
-	@Autowired
+	/*@Autowired
 	private CommentService commentService;
 	
 	@Autowired
@@ -118,5 +116,5 @@ public class CommentController extends AbstractController {
 		result.addObject("message", message);
 		
 		return result;
-	}
+	}*/
 }

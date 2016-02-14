@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import domain.Consumer;
+import domain.Customer;
 
-import services.ConsumerService;
+import services.CustomerService;
 
 @Controller
 @RequestMapping(value = "/consumer")
@@ -20,7 +20,7 @@ public class RegisterController extends AbstractController{
 	//Services ----------------------------------------------------------
 	
 	@Autowired
-	private ConsumerService consumerService;
+	private CustomerService consumerService;
 	
 	//Constructors ----------------------------------------------------------
 	
@@ -35,7 +35,7 @@ public class RegisterController extends AbstractController{
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create(){
 		ModelAndView result;
-		Consumer consu;
+		Customer consu;
 		
 		consu = consumerService.create();
 		result = createEditModelAndView(consu);
@@ -46,7 +46,7 @@ public class RegisterController extends AbstractController{
 	//Edition ----------------------------------------------------------
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid Consumer consu, BindingResult binding){
+	public ModelAndView save(@Valid Customer consu, BindingResult binding){
 		ModelAndView result;
 		boolean bindingError;
 		
@@ -73,7 +73,7 @@ public class RegisterController extends AbstractController{
 	}
 	//Ancillary Methods ----------------------------------------------------------
 
-	protected ModelAndView createEditModelAndView(Consumer consumer){
+	protected ModelAndView createEditModelAndView(Customer consumer){
 		ModelAndView result;
 		
 		result = createEditModelAndView(consumer, null);
@@ -81,7 +81,7 @@ public class RegisterController extends AbstractController{
 		return result;
 	}
 	
-	protected ModelAndView createEditModelAndView(Consumer consumer, String message){
+	protected ModelAndView createEditModelAndView(Customer consumer, String message){
 		ModelAndView result;
 		
 		result = new ModelAndView("consumer/create");

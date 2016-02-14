@@ -16,6 +16,5 @@
 <jsp:useBean id="date" class="java.util.Date" />
 
 <hr />
-<a href="about-us/about-us.do"><spring:message code="master.page.aboutUs"/></a> 
 <br/>
 <b>Copyright &copy; <fmt:formatDate value="${date}" pattern="yyyy" /> Acme-Six-Pack Co., Inc.</b>
