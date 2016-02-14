@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class SpamTerms extends DomainEntity{
+public class SpamTerm extends DomainEntity{
 
 	// Constructors -----------------------------------------------------------
 
