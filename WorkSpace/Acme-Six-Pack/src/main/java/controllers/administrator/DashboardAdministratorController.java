@@ -8,14 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.ClerkService;
 import services.CustomerService;
-import services.ItemService;
-import services.OrderService;
 import controllers.AbstractController;
-import domain.Clerk;
 import domain.Customer;
-import domain.Item;
 
 @Controller
 @RequestMapping("/dashboard/administrator")
@@ -23,7 +18,7 @@ public class DashboardAdministratorController extends AbstractController {
 	
 	// Services ----------------------------------------------------------
 	
-	@Autowired
+	/*@Autowired
 	private CustomerService consumerService;
 	
 	@Autowired
@@ -84,6 +79,6 @@ public class DashboardAdministratorController extends AbstractController {
 			result.addObject("requestURI", "administrator/list.do");
 			
 			return result;
-		}
+		}*/
 	
 }

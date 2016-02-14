@@ -18,55 +18,51 @@
 	<security:authorize access="hasRole('ADMIN')">
 		<display:column>
 			<a href="gym/administrator/edit.do?gymId=${row_Gym.id}"> <spring:message
-					code="item.edit" />
+					code="gym.edit" />
 			</a>
 		</display:column>
 	</security:authorize>
 
 	<!-- Attributes -->
-	<spring:message code="item.category" var="categoryHeader" />
-	<display:column property="category.name" title="${categoryHeader}"
-		sortable="true" />
-
-	<spring:message code="item.name" var="nameHeader" />
+	<spring:message code="gym.name" var="nameHeader" />
 	<display:column title="${nameHeader}"
 		sortable="true">
-		<jstl:out value="${row_Item.name}"/>
+		<jstl:out value="${row_Gym.name}"/>
 	</display:column>
 
-	<spring:message code="item.price" var="priceHeader" />
-	<display:column title="${priceHeader}"
+	<spring:message code="gym.description" var="descriptionHeader" />
+	<display:column title="${descriptionHeader}"
 		sortable="true">
-		<fmt:formatNumber value="${row_Item.price * exchangeRate.rate}" maxFractionDigits="2" minFractionDigits="2"/>
+		<jstl:out value="${row_Gym.description}"/>
 	</display:column>
 	
-	<spring:message code="item.price.tax" var="priceTaxHeader" />
-	<display:column title="${priceTaxHeader}"
+	<spring:message code="gym.postalAddress" var="postalAddressHeader" />
+	<display:column title="${postalAddressHeader}"
 		sortable="true">
-		<fmt:formatNumber value="${row_Item.price * exchangeRate.rate * (1 - row_Item.category.tax.value/100)}" maxFractionDigits="2" minFractionDigits="2"/>
+		<jstl:out value="${row_Gym.postalAddress}"/>
 	</display:column>
 
-	<spring:message code="item.description" var="descriptionHeader" />
-	<display:column title="${descriptionHeader}"
-		sortable="false">
-		<jstl:out value="${row_Item.description}"></jstl:out>
+	<spring:message code="gym.phone" var="phoneHeader" />
+	<display:column title="${phoneHeader}"
+		sortable="true">
+		<jstl:out value="${row_Gym.phone}"/>
 	</display:column>
 
-	<spring:message code="item.tags" var="tagsHeader" />
-	<display:column title="${tagsHeader}" 
-		sortable="false">
-		<jstl:out value="${row_Item.tags}"/>
+	<spring:message code="gym.fee" var="feeHeader" />
+	<display:column title="${feeHeader}"
+		sortable="true">
+		<jstl:out value="${row_Gym.fee}"/>
 	</display:column>
 
-	<spring:message code="item.picture" var="pictureHeader" />
+	<spring:message code="gym.picture" var="pictureHeader" />
 	<display:column title="${pictureHeader}"
 		sortable="false" >
-		<img src="${row_Item.picture}" style="width:204px;height:128px;"/>
+		<img src="${row_Gym.picture}" style="width:204px;height:128px;"/>
 	</display:column>
 
 	<display:column>
-		<a href="comment/list.do?itemId=${row_Item.id}"> <spring:message
-				code="item.comments" />
+		<a href="comment/list.do?gymId=${row_Gym.id}"> <spring:message
+				code="gym.comments" />
 		</a>
 	</display:column>
 
@@ -74,17 +70,16 @@
 
 
 <form action="${requestURI}">
-	<input type="hidden" name="exchangeRateId" value="${exchangeRate.id}">
 	<input type="text" name="keyword"> <input type="submit"
-		value="<spring:message code="item.search" />" />&nbsp;
+		value="<spring:message code="gym.search" />" />&nbsp;
 </form>
 
 
 <!-- Action links -->
 <security:authorize access="hasRole('ADMIN')">
 	<div>
-		<a href="item/administrator/create.do"> <spring:message
-				code="item.create" />
+		<a href="gym/administrator/create.do"> <spring:message
+				code="gym.create" />
 		</a>
 	</div>
 </security:authorize>

@@ -38,8 +38,8 @@ public class CustomerService {
 	@Autowired
 	private UserAccountService userAccountService;
 	
-	@Autowired
-	private ShoppingCartService shoppingCartService;
+	/*@Autowired
+	private ShoppingCartService shoppingCartService;*/
 	
 	//Constructors -----------------------------------------------------------
 
@@ -87,9 +87,9 @@ public class CustomerService {
 			Collection<Folder> folders;
 			Collection<Message> sent;
 			Collection<Message> received;
-			Collection<Order> orders;
+			//Collection<Order> orders;
 			UserAccount auth;
-			ShoppingCart shoppingCart;
+			//ShoppingCart shoppingCart;
 			
 			//Encoding password
 			auth = consumer.getUserAccount();
@@ -98,7 +98,7 @@ public class CustomerService {
 			
 			// Initialize folders
 			folders = folderService.initializeSystemFolder(consumer);
-			consumer.setFolders(folders);
+			consumer.setMessageBox(folders);
 			
 			sent = new ArrayList<Message>();
 			received = new ArrayList<Message>();
@@ -106,12 +106,12 @@ public class CustomerService {
 			consumer.setReceived(received);
 			
 			//Initialize orders			
-			orders = new ArrayList<Order>();
-			consumer.setOrders(orders);
+			//orders = new ArrayList<Order>();
+			//consumer.setOrders(orders);
 			
 			//Initialize shoppingCart
-			shoppingCart = shoppingCartService.create(consumer);
-			consumer.setShoppingCart(shoppingCart);
+			//shoppingCart = shoppingCartService.create(consumer);
+			//consumer.setShoppingCart(shoppingCart);
 			
 		}
 		modify = consumerRepository.save(consumer);
@@ -162,53 +162,53 @@ public class CustomerService {
 	 * Cuenta las orders canceladas y las no canceladas
 	 */
 	//req: 12.7.1
-	public Collection<Customer> findConsumerMoreOrders(){
+	/*public Collection<Customer> findConsumerMoreOrders(){
 		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can list consumers");
 		Collection<Customer> result;
 		
 		result = consumerRepository.findConsumerMoreOrders();
 		
 		return result;
-	}
+	}*/
 
 	/**
 	 * Lista el consumers que ha gastado más dinero. En caso de igualdad devuelve varios. 
 	 * Solo considera las orders no canceladas
 	 */
 	//req: 12.7.2
-	public Collection<Customer> findConsumerSpentMoreMoney(){
+	/*public Collection<Customer> findConsumerSpentMoreMoney(){
 		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can list consumers");
 		Collection<Customer> result;
 		
 		result = consumerRepository.findConsumerSpentMoreMoney();
 		
 		return result;
-	}
+	}*/
 
 	/**
 	 * Lista el/los consumer con más order canceladas
 	 */
 	//req: 17.6.3
-	public Collection<Customer> findConsumerMoreOrdersCancelled(){
+	/*public Collection<Customer> findConsumerMoreOrdersCancelled(){
 		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can list consumers");
 		Collection<Customer> result;
 		
 		result = consumerRepository.findConsumerMoreOrdersCancelled();
 		
 		return result;
-	}
+	}*/
 	
 	/**
 	 * Lista el/los consumer con menos order canceladas
 	 */
 	//req: 17.6.4
-	public Collection<Customer> findConsumerLessOrdersCancelled(){
+	/*public Collection<Customer> findConsumerLessOrdersCancelled(){
 		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can list consumers");
 		Collection<Customer> result;
 		
 		result = consumerRepository.findConsumerLessOrdersCancelled();
 		
 		return result;
-	}
+	}*/
 
 }

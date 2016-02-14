@@ -15,7 +15,7 @@ import domain.Customer;
 
 @Controller
 @RequestMapping(value = "/consumer/administrator")
-public class ConsumerAdministratorController extends AbstractController{
+public class CustomerAdministratorController extends AbstractController{
 
 	//Services ----------------------------------------------------------
 
@@ -24,7 +24,7 @@ public class ConsumerAdministratorController extends AbstractController{
 	
 	//Constructors ----------------------------------------------------------
 	
-	public ConsumerAdministratorController(){
+	public CustomerAdministratorController(){
 		super();
 	}
 

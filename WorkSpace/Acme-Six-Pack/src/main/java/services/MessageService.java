@@ -55,7 +55,7 @@ public class MessageService {
 		result.setFolders(folders);
 		result.setRecipients(recipients);
 		result.setSender(actorService.findByPrincipal());
-		result.setMoment(new Date());
+		result.setSentMoment(new Date());
 		
 		return result;	
 	}
@@ -68,7 +68,7 @@ public class MessageService {
 		Assert.notNull(message);
 		Assert.isTrue(message.getSender().equals(actorService.findByPrincipal()), "Only the sender can save the message");
 		
-		message.setMoment(new Date());
+		message.setSentMoment(new Date());
 		
 		Message result;
 		
@@ -111,14 +111,14 @@ public class MessageService {
 	 */
 	private void addMessageToFolderFirst(Message message){
 		
-		for (Folder f:message.getSender().getFolders()){
+		for (Folder f:message.getSender().getMessageBox()){
 			if (f.getName().equals("OutBox") && f.getIsSystem()){
 				folderService.addMessage(f, message);
 			}
 		}
 		
 		for (Actor recipient: message.getRecipients()){
-			for (Folder f:recipient.getFolders()){
+			for (Folder f:recipient.getMessageBox()){
 				if (f.getName().equals("InBox") && f.getIsSystem()){
 					folderService.addMessage(f, message);
 				}

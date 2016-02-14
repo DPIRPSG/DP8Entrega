@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ * PopulateDatabase.xml
+ *
+ * Copyright (C) 2014 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+	
+	<!-- User accounts -->
+
+	<bean id="userAccount1" class="security.UserAccount">
+		<property name="username" value="admin" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount2" class="security.UserAccount">
+		<property name="username" value="customer1" />
+		<property name="password" value="4ee9c60cc32e6615c3c45dc6822c45de" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount3" class="security.UserAccount">
+		<property name="username" value="customer2" />
+		<property name="password" value="4ca80127919a65aace84bc96346c5bc4" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount4" class="security.UserAccount">
+		<property name="username" value="customer3" />
+		<property name="password" value="8be8dff8f3a089b30b5e97f00a04cb71" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount5" class="security.UserAccount">
+		<property name="username" value="customer4" />
+		<property name="password" value="e397705af838b414380b125b7ae1979f" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Other domain beans come here -->
+	
+	<!-- Administradores: -->
+	
+	<bean id="administrator1" class="domain.Administrator">
+		<property name="name" value="Miguel"/>
+		<property name="surname" value="Rodriguez"/>
+		<property name="phone" value="666777888"/>
+		<property name="userAccount" ref="userAccount1"/>
+		<property name="messageBox">
+			<list>
+				<ref bean="folder1"/>
+				<ref bean="folder2"/>
+				<ref bean="folder3"/>
+				<ref bean="folder4"/>
+			</list>
+		</property>
+		<property name="sent">
+			<list>
+				<ref bean="message1"/>
+			</list>
+		</property>
+		<property name="received">
+			<list>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Consumidores -->
+	
+	<bean id="customer1" class="domain.Customer">
+		<property name="name" value="Manolo"/>
+		<property name="surname" value="Lopez"/>
+		<property name="phone" value="612345789"/>
+		<property name="userAccount" ref="userAccount2"/>
+		<property name="creditCard" ref="creditCard1"/>
+		<property name="messageBox">
+			<list>
+				<ref bean="folder5"/>
+				<ref bean="folder6"/>
+				<ref bean="folder7"/>
+				<ref bean="folder8"/>
+			</list>
+		</property>
+		<property name="sent">
+			<list>
+			</list>
+		</property>
+		<property name="received">
+			<list>
+				<ref bean="message1"/>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+			</list>
+		</property>
+		<property name="feePayment">
+			<list>
+				<ref bean="feePayment1"/>
+			</list>
+		</property>
+		<property name="booking">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="customer2" class="domain.Customer">
+		<property name="name" value="Ruben"/>
+		<property name="surname" value="Sanchez"/>
+		<property name="phone" value="612342289"/>
+		<property name="userAccount" ref="userAccount3"/>
+		<property name="creditCard" ref="creditCard2"/>
+		<property name="messageBox">
+			<list>
+				<ref bean="folder9"/>
+				<ref bean="folder10"/>
+				<ref bean="folder11"/>
+				<ref bean="folder12"/>
+			</list>
+		</property>
+		<property name="sent">
+			<list>
+			</list>
+		</property>
+		<property name="received">
+			<list>
+				<ref bean="message1"/>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+			</list>
+		</property>
+		<property name="feePayment">
+			<list>
+			</list>
+		</property>
+		<property name="booking">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="customer3" class="domain.Customer">
+		<property name="name" value="Guillermo"/>
+		<property name="surname" value="Alcala"/>
+		<property name="phone" value="633422897"/>
+		<property name="userAccount" ref="userAccount4"/>
+		<property name="creditCard" ref="creditCard3"/>
+		<property name="messageBox">
+			<list>
+				<ref bean="folder13"/>
+				<ref bean="folder14"/>
+				<ref bean="folder15"/>
+				<ref bean="folder16"/>
+			</list>
+		</property>
+		<property name="sent">
+			<list>
+			</list>
+		</property>
+		<property name="received">
+			<list>
+				<ref bean="message1"/>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+			</list>
+		</property>
+		<property name="feePayment">
+			<list>
+			</list>
+		</property>
+		<property name="booking">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="customer4" class="domain.Customer">
+		<property name="name" value="Mónica"/>
+		<property name="surname" value="Ordóñez"/>
+		<property name="phone" value="626667791"/>
+		<property name="userAccount" ref="userAccount5"/>
+		<property name="creditCard" ref="creditCard4"/>
+		<property name="messageBox">
+			<list>
+				<ref bean="folder17"/>
+				<ref bean="folder18"/>
+				<ref bean="folder19"/>
+				<ref bean="folder20"/>
+			</list>
+		</property>
+		<property name="sent">
+			<list>
+			</list>
+		</property>
+		<property name="received">
+			<list>
+				<ref bean="message1"/>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+			</list>
+		</property>
+		<property name="feePayment">
+			<list>
+			</list>
+		</property>
+		<property name="booking">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Mensajes -->
+	
+	<bean id="message1" class="domain.Message">
+		<property name="subject" value="Bienvenido"/>
+		<property name="body" value="Registrado con exito, bienvenido a Acme-Six-Pack"/>
+		<property name="sentMoment" value="2015/10/13 22:15"/>
+		<property name="sender" ref="administrator1"/>
+		<property name="recipients">
+			<list>
+				<ref bean="customer1"/>
+				<ref bean="customer2"/>
+				<ref bean="customer3"/>
+				<ref bean="customer4"/>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+				<ref bean="folder2"/>
+				<ref bean="folder5"/>
+				<ref bean="folder9"/>
+				<ref bean="folder13"/>
+				<ref bean="folder17"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Folders -->
+	
+	<bean id="folder1" class="domain.Folder">
+		<property name="name" value="InBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="administrator1"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder2" class="domain.Folder">
+		<property name="name" value="OutBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="administrator1"/>
+		<property name="messages">
+			<list>
+				<ref bean="message1"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder3" class="domain.Folder">
+		<property name="name" value="TrashBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="administrator1"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder4" class="domain.Folder">
+		<property name="name" value="SpamBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="administrator1"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder5" class="domain.Folder">
+		<property name="name" value="InBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="customer1"/>
+		<property name="messages">
+			<list>
+				<ref bean="message1"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder6" class="domain.Folder">
+		<property name="name" value="OutBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="customer1"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder7" class="domain.Folder">
+		<property name="name" value="TrashBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="customer1"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder8" class="domain.Folder">
+		<property name="name" value="SpamBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="customer1"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder9" class="domain.Folder">
+		<property name="name" value="InBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="customer2"/>
+		<property name="messages">
+			<list>
+				<ref bean="message1"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder10" class="domain.Folder">
+		<property name="name" value="OutBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="customer2"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder11" class="domain.Folder">
+		<property name="name" value="TrashBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="customer2"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder12" class="domain.Folder">
+		<property name="name" value="SpamBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="customer2"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder13" class="domain.Folder">
+		<property name="name" value="InBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="customer3"/>
+		<property name="messages">
+			<list>
+				<ref bean="message1"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder14" class="domain.Folder">
+		<property name="name" value="OutBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="customer3"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder15" class="domain.Folder">
+		<property name="name" value="TrashBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="customer3"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder16" class="domain.Folder">
+		<property name="name" value="SpamBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="customer3"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder17" class="domain.Folder">
+		<property name="name" value="InBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="customer4"/>
+		<property name="messages">
+			<list>
+				<ref bean="message1"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder18" class="domain.Folder">
+		<property name="name" value="OutBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="customer4"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder19" class="domain.Folder">
+		<property name="name" value="TrashBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="customer4"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder20" class="domain.Folder">
+		<property name="name" value="SpamBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="customer4"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- CreditCard -->
+	
+	<bean id="creditCard1" class="domain.CreditCard">
+		<property name="holderName" value="Manolo"/>
+		<property name="brandName" value="visa"/>
+		<property name="number" value="4143672806408593"/>
+		<property name="expirationMonth" value="7"/>
+		<property name="expirationYear" value="2016"/>
+		<property name="cvvCode" value="267"/>
+	</bean>
+	
+	<bean id="creditCard2" class="domain.CreditCard">
+		<property name="holderName" value="Ruben"/>
+		<property name="brandName" value="visa"/>
+		<property name="number" value="4014226416609441"/>
+		<property name="expirationMonth" value="12"/>
+		<property name="expirationYear" value="2016"/>
+		<property name="cvvCode" value="639"/>
+	</bean>
+	
+	<bean id="creditCard3" class="domain.CreditCard">
+		<property name="holderName" value="Guillermo"/>
+		<property name="brandName" value="visa"/>
+		<property name="number" value="4019547713317569"/>
+		<property name="expirationMonth" value="2"/>
+		<property name="expirationYear" value="2016"/>
+		<property name="cvvCode" value="143"/>
+	</bean>
+	
+	<bean id="creditCard4" class="domain.CreditCard">
+		<property name="holderName" value="Monica"/>
+		<property name="brandName" value="visa"/>
+		<property name="number" value="4794199409160431"/>
+		<property name="expirationMonth" value="9"/>
+		<property name="expirationYear" value="2016"/>
+		<property name="cvvCode" value="683"/>
+	</bean>
+	
+	<!-- Gym -->
+	
+	<bean id="gym1" class="domain.Gym">
+		<property name="name" value="Gym Sevilla"/>
+		<property name="description" value="Gimnasio de Sevilla"/>
+		<property name="postalAddress" value="Sevilla"/>
+		<property name="fee" value="30"/>
+		<property name="picture" value="http://www.casacartagena.com/archivo/files/gimnasio-1.jpg"/>
+		<property name="phone" value="666444777"/>
+		<property name="comments">
+			<list>
+			</list>
+		</property>
+		<property name="service">
+			<list>
+				<ref bean="service1"/>
+			</list>
+		</property>
+		<property name="feePayment">
+			<list>
+				<ref bean="feePayment1"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Services -->
+	
+	<bean id="service1" class="domain.Service">
+		<property name="name" value="Fitness"/>
+		<property name="description" value="Servicio de Fitness"/>
+		<property name="pictures">
+			<list>
+			</list>
+		</property>
+		<property name="gyms">
+			<list>
+				<ref bean="gym1"/>
+			</list>
+		</property>
+		<property name="bookings">
+			<list>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- FeePayment -->
+	
+	<bean id="feePayment1" class="domain.FeePayment">
+		<property name="paymentMoment" value="2016/02/10 18:00"/>
+		<property name="creditCard" ref="creditCard1"/>
+		<!-- <property name="activeMoment" value=""/>
+		<property name="inactiveMoment" value=""/>-->
+		<property name="gym" ref="gym1"/>
+		<property name="customer" ref="customer1"/>
+	</bean>
+	
+	<!-- Booking -->
+	
+	<!-- <bean id="booking1" class="domain.Booking">
+	</bean>-->
+
+</beans>
