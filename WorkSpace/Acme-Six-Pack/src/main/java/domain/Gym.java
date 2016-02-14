@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
@@ -104,7 +105,8 @@ public class Gym extends DomainEntity{
 	
 	@Valid
 	@NotNull
-	@ManyToMany
+	@ManyToMany(mappedBy = "gyms")
+	//@Size(min = 1)
 	public Collection<Service> getService() {
 		return service;
 	}
@@ -112,9 +114,17 @@ public class Gym extends DomainEntity{
 		this.service = service;
 	}
 	
+	public void addService(Service service) {
+		this.service.add(service);
+	}
+
+	public void removeService(Service service) {
+		this.service.remove(service);
+	}
+	
 	@Valid
 	@OneToMany(mappedBy = "gym")
-	@NotNull	
+	@NotNull
 	public Collection<FeePayment> getFeePayment() {
 		return feePayment;
 	}

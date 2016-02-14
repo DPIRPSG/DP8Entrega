@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import domain.Comment;
-import domain.Item;
 
 import repositories.CommentRepository;
 
@@ -85,7 +84,7 @@ public class CommentService {
 	 * Lista todos los comentarios de un Item
 	 */
 	//ref: 23.1
-	public Collection<Comment> findAllByItem(Item item){
+	/*public Collection<Comment> findAllByItem(Item item){
 		Assert.notNull(item);
 		Assert.isTrue(item .getId() != 0);
 		
@@ -94,13 +93,13 @@ public class CommentService {
 		result = commentRepository.findAllByItemId(item.getId());
 		
 		return result;
-	}
+	}*/
 	
 	/**
 	 * Crear un comentario en relación con un item. Debe de ser guardado con save.
 	 */
 	//ref: 23.2
-	public Comment createByItem(Item item){
+	/*public Comment createByItem(Item item){
 		Comment result;
 		Collection<Comment> comments;
 		
@@ -114,5 +113,5 @@ public class CommentService {
 		item.setComments(comments);
 		
 		return result;
-	}
+	}*/
 }

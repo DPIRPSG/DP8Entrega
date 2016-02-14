@@ -145,7 +145,7 @@ public class FolderService {
 			count = 0;
 			Folder trashBox;
 
-			for(Folder folder:actor.getFolders()){
+			for(Folder folder:actor.getMessageBox()){
 				if(folder.getMessages().contains(m)){
 					count++;
 				}
@@ -205,7 +205,7 @@ public class FolderService {
 			result.add(temp);
 		}
 		
-		actor.setFolders(result);
+		actor.setMessageBox(result);
 		
 		return result;
 	}

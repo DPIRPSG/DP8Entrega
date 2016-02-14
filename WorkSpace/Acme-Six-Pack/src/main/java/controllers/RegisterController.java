@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import domain.Customer;
 
-import services.ConsumerService;
+import services.CustomerService;
 
 @Controller
 @RequestMapping(value = "/consumer")
@@ -20,7 +20,7 @@ public class RegisterController extends AbstractController{
 	//Services ----------------------------------------------------------
 	
 	@Autowired
-	private ConsumerService consumerService;
+	private CustomerService consumerService;
 	
 	//Constructors ----------------------------------------------------------
 	

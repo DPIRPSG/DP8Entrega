@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import services.CommentService;
 import controllers.AbstractController;
 import domain.Comment;
-import domain.Item;
 
 @Controller
 @RequestMapping("/comment/administrator")
@@ -32,7 +31,7 @@ public class CommentAdministratorController extends AbstractController {
 	
 	// Deleting --------------------------------------------------------------
 	
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public ModelAndView edit(@RequestParam int commentId) {
 		ModelAndView result;
 		Comment comment;
@@ -42,9 +41,9 @@ public class CommentAdministratorController extends AbstractController {
 		result = createEditModelAndView(comment, comment.getItem());
 		
 		return result;
-	}
+	}*/
 	
-	@RequestMapping(
+	/*@RequestMapping(
 			value = "/delete", method = RequestMethod.POST, params = "delete")
 	public ModelAndView delete(
 			Comment comment, BindingResult binding) {
@@ -59,11 +58,11 @@ public class CommentAdministratorController extends AbstractController {
 			result = createEditModelAndView(comment, comment.getItem(), "comment.commit.error");
 		}
 		return result;
-	}
+	}*/
 	
 	// Ancillary methods ---------------------------------------------------
 	
-	protected ModelAndView createEditModelAndView(Comment comment, Item item) {
+	/*protected ModelAndView createEditModelAndView(Comment comment, Item item) {
 		ModelAndView result;
 		
 		result = createEditModelAndView(comment, item, null);
@@ -80,6 +79,6 @@ public class CommentAdministratorController extends AbstractController {
 		result.addObject("message", message);
 		
 		return result;
-	}
+	}*/
 	
 }

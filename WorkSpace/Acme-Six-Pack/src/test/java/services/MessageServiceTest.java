@@ -30,7 +30,7 @@ public class MessageServiceTest extends AbstractTest {
 
 	// Service under test -------------------------
 	@Autowired
-	private ConsumerService consumerService;
+	private CustomerService consumerService;
 	@Autowired
 	private MessageService messageService;
 	@Autowired
