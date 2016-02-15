@@ -185,6 +185,8 @@
 		<property name="received">
 			<list>
 				<ref bean="message1"/>
+				<ref bean="message2"/>
+				<ref bean="message3"/>
 			</list>
 		</property>
 		<property name="comments">
@@ -223,6 +225,7 @@
 		</property>
 		<property name="sent">
 			<list>
+				<ref bean="message4"/>
 			</list>
 		</property>
 		<property name="received">
@@ -267,6 +270,7 @@
 		<property name="received">
 			<list>
 				<ref bean="message1"/>
+				<ref bean="message4"/>
 			</list>
 		</property>
 		<property name="comments">
@@ -301,6 +305,8 @@
 		</property>
 		<property name="sent">
 			<list>
+				<ref bean="message2"/>
+				<ref bean="message3"/>
 			</list>
 		</property>
 		<property name="received">
@@ -345,6 +351,60 @@
 				<ref bean="folder9"/>
 				<ref bean="folder13"/>
 				<ref bean="folder17"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="message2" class="domain.Message">
+		<property name="subject" value="Hola"/>
+		<property name="body" value="Compra viagra"/>
+		<property name="sentMoment" value="2016/02/05 22:15"/>
+		<property name="sender" ref="customer4"/>
+		<property name="recipients">
+			<list>
+				<ref bean="customer1"/>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+				<ref bean="folder8"/>
+				<ref bean="folder18"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="message3" class="domain.Message">
+		<property name="subject" value="Hola"/>
+		<property name="body" value="Esto es spam"/>
+		<property name="sentMoment" value="2016/02/05 22:15"/>
+		<property name="sender" ref="customer4"/>
+		<property name="recipients">
+			<list>
+				<ref bean="customer1"/>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+				<ref bean="folder8"/>
+				<ref bean="folder18"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="message4" class="domain.Message">
+		<property name="subject" value="Hola"/>
+		<property name="body" value="Esto es spam"/>
+		<property name="sentMoment" value="2016/02/05 22:15"/>
+		<property name="sender" ref="customer2"/>
+		<property name="recipients">
+			<list>
+				<ref bean="customer3"/>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+				<ref bean="folder10"/>
+				<ref bean="folder16"/>
 			</list>
 		</property>
 	</bean>
@@ -429,6 +489,8 @@
 		<property name="actor" ref="customer1"/>
 		<property name="messages">
 			<list>
+				<ref bean="message2"/>
+				<ref bean="message3"/>
 			</list>
 		</property>
 	</bean>
@@ -450,6 +512,7 @@
 		<property name="actor" ref="customer2"/>
 		<property name="messages">
 			<list>
+				<ref bean="message4"/>
 			</list>
 		</property>
 	</bean>
@@ -511,6 +574,7 @@
 		<property name="actor" ref="customer3"/>
 		<property name="messages">
 			<list>
+				<ref bean="message4"/>
 			</list>
 		</property>
 	</bean>
@@ -532,6 +596,8 @@
 		<property name="actor" ref="customer4"/>
 		<property name="messages">
 			<list>
+				<ref bean="message2"/>
+				<ref bean="message3"/>
 			</list>
 		</property>
 	</bean>
