@@ -59,7 +59,7 @@ public class GymService {
 	}
 	
 	public void save(Gym gym) {
-		Assert.notNull(gym);
+		//Assert.notNull(gym);
 		
 		gymRepository.save(gym);
 		
