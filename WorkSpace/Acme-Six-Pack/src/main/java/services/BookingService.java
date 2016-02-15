@@ -54,7 +54,7 @@ public class BookingService {
 	 * 
 	 * Guarda un booking creado o modificado
 	 */
-	// Requisito 10.3
+	// Requisito 10.3 - Book a service as long as he or she has paid the corresponding fee.
 	public void save(Booking booking){
 		
 		Assert.notNull(booking);
@@ -70,8 +70,8 @@ public class BookingService {
 	 * 
 	 * Marca como cancelado un booking
 	 */
-	// Requisito 10.4
-	public void delete(Booking booking){
+	// Requisito 10.4 - Cancel a booking as long as no administrator has approved or denied it.
+	public void cancel(Booking booking){
 		
 		Assert.notNull(booking);
 		Assert.isTrue(booking.getId() != 0);
@@ -86,6 +86,10 @@ public class BookingService {
 		
 	}
 	
+	/**
+	 * 
+	 * @return Devuelve todos los booking de la base de datos
+	 */
 	public Collection<Booking> findAll(){
 		
 		Collection<Booking> result;
@@ -95,6 +99,11 @@ public class BookingService {
 		return result;
 	}
 	
+	/**
+	 * 
+	 * @param bookingId Id del Booking en cuestión
+	 * @return Devuelve el booking en cuestión
+	 */
 	public Booking findOne(int bookingId){
 		
 		Booking result;
@@ -112,7 +121,7 @@ public class BookingService {
 	 * 
 	 * Marca como aprobado un booking
 	 */
-	// Requisito 11.2
+	// Requisito 11.2 - Approve or deny a service booking.
 	public void approveBooking(Booking booking){
 		
 		Assert.notNull(booking);
@@ -133,7 +142,7 @@ public class BookingService {
 	 * 
 	 * Marca como denegado un booking
 	 */
-	// Requisito 11.2
+	// Requisito 11.2 - Approve or deny a service booking.
 	public void denyBooking(Booking booking){
 		
 		Assert.notNull(booking);
