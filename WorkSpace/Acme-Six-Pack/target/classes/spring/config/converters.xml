@@ -51,6 +51,9 @@
 		<bean class="converters.FeePaymentToStringConverter" />
 		<bean class="converters.StringToFeePaymentConverter" />
 		
+		<bean class="converters.ServiceToStringConverter" />
+		<bean class="converters.StringToServiceConverter" />
+		
 	</util:list>
 	
 </beans>
