@@ -13,7 +13,7 @@
 <security:authorize access="hasAnyRole('ADMIN', 'CLERK', 'CONSUMER')">
 	<!-- Listing grid -->
 	<display:table pagesize="5" class="displaytag" keepStatus="true"
-		name="folders" requestURI="${requestURI}" id="row_folder">
+		name="folder" requestURI="${requestURI}" id="row_folder">
 
 		<spring:message code="folder.editHeader" var="editHeader" />
 		<jstl:if test="${!row_folder.isSystem}">
