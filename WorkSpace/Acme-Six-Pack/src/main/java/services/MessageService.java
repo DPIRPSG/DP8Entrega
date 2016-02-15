@@ -124,10 +124,12 @@ public class MessageService {
 		
 		for (Actor recipient: message.getRecipients()){
 			for (Folder f:recipient.getMessageBox()){
-				if (f.getName().equals("InBox") && !isSpam && f.getIsSystem()){
-					folderService.addMessage(f, message);
-				}
-				if (f.getName().equals("SpamBox") && isSpam && f.getIsSystem()){
+				boolean toInBox, toSpamBox;
+				
+				toInBox = f.getName().equals("InBox") && !isSpam;
+				toSpamBox = f.getName().equals("SpamBox") && isSpam;
+				
+				if ((toInBox || toSpamBox) && f.getIsSystem()){
 					folderService.addMessage(f, message);
 				}
 			}
