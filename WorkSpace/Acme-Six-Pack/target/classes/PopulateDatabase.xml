@@ -200,11 +200,16 @@
 		<property name="feePayment">
 			<list>
 				<ref bean="feePayment1"/>
+				<ref bean="feePayment2"/>
+				<ref bean="feePayment3"/>
 			</list>
 		</property>
 		<property name="booking">
 			<list>
 				<ref bean="booking1"/>
+				<ref bean="booking2"/>
+				<ref bean="booking3"/>
+				<ref bean="booking4"/>
 			</list>
 		</property>
 	</bean>
@@ -241,10 +246,12 @@
 		</property>
 		<property name="feePayment">
 			<list>
+				<ref bean="feePayment4"/>
 			</list>
 		</property>
 		<property name="booking">
 			<list>
+				<ref bean="booking5"/>
 			</list>
 		</property>
 	</bean>
@@ -281,6 +288,12 @@
 		</property>
 		<property name="feePayment">
 			<list>
+				<ref bean="feePayment5"/>
+				<ref bean="feePayment6"/>
+				<ref bean="feePayment7"/>
+				<ref bean="feePayment8"/>
+				<ref bean="feePayment9"/>
+				<ref bean="feePayment10"/>
 			</list>
 		</property>
 		<property name="booking">
@@ -321,6 +334,7 @@
 		</property>
 		<property name="feePayment">
 			<list>
+				<ref bean="feePayment11"/>
 			</list>
 		</property>
 		<property name="booking">
@@ -684,6 +698,9 @@
 		<property name="feePayment">
 			<list>
 				<ref bean="feePayment1"/>
+				<ref bean="feePayment2"/>
+				<ref bean="feePayment3"/>
+				<ref bean="feePayment11"/>
 			</list>
 		</property>
 	</bean>
@@ -708,6 +725,7 @@
 		</property>
 		<property name="feePayment">
 			<list>
+				<ref bean="feePayment4"/>
 			</list>
 		</property>
 	</bean>
@@ -731,6 +749,12 @@
 		</property>
 		<property name="feePayment">
 			<list>
+				<ref bean="feePayment5"/>
+				<ref bean="feePayment6"/>
+				<ref bean="feePayment7"/>
+				<ref bean="feePayment8"/>
+				<ref bean="feePayment9"/>
+				<ref bean="feePayment10"/>
 			</list>
 		</property>
 	</bean>
@@ -754,6 +778,9 @@
 		<property name="bookings">
 			<list>
 				<ref bean="booking1"/>
+				<ref bean="booking2"/>
+				<ref bean="booking3"/>
+				<ref bean="booking4"/>
 			</list>
 		</property>
 		<property name="comments">
@@ -777,6 +804,7 @@
 		</property>
 		<property name="bookings">
 			<list>
+				<ref bean="booking5"/>
 			</list>
 		</property>
 		<property name="comments">
@@ -831,12 +859,102 @@
 	<!-- FeePayment -->
 	
 	<bean id="feePayment1" class="domain.FeePayment">
-		<property name="paymentMoment" value="2016/02/10 18:00"/>
+		<property name="paymentMoment" value="2016/02/12 18:00"/>
 		<property name="creditCard" ref="creditCard1"/>
-		<property name="activeMoment" value="2016/02/11 12:00"/>
-		<property name="inactiveMoment" value="2016/03/11 12:00"/>
+		<property name="activeMoment" value="2016/02/13 12:00"/>
+		<property name="inactiveMoment" value="2016/03/13 12:00"/>
 		<property name="gym" ref="gym1"/>
 		<property name="customer" ref="customer1"/>
+	</bean>
+	
+	<bean id="feePayment2" class="domain.FeePayment">
+		<property name="paymentMoment" value="2016/01/11 18:00"/>
+		<property name="creditCard" ref="creditCard1"/>
+		<property name="activeMoment" value="2016/01/12 12:00"/>
+		<property name="inactiveMoment" value="2016/02/12 12:00"/>
+		<property name="gym" ref="gym1"/>
+		<property name="customer" ref="customer1"/>
+	</bean>
+	
+	<bean id="feePayment3" class="domain.FeePayment">
+		<property name="paymentMoment" value="2015/12/10 18:00"/>
+		<property name="creditCard" ref="creditCard1"/>
+		<property name="activeMoment" value="2015/12/11 12:00"/>
+		<property name="inactiveMoment" value="2016/01/11 12:00"/>
+		<property name="gym" ref="gym1"/>
+		<property name="customer" ref="customer1"/>
+	</bean>
+	
+	<bean id="feePayment4" class="domain.FeePayment">
+		<property name="paymentMoment" value="2016/02/14 18:00"/>
+		<property name="creditCard" ref="creditCard2"/>
+		<property name="activeMoment" value="2016/02/15 12:00"/>
+		<property name="inactiveMoment" value="2016/03/15 12:00"/>
+		<property name="gym" ref="gym2"/>
+		<property name="customer" ref="customer2"/>
+	</bean>
+	
+	<bean id="feePayment5" class="domain.FeePayment">
+		<property name="paymentMoment" value="2015/06/01 18:00"/>
+		<property name="creditCard" ref="creditCard3"/>
+		<property name="activeMoment" value="2015/06/02 12:00"/>
+		<property name="inactiveMoment" value="2015/07/02 12:00"/>
+		<property name="gym" ref="gym3"/>
+		<property name="customer" ref="customer3"/>
+	</bean>
+	
+	<bean id="feePayment6" class="domain.FeePayment">
+		<property name="paymentMoment" value="2015/07/02 18:00"/>
+		<property name="creditCard" ref="creditCard3"/>
+		<property name="activeMoment" value="2015/07/03 12:00"/>
+		<property name="inactiveMoment" value="2015/08/03 12:00"/>
+		<property name="gym" ref="gym3"/>
+		<property name="customer" ref="customer3"/>
+	</bean>
+	
+	<bean id="feePayment7" class="domain.FeePayment">
+		<property name="paymentMoment" value="2015/08/03 18:00"/>
+		<property name="creditCard" ref="creditCard3"/>
+		<property name="activeMoment" value="2015/08/04 12:00"/>
+		<property name="inactiveMoment" value="2015/09/04 12:00"/>
+		<property name="gym" ref="gym3"/>
+		<property name="customer" ref="customer3"/>
+	</bean>
+	
+	<bean id="feePayment8" class="domain.FeePayment">
+		<property name="paymentMoment" value="2015/09/04 18:00"/>
+		<property name="creditCard" ref="creditCard3"/>
+		<property name="activeMoment" value="2015/09/05 12:00"/>
+		<property name="inactiveMoment" value="2015/10/05 12:00"/>
+		<property name="gym" ref="gym3"/>
+		<property name="customer" ref="customer3"/>
+	</bean>
+	
+	<bean id="feePayment9" class="domain.FeePayment">
+		<property name="paymentMoment" value="2015/10/05 18:00"/>
+		<property name="creditCard" ref="creditCard3"/>
+		<property name="activeMoment" value="2015/10/06 12:00"/>
+		<property name="inactiveMoment" value="2015/11/06 12:00"/>
+		<property name="gym" ref="gym3"/>
+		<property name="customer" ref="customer3"/>
+	</bean>
+	
+	<bean id="feePayment10" class="domain.FeePayment">
+		<property name="paymentMoment" value="2015/11/06 18:00"/>
+		<property name="creditCard" ref="creditCard3"/>
+		<property name="activeMoment" value="2015/11/07 12:00"/>
+		<property name="inactiveMoment" value="2015/12/07 12:00"/>
+		<property name="gym" ref="gym3"/>
+		<property name="customer" ref="customer3"/>
+	</bean>
+	
+	<bean id="feePayment11" class="domain.FeePayment">
+		<property name="paymentMoment" value="2016/02/11 18:00"/>
+		<property name="creditCard" ref="creditCard4"/>
+		<property name="activeMoment" value="2016/02/12 12:00"/>
+		<property name="inactiveMoment" value="2016/03/12 12:00"/>
+		<property name="gym" ref="gym1"/>
+		<property name="customer" ref="customer4"/>
 	</bean>
 	
 	<!-- Booking -->
@@ -849,6 +967,46 @@
 		<property name="administrator" ref="administrator1"/>
 		<property name="customer" ref="customer1"/>
 		<property name="service" ref="service1"/>
+	</bean>
+	
+	<bean id="booking2" class="domain.Booking">
+		<property name="creationMoment" value="2016/02/14 19:05"/>
+		<property name="requestMoment" value="2016/02/16 17:00"/>
+		<property name="duration" value="1"/>
+		<property name="approved" value="true"/>
+		<property name="administrator" ref="administrator1"/>
+		<property name="customer" ref="customer1"/>
+		<property name="service" ref="service1"/>
+	</bean>
+	
+	<bean id="booking3" class="domain.Booking">
+		<property name="creationMoment" value="2016/02/14 19:10"/>
+		<property name="requestMoment" value="2016/02/17 17:00"/>
+		<property name="duration" value="1"/>
+		<property name="approved" value="true"/>
+		<property name="administrator" ref="administrator1"/>
+		<property name="customer" ref="customer1"/>
+		<property name="service" ref="service1"/>
+	</bean>
+	
+	<bean id="booking4" class="domain.Booking">
+		<property name="creationMoment" value="2016/02/14 20:00"/>
+		<property name="requestMoment" value="2016/02/18 17:00"/>
+		<property name="duration" value="1"/>
+		<property name="approved" value="true"/>
+		<property name="administrator" ref="administrator1"/>
+		<property name="customer" ref="customer1"/>
+		<property name="service" ref="service1"/>
+	</bean>
+	
+	<bean id="booking5" class="domain.Booking">
+		<property name="creationMoment" value="2016/02/14 20:00"/>
+		<property name="requestMoment" value="2016/02/18 17:00"/>
+		<property name="duration" value="1"/>
+		<property name="approved" value="true"/>
+		<property name="administrator" ref="administrator1"/>
+		<property name="customer" ref="customer2"/>
+		<property name="service" ref="service2"/>
 	</bean>
 	
 	<!-- Comments -->
