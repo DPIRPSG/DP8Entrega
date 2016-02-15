@@ -17,7 +17,7 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 @Access(AccessType.PROPERTY)
 @Table(name = "serviceTable")
-public class Service extends DomainEntity{
+public class ServiceEntity extends DomainEntity{
 
 	// Constructors -----------------------------------------------------------
 
@@ -69,6 +69,14 @@ public class Service extends DomainEntity{
 	}
 	public void setGyms(Collection<Gym> gyms) {
 		this.gyms = gyms;
+	}
+	
+	public void addGym(Gym gym) {
+		this.gyms.add(gym);
+	}
+
+	public void removeGym(Gym gym) {
+		this.gyms.remove(gym);
 	}
 	
 	@Valid
