@@ -32,7 +32,7 @@
 
 	<bean id="userAccount2" class="security.UserAccount">
 		<property name="username" value="customer1" />
-		<property name="password" value="4ee9c60cc32e6615c3c45dc6822c45de" />
+		<property name="password" value="ffbc4675f864e0e9aab8bdf7a0437010" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -44,7 +44,7 @@
 	
 	<bean id="userAccount3" class="security.UserAccount">
 		<property name="username" value="customer2" />
-		<property name="password" value="4ca80127919a65aace84bc96346c5bc4" />
+		<property name="password" value="5ce4d191fd14ac85a1469fb8c29b7a7b" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -56,7 +56,7 @@
 	
 	<bean id="userAccount4" class="security.UserAccount">
 		<property name="username" value="customer3" />
-		<property name="password" value="8be8dff8f3a089b30b5e97f00a04cb71" />
+		<property name="password" value="033f7f6121501ae98285ad77f216d5e7" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -68,7 +68,7 @@
 	
 	<bean id="userAccount5" class="security.UserAccount">
 		<property name="username" value="customer4" />
-		<property name="password" value="e397705af838b414380b125b7ae1979f" />
+		<property name="password" value="55feb130be438e686ad6a80d12dd8f44" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -79,6 +79,57 @@
 	</bean>
 	
 	<!-- Other domain beans come here -->
+	
+	<!-- SpamTerm -->
+	
+	<bean id="spamTerm1" class="domain.SpamTerm">
+		<property name="term" value="viagra"/>
+	</bean>
+	
+	<bean id="spamTerm2" class="domain.SpamTerm">
+		<property name="term" value="cialis"/>
+	</bean>
+	
+	<bean id="spamTerm3" class="domain.SpamTerm">
+		<property name="term" value="sex"/>
+	</bean>
+	
+	<bean id="spamTerm4" class="domain.SpamTerm">
+		<property name="term" value="scort"/>
+	</bean>
+	
+	<bean id="spamTerm5" class="domain.SpamTerm">
+		<property name="term" value="money transfer"/>
+	</bean>
+	
+	<bean id="spamTerm6" class="domain.SpamTerm">
+		<property name="term" value="lottery"/>
+	</bean>
+	
+	<bean id="spamTerm7" class="domain.SpamTerm">
+		<property name="term" value="green card"/>
+	</bean>
+	
+	<bean id="spamTerm8" class="domain.SpamTerm">
+		<property name="term" value="email quota"/>
+	</bean>
+	
+	<bean id="spamTerm9" class="domain.SpamTerm">
+		<property name="term" value="click here"/>
+	</bean>
+	
+	<bean id="spamTerm10" class="domain.SpamTerm">
+		<property name="term" value="spam"/>
+	</bean>
+	
+	<!-- SocialIdentity -->
+	
+	<bean id="socialIdentity1" class="domain.SocialIdentity">
+		<property name="name" value="Manolo"/>
+		<property name="homePage" value="http://Manolo.com"/>
+		<property name="picture" value="http://static.betazeta.com/www.fayerwayer.com/up/2014/04/Bliss-XP-HD1-960x623.jpg"/>
+		<property name="nick" value="@Manolo"/>
+	</bean>
 	
 	<!-- Administradores: -->
 	
@@ -118,12 +169,13 @@
 		<property name="phone" value="612345789"/>
 		<property name="userAccount" ref="userAccount2"/>
 		<property name="creditCard" ref="creditCard1"/>
+		<property name="socialIdentity" ref="socialIdentity1"/>
 		<property name="messageBox">
 			<list>
-				<ref bean="folder5"/>
-				<ref bean="folder6"/>
-				<ref bean="folder7"/>
-				<ref bean="folder8"/>
+				<ref bean="folder5" />
+				<ref bean="folder6" />
+				<ref bean="folder7" />
+				<ref bean="folder8" />
 			</list>
 		</property>
 		<property name="sent">
@@ -137,6 +189,7 @@
 		</property>
 		<property name="comments">
 			<list>
+				<ref bean="comment1"/>
 			</list>
 		</property>
 		<property name="feePayment">
@@ -146,6 +199,7 @@
 		</property>
 		<property name="booking">
 			<list>
+				<ref bean="booking1"/>
 			</list>
 		</property>
 	</bean>
@@ -543,6 +597,7 @@
 		<property name="phone" value="666444777"/>
 		<property name="comments">
 			<list>
+				<ref bean="comment1"/>
 			</list>
 		</property>
 		<property name="service">
@@ -596,6 +651,7 @@
 		</property>
 		<property name="bookings">
 			<list>
+				<ref bean="booking1"/>
 			</list>
 		</property>
 		<property name="comments">
@@ -609,15 +665,32 @@
 	<bean id="feePayment1" class="domain.FeePayment">
 		<property name="paymentMoment" value="2016/02/10 18:00"/>
 		<property name="creditCard" ref="creditCard1"/>
-		<!-- <property name="activeMoment" value=""/>
-		<property name="inactiveMoment" value=""/>-->
+		<property name="activeMoment" value="2016/02/11 12:00"/>
+		<property name="inactiveMoment" value="2016/03/11 12:00"/>
 		<property name="gym" ref="gym1"/>
 		<property name="customer" ref="customer1"/>
 	</bean>
 	
 	<!-- Booking -->
 	
-	<!-- <bean id="booking1" class="domain.Booking">
-	</bean>-->
+	<bean id="booking1" class="domain.Booking">
+		<property name="creationMoment" value="2016/02/14 19:00"/>
+		<property name="requestMoment" value="2016/02/15 17:00"/>
+		<property name="duration" value="1"/>
+		<property name="approved" value="true"/>
+		<property name="administrator" ref="administrator1"/>
+		<property name="customer" ref="customer1"/>
+		<property name="service" ref="service1"/>
+	</bean>
+	
+	<!-- Comments -->
+	
+	<bean id="comment1" class="domain.Comment">
+		<property name="text" value="Buen Gym"/>
+		<property name="moment" value="2016/02/09 18:30"/>
+		<property name="starRating" value="2"/>
+		<property name="actor" ref="customer1"/>
+		<property name="gym" ref="gym1"/>
+	</bean>
 
 </beans>
