@@ -557,9 +557,31 @@
 		</property>
 	</bean>
 	
+	<bean id="gym2" class="domain.Gym">
+		<property name="name" value="Gym Cádiz"/>
+		<property name="description" value="Gimnasio de Cádiz"/>
+		<property name="postalAddress" value="Cádiz"/>
+		<property name="fee" value="20"/>
+		<property name="picture" value="http://www.casacartagena.com/archivo/files/gimnasio-1.jpg"/>
+		<property name="phone" value="666444766"/>
+		<property name="comments">
+			<list>
+			</list>
+		</property>
+		<property name="service">
+			<list>
+				<ref bean="service1"/>
+			</list>
+		</property>
+		<property name="feePayment">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- Services -->
 	
-	<bean id="service1" class="domain.Service">
+	<bean id="service1" class="domain.ServiceEntity">
 		<property name="name" value="Fitness"/>
 		<property name="description" value="Servicio de Fitness"/>
 		<property name="pictures">
@@ -569,6 +591,7 @@
 		<property name="gyms">
 			<list>
 				<ref bean="gym1"/>
+				<ref bean="gym2"/>
 			</list>
 		</property>
 		<property name="bookings">
