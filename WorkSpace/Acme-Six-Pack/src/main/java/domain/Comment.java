@@ -67,7 +67,7 @@ public class Comment extends DomainEntity{
 	// Relationships ----------------------------------------------------------
 	private Actor actor;
 	private Gym gym;
-	private Service service;
+	private ServiceEntity service;
 	
 	@Valid
 	@NotNull
@@ -80,8 +80,7 @@ public class Comment extends DomainEntity{
 	}
 	
 	@Valid
-	@NotNull
-	@ManyToOne(optional=false)
+	@ManyToOne(optional=true)
 	public Gym getGym() {
 		return gym;
 	}
@@ -90,12 +89,11 @@ public class Comment extends DomainEntity{
 	}
 	
 	@Valid
-	@NotNull
-	@ManyToOne(optional=false)
-	public Service getService() {
+	@ManyToOne(optional=true)
+	public ServiceEntity getService() {
 		return service;
 	}
-	public void setService(Service service) {
+	public void setService(ServiceEntity service) {
 		this.service = service;
 	}
 }

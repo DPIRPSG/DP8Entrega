@@ -1,5 +1,6 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.GymRepository;
+import domain.Comment;
+import domain.FeePayment;
 import domain.Gym;
+import domain.ServiceEntity;
 
 @Service
 @Transactional
@@ -21,8 +25,8 @@ public class GymService {
 
 	// Supporting services ----------------------------------------------------
 
-	/*@Autowired
-	private ServiceService serviceService;*/
+	@Autowired
+	private ServiceService serviceService;
 	
 	// Constructors -----------------------------------------------------------
 
@@ -34,9 +38,20 @@ public class GymService {
 
 	public Gym create() {
 		Gym result;
-		Service service;
+		ServiceEntity service;
+		Collection<ServiceEntity> services;
+		Collection<Comment> comments;
+		Collection<FeePayment> feePayments;
+		
+		services = new ArrayList<>();
+		feePayments = new ArrayList<>();
+		comments = new ArrayList<>();
 
 		result = new Gym();
+		
+		result.setService(services);
+		result.setFeePayment(feePayments);
+		result.setComments(comments);
 		
 		//result.addService(service);
 
@@ -44,16 +59,24 @@ public class GymService {
 	}
 	
 	public void save(Gym gym) {
-		Assert.isNull(gym);
+		//Assert.notNull(gym);
 		
 		gymRepository.save(gym);
 		
 	}
 	
 	public void delete(Gym gym) {
-		assert gym != null;
-		assert gym.getId() != 0;
+		//assert gym != null;
+		//assert gym.getId() != 0;
 		//Faltan mas Assert
+		
+		Collection<ServiceEntity> services;
+		
+		services = serviceService.findAll();
+		
+		for(ServiceEntity service : services) {
+			service.removeGym(gym);
+		}
 		
 		gymRepository.delete(gym);
 		

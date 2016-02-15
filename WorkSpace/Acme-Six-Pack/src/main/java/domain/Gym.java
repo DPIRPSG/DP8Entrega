@@ -90,7 +90,7 @@ public class Gym extends DomainEntity{
 
 	// Relationships ----------------------------------------------------------
 	private Collection<Comment> comments;
-	private Collection<Service> service;
+	private Collection<ServiceEntity> service;
 	private Collection<FeePayment> feePayment;
 	
 	@Valid
@@ -106,19 +106,19 @@ public class Gym extends DomainEntity{
 	@Valid
 	@NotNull
 	@ManyToMany(mappedBy = "gyms")
-	//@Size(min = 1)
-	public Collection<Service> getService() {
+	@Size(min = 1)
+	public Collection<ServiceEntity> getService() {
 		return service;
 	}
-	public void setService(Collection<Service> service) {
+	public void setService(Collection<ServiceEntity> service) {
 		this.service = service;
 	}
 	
-	public void addService(Service service) {
+	public void addService(ServiceEntity service) {
 		this.service.add(service);
 	}
 
-	public void removeService(Service service) {
+	public void removeService(ServiceEntity service) {
 		this.service.remove(service);
 	}
 	

@@ -85,7 +85,7 @@ public class Booking extends DomainEntity{
 	// Relationships ----------------------------------------------------------
 	private Administrator administrator;
 	private Customer customer;
-	private Service service;
+	private ServiceEntity service;
 
 	@Valid
 	@ManyToOne(optional = true)
@@ -109,10 +109,10 @@ public class Booking extends DomainEntity{
 	@Valid
 	@NotNull
 	@ManyToOne(optional = false)
-	public Service getService() {
+	public ServiceEntity getService() {
 		return service;
 	}
-	public void setService(Service service) {
+	public void setService(ServiceEntity service) {
 		this.service = service;
 	}
 	
