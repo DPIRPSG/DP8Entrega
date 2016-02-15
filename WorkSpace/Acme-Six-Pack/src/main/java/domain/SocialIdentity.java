@@ -32,6 +32,7 @@ public class SocialIdentity extends DomainEntity{
 	
 	@NotBlank
 	@NotNull
+	@URL
 	public String getHomePage() {
 		return homePage;
 	}
