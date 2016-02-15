@@ -80,8 +80,7 @@ public class Comment extends DomainEntity{
 	}
 	
 	@Valid
-	@NotNull
-	@ManyToOne(optional=false)
+	@ManyToOne(optional=true)
 	public Gym getGym() {
 		return gym;
 	}
@@ -90,8 +89,7 @@ public class Comment extends DomainEntity{
 	}
 	
 	@Valid
-	@NotNull
-	@ManyToOne(optional=false)
+	@ManyToOne(optional=true)
 	public Service getService() {
 		return service;
 	}
