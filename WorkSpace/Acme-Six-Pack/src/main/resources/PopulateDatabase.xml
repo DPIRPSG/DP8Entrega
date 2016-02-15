@@ -185,11 +185,16 @@
 		<property name="received">
 			<list>
 				<ref bean="message1"/>
+				<ref bean="message2"/>
+				<ref bean="message3"/>
 			</list>
 		</property>
 		<property name="comments">
 			<list>
 				<ref bean="comment1"/>
+				<ref bean="comment4"/>
+				<ref bean="comment6"/>
+				<ref bean="comment7"/>
 			</list>
 		</property>
 		<property name="feePayment">
@@ -220,6 +225,7 @@
 		</property>
 		<property name="sent">
 			<list>
+				<ref bean="message4"/>
 			</list>
 		</property>
 		<property name="received">
@@ -229,6 +235,8 @@
 		</property>
 		<property name="comments">
 			<list>
+				<ref bean="comment2"/>
+				<ref bean="comment5"/>
 			</list>
 		</property>
 		<property name="feePayment">
@@ -262,10 +270,13 @@
 		<property name="received">
 			<list>
 				<ref bean="message1"/>
+				<ref bean="message4"/>
 			</list>
 		</property>
 		<property name="comments">
 			<list>
+				<ref bean="comment3"/>
+				<ref bean="comment8"/>
 			</list>
 		</property>
 		<property name="feePayment">
@@ -294,6 +305,8 @@
 		</property>
 		<property name="sent">
 			<list>
+				<ref bean="message2"/>
+				<ref bean="message3"/>
 			</list>
 		</property>
 		<property name="received">
@@ -303,6 +316,7 @@
 		</property>
 		<property name="comments">
 			<list>
+				<ref bean="comment9"/>
 			</list>
 		</property>
 		<property name="feePayment">
@@ -337,6 +351,60 @@
 				<ref bean="folder9"/>
 				<ref bean="folder13"/>
 				<ref bean="folder17"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="message2" class="domain.Message">
+		<property name="subject" value="Hola"/>
+		<property name="body" value="Compra viagra"/>
+		<property name="sentMoment" value="2016/02/05 22:15"/>
+		<property name="sender" ref="customer4"/>
+		<property name="recipients">
+			<list>
+				<ref bean="customer1"/>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+				<ref bean="folder8"/>
+				<ref bean="folder18"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="message3" class="domain.Message">
+		<property name="subject" value="Hola"/>
+		<property name="body" value="Esto es spam"/>
+		<property name="sentMoment" value="2016/02/05 22:15"/>
+		<property name="sender" ref="customer4"/>
+		<property name="recipients">
+			<list>
+				<ref bean="customer1"/>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+				<ref bean="folder8"/>
+				<ref bean="folder18"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="message4" class="domain.Message">
+		<property name="subject" value="Hola"/>
+		<property name="body" value="Esto es spam"/>
+		<property name="sentMoment" value="2016/02/05 22:15"/>
+		<property name="sender" ref="customer2"/>
+		<property name="recipients">
+			<list>
+				<ref bean="customer3"/>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+				<ref bean="folder10"/>
+				<ref bean="folder16"/>
 			</list>
 		</property>
 	</bean>
@@ -421,6 +489,8 @@
 		<property name="actor" ref="customer1"/>
 		<property name="messages">
 			<list>
+				<ref bean="message2"/>
+				<ref bean="message3"/>
 			</list>
 		</property>
 	</bean>
@@ -442,6 +512,7 @@
 		<property name="actor" ref="customer2"/>
 		<property name="messages">
 			<list>
+				<ref bean="message4"/>
 			</list>
 		</property>
 	</bean>
@@ -503,6 +574,7 @@
 		<property name="actor" ref="customer3"/>
 		<property name="messages">
 			<list>
+				<ref bean="message4"/>
 			</list>
 		</property>
 	</bean>
@@ -524,6 +596,8 @@
 		<property name="actor" ref="customer4"/>
 		<property name="messages">
 			<list>
+				<ref bean="message2"/>
+				<ref bean="message3"/>
 			</list>
 		</property>
 	</bean>
@@ -598,6 +672,8 @@
 		<property name="comments">
 			<list>
 				<ref bean="comment1"/>
+				<ref bean="comment2"/>
+				<ref bean="comment3"/>
 			</list>
 		</property>
 		<property name="service">
@@ -621,6 +697,31 @@
 		<property name="phone" value="666444766"/>
 		<property name="comments">
 			<list>
+				<ref bean="comment4"/>
+				<ref bean="comment5"/>
+			</list>
+		</property>
+		<property name="service">
+			<list>
+				<ref bean="service1"/>
+			</list>
+		</property>
+		<property name="feePayment">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="gym3" class="domain.Gym">
+		<property name="name" value="Gym Dos Hermanas"/>
+		<property name="description" value="Gimnasio de Dos Hermanas"/>
+		<property name="postalAddress" value="Dos Hermanas"/>
+		<property name="fee" value="15"/>
+		<property name="picture" value="http://www.casacartagena.com/archivo/files/gimnasio-1.jpg"/>
+		<property name="phone" value="654789123"/>
+		<property name="comments">
+			<list>
+				<ref bean="comment6"/>
 			</list>
 		</property>
 		<property name="service">
@@ -647,11 +748,78 @@
 			<list>
 				<ref bean="gym1"/>
 				<ref bean="gym2"/>
+				<ref bean="gym3"/>
 			</list>
 		</property>
 		<property name="bookings">
 			<list>
 				<ref bean="booking1"/>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+				<ref bean="comment7"/>
+				<ref bean="comment8"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="service2" class="domain.ServiceEntity">
+		<property name="name" value="Spinning"/>
+		<property name="description" value="Servicio de Spinning"/>
+		<property name="pictures">
+			<list>
+			</list>
+		</property>
+		<property name="gyms">
+			<list>
+			</list>
+		</property>
+		<property name="bookings">
+			<list>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="service3" class="domain.ServiceEntity">
+		<property name="name" value="Karate"/>
+		<property name="description" value="Servicio de Karate"/>
+		<property name="pictures">
+			<list>
+			</list>
+		</property>
+		<property name="gyms">
+			<list>
+			</list>
+		</property>
+		<property name="bookings">
+			<list>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+				<ref bean="comment9"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="service4" class="domain.ServiceEntity">
+		<property name="name" value="Natación"/>
+		<property name="description" value="Servicio de Natación"/>
+		<property name="pictures">
+			<list>
+			</list>
+		</property>
+		<property name="gyms">
+			<list>
+			</list>
+		</property>
+		<property name="bookings">
+			<list>
 			</list>
 		</property>
 		<property name="comments">
@@ -691,6 +859,70 @@
 		<property name="starRating" value="2"/>
 		<property name="actor" ref="customer1"/>
 		<property name="gym" ref="gym1"/>
+	</bean>
+	
+	<bean id="comment2" class="domain.Comment">
+		<property name="text" value="No está mal"/>
+		<property name="moment" value="2016/02/08 18:30"/>
+		<property name="starRating" value="2"/>
+		<property name="actor" ref="customer2"/>
+		<property name="gym" ref="gym1"/>
+	</bean>
+	
+	<bean id="comment3" class="domain.Comment">
+		<property name="text" value="No me gusta"/>
+		<property name="moment" value="2016/02/10 18:30"/>
+		<property name="starRating" value="0"/>
+		<property name="actor" ref="customer3"/>
+		<property name="gym" ref="gym1"/>
+	</bean>
+	
+	<bean id="comment4" class="domain.Comment">
+		<property name="text" value="Es muy bueno"/>
+		<property name="moment" value="2016/02/09 18:30"/>
+		<property name="starRating" value="3"/>
+		<property name="actor" ref="customer1"/>
+		<property name="gym" ref="gym2"/>
+	</bean>
+	
+	<bean id="comment5" class="domain.Comment">
+		<property name="text" value="No es malo"/>
+		<property name="moment" value="2016/02/08 18:30"/>
+		<property name="starRating" value="1"/>
+		<property name="actor" ref="customer2"/>
+		<property name="gym" ref="gym2"/>
+	</bean>
+	
+	<bean id="comment6" class="domain.Comment">
+		<property name="text" value="No lo probé, pero es el mas barato"/>
+		<property name="moment" value="2016/02/08 18:30"/>
+		<property name="starRating" value="3"/>
+		<property name="actor" ref="customer1"/>
+		<property name="gym" ref="gym3"/>
+	</bean>
+	
+	<bean id="comment7" class="domain.Comment">
+		<property name="text" value="Buen servicio!"/>
+		<property name="moment" value="2016/02/08 18:30"/>
+		<property name="starRating" value="2"/>
+		<property name="actor" ref="customer1"/>
+		<property name="service" ref="service1"/>
+	</bean>
+	
+	<bean id="comment8" class="domain.Comment">
+		<property name="text" value="La mejor clase de Fitness"/>
+		<property name="moment" value="2016/02/10 18:30"/>
+		<property name="starRating" value="3"/>
+		<property name="actor" ref="customer3"/>
+		<property name="service" ref="service1"/>
+	</bean>
+	
+	<bean id="comment9" class="domain.Comment">
+		<property name="text" value="Buena clase de Karate"/>
+		<property name="moment" value="2016/02/11 18:30"/>
+		<property name="starRating" value="2"/>
+		<property name="actor" ref="customer4"/>
+		<property name="service" ref="service3"/>
 	</bean>
 
 </beans>
