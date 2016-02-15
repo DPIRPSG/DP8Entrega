@@ -207,6 +207,9 @@
 		<property name="booking">
 			<list>
 				<ref bean="booking1"/>
+				<ref bean="booking2"/>
+				<ref bean="booking3"/>
+				<ref bean="booking4"/>
 			</list>
 		</property>
 	</bean>
@@ -248,6 +251,7 @@
 		</property>
 		<property name="booking">
 			<list>
+				<ref bean="booking5"/>
 			</list>
 		</property>
 	</bean>
@@ -774,6 +778,9 @@
 		<property name="bookings">
 			<list>
 				<ref bean="booking1"/>
+				<ref bean="booking2"/>
+				<ref bean="booking3"/>
+				<ref bean="booking4"/>
 			</list>
 		</property>
 		<property name="comments">
@@ -797,6 +804,7 @@
 		</property>
 		<property name="bookings">
 			<list>
+				<ref bean="booking5"/>
 			</list>
 		</property>
 		<property name="comments">
@@ -959,6 +967,46 @@
 		<property name="administrator" ref="administrator1"/>
 		<property name="customer" ref="customer1"/>
 		<property name="service" ref="service1"/>
+	</bean>
+	
+	<bean id="booking2" class="domain.Booking">
+		<property name="creationMoment" value="2016/02/14 19:05"/>
+		<property name="requestMoment" value="2016/02/16 17:00"/>
+		<property name="duration" value="1"/>
+		<property name="approved" value="true"/>
+		<property name="administrator" ref="administrator1"/>
+		<property name="customer" ref="customer1"/>
+		<property name="service" ref="service1"/>
+	</bean>
+	
+	<bean id="booking3" class="domain.Booking">
+		<property name="creationMoment" value="2016/02/14 19:10"/>
+		<property name="requestMoment" value="2016/02/17 17:00"/>
+		<property name="duration" value="1"/>
+		<property name="approved" value="true"/>
+		<property name="administrator" ref="administrator1"/>
+		<property name="customer" ref="customer1"/>
+		<property name="service" ref="service1"/>
+	</bean>
+	
+	<bean id="booking4" class="domain.Booking">
+		<property name="creationMoment" value="2016/02/14 20:00"/>
+		<property name="requestMoment" value="2016/02/18 17:00"/>
+		<property name="duration" value="1"/>
+		<property name="approved" value="true"/>
+		<property name="administrator" ref="administrator1"/>
+		<property name="customer" ref="customer1"/>
+		<property name="service" ref="service1"/>
+	</bean>
+	
+	<bean id="booking5" class="domain.Booking">
+		<property name="creationMoment" value="2016/02/14 20:00"/>
+		<property name="requestMoment" value="2016/02/18 17:00"/>
+		<property name="duration" value="1"/>
+		<property name="approved" value="true"/>
+		<property name="administrator" ref="administrator1"/>
+		<property name="customer" ref="customer2"/>
+		<property name="service" ref="service2"/>
 	</bean>
 	
 	<!-- Comments -->
