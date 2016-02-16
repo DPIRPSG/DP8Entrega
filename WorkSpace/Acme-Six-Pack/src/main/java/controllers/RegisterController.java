@@ -14,13 +14,13 @@ import domain.Customer;
 import services.CustomerService;
 
 @Controller
-@RequestMapping(value = "/consumer")
+@RequestMapping(value = "/customer")
 public class RegisterController extends AbstractController{
 
 	//Services ----------------------------------------------------------
 	
 	@Autowired
-	private CustomerService consumerService;
+	private CustomerService customerService;
 	
 	//Constructors ----------------------------------------------------------
 	
@@ -37,7 +37,7 @@ public class RegisterController extends AbstractController{
 		ModelAndView result;
 		Customer consu;
 		
-		consu = consumerService.create();
+		consu = customerService.create();
 		result = createEditModelAndView(consu);
 		
 		return result;
@@ -60,12 +60,12 @@ public class RegisterController extends AbstractController{
 			result = createEditModelAndView(consu);
 		} else {
 			try {
-				consumerService.save(consu);
+				customerService.save(consu);
 				result = new ModelAndView("redirect:../security/login.do");
-				result.addObject("messageStatus", "consumer.commit.ok");
+				result.addObject("messageStatus", "customer.commit.ok");
 								
 			} catch (Throwable oops){
-				result = createEditModelAndView(consu, "consumer.commit.error");
+				result = createEditModelAndView(consu, "customer.commit.error");
 			}
 		}
 		
@@ -84,8 +84,8 @@ public class RegisterController extends AbstractController{
 	protected ModelAndView createEditModelAndView(Customer consumer, String message){
 		ModelAndView result;
 		
-		result = new ModelAndView("consumer/create");
-		result.addObject("consumer", consumer);
+		result = new ModelAndView("customer/create");
+		result.addObject("customer", consumer);
 		result.addObject("message", message);
 		
 		return result;

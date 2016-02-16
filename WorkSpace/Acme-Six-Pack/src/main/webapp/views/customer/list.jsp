@@ -12,32 +12,32 @@
 
 <!-- Listing grid -->
 <display:table pagesize="5" class="displaytag" keepStatus="true"
-	name="consumers" requestURI="${requestURI}" id="row_Consumer">
+	name="customers" requestURI="${requestURI}" id="row_Consumer">
 
 	<!-- Attributes -->
-	<spring:message code="consumer.username" var="userNameHeader" />
+	<spring:message code="customer.username" var="userNameHeader" />
 	<display:column property="userAccount.username"
 		title="${userNameHeader}" sortable="true" />
 
-	<spring:message code="consumer.name" var="nameHeader" />
+	<spring:message code="customer.name" var="nameHeader" />
 	<display:column title="${nameHeader}" 
 		sortable="true" >
 		<jstl:out value="${row_Consumer.name}"/>
 	</display:column>
 
-	<spring:message code="consumer.surname" var="surnameHeader" />
+	<spring:message code="customer.surname" var="surnameHeader" />
 	<display:column title="${surnameHeader}"
 		sortable="true" >
 		<jstl:out value="${row_Consumer.surname}"/>
 	</display:column>
 
-	<spring:message code="consumer.phone" var="phoneHeader" />
+	<spring:message code="customer.phone" var="phoneHeader" />
 	<display:column title="${phoneHeader}" 
 		sortable="true" >
 		<jstl:out value="${row_Consumer.phone}"/>
 	</display:column>
 
-	<spring:message code="consumer.email" var="emailHeader" />
+	<spring:message code="customer.email" var="emailHeader" />
 	<display:column title="${emailHeader}"
 		sortable="true" >
 		<jstl:out value="${row_Consumer.email}"/>

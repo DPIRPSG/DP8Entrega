@@ -25,7 +25,7 @@ public class CustomerService {
 	//Managed repository -----------------------------------------------------
 	
 	@Autowired
-	private CustomerRepository consumerRepository;
+	private CustomerRepository customerRepository;
 	
 	//Supporting services ----------------------------------------------------
 
@@ -59,7 +59,7 @@ public class CustomerService {
 
 		result = new Customer();
 		
-		userAccount = userAccountService.create("CONSUMER");
+		userAccount = userAccountService.create("CUSTOMER");
 		result.setUserAccount(userAccount);
 		
 		return result;
@@ -76,12 +76,12 @@ public class CustomerService {
 		
 		boolean result = true;
 		for(Authority a: consumer.getUserAccount().getAuthorities()){
-			if(!a.getAuthority().equals("CONSUMER")){
+			if(!a.getAuthority().equals("CUSTOMER")){
 				result = false;
 				break;
 			}
 		}
-		Assert.isTrue(result, "A consumer can only be a authority.consumer");
+		Assert.isTrue(result, "A customer can only be a authority.customer");
 		
 		if(consumer.getId() == 0){
 			Collection<Folder> folders;
@@ -104,17 +104,10 @@ public class CustomerService {
 			received = new ArrayList<Message>();
 			consumer.setSent(sent);
 			consumer.setReceived(received);
-			
-			//Initialize orders			
-			//orders = new ArrayList<Order>();
-			//consumer.setOrders(orders);
-			
-			//Initialize shoppingCart
-			//shoppingCart = shoppingCartService.create(consumer);
-			//consumer.setShoppingCart(shoppingCart);
+
 			
 		}
-		modify = consumerRepository.save(consumer);
+		modify = customerRepository.save(consumer);
 		
 		if(consumer.getId() == 0){
 			Collection<Folder> folders;
@@ -130,11 +123,11 @@ public class CustomerService {
 	 */
 	// req: 12.5
 	public Collection<Customer> findAll(){
-		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can list consumers");
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can list customers");
 		
 		Collection<Customer> result;
 		
-		result = consumerRepository.findAll();
+		result = customerRepository.findAll();
 		
 		return result;
 	}
@@ -151,64 +144,11 @@ public class CustomerService {
 		
 		userAccount = LoginService.getPrincipal();
 		Assert.notNull(userAccount);
-		result = consumerRepository.findByUserAccountId(userAccount.getId());
+		result = customerRepository.findByUserAccountId(userAccount.getId());
 		Assert.notNull(result);
 		
 		return result;
 	}
-	
-	/**
-	 * Lista el consumers con más orders. En caso de igualdad devuelve varios. 
-	 * Cuenta las orders canceladas y las no canceladas
-	 */
-	//req: 12.7.1
-	/*public Collection<Customer> findConsumerMoreOrders(){
-		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can list consumers");
-		Collection<Customer> result;
-		
-		result = consumerRepository.findConsumerMoreOrders();
-		
-		return result;
-	}*/
 
-	/**
-	 * Lista el consumers que ha gastado más dinero. En caso de igualdad devuelve varios. 
-	 * Solo considera las orders no canceladas
-	 */
-	//req: 12.7.2
-	/*public Collection<Customer> findConsumerSpentMoreMoney(){
-		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can list consumers");
-		Collection<Customer> result;
-		
-		result = consumerRepository.findConsumerSpentMoreMoney();
-		
-		return result;
-	}*/
-
-	/**
-	 * Lista el/los consumer con más order canceladas
-	 */
-	//req: 17.6.3
-	/*public Collection<Customer> findConsumerMoreOrdersCancelled(){
-		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can list consumers");
-		Collection<Customer> result;
-		
-		result = consumerRepository.findConsumerMoreOrdersCancelled();
-		
-		return result;
-	}*/
-	
-	/**
-	 * Lista el/los consumer con menos order canceladas
-	 */
-	//req: 17.6.4
-	/*public Collection<Customer> findConsumerLessOrdersCancelled(){
-		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can list consumers");
-		Collection<Customer> result;
-		
-		result = consumerRepository.findConsumerLessOrdersCancelled();
-		
-		return result;
-	}*/
 
 }
