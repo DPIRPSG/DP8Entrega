@@ -25,6 +25,8 @@
 		<!-- Do not forget the "fNiv" class for the first level links !! -->
 		<security:authorize access="hasRole('CUSTOMER')">
 			<li><a class="fNiv" href="gym/customer/list.do?"><spring:message code="master.page.manage.gym" /></a></li>
+			<li><a class="fNiv" href="folder/actor/list.do"><spring:message code="master.page.messages" /></a></li>
+			
 		</security:authorize>
 		
 		<security:authorize access="hasRole('ADMIN')">
@@ -32,6 +34,7 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="gym/administrator/list.do?"><spring:message code="master.page.manage.gym" /></a></li>
+					<li><a href="service/administrator/list.do?"><spring:message code="master.page.manage.service" /></a></li>
 				</ul>
 			</li>
 			<li><a class="fNiv"><spring:message	code="master.page.list" /></a>

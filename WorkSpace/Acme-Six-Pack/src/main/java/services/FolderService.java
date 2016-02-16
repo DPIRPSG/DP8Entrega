@@ -191,6 +191,7 @@ public class FolderService {
 		names.add("Inbox");
 		names.add("OutBox");
 		names.add("TrashBox");
+		names.add("SpamBox");
 				
 		
 		for (String string : names) {

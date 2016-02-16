@@ -24,8 +24,11 @@
 		<value>/views/comment/tiles.xml</value>
 		<value>/views/folder/tiles.xml</value>
 		<value>/views/message/tiles.xml</value>
+		<value>/views/spamTerm/tiles.xml</value>
+		
 		<value>/views/gym/tiles.xml</value>
 		<value>/views/booking/tiles.xml</value>
+		<value>/views/service/tiles.xml</value>
 	</util:list>
 
 </beans>
