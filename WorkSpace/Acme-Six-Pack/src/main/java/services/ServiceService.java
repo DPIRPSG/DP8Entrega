@@ -5,6 +5,8 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
+
 import repositories.ServiceRepository;
 import domain.ServiceEntity;
 
@@ -18,7 +20,6 @@ public class ServiceService {
 	private ServiceRepository serviceRepository;
 
 	// Supporting services ----------------------------------------------------
-
 	
 	// Constructors -----------------------------------------------------------
 
@@ -29,20 +30,26 @@ public class ServiceService {
 	// Simple CRUD methods ----------------------------------------------------
 
 	// Other business methods -------------------------------------------------
+	
+	/**
+	 * Lista un Service concreto
+	 */
 
 	public ServiceEntity findOne(int serviceId) {
 		ServiceEntity result;
 		
 		result = serviceRepository.findOne(serviceId);
+		Assert.notNull(result, "Thereis no service with the id: " + serviceId);
 		
 		return result;
+		
 	}
 	
 	
 	/**
-	 * Lista los gyms
+	 * Lista todos los Services
 	 */
-	// req: 12.5
+	
 	public Collection<ServiceEntity> findAll() {
 		Collection<ServiceEntity> result;
 
@@ -50,6 +57,8 @@ public class ServiceService {
 
 		return result;
 	}
+	
+	
 
 	
 
