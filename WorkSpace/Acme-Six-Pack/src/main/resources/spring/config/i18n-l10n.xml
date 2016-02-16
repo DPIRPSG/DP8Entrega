@@ -32,6 +32,7 @@
 		<value>/views/message/messages</value>
 		<value>/views/spamTerm/messages</value>
 		<value>/views/gym/messages</value>
+		<value>/views/service/messages</value>
 		
 		
 	</util:list>
