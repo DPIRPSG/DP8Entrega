@@ -23,14 +23,9 @@
 	<form:hidden path="moment"/>
 	<form:hidden path="gym"/>
 	<form:hidden path="service"/>
+	<form:hidden path="actor"/>
 	
 	<!-- Editable Attributes -->
-	<form:label path="title">
-		<spring:message code = "comment.title"/>
-	</form:label>
-	<form:input path="title"/>
-	<form:errors cssClass="error" path="title"/>
-	<br />
 	
 	<form:label path="text">
 		<spring:message code = "comment.text"/>
@@ -39,21 +34,27 @@
 	<form:errors cssClass="error" path="text"/>
 	<br />
 				
-	<form:label path="rating">
-		<spring:message code = "comment.rating"/>
+	<form:label path="starRating">
+		<spring:message code = "comment.starRating"/>
 	</form:label>
-	<form:input path="rating"/>
-	<form:errors cssClass="error" path="rating"/>
+	<form:input path="starRating"/>
+	<form:errors cssClass="error" path="starRating"/>
 	<br />
 	
 	<!-- Action buttons -->
 	<input type="submit" name="save"
 		value="<spring:message code="comment.create.save"/>"/>
 	&nbsp;
-	<input type="button" name="cancel"
+	<jstl:if test="${gym != null}">
+		<input type="button" name="cancel"
 		value="<spring:message code="comment.create.cancel" />"
-		onclick="javascript: relativeRedir('/comment/list.do?itemId=${comment.item.id}');" />
-	<br />
+		onclick="javascript: relativeRedir('/comment/list.do?gymId=${comment.gym.id}');" />
+	</jstl:if>
+	<jstl:if test="${service != null}">
+		<input type="button" name="cancel"
+		value="<spring:message code="comment.create.cancel" />"
+		onclick="javascript: relativeRedir('/comment/list.do?serviceId=${comment.service.id}');" />
+	</jstl:if>
 	
 </form:form>
 

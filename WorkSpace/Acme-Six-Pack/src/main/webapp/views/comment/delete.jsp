@@ -20,20 +20,21 @@
 	<!-- Hidden Attributes -->
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
-	<form:hidden path="item"/>
+	<form:hidden path="gym"/>
+	<form:hidden path="service"/>
 	
 	<!-- Shown Attributes -->
-	<form:hidden path="userName"/>
-	<p><spring:message code = "comment.userName"/>: <jstl:out value="${comment.userName}" /></p>
+	<form:hidden path="moment"/>
+	<p><spring:message code = "comment.moment"/>: <jstl:out value="${comment.moment}" /></p>
 	
-	<form:hidden path="title"/>
-	<p><spring:message code = "comment.title"/>: <jstl:out value="${comment.title}" /></p>
+	<form:hidden path="actor"/>
+	<p><spring:message code = "comment.actor"/>: <jstl:out value="${comment.actor.userAccount.username}" /></p>
 				
 	<form:hidden path="text"/>
 	<p><spring:message code = "comment.text"/>: <jstl:out value="${comment.text}" /></p>
 	
-	<form:hidden path="rating"/>
-	<p><spring:message code = "comment.rating"/>: <jstl:out value="${comment.rating}" /></p>
+	<form:hidden path="starRating"/>
+	<p><spring:message code = "comment.starRating"/>: <jstl:out value="${comment.starRating}" /></p>
 	
 	<!-- Action buttons -->
 	<input type="submit" name="delete"
