@@ -9,7 +9,7 @@ import domain.SpamTerm;
 @Repository
 public interface SpamTermRepository extends JpaRepository<SpamTerm, Integer> {
 
-	@Query("")
+	@Query("select i from SpamTerm i")
 	boolean checkSpamTerm(String text);
 
 }

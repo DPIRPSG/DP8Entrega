@@ -14,7 +14,7 @@
 	<!-- Hidden Attributes -->
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="moment" />
+	<form:hidden path="sentMoment" />
 	<form:hidden path="sender" />
 	<form:hidden path="recipients" />
 	<form:hidden path="body" />
