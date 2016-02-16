@@ -1,0 +1,35 @@
+Queries DP8Entrega
+
+Level C:
+
+1) The most popular gym/s.
+
+2) The least popular gyms/s.
+
+3) The most popular service/s.
+
+4) The least popular service/s.
+
+5) The customer/s who has/have paid more fees.
+
+6) The customer/s who has/have paid less fees.
+
+Level B:
+
+7) The actor/s who sends/send more spam messages.
+
+8) The average number of messages in an actor’s message boxes.
+
+Level A:
+
+9) The gyms/s that has/have more comments.
+
+10) The service/s that has/have more comments.
+
+11) The average number of comments written by the actors, including thestandard deviation.
+
+12) The average number of comments per gym.
+
+13) The average number of comments per service.
+
+14) The customer/s who has/have been removed more comments.
