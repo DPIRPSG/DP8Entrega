@@ -704,6 +704,14 @@
 				<ref bean="feePayment11"/>
 			</list>
 		</property>
+		<property name="bookings">
+			<list>
+				<ref bean="booking1"/>
+				<ref bean="booking2"/>
+				<ref bean="booking3"/>
+				<ref bean="booking4"/>
+			</list>
+		</property>
 	</bean>
 	
 	<bean id="gym2" class="domain.Gym">
@@ -727,6 +735,11 @@
 		<property name="feePayment">
 			<list>
 				<ref bean="feePayment4"/>
+			</list>
+		</property>
+		<property name="bookings">
+			<list>
+				<ref bean="booking5"/>
 			</list>
 		</property>
 	</bean>
@@ -756,6 +769,11 @@
 				<ref bean="feePayment8"/>
 				<ref bean="feePayment9"/>
 				<ref bean="feePayment10"/>
+			</list>
+		</property>
+		<property name="bookings">
+			<list>
+				<ref bean="booking6"/>
 			</list>
 		</property>
 	</bean>
@@ -979,6 +997,7 @@
 		<property name="approved" value="true"/>
 		<property name="administrator" ref="administrator1"/>
 		<property name="customer" ref="customer1"/>
+		<property name="gym" ref="gym1"/>
 		<property name="service" ref="service1"/>
 	</bean>
 	
@@ -989,6 +1008,7 @@
 		<property name="approved" value="true"/>
 		<property name="administrator" ref="administrator1"/>
 		<property name="customer" ref="customer1"/>
+		<property name="gym" ref="gym1"/>
 		<property name="service" ref="service1"/>
 	</bean>
 	
@@ -999,6 +1019,7 @@
 		<property name="approved" value="true"/>
 		<property name="administrator" ref="administrator1"/>
 		<property name="customer" ref="customer1"/>
+		<property name="gym" ref="gym1"/>
 		<property name="service" ref="service1"/>
 	</bean>
 	
@@ -1009,6 +1030,7 @@
 		<property name="approved" value="true"/>
 		<property name="administrator" ref="administrator1"/>
 		<property name="customer" ref="customer1"/>
+		<property name="gym" ref="gym1"/>
 		<property name="service" ref="service1"/>
 	</bean>
 	
@@ -1019,16 +1041,18 @@
 		<property name="approved" value="true"/>
 		<property name="administrator" ref="administrator1"/>
 		<property name="customer" ref="customer2"/>
+		<property name="gym" ref="gym2"/>
 		<property name="service" ref="service2"/>
 	</bean>
 	
 	<bean id="booking6" class="domain.Booking">
-		<property name="creationMoment" value="2016/02/14 20:00"/>
-		<property name="requestMoment" value="2016/02/20 17:00"/>
+		<property name="creationMoment" value="2015/09/15 12:00"/>
+		<property name="requestMoment" value="2015/09/16 17:00"/>
 		<property name="duration" value="1"/>
 		<property name="approved" value="true"/>
 		<property name="administrator" ref="administrator1"/>
 		<property name="customer" ref="customer3"/>
+		<property name="gym" ref="gym3"/>
 		<property name="service" ref="service1"/>
 	</bean>
 	
