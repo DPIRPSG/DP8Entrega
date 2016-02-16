@@ -15,7 +15,7 @@
 
 <div>
 	<a href=""> 
-		<img src="images/logo.png" alt="ACME, Inc.  Your gym Company" /></a>
+		<img src="images/logo.png" style="height:128px;" alt="ACME, Inc.  Your gym Company" /></a>
 	<br/>
 
 </div>
