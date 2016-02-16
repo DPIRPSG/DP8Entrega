@@ -1,6 +1,5 @@
 package services;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import domain.Comment;
-
 import repositories.CommentRepository;
+import domain.Comment;
+import domain.Gym;
+import domain.ServiceEntity;
 
 @Service
 @Transactional
@@ -34,9 +34,9 @@ public class CommentService {
 	//Simple CRUD methods ----------------------------------------------------
 	
 	/**
-	 * Crea un comentario. Necesita ser guardado. Usar desde createByItem.
+	 * Crea un comment
 	 */
-	//ref: 23.2
+	
 	private Comment create(){
 		Comment result;
 		
@@ -46,28 +46,40 @@ public class CommentService {
 	}
 	
 	/**
-	 * Guarda un comment creado o modificado
+	 * Guarda un comment creado
 	 */
-	//req: 23.2
+	
 	public void save(Comment comment){
 		Assert.notNull(comment);
-
+		
+		Assert.isTrue((comment.getGym() != null) ^ (comment.getService() != null), "You can only comment on a Gym OR a Service.");
+			
 		commentRepository.save(comment);
+		
 	}
 
 	
 	/**
-	 * Elimina un comment
+	 * "Elimina" un comment
 	 */
-	//req: 25.1
+	
 	public void delete(Comment comment){
 		Assert.notNull(comment);
 		Assert.isTrue(comment.getId() != 0);
+		Assert.isTrue(comment.getDeleted() == false);
 		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can delete comments");
 		
 
-		commentRepository.delete(comment.getId());
+		comment.setDeleted(true);
 	}
+	
+	
+	
+	//Other business methods -------------------------------------------------
+	
+	/**
+	 * Lista un comment concreto
+	 */
 	
 	public Comment findOne(int commentId) {
 		Comment result;
@@ -78,40 +90,64 @@ public class CommentService {
 		return result;
 	}
 	
-	//Other business methods -------------------------------------------------
+	/**
+	 * Lista todos los comentarios del sistema
+	 */
+	
+	public Collection<Comment> findAll() {
+		Collection<Comment> result;
+		
+		result = commentRepository.findAll();
+		
+		return result;
+	}
 
 	/**
-	 * Lista todos los comentarios de un Item
+	 * Lista todos los comentarios de un Gym
 	 */
-	//ref: 23.1
-	/*public Collection<Comment> findAllByItem(Item item){
-		Assert.notNull(item);
-		Assert.isTrue(item .getId() != 0);
+
+	public Collection<Comment> findAllByGym(Gym gym){
+		Assert.notNull(gym);
+		Assert.isTrue(gym.getId() != 0);
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can see this stats");
 		
 		Collection<Comment> result;
 		
-		result = commentRepository.findAllByItemId(item.getId());
+		result = commentRepository.findAllByGym(gym.getId());
 		
 		return result;
-	}*/
+		
+	}
 	
 	/**
-	 * Crear un comentario en relación con un item. Debe de ser guardado con save.
+	 * Lista todos los comentarios de un Service
 	 */
-	//ref: 23.2
-	/*public Comment createByItem(Item item){
-		Comment result;
-		Collection<Comment> comments;
+	
+	public Collection<Comment> findAllByService(ServiceEntity service){
+		Assert.notNull(service);
+		Assert.isTrue(service.getId() != 0);
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can see this stats");
 		
-		result = this.create();
-		result.setItem(item);
-		comments = item.getComments();
-		if(comments == null){
-			comments = new ArrayList<Comment>();
-		}
-		comments.add(result);
-		item.setComments(comments);
+		Collection<Comment> result;
+		
+		result = commentRepository.findAllByService(service.getId());
 		
 		return result;
-	}*/
+		
+	}
+	
+	/**
+	 * Lista todos los comentarios no eliminados
+	 */
+	
+	public Collection<Comment> findAllNotDeleted(){
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can see this stats");
+		
+		Collection<Comment> result;
+		
+		result = commentRepository.findAllNotDeleted();
+		
+		return result;
+		
+	}
 }
