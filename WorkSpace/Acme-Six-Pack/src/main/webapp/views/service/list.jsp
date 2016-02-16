@@ -32,7 +32,15 @@
 	<spring:message code="service.pictures" var="pictureHeader" />
 	<display:column title="${pictureHeader}"
 		sortable="false" >
-		<img src="${row_Service.pictures}" style="width:204px;height:128px;"/>
+		<jstl:forEach items="${row_Service.pictures}" var="picture">
+			<img src="${picture}" style="width:204px;height:128px;"/>
+		</jstl:forEach>
+	</display:column>
+	
+	<display:column>
+		<a href="gym/list.do?serviceId=${row_Service.id}"> <spring:message
+				code="service.gyms" />
+		</a>
 	</display:column>
 
 	<display:column>
@@ -42,6 +50,17 @@
 	</display:column>
 
 </display:table>
+
+<spring:message code="service.customers" />:
+<jstl:forEach var="customer" items="${customers }">
+	<br />
+	<jstl:out value="${customer}" />
+</jstl:forEach>
+
+<br/>
+<br/>
+<br/>
+<br/>
 
 
 <!-- Action links -->

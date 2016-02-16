@@ -35,15 +35,35 @@ public class GymAdministratorController extends AbstractController {
 	// Listing ----------------------------------------------------------
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list() {
+	public ModelAndView list(@RequestParam(required=false, defaultValue="") String keyword, @RequestParam(required=false) Integer serviceId) {
 		ModelAndView result;
 		Collection<Gym> gyms;
+		Collection<String> customers;
+		String keywordToFind;
 
 		gyms = gymService.findAll();
+		
+		if(serviceId != null) {
+			gyms = gymService.findAllByService(serviceId);
+		}
+		
+		if (!keyword.equals("")) {
+			String[] keywordComoArray = keyword.split(" ");
+			for (int i = 0; i < keywordComoArray.length; i++) {
+				if (!keywordComoArray[i].equals("")) {
+					keywordToFind = keywordComoArray[i];
+					gyms = gymService.findBySingleKeyword(keywordToFind);
+					break;
+				}
+			}
+		}
+		
+		customers = gymService.numbersOfCustomersByGym(gyms);
 
 		result = new ModelAndView("gym/list");
-		result.addObject("requestURI", "gym/list.do?");
+		result.addObject("requestURI", "gym/administrator/list.do?");
 		result.addObject("gyms", gyms);
+		result.addObject("customers", customers);
 
 		return result;
 	}

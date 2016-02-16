@@ -1,5 +1,6 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class ServiceService {
 	private ServiceRepository serviceRepository;
 
 	// Supporting services ----------------------------------------------------
+	
+	@Autowired
+	private CustomerService customerService;
 	
 	// Constructors -----------------------------------------------------------
 
@@ -66,6 +70,24 @@ public class ServiceService {
 
 		result = serviceRepository.findAllByGym(gymId);
 
+		return result;
+	}
+	
+	public Collection<String> numbersOfCustomersByService(Collection<ServiceEntity> services) {
+		Collection<String> result;
+		Integer customerNumber;
+		String numberOfCustomerInService;
+		
+		result = new ArrayList<>();
+		customerNumber = 0;
+		numberOfCustomerInService = null;
+		
+		for(ServiceEntity service : services) {
+			customerNumber = customerService.numbersOfCustomersByService(service.getId());
+			numberOfCustomerInService = service.getName() + ": " + customerNumber;
+			result.add(numberOfCustomerInService);
+		}
+		
 		return result;
 	}
 	

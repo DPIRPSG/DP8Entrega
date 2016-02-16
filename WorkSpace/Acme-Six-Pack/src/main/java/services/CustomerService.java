@@ -25,7 +25,7 @@ public class CustomerService {
 	//Managed repository -----------------------------------------------------
 	
 	@Autowired
-	private CustomerRepository consumerRepository;
+	private CustomerRepository customerRepository;
 	
 	//Supporting services ----------------------------------------------------
 
@@ -114,7 +114,7 @@ public class CustomerService {
 			//consumer.setShoppingCart(shoppingCart);
 			
 		}
-		modify = consumerRepository.save(consumer);
+		modify = customerRepository.save(consumer);
 		
 		if(consumer.getId() == 0){
 			Collection<Folder> folders;
@@ -134,7 +134,7 @@ public class CustomerService {
 		
 		Collection<Customer> result;
 		
-		result = consumerRepository.findAll();
+		result = customerRepository.findAll();
 		
 		return result;
 	}
@@ -151,7 +151,7 @@ public class CustomerService {
 		
 		userAccount = LoginService.getPrincipal();
 		Assert.notNull(userAccount);
-		result = consumerRepository.findByUserAccountId(userAccount.getId());
+		result = customerRepository.findByUserAccountId(userAccount.getId());
 		Assert.notNull(result);
 		
 		return result;
@@ -210,5 +210,21 @@ public class CustomerService {
 		
 		return result;
 	}*/
+	
+	public Integer numbersOfCustomersByGym(int gymId) {
+		Integer result;
+		
+		result = customerRepository.findByGymBooked(gymId).size();
+		
+		return result;
+	}
+
+	public Integer numbersOfCustomersByService(int serviceId) {
+		Integer result;
+
+		result = customerRepository.findByServiceBooked(serviceId).size();
+
+		return result;
+	}
 
 }
