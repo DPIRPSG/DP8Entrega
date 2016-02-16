@@ -42,6 +42,9 @@
 		<bean class="converters.MessageToStringConverter" />
 		<bean class="converters.StringToMessageConverter" />
 		
+		<bean class="converters.SpamTermToStringConverter" />
+		<bean class="converters.StringToSpamTermConverter" />
+		
 		<bean class="converters.GymToStringConverter" />
 		<bean class="converters.StringToGymConverter" />
 		

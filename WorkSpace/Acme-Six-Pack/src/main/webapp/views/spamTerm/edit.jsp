@@ -10,31 +10,30 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <!-- Form -->
-<form:form action="message/actor/edit.do" modelAttribute="messa">
+<form:form action="spamTerm/administrator/edit.do" modelAttribute="spamTerm">
 	<!-- Hidden Attributes -->
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="sentMoment" />
-	<form:hidden path="sender" />
-	<form:hidden path="recipients" />
-	<form:hidden path="body" />
-	<form:hidden path="subject" />
+	
 
-	<form:label path="folders">
-		<spring:message code="message.folders" />:
+	<form:label path="term">
+		<spring:message code="spamTerm.term" />:
 	</form:label>
-	<form:select id="folders" path="folders" items="${foldersActor}"
-		itemLabel="name" itemValue="id" multiple="multiple" />
-	<form:errors cssClass="error" path="folders" />
+	<form:input path="term" />
+	<form:errors cssClass="error" path="term" />
 	<br />
-
+	
 	<!-- Action buttons -->
 	<input type="submit" name="save"
-		value="<spring:message code="message.save" />" />&nbsp; 
-
+		value="<spring:message code="spamTerm.save" />" />&nbsp; 
+	<jstl:if test="${spamTerm.id != 0}">
+		<input type="submit" name="delete"
+			value="<spring:message code="spamTerm.delete" />"
+			onclick="return confirm('<spring:message code="spamTerm.confirm.delete" />')" />&nbsp;
+	</jstl:if>
 	<input type="button" name="cancel"
-		value="<spring:message code="message.cancel" />"
-		onclick="javascript: relativeRedir('message/actor/display.do?messageId=${messa.id}');" />
+		value="<spring:message code="spamTerm.cancel" />"
+		onclick="javascript: relativeRedir('spamTerm/administrator/list.do');" />
 	<br />
 
 </form:form>

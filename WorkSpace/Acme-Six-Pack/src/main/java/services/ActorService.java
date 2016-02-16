@@ -65,7 +65,7 @@ public class ActorService {
 	/**
 	 * Comprueba si el usuario que está ejecutando tiene la AuthoritySolicitada
 	 * @return boolean -> false si no es consumer
-	 * @param authority [ADMIN, CONSUMER o CLERK]
+	 * @param authority [ADMIN, CONSUMER]
 	 */
 	public boolean checkAuthority(String authority){
 		boolean result;
