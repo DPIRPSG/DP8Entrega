@@ -15,8 +15,8 @@
 	<div>
 	<table>
 	<tr>
-		<th><spring:message code="message.moment" /> :</th>
-		<td><jstl:out value="${messa.moment}" /></td>
+		<th><spring:message code="message.sentMoment" /> :</th>
+		<td><jstl:out value="${messa.sentMoment}" /></td>
 	</tr>
 	<tr>
 		<th><spring:message code="message.folders" /> :</th>
