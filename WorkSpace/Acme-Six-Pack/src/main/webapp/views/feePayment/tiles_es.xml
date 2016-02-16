@@ -1,0 +1,20 @@
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="comment/list" extends="master.page">	
+		<put-attribute name="title" value="Lista de comentarios" />
+		<put-attribute name="body" value="/views/comment/list.jsp" />
+	</definition>
+	<definition name="comment/create" extends="master.page">	
+		<put-attribute name="title" value="Nuevo comentario" />
+		<put-attribute name="body" value="/views/comment/create.jsp" />
+	</definition>
+	<definition name="comment/delete" extends="master.page">	
+		<put-attribute name="title" value="Eliminar comentario" />
+		<put-attribute name="body" value="/views/comment/delete.jsp" />
+	</definition>
+	
+</tiles-definitions>
