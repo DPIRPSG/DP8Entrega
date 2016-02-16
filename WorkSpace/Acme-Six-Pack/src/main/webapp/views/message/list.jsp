@@ -31,10 +31,10 @@
 		</display:column>
 
 		<!-- Attributes -->
-		<spring:message code="message.moment" var="momentHeader" />
-		<display:column title="${momentHeader}"
+		<spring:message code="message.sentMoment" var="sentMomentHeader" />
+		<display:column title="${sentMomentHeader}"
 			sortable="true" format="{0,date,yyyy/MM/dd }" >
-			<jstl:out value="${row_messa.moment}"/>
+			<jstl:out value="${row_messa.sentMoment}"/>
 		</display:column>
 		
 		<spring:message code="message.subject" var="subjectHeader" />

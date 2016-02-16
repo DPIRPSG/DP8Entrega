@@ -9,6 +9,7 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <!-- Listing grid -->
 <display:table pagesize="5" class="displaytag" keepStatus="true"
@@ -16,70 +17,77 @@
 	<!-- Action links -->
 
 	<security:authorize access="hasRole('ADMIN')">
-		<display:column>
-			<a href="gym/administrator/edit.do?gymId=${row_Gym.id}"> <spring:message
-					code="gym.edit" />
-			</a>
-		</display:column>
+		<spring:message code="booking.cancel" var="cancelHeader" />
+		<jstl:if test="${row_Booking.approved == true || row_Booking.denied == true}">
+			<display:column>
+				<a href="booking/consumer/cancel.do?bookingId=${row_Booking.id}" onclick="return confirm('<spring:message code="booking.cancel.advise" />')"> <spring:message
+					code="booking.cancel2" />
+				</a>
+			</display:column>	
+		</jstl:if>
+		<jstl:if test="${row_Booking.approved == false || row_Booking.denied == false}">
+			<display:column title="${cancelHeader}"
+				sortable="false" />
+		</jstl:if>
 	</security:authorize>
 
 	<!-- Attributes -->
-	<spring:message code="gym.name" var="nameHeader" />
-	<display:column title="${nameHeader}"
+	
+	<spring:message code="booking.customer" var="customerHeader" />
+	<display:column title="${customerHeader}"
 		sortable="true">
-		<jstl:out value="${row_Gym.name}"/>
-	</display:column>
-
-	<spring:message code="gym.description" var="descriptionHeader" />
-	<display:column title="${descriptionHeader}"
-		sortable="false">
-		<jstl:out value="${row_Gym.description}"/>
+		<jstl:out value="${row_Booking.customer.name}"/>
 	</display:column>
 	
-	<spring:message code="gym.postalAddress" var="postalAddressHeader" />
-	<display:column title="${postalAddressHeader}"
-		sortable="false">
-		<jstl:out value="${row_Gym.postalAddress}"/>
-	</display:column>
-
-	<spring:message code="gym.phone" var="phoneHeader" />
-	<display:column title="${phoneHeader}"
+	<spring:message code="booking.service" var="serviceHeader" />
+	<display:column title="${serviceHeader}"
 		sortable="true">
-		<jstl:out value="${row_Gym.phone}"/>
+		<jstl:out value="${row_Booking.service.name}"/>
 	</display:column>
-
-	<spring:message code="gym.fee" var="feeHeader" />
-	<display:column title="${feeHeader}"
+	
+	<spring:message code="booking.creationMoment" var="creationMomentHeader" />
+	<display:column title="${creationMomentHeader}"
 		sortable="true">
-		<jstl:out value="${row_Gym.fee}"/>
+		<jstl:out value="${row_Booking.creationMoment}"/>
 	</display:column>
-
-	<spring:message code="gym.picture" var="pictureHeader" />
-	<display:column title="${pictureHeader}"
-		sortable="false" >
-		<img src="${row_Gym.picture}" style="width:204px;height:128px;"/>
+	
+	<spring:message code="booking.requestMoment" var="requestMomentHeader" />
+	<display:column title="${requestMomentHeader}"
+		sortable="true">
+		<jstl:out value="${row_Booking.requestMoment}"/>
+	</display:column>		
+	
+	<spring:message code="booking.duration" var="durationHeader" />
+	<display:column title="${durationHeader}"
+		sortable="true">
+		<jstl:out value="${row_Booking.duration}"/>
 	</display:column>
-
-	<display:column>
-		<a href="comment/list.do?gymId=${row_Gym.id}"> <spring:message
-				code="gym.comments" />
-		</a>
+	
+	<spring:message code="booking.approved" var="approvedHeader" />
+	<display:column title="${approvedHeader}"
+		sortable="true">
+		<jstl:out value="${row_Booking.approved}"/>
+	</display:column>
+	
+	<spring:message code="booking.denied" var="deniedHeader" />
+	<display:column title="${deniedHeader}"
+		sortable="true">
+		<jstl:out value="${row_Booking.denied}"/>
+	</display:column>
+	
+	<spring:message code="booking.canceled" var="canceledHeader" />
+	<display:column title="${canceledHeader}"
+		sortable="true">
+		<jstl:out value="${row_Booking.canceled}"/>
 	</display:column>
 
 </display:table>
 
-
-<form action="${requestURI}">
-	<input type="text" name="keyword"> <input type="submit"
-		value="<spring:message code="gym.search" />" />&nbsp;
-</form>
-
-
 <!-- Action links -->
-<security:authorize access="hasRole('ADMIN')">
+<security:authorize access="hasRole('CUSTOMER')">
 	<div>
-		<a href="gym/administrator/create.do"> <spring:message
-				code="gym.create" />
+		<a href="booking/customer/create.do">
+			<spring:message code="booking.create" />
 		</a>
 	</div>
 </security:authorize>
@@ -87,8 +95,9 @@
 <!-- Alert -->
 <jstl:if test="${messageStatus != Null && messageStatus != ''}">
 	<spring:message code="${messageStatus}" var="showAlert" />
-			<script>$(document).ready(function(){
-		    alert("${showAlert}");
-		  });
-		</script>
+			<script>
+				$(document).ready(function(){
+		    		alert("${showAlert}");
+				});
+			</script>
 </jstl:if>	
