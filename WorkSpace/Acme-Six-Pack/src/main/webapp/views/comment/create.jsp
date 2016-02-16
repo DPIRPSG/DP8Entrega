@@ -8,14 +8,21 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<h3><spring:message code="comment.item"/>: <jstl:out value="${item.name}(${item.sku})" /></h3>
+<jstl:if test="${gym != null}">
+	<h3><spring:message code="comment.gym"/>: <jstl:out value="${gym.name}" /></h3>
+</jstl:if>
+<jstl:if test="${service != null}">
+	<h3><spring:message code="comment.service"/>: <jstl:out value="${service.name}" /></h3>
+</jstl:if>
+
 <!-- Form -->
 <form:form action="comment/create.do" modelAttribute="comment">
 	<!-- Hidden Attributes -->
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
-	<form:hidden path="userName"/>
-	<form:hidden path="item"/>
+	<form:hidden path="moment"/>
+	<form:hidden path="gym"/>
+	<form:hidden path="service"/>
 	
 	<!-- Editable Attributes -->
 	<form:label path="title">
