@@ -59,6 +59,12 @@
 		sortable="false" >
 		<img src="${row_Gym.picture}" style="width:204px;height:128px;"/>
 	</display:column>
+	
+	<display:column>
+		<a href="service/list.do?gymId=${row_Gym.id}"> <spring:message
+				code="gym.services" />
+		</a>
+	</display:column>
 
 	<display:column>
 		<a href="comment/list.do?gymId=${row_Gym.id}"> <spring:message
