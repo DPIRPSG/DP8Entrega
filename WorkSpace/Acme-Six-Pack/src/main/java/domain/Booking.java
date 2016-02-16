@@ -86,6 +86,7 @@ public class Booking extends DomainEntity{
 	private Administrator administrator;
 	private Customer customer;
 	private ServiceEntity service;
+	private Gym gym;
 
 	@Valid
 	@ManyToOne(optional = true)
@@ -114,6 +115,16 @@ public class Booking extends DomainEntity{
 	}
 	public void setService(ServiceEntity service) {
 		this.service = service;
+	}
+	
+	@Valid
+	@NotNull
+	@ManyToOne(optional = false)
+	public Gym getGym() {
+		return gym;
+	}
+	public void setGym(Gym gym) {
+		this.gym = gym;
 	}
 	
 

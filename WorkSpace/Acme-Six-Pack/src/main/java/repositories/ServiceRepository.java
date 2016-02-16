@@ -11,7 +11,7 @@ import domain.ServiceEntity;
 @Repository
 public interface ServiceRepository extends JpaRepository<ServiceEntity, Integer> {
 
-	@Query("select s from ServiceEntity s join s.gyms g where g.id = ?1;")
+	@Query("select s from ServiceEntity s join s.gyms g where g.id = ?1")
 	Collection<ServiceEntity> findAllByGym(int gymId);
 	
 }

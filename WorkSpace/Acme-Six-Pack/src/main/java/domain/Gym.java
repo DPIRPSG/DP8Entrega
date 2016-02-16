@@ -92,6 +92,7 @@ public class Gym extends DomainEntity{
 	private Collection<Comment> comments;
 	private Collection<ServiceEntity> service;
 	private Collection<FeePayment> feePayment;
+	private Collection<Booking> bookings;
 	
 	@Valid
 	@OneToMany(mappedBy = "gym")
@@ -132,7 +133,15 @@ public class Gym extends DomainEntity{
 		this.feePayment = feePayment;
 	}
 	
-	
+	@Valid
+	@OneToMany(mappedBy = "gym")
+	@NotNull
+	public Collection<Booking> getBookings() {
+		return bookings;
+	}
+	public void setBookings(Collection<Booking> bookings) {
+		this.bookings = bookings;
+	}
 	
 	
 }
