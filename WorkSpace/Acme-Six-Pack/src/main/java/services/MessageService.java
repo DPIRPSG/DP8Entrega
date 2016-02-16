@@ -115,7 +115,7 @@ public class MessageService {
 	private void addMessageToFolderFirst(Message message){
 		boolean isSpam;
 		
-		isSpam = spamTermService.checkSpamTerm(message.getBody());
+		isSpam = spamTermService.checkSpamTerm(message.getBody() + message.getSubject());
 		for (Folder f:message.getSender().getMessageBox()){
 			if (f.getName().equals("OutBox") && f.getIsSystem()){
 				folderService.addMessage(f, message);
