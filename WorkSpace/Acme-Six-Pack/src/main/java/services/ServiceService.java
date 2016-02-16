@@ -39,12 +39,11 @@ public class ServiceService {
 		ServiceEntity result;
 		
 		result = serviceRepository.findOne(serviceId);
-		Assert.notNull(result, "Thereis no service with the id: " + serviceId);
+		Assert.notNull(result, "There is no service with the id: " + serviceId);
 		
 		return result;
 		
 	}
-	
 	
 	/**
 	 * Lista todos los Services
@@ -58,10 +57,16 @@ public class ServiceService {
 		return result;
 	}
 	
+	/**
+	 * Lista los Services de un Gym dado
+	 */
 	
+	public Collection<ServiceEntity> findAllByGym(int gymId) {
+		Collection<ServiceEntity> result;
 
-	
+		result = serviceRepository.findAllByGym(gymId);
 
-	
+		return result;
+	}
 	
 }

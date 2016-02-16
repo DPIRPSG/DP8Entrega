@@ -51,8 +51,11 @@ public class CommentService {
 	
 	public void save(Comment comment){
 		Assert.notNull(comment);
-
+		
+		Assert.isTrue((comment.getGym() != null) ^ (comment.getService() != null), "You can only comment on a Gym OR a Service.");
+			
 		commentRepository.save(comment);
+		
 	}
 
 	
