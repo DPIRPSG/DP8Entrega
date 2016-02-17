@@ -101,7 +101,7 @@ public class SpamTermService {
 	public boolean checkSpamTerm(String text){
 		boolean result;
 		
-		result = spamTermRepository.checkSpamTerm(text);
+		result = spamTermRepository.checkSparmTermByWords(text);
 		
 		return result;
 	}

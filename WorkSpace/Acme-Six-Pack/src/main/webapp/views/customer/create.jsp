@@ -10,41 +10,38 @@
 
 <security:authorize access = "isAnonymous()">
 	<!-- Form -->
-	<form:form action="consumer/create.do" modelAttribute="consumer">
+	<form:form action="customer/create.do" modelAttribute="customer">
 		<!-- Hidden Attributes -->
 		<form:hidden path="id"/>
 		<form:hidden path="version"/>
-		<form:hidden path="folders"/>
+		<form:hidden path="messageBoxs"/>
+		<!--<form:hidden path="creditCard"/>-->
+		<!--<form:hidden path="socialIdentity"/>-->
+		<form:hidden path="feePayment"/>
+		<form:hidden path="booking"/>
+		<form:hidden path="comments"/>
 		<form:hidden path="received"/>
 		<form:hidden path="sent"/>
-		<form:hidden path="orders"/>
 		<form:hidden path="userAccount.authorities"/>
 		
 		
 		<!-- Editable Attributes -->
 		<form:label path="name">
-			<spring:message code = "consumer.name"/>
+			<spring:message code = "customer.name"/>
 		</form:label>
 		<form:input path="name"/>
 		<form:errors cssClass="error" path="name"/>
 		<br />
 		
 		<form:label path="surname">
-			<spring:message code = "consumer.surname"/>
+			<spring:message code = "customer.surname"/>
 		</form:label>
 		<form:input path="surname"/>
 		<form:errors cssClass="error" path="surname"/>
 		<br />
 		
-		<form:label path="email">
-			<spring:message code = "consumer.email"/>
-		</form:label>
-		<form:input path="email"/>
-		<form:errors cssClass="error" path="email"/>
-		<br />
-					
 		<form:label path="phone">
-			<spring:message code = "consumer.phone"/>
+			<spring:message code = "customer.phone"/>
 		</form:label>
 		<form:input path="phone"/>
 		<form:errors cssClass="error" path="phone"/>
@@ -52,14 +49,14 @@
 		
 		
 		<form:label path="userAccount.username">
-			<spring:message code="consumer.username" />
+			<spring:message code="customer.username" />
 		</form:label>
 		<form:input path="userAccount.username" />	
 		<form:errors class="error" path="userAccount.username" />
 		<br />
 
 		<form:label path="userAccount.password">
-			<spring:message code="consumer.password" />
+			<spring:message code="customer.password" />
 		</form:label>
 		<form:password path="userAccount.password" />
 		<form:errors class="error" path="userAccount.password" />
@@ -68,10 +65,10 @@
 		
 		<!-- Action buttons -->
 		<input type="submit" name="save"
-			value="<spring:message code="consumer.save"/>"/>
+			value="<spring:message code="customer.save"/>"/>
 		&nbsp;
 		<input type="button" name="cancel"
-			value="<spring:message code="consumer.cancel" />"
+			value="<spring:message code="customer.cancel" />"
 			onclick="javascript: relativeRedir('/');" />
 		<br />
 		

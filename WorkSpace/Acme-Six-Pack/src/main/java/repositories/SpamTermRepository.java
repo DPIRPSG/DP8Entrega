@@ -9,7 +9,7 @@ import domain.SpamTerm;
 @Repository
 public interface SpamTermRepository extends JpaRepository<SpamTerm, Integer> {
 
-	@Query("select i from SpamTerm i")
-	boolean checkSpamTerm(String text);
+	@Query("select case when (count(i) > 0)  then true else false end from SpamTerm i where ?1 like concat('%',i.term,'%')")
+	boolean checkSparmTermByWords(String words);
 
 }
