@@ -35,16 +35,20 @@ public class ServiceController extends AbstractController {
 	public ModelAndView list(@RequestParam(required=false) Integer gymId) {
 		ModelAndView result;
 		Collection<ServiceEntity> services;
+		Collection<String> customers;
 
 		services = serviceService.findAll();
 		
 		if(gymId != null) {
 			services = serviceService.findAllByGym(gymId);
 		}
+		
+		customers = serviceService.numbersOfCustomersByService(services);
 
 		result = new ModelAndView("service/list");
 		result.addObject("requestURI", "service/list.do?");
 		result.addObject("services", services);
+		result.addObject("customers", customers);
 
 		return result;
 	}

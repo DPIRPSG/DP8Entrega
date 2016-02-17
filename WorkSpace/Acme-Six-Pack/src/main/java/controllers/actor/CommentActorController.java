@@ -1,10 +1,11 @@
-package controllers;
+package controllers.actor;
 
 import java.util.Collection;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,11 +15,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
 import services.CommentService;
+import services.GymService;
+import services.ServiceService;
+
+import com.lowagie.text.pdf.AcroFields.Item;
+
+import controllers.AbstractController;
 import domain.Comment;
+import domain.DomainEntity;
+import domain.Gym;
+import domain.ServiceEntity;
 
 @Controller
-@RequestMapping("/comment")
-public class CommentController extends AbstractController {
+@RequestMapping("/comment/actor")
+public class CommentActorController extends AbstractController {
 	
 	// Services ----------------------------------------------------------
 	
@@ -26,7 +36,10 @@ public class CommentController extends AbstractController {
 	private CommentService commentService;
 	
 	@Autowired
-	private ItemService itemService;
+	private GymService gymService;
+	
+	@Autowired
+	private ServiceService serviceService;
 	
 	@Autowired
 	private ActorService actorService;
@@ -34,7 +47,7 @@ public class CommentController extends AbstractController {
 	
 	// Constructors --------------------------------------------------------
 	
-	public CommentController() {
+	public CommentActorController() {
 		super();
 	}
 	
@@ -42,12 +55,17 @@ public class CommentController extends AbstractController {
 	// Listing ------------------------------------------------------------
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list(@RequestParam int itemId) {
+//	public ModelAndView list(@RequestParam(required = false) Integer gymId, @RequestParam(required = false) Integer serviceId) {
+	public ModelAndView list(@RequestParam Integer entityId) {
 		ModelAndView result;
 		Collection<Comment> comments;
-		Item item;
 		
-		item = itemService.findOne(itemId);
+		if(gymId != null){
+			gym = gymService.findOne(gymId);
+		}else if(serviceId != null){
+			service = serviceService.findOne(serviceId);
+		}
+		
 		comments = commentService.findAllByItem(item);
 		
 		result = new ModelAndView("comment/list");
