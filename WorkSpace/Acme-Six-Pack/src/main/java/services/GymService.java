@@ -28,6 +28,9 @@ public class GymService {
 	@Autowired
 	private ServiceService serviceService;
 	
+	@Autowired
+	private CustomerService customerService;
+	
 	// Constructors -----------------------------------------------------------
 
 	public GymService() {
@@ -107,8 +110,43 @@ public class GymService {
 
 		return result;
 	}
-
 	
+	public Collection<String> numbersOfCustomersByGym(Collection<Gym> gyms) {
+		Collection<String> result;
+		Integer customerNumber;
+		String numberOfCustomerInGym;
+		
+		result = new ArrayList<>();
+		customerNumber = 0;
+		numberOfCustomerInGym = null;
+		
+		for(Gym gym : gyms) {
+			customerNumber = customerService.numbersOfCustomersByGym(gym.getId());
+			numberOfCustomerInGym = gym.getName() + ": " + customerNumber;
+			result.add(numberOfCustomerInGym);
+		}
+		
+		return result;
+	}
+
+	public Collection<Gym> findBySingleKeyword(String keyword){
+		Assert.notNull(keyword);
+		Assert.isTrue(!keyword.isEmpty());
+		
+		Collection<Gym> result;
+
+		result = gymRepository.findBySingleKeyword(keyword);
+		
+		return result;
+	}
+
+	public Collection<Gym> findAllByService(Integer serviceId) {
+		Collection<Gym> result;
+
+		result = gymRepository.findAllByService(serviceId);
+
+		return result;
+	}
 
 	
 	
