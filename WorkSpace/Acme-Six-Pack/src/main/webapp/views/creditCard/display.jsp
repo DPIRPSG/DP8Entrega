@@ -44,14 +44,14 @@
 	</table>
 	</div>
 </jstl:if>
-<jstl:if test="${creditCard != null}">	
-	<spring:message code="creditCard.null" />
+<jstl:if test="${creditCard == null}">	
+	<b><spring:message code="creditCard.null" /></b>
 </jstl:if>
 	
 	<!-- Action links -->
 <jstl:if test="${idCustomer != null}">
 	<div>
-		<b><a href="creditCard/customer/edit.do?customerId=${idCustomer}"> 
+		<b><a href="creditCard/customer/edit.do"> 
 			<spring:message code="creditCard.edit" />
 		</a></b>
 	</div>
