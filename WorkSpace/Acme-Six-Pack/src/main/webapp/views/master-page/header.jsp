@@ -15,7 +15,7 @@
 
 <div>
 	<a href=""> 
-		<img src="images/logo.png" alt="ACME, Inc.  Your certification Company" /></a>
+		<img src="images/logo.png" style="height:128px;" alt="ACME, Inc.  Your gym Company" /></a>
 	<br/>
 
 </div>
@@ -51,6 +51,7 @@
 		
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="gym/list.do?"><spring:message code="master.page.gym" /></a></li>
+			<li><a class="fNiv" href="service/list.do?"><spring:message code="master.page.service" /></a></li>
 			<li><a class="fNiv" href="customer/create.do"><spring:message code="master.page.register" /></a></li>
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
 		</security:authorize>

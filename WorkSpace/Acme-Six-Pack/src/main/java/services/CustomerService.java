@@ -180,6 +180,21 @@ public class CustomerService {
 	}
 	
 	
+	public Integer numbersOfCustomersByGym(int gymId) {
+		Integer result;
+		
+		result = customerRepository.findByGymBooked(gymId).size();
+		
+		return result;
+	}
+
+	public Integer numbersOfCustomersByService(int serviceId) {
+		Integer result;
+
+		result = customerRepository.findByServiceBooked(serviceId).size();
+
+		return result;
+	}
 
 
 }

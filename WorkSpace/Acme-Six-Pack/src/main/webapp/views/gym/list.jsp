@@ -74,6 +74,17 @@
 
 </display:table>
 
+<spring:message code="gym.customers" />:
+<jstl:forEach var="customer" items="${customers }">
+	<br />
+	<jstl:out value="${customer}" />
+</jstl:forEach>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
 
 <form action="${requestURI}">
 	<input type="text" name="keyword"> <input type="submit"
