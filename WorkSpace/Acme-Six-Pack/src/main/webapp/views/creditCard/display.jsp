@@ -11,6 +11,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 	<!-- Listing grid -->
+<jstl:if test="${creditCard != null}">	
 	<div>
 	<table>
 
@@ -42,6 +43,10 @@
 	
 	</table>
 	</div>
+</jstl:if>
+<jstl:if test="${creditCard != null}">	
+	<spring:message code="creditCard.null" />
+</jstl:if>
 	
 	<!-- Action links -->
 <jstl:if test="${idCustomer != null}">

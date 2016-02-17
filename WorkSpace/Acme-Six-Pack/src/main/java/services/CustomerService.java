@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import domain.CreditCard;
 import domain.Customer;
 import domain.Folder;
 import domain.Message;
@@ -149,6 +150,36 @@ public class CustomerService {
 		
 		return result;
 	}
+	
+	public CreditCard getOrCreateCreditCard(){
+		CreditCard result;
+		Customer custo;
+		
+		custo = this.findByPrincipal();
+		
+		result = custo.getCreditCard();
+		if(result == null)
+			result = new CreditCard();
+		return result;		
+	}
+	
+	public void saveCreditCard(CreditCard creditCard){
+		Customer custo;
+		
+		custo = this.findByPrincipal();
+		custo.setCreditCard(creditCard);
+		this.save(custo);
+	}
+	
+	public void deleteCreditCard(){
+		Customer custo;
+		
+		custo = this.findByPrincipal();
+		custo.setCreditCard(null);
+		this.save(custo);
+	}
+	
+	
 
 
 }
