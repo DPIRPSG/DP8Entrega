@@ -35,6 +35,7 @@
 		<value>/views/spamTerm/messages</value>
 		<value>/views/gym/messages</value>
 		<value>/views/service/messages</value>
+		<value>/views/creditCard/messages</value>
 		
 		
 	</util:list>
