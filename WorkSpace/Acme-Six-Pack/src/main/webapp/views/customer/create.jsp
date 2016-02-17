@@ -14,10 +14,14 @@
 		<!-- Hidden Attributes -->
 		<form:hidden path="id"/>
 		<form:hidden path="version"/>
-		<form:hidden path="folders"/>
+		<form:hidden path="messageBoxs"/>
+		<!--<form:hidden path="creditCard"/>-->
+		<!--<form:hidden path="socialIdentity"/>-->
+		<form:hidden path="feePayment"/>
+		<form:hidden path="booking"/>
+		<form:hidden path="comments"/>
 		<form:hidden path="received"/>
 		<form:hidden path="sent"/>
-		<form:hidden path="orders"/>
 		<form:hidden path="userAccount.authorities"/>
 		
 		
@@ -36,13 +40,6 @@
 		<form:errors cssClass="error" path="surname"/>
 		<br />
 		
-		<form:label path="email">
-			<spring:message code = "customer.email"/>
-		</form:label>
-		<form:input path="email"/>
-		<form:errors cssClass="error" path="email"/>
-		<br />
-					
 		<form:label path="phone">
 			<spring:message code = "customer.phone"/>
 		</form:label>

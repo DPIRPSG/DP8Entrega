@@ -50,13 +50,14 @@ public class RegisterController extends AbstractController{
 		ModelAndView result;
 		boolean bindingError;
 		
-		if(binding.hasFieldErrors("folders")){
+		if(binding.hasFieldErrors("messageBoxs")){
 			bindingError = binding.getErrorCount() > 1;
 		}else{
 			bindingError = binding.getErrorCount() > 0;
 		}
 		
 		if(bindingError){
+			System.out.println("Errores: " + binding.toString());
 			result = createEditModelAndView(consu);
 		} else {
 			try {

@@ -116,14 +116,14 @@ public class MessageService {
 		boolean isSpam;
 		
 		isSpam = spamTermService.checkSpamTerm(message.getBody() + message.getSubject());
-		for (Folder f:message.getSender().getMessageBox()){
+		for (Folder f:message.getSender().getMessageBoxs()){
 			if (f.getName().equals("OutBox") && f.getIsSystem()){
 				folderService.addMessage(f, message);
 			}
 		}
 		
 		for (Actor recipient: message.getRecipients()){
-			for (Folder f:recipient.getMessageBox()){
+			for (Folder f:recipient.getMessageBoxs()){
 				boolean toInBox, toSpamBox;
 				
 				toInBox = f.getName().equals("InBox") && !isSpam;

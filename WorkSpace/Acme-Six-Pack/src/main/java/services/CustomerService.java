@@ -98,7 +98,7 @@ public class CustomerService {
 			
 			// Initialize folders
 			folders = folderService.initializeSystemFolder(consumer);
-			consumer.setMessageBox(folders);
+			consumer.setMessageBoxs(folders);
 			
 			sent = new ArrayList<Message>();
 			received = new ArrayList<Message>();
