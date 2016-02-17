@@ -43,7 +43,7 @@ public class CreditCardController extends AbstractController {
 		
 		result = new ModelAndView("creditCard/display");
 		result.addObject("creditCard", creditCard);
-		result.addObject("idCustomer", customer.getId());
+		result.addObject("customer", "true");
 		
 		return result;
 	}
@@ -113,16 +113,13 @@ public class CreditCardController extends AbstractController {
 
 	protected ModelAndView createEditModelAndView(CreditCard creditCard, String message) {
 		ModelAndView result;
-		Customer custo;
-		
-		custo = customerService.findByPrincipal();
 
 		result = new ModelAndView("creditCard/edit");
 		result.addObject("creditCard", creditCard);
 		result.addObject("message", message);
-		result.addObject("idCustomer", custo.getId());
-		result.addObject("urlAction", "creditCard/consumer/edit.do");
-		result.addObject("urlReturn", "creditCard/consumer/display.do");
+		result.addObject("customer", "true");
+		result.addObject("urlAction", "creditCard/customer/edit.do");
+		result.addObject("urlReturn", "creditCard/customer/display.do");
 
 		return result;
 	}

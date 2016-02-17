@@ -49,7 +49,7 @@
 </jstl:if>
 	
 	<!-- Action links -->
-<jstl:if test="${idCustomer != null}">
+<jstl:if test="${customer != null}">
 	<div>
 		<b><a href="creditCard/customer/edit.do"> 
 			<spring:message code="creditCard.edit" />

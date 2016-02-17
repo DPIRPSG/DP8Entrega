@@ -7,6 +7,8 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
+
 
 	<!-- Form -->
 	<form:form action="${urlAction}" modelAttribute="creditCard">
@@ -15,23 +17,18 @@
 		<!-- Editable Attributes -->
 
 		<acme:textbox code="creditCard.holderName" path="holderName" />
-		<br />
 		<acme:textbox code="creditCard.brandName" path="brandName" />
-		<br />
 		<acme:textbox code="creditCard.number" path="number" />
-		<br />
 		<acme:textbox code="creditCard.expirationMonth" path="expirationMonth" />
-		<br />
 		<acme:textbox code="creditCard.expirationYear" path="expirationYear" />
-		<br />		
 		<acme:textbox code="creditCard.cvvCode" path="cvvCode" />
-		<br />		
+		<br />
 		
 		<!-- Action buttons -->
 		<input type="submit" name="save"
 			value="<spring:message code="creditCard.save"/>"/>
 		&nbsp;
-		<jstl:if test="${idCustomer != null}">
+		<jstl:if test="${customer != null}">
 			<input type="submit" name="delete"
 				value="<spring:message code="creditCard.delete"/>"/>
 			&nbsp;
