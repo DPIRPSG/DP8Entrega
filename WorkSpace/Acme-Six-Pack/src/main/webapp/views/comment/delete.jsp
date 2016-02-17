@@ -10,11 +10,11 @@
 
 <security:authorize access="hasRole('ADMIN')">
 
-	<jstl:if test="${gym != null}">
-		<h3><spring:message code="comment.gym"/>: <jstl:out value="${gym.name}" /></h3>
+	<jstl:if test="${comment.gym != null}">
+		<h3><spring:message code="comment.gym"/>: <jstl:out value="${entityName}" /></h3>
 	</jstl:if>
-	<jstl:if test="${service != null}">
-		<h3><spring:message code="comment.service"/>: <jstl:out value="${service.name}" /></h3>
+	<jstl:if test="${comment.service != null}">
+		<h3><spring:message code="comment.service"/>: <jstl:out value="${entityName}" /></h3>
 	</jstl:if>
 	
 	<!-- Form -->

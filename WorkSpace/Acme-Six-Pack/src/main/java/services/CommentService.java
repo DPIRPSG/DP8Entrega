@@ -24,6 +24,12 @@ public class CommentService {
 	
 	@Autowired
 	private ActorService actorService;
+	
+	@Autowired
+	private GymService gymService;
+	
+	@Autowired
+	private ServiceService serviceService;
 
 	//Constructors -----------------------------------------------------------
 	
@@ -37,10 +43,14 @@ public class CommentService {
 	 * Crea un comment
 	 */
 	
-	private Comment create(){
+	public Comment create(int entityId){
 		Comment result;
 		
 		result = new Comment();
+		
+		setEntityByIdAndComment(entityId, result);
+		
+		Assert.isTrue(result.getGym() != null || result.getService() != null, "Cannot create a Comment without a Entity asociated.");
 		
 		return result;
 	}
@@ -149,5 +159,74 @@ public class CommentService {
 		
 		return result;
 		
+	}
+	
+	// Here are the methods that have to modify in order to implement a new Entity that need to have Comments.
+	
+	public String getEntityNameById(int entityId) {
+		String result;
+		Gym gym;
+		ServiceEntity service;
+		
+		result = null;
+		
+		if(gymService.findOne(entityId) != null){
+			gym = gymService.findOne(entityId);
+			result = gym.getName();
+		}else if(serviceService.findOne(entityId) != null){
+			service = serviceService.findOne(entityId);
+			result = service.getName();
+		}
+		
+		Assert.notNull(result);
+		
+		return result;
+	}
+	
+	public Collection<Comment> getCommentsByEntityId(int entityId) {
+		Collection<Comment> result;
+		Gym gym;
+		ServiceEntity service;
+		
+		result = null;
+		
+		if(gymService.findOne(entityId) != null){
+			gym = gymService.findOne(entityId);
+			result = gym.getComments();
+		}else if(serviceService.findOne(entityId) != null){
+			service = serviceService.findOne(entityId);
+			result = service.getComments();
+		}
+		
+		Assert.notNull(result);
+		
+		return result;
+	}
+	
+	public void setEntityByIdAndComment(int entityId, Comment comment) {
+		Gym gym;
+		ServiceEntity service;
+		
+		if(gymService.findOne(entityId) != null){
+			gym = gymService.findOne(entityId);
+			comment.setGym(gym);
+		}else if(serviceService.findOne(entityId) != null){
+			service = serviceService.findOne(entityId);
+			comment.setService(service);
+		}
+	}
+	
+	public Integer getEntityIdByComment(Comment comment) {
+		Integer result;
+		
+		result = null;
+		
+		if(comment.getGym() != null){
+			result = comment.getGym().getId();
+		}else if(comment.getService() != null){
+			result = comment.getService().getId();
+		}
+		
+		return result;
 	}
 }

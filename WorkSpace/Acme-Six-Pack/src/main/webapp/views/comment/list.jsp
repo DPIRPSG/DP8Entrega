@@ -9,11 +9,11 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<jstl:if test="${gym != null}">
-	<h3><spring:message code="comment.gymPlural"/>: <jstl:out value="${gym.name}" /></h3>
+<jstl:if test="${comment.gym != null}">
+	<h3><spring:message code="comment.gymPlural"/>: <jstl:out value="${entityName}" /></h3>
 </jstl:if>
-<jstl:if test="${service != null}">
-	<h3><spring:message code="comment.servicePlural"/>: <jstl:out value="${service.name}" /></h3>
+<jstl:if test="${comment.service != null}">
+	<h3><spring:message code="comment.servicePlural"/>: <jstl:out value="${entityName}" /></h3>
 </jstl:if>
 
 <!-- Listing grid -->
