@@ -36,7 +36,7 @@ public class BookingCustomerController extends AbstractController {
 		ModelAndView result;
 		Collection<Booking> bookings;
 
-		bookings = bookingService.findAll();
+		bookings = bookingService.findAllByCustomer();
 
 		result = new ModelAndView("booking/list");
 		result.addObject("requestURI", "booking/list.do?");
@@ -60,15 +60,17 @@ public class BookingCustomerController extends AbstractController {
 
 	// Edition ----------------------------------------------------------
 
-	@RequestMapping(value = "/cancel", method = RequestMethod.POST, params = "delete")
-	public ModelAndView delete(Booking booking, BindingResult binding) {
+	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
+	public ModelAndView cancel(Booking booking, BindingResult binding) {
 		ModelAndView result;
 
 		try {
 			bookingService.cancel(booking);
 			result = new ModelAndView("redirect:list.do");
+			result.addObject("messageStatus", "booking.cancel.ok");
 		} catch (Throwable oops) {
-			result = createEditModelAndView(booking, "booking.commit.error");
+			result = new ModelAndView("redirect:list.do");
+			result = createEditModelAndView(booking, "booking.cancel.error");
 		}
 
 		return result;

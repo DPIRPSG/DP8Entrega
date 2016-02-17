@@ -21,4 +21,8 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 	
 	@Query("select distinct b.customer from Booking b where b.gym.id = ?1")
 	Collection<Customer> findByGymBooked(int gymId);
+	
+	/* Añadido por Guillermo (Por si peta en algo, para que me lo digáis)*/
+	@Query("select c from Consumer c join c.feePayment f where f.activeMoment < CURRENT_DATE AND f.inactiveMoment > CURRENT_DATE AND c.id = ?1")
+	Customer findOneWhoHasPaidFee(int customerId);
 }

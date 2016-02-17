@@ -51,7 +51,7 @@ public class DashboardAdministratorController extends AbstractController {
 //			double ratioCancelledCurrentMonth;
 //			Collection<Item> itemMoreComment;
 			
-			mostPopularGyms = gymService.findMostPopularGyms();
+//			mostPopularGyms = gymService.findMostPopularGyms();
 //			consumerMoreOrders = consumerService.findConsumerMoreOrders();
 //			consumerSpentMoreMoney = consumerService.findConsumerSpentMoreMoney();
 //			bestSellingItem = itemService.findItemBestSelling();
@@ -64,7 +64,7 @@ public class DashboardAdministratorController extends AbstractController {
 //			itemMoreComment = itemService.findItemMoreComments();
 			
 			result = new ModelAndView("administrator/list");
-			result.addObject("mostPopularGyms", mostPopularGyms);
+//			result.addObject("mostPopularGyms", mostPopularGyms);
 //			result.addObject("consumerMoreOrders", consumerMoreOrders);
 //			result.addObject("consumerSpentMoreMoney", consumerSpentMoreMoney);
 //			result.addObject("bestSellingItem", bestSellingItem);

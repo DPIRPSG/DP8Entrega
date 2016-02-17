@@ -1,6 +1,7 @@
 package services;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import domain.Booking;
+import domain.Customer;
+import domain.Gym;
+import domain.ServiceEntity;
 
 import repositories.BookingRepository;
 
@@ -19,10 +23,14 @@ public class BookingService {
 	
 	@Autowired
 	private BookingRepository bookingRepository;
-
+	
 	// Supporting services ----------------------------------------------------
 
+	@Autowired
 	private ActorService actorService;
+	
+	@Autowired
+	private CustomerService customerService;
 	
 	// Constructors -----------------------------------------------------------
 
@@ -39,11 +47,39 @@ public class BookingService {
 	// Requisito 10.3
 	public Booking create(){
 		
+		Assert.isTrue(actorService.checkAuthority("CUSTOMER"), "Only the customer can book a booking");
+		
 		Booking result;
 		
+		/**
+		 * Comprobar que el create esté bien hecho.
+		 * Que no falten atributos por poner.
+		 * Que no falten relaciones necesarias. --> Admin no sé si hay que ponerlo
+		 * Que los atributos que falten, verificar que se pongan los valores en las vistas.
+		 */
+		
+		Gym gym;
+		ServiceEntity service;
+		Customer customer;
+		Customer customerLogged;
+		
+		gym = new Gym();
+		service = new ServiceEntity();
+		customerLogged = customerService.findByPrincipal();
+		customer = customerService.findOneWhoHasPaidFee(customerLogged.getId());
+		
+		Assert.notNull(customer, "The customer has not paid the fee");
+				
 		result = new Booking();
 		
-		// Faltan por poner más valores por defecto a los atributos
+		result.setCustomer(customer);
+		result.setGym(gym);
+		result.setService(service);
+		
+		result.setCreationMoment(new Date());
+		result.setApproved(false);
+		result.setDenied(false);
+		result.setCanceled(false);
 		
 		return result;
 	}
@@ -82,7 +118,11 @@ public class BookingService {
 		booking.setCanceled(true);
 		this.save(booking);
 		
-		// En el código de borrar items de Acme Supermarket se hace alusión a un borrado completo. Falta por hacerlo.
+		/**
+		 *  En el código de borrar items de Acme Supermarket se hace alusión a un borrado completo.
+		 *  Falta por hacerlo.
+		 *  Preguntar a Manolo por borrado completo para salir de dudas
+		 */
 		
 	}
 	
@@ -95,6 +135,23 @@ public class BookingService {
 		Collection<Booking> result;
 		
 		result = bookingRepository.findAll();
+		
+		return result;
+	}
+	
+	/**
+	 * 
+	 * @return Devuelve todos los booking de un customer en concreto
+	 */
+	public Collection<Booking> findAllByCustomer(){
+		
+		Collection<Booking> result;
+		Customer customer;
+		
+		customer = customerService.findByPrincipal();
+		Assert.notNull(customer);
+		
+		result = bookingRepository.findAllByCustomer(customer.getId());
 		
 		return result;
 	}

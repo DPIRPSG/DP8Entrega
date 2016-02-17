@@ -42,6 +42,7 @@
 					<li class="arrow"></li>
 					<li><a href="consumer/administrator/list.do"><spring:message code="master.page.list.consumers" /></a></li>
 					<li><a href="order/administrator/list.do"><spring:message code="master.page.list.orders" /></a></li>
+					<li><a href="booking/administrator/list.do?"><spring:message code="master.page.list.booking" /></a></li>
 				</ul>
 			</li>
 			<li><a class="fNiv" href="dashboard/administrator/list.do"><spring:message code="master.page.dashboard" /></a></li>

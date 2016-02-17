@@ -14,8 +14,8 @@
 <!-- Listing grid -->
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="bookings" requestURI="${requestURI}" id="row_Booking">
+	
 	<!-- Action links -->
-
 	<security:authorize access="hasRole('ADMIN')">
 		<spring:message code="booking.cancel" var="cancelHeader" />
 		<jstl:if test="${row_Booking.approved == true || row_Booking.denied == true}">
