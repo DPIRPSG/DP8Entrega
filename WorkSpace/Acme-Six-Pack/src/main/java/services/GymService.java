@@ -48,7 +48,6 @@ public class GymService {
 				"Only an admin can create gyms");
 		
 		Gym result;
-		ServiceEntity service;
 		Collection<ServiceEntity> services;
 		Collection<Comment> comments;
 		Collection<FeePayment> feePayments;
@@ -59,18 +58,13 @@ public class GymService {
 		comments = new ArrayList<>();
 		bookings = new ArrayList<>();
 		
-		service = serviceService.findOneByName("Fitness");
 		
 		result = new Gym();
 		
 		result.setService(services);
 		result.setFeePayment(feePayments);
 		result.setComments(comments);
-		result.setBookings(bookings);
-						
-		//result.addService(service);
-		//service.addGym(result);
-		
+		result.setBookings(bookings);		
 		
 		return result;
 	}
@@ -80,7 +74,40 @@ public class GymService {
 		Assert.isTrue(actorService.checkAuthority("ADMIN"),
 				"Only an admin can save gyms");
 		
-		gymRepository.save(gym);
+		Collection<ServiceEntity> services;
+		Collection<ServiceEntity> servicesPreSave;
+		ServiceEntity fitness;
+		
+		servicesPreSave = new ArrayList<ServiceEntity>();
+		
+		fitness = serviceService.findOneByName("Fitness");
+		if(gym.getService() == null){
+			gym.setService(new ArrayList<ServiceEntity>());
+		}
+		gym.addService(fitness);
+		
+		if(gym.getId() != 0) {
+			Gym gymPreSave;
+			gymPreSave = gymRepository.findOne(gym.getId());
+			servicesPreSave = new ArrayList<ServiceEntity>(gymPreSave.getService());
+		}
+		services = gym.getService();
+		
+		gym = gymRepository.save(gym);
+		
+		for(ServiceEntity service : services) {
+			if(!servicesPreSave.contains(service)){
+				service.addGym(gym);
+				serviceService.save(service);
+			}			
+		}
+		
+		for(ServiceEntity service : servicesPreSave) {
+			if (!services.contains(service)) {
+				service.removeGym(gym);
+				serviceService.save(service);
+			}			
+		}
 	}
 	
 	public void delete(Gym gym) {
@@ -97,6 +124,7 @@ public class GymService {
 		
 		for(ServiceEntity service : services) {
 			service.removeGym(gym);
+			serviceService.save(service);
 		}
 		
 		gymRepository.delete(gym);

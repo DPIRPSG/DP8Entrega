@@ -32,7 +32,12 @@ public class ServiceService {
 	}
 
 	// Simple CRUD methods ----------------------------------------------------
-
+	public void save(ServiceEntity service) {
+		Assert.notNull(service);
+		
+		serviceRepository.save(service);		
+	}
+	
 	// Other business methods -------------------------------------------------
 	
 	/**
@@ -109,4 +114,11 @@ public class ServiceService {
 		return result;
 	}
 	
+	public Collection<ServiceEntity> findAll2() {
+		Collection<ServiceEntity> result;
+		
+		result = serviceRepository.findAllWithoutFitness();
+		
+		return result;
+	}
 }

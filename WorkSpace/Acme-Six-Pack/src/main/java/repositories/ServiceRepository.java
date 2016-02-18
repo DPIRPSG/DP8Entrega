@@ -16,6 +16,9 @@ public interface ServiceRepository extends JpaRepository<ServiceEntity, Integer>
 
 	@Query("select s from ServiceEntity s where s.name like ?1")
 	ServiceEntity findOneByName(String name);
+
+	@Query("Select s from ServiceEntity s where s.name not like 'Fitness'")
+	Collection<ServiceEntity> findAllWithoutFitness();
 	
 	// ---------------- Dashboard ------------------
 	
