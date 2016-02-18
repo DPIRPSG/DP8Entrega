@@ -26,8 +26,8 @@ public class DashboardAdministratorController extends AbstractController {
 //	@Autowired
 //	private CommentService commentService;
 	
-	@Autowired
-	private GymService gymService;
+//	@Autowired
+//	private GymService gymService;
 	
 	@Autowired
 	private ServiceService serviceService;
