@@ -52,6 +52,7 @@
 		<security:intercept-url pattern="/creditCard/customer/**" access="hasRole('CUSTOMER')" />
 		<security:intercept-url pattern="/customer/customer/**" access="hasRole('CUSTOMER')" />
 		<security:intercept-url pattern="/socialIdentity/customer/**" access="hasRole('CUSTOMER')" />
+		<security:intercept-url pattern="/gym/customer/**" access="hasRole('CUSTOMER')" />
 		
 		<security:intercept-url pattern="/comment/list.do" access="permitAll" />
 		<security:intercept-url pattern="/gym/list.do" access="permitAll" />

@@ -2,6 +2,7 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import org.springframework.util.Assert;
 import repositories.GymRepository;
 import domain.Booking;
 import domain.Comment;
+import domain.Customer;
 import domain.FeePayment;
 import domain.Gym;
 import domain.ServiceEntity;
@@ -191,6 +193,36 @@ public class GymService {
 
 		result = gymRepository.findAllByService(serviceId);
 
+		return result;
+	}
+
+	public Collection<Gym> findAllWithFeePaymentActive() {
+		Collection<Gym> result;
+		Date moment;
+		Customer customer;
+		
+		customer = customerService.findByPrincipal();
+		moment = new Date();
+		
+		result = gymRepository.findAllWithFeePaymentActive(moment, customer.getId());
+		
+		return result;
+	}
+
+	public Collection<Gym> findAllWithoutFeePaymentActive() {
+		Collection<Gym> result;
+		Collection<Gym> gymsPaid;
+		Date moment;
+		Customer customer;
+		
+		result = gymRepository.findAll();
+		customer = customerService.findByPrincipal();
+		moment = new Date();
+		
+		gymsPaid = gymRepository.findAllWithFeePaymentActive(moment, customer.getId());
+		
+		result.removeAll(gymsPaid);
+		
 		return result;
 	}
 
