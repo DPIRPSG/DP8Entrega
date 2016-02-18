@@ -58,7 +58,7 @@
 		<security:intercept-url pattern="/gym/list.do" access="permitAll" />
 		<security:intercept-url pattern="/service/list.do" access="permitAll" />
 		
-		<security:intercept-url pattern="/consumer/create.do" access="!hasAnyRole('CUSTOMER', 'ADMIN')" />
+		<security:intercept-url pattern="/customer/create.do" access="!hasAnyRole('CUSTOMER', 'ADMIN')" />
 
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 

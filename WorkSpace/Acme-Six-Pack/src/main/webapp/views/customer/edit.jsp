@@ -7,15 +7,14 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
+
 
 	<!-- Form -->
 	<form:form action="${urlAction}" modelAttribute="customer">
 		<!-- Hidden Attributes -->
 		<form:hidden path="id"/>
 		<form:hidden path="version"/>
-		<!-- <form:hidden path="messageBoxs"/>-->
-		<!--<form:hidden path="creditCard"/>-->
-		<!--<form:hidden path="socialIdentity"/>-->
 		<form:hidden path="feePayment"/>
 		<form:hidden path="booking"/>
 		<form:hidden path="comments"/>
@@ -24,52 +23,22 @@
 		<form:hidden path="userAccount.authorities"/>
 		
 		<!-- Editable Attributes -->
-		<form:label path="name">
-			<spring:message code = "customer.name"/>
-		</form:label>
-		<form:input path="name"/>
-		<form:errors cssClass="error" path="name"/>
-		<br />
-		
-		<form:label path="surname">
-			<spring:message code = "customer.surname"/>
-		</form:label>
-		<form:input path="surname"/>
-		<form:errors cssClass="error" path="surname"/>
-		<br />
-		
-		<form:label path="phone">
-			<spring:message code = "customer.phone"/>
-		</form:label>
-		<form:input path="phone"/>
-		<form:errors cssClass="error" path="phone"/>
-		<br />
+		<acme:textbox code="customer.name" path="name"/>
+		<acme:textbox code="customer.surname" path="surname"/>
+		<acme:textbox code="customer.phone" path="phone"/>
 		
 		<jstl:if test="${creating != null}">
-			<form:label path="userAccount.username">
-				<spring:message code="customer.username" />
-			</form:label>
-			<form:input path="userAccount.username" />	
-			<form:errors class="error" path="userAccount.username" />
-			
+			<acme:textbox code="customer.username" path="userAccount.username"/>
 			<br />
-
-			<form:label path="userAccount.password">
-				<spring:message code="customer.password" />
-			</form:label>
-			<form:password path="userAccount.password" />
-			<form:errors class="error" path="userAccount.password" />
+			<acme:textbox code="customer.password" path="userAccount.password"/>
 		</jstl:if>
 		
 		<br />
 		
 		<!-- Action buttons -->
-		<input type="submit" name="save"
-			value="<spring:message code="customer.save"/>"/>
+		<acme:submit name="save" code="customer.save"/>
 		&nbsp;
-		<input type="button" name="cancel"
-			value="<spring:message code="customer.cancel" />"
-			onclick="javascript: relativeRedir('/');" />
+		<acme:cancel url="/" code="customer.cancel"/>
 		<br />
 		
 	</form:form>

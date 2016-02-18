@@ -7,6 +7,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 	<!-- Form -->
 	<form:form action="socialIdentity/customer/edit.do" modelAttribute="socialIdentity">
@@ -16,45 +17,18 @@
 		
 		
 		<!-- Editable Attributes -->
-		<form:label path="nick">
-			<spring:message code = "socialIdentity.nick"/>
-		</form:label>
-		<form:input path="nick"/>
-		<form:errors cssClass="error" path="nick"/>
+		<acme:textbox code="socialIdentity.nick" path="nick" />
+		<acme:textbox code="socialIdentity.name" path="name" />
+		<acme:textbox code="socialIdentity.homePage" path="homePage" />
+		<acme:textbox code="socialIdentity.picture" path="picture" />
 		<br />
-		
-		<form:label path="name">
-			<spring:message code = "socialIdentity.name"/>
-		</form:label>
-		<form:input path="name"/>
-		<form:errors cssClass="error" path="name"/>
-		<br />
-		
-		<form:label path="homePage">
-			<spring:message code = "socialIdentity.homePage"/>
-		</form:label>
-		<form:input path="homePage"/>
-		<form:errors cssClass="error" path="homePage"/>
-		<br />
-					
-		<form:label path="picture">
-			<spring:message code = "socialIdentity.picture"/>
-		</form:label>
-		<form:input path="picture"/>
-		<form:errors cssClass="error" path="picture"/>
-		<br />
-		
 		
 		<!-- Action buttons -->
-		<input type="submit" name="save"
-			value="<spring:message code="socialIdentity.save"/>"/>
+		<acme:submit name="save" code="socialIdentity.save"/>
 		&nbsp;
-		<input type="submit" name="delete"
-			value="<spring:message code="socialIdentity.delete"/>"/>
+		<acme:submit name="delete" code="socialIdentity.delete"/>
 		&nbsp;
-		<input type="button" name="cancel"
-			value="<spring:message code="socialIdentity.cancel" />"
-			onclick="javascript: relativeRedir('socialIdentity/customer/display.do');" />
+		<acme:cancel url="socialIdentity/customer/display.do" code="socialIdentity.cancel"/>
 		<br />
 		
 	</form:form>

@@ -8,6 +8,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <!-- Form -->
 <form:form action="message/actor/create.do" modelAttribute="messa">
@@ -26,28 +27,15 @@
 	<form:errors cssClass="error" path="recipients" />
 	<br />
 
+	<acme:textbox code="message.subject" path="subject" />
+	<acme:textarea code="message.body" path="body" />
 
-	<form:label path="subject">
-		<spring:message code="message.subject" />:
-	</form:label>
-	<form:input path="subject" />
-	<form:errors cssClass="error" path="subject" />
-	<br />
-	
-	<form:label path="body">
-		<spring:message code="message.body" />:
-	</form:label>
-	<form:textarea path="body" />
-	<form:errors cssClass="error" path="body" />
 	<br />
 
 	<!-- Action buttons -->
-	<input type="submit" name="send"
-		value="<spring:message code="message.save" />" />&nbsp; 
-
-	<input type="button" name="cancel"
-		value="<spring:message code="message.cancel" />"
-		onclick="javascript: relativeRedir('folder/actor/list.do');" />
+	<acme:submit name="send" code="message.save"/>
+	&nbsp; 
+	<acme:cancel url="folder/actor/list.do" code="message.cancel"/>
 	<br />
 
 </form:form>
