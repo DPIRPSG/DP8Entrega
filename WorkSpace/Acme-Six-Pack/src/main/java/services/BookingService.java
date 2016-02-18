@@ -58,28 +58,28 @@ public class BookingService {
 		 * Que los atributos que falten, verificar que se pongan los valores en las vistas.
 		 */
 		
-		Gym gym;
-		ServiceEntity service;
-		Customer customer;
-		Customer customerLogged;
+//		Gym gym;
+//		ServiceEntity service;
+//		Customer customer;
+//		Customer customerLogged;
 		
-		gym = new Gym();
-		service = new ServiceEntity();
-		customerLogged = customerService.findByPrincipal();
-		customer = customerService.findOneWhoHasPaidFee(customerLogged.getId());
+//		gym = new Gym();
+//		service = new ServiceEntity();
+//		customerLogged = customerService.findByPrincipal();
+//		customer = customerService.findOneWhoHasPaidFee(customerLogged.getId());
 		
-		Assert.notNull(customer, "The customer has not paid the fee");
+//		Assert.notNull(customer, "The customer has not paid the fee");
 				
 		result = new Booking();
 		
-		result.setCustomer(customer);
-		result.setGym(gym);
-		result.setService(service);
-		
-		result.setCreationMoment(new Date());
-		result.setApproved(false);
-		result.setDenied(false);
-		result.setCanceled(false);
+//		result.setCustomer(customer);
+//		result.setGym(gym);
+//		result.setService(service);
+//		 
+//		result.setCreationMoment(new Date());
+//		result.setApproved(false);
+//		result.setDenied(false);
+//		result.setCanceled(false);
 		
 		return result;
 	}
@@ -95,6 +95,11 @@ public class BookingService {
 		
 		Assert.notNull(booking);
 		Assert.isTrue(actorService.checkAuthority("CUSTOMER"), "Only a customer can book services");
+		
+		booking.setCreationMoment(new Date());
+		booking.setApproved(false);
+		booking.setDenied(false);
+		booking.setCanceled(false);
 		
 		bookingRepository.save(booking);
 		
@@ -112,17 +117,12 @@ public class BookingService {
 		Assert.notNull(booking);
 		Assert.isTrue(booking.getId() != 0);
 		Assert.isTrue(actorService.checkAuthority("CUSTOMER"), "Only a customer can cancel a booking");
-		Assert.isTrue(!booking.getApproved(), "The selected booking is already approved");
-		Assert.isTrue(!booking.getDenied(), "The selected booking is already denied");
-		
+		Assert.isTrue(booking.getApproved() == false, "The selected booking is already approved");
+		Assert.isTrue(booking.getDenied() == false, "The selected booking is already denied");
+		Assert.isTrue(booking.getCanceled() == false, "The selected booking is already canceled");
+
 		booking.setCanceled(true);
-		this.save(booking);
-		
-		/**
-		 *  En el código de borrar items de Acme Supermarket se hace alusión a un borrado completo.
-		 *  Falta por hacerlo.
-		 *  Preguntar a Manolo por borrado completo para salir de dudas
-		 */
+		bookingRepository.save(booking);
 		
 	}
 	
@@ -189,7 +189,7 @@ public class BookingService {
 		Assert.isTrue(!booking.getCanceled(), "The selected booking is already canceled");
 		
 		booking.setApproved(true);
-		this.save(booking);
+		bookingRepository.save(booking);
 		
 	}
 	
@@ -210,7 +210,7 @@ public class BookingService {
 		Assert.isTrue(!booking.getCanceled(), "The selected booking is already canceled");
 		
 		booking.setDenied(true);
-		this.save(booking);
+		bookingRepository.save(booking);
 		
 	}
 }

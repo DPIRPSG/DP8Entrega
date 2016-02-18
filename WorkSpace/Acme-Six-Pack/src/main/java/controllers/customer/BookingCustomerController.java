@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.BookingService;
@@ -61,8 +62,12 @@ public class BookingCustomerController extends AbstractController {
 	// Edition ----------------------------------------------------------
 
 	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
-	public ModelAndView cancel(Booking booking, BindingResult binding) {
+	public ModelAndView cancel(@RequestParam int bookingId) {
+		
 		ModelAndView result;
+		Booking booking;
+		
+		booking = bookingService.findOne(bookingId);
 
 		try {
 			bookingService.cancel(booking);
@@ -91,7 +96,7 @@ public class BookingCustomerController extends AbstractController {
 	protected ModelAndView createEditModelAndView(Booking booking, String message) {
 		ModelAndView result;
 
-		result = new ModelAndView("booking/edit");
+		result = new ModelAndView("booking/list");
 		result.addObject("booking", booking);
 		result.addObject("message", message);
 

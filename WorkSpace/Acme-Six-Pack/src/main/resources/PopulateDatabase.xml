@@ -1008,7 +1008,7 @@
 		<property name="creationMoment" value="2016/02/14 19:00"/>
 		<property name="requestMoment" value="2016/02/15 17:00"/>
 		<property name="duration" value="1"/>
-		<property name="approved" value="true"/>
+<!-- 		<property name="approved" value="true"/> -->
 		<property name="administrator" ref="administrator1"/>
 		<property name="customer" ref="customer1"/>
 		<property name="gym" ref="gym1"/>
@@ -1030,7 +1030,7 @@
 		<property name="creationMoment" value="2016/02/14 19:10"/>
 		<property name="requestMoment" value="2016/02/17 17:00"/>
 		<property name="duration" value="1"/>
-		<property name="approved" value="true"/>
+		<property name="denied" value="true"/>
 		<property name="administrator" ref="administrator1"/>
 		<property name="customer" ref="customer1"/>
 		<property name="gym" ref="gym1"/>
@@ -1041,7 +1041,7 @@
 		<property name="creationMoment" value="2016/02/14 20:00"/>
 		<property name="requestMoment" value="2016/02/18 17:00"/>
 		<property name="duration" value="1"/>
-		<property name="approved" value="true"/>
+		<property name="canceled" value="true"/>
 		<property name="administrator" ref="administrator1"/>
 		<property name="customer" ref="customer1"/>
 		<property name="gym" ref="gym1"/>

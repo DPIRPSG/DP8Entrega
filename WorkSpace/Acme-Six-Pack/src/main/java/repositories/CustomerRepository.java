@@ -23,6 +23,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 	Collection<Customer> findByGymBooked(int gymId);
 	
 	/* Añadido por Guillermo (Por si peta en algo, para que me lo digáis)*/
-	@Query("select c from Consumer c join c.feePayment f where f.activeMoment < CURRENT_DATE AND f.inactiveMoment > CURRENT_DATE AND c.id = ?1")
+	@Query("select c from Customer c join c.feePayment f where f.activeMoment < CURRENT_DATE AND f.inactiveMoment > CURRENT_DATE AND c.id = ?1")
 	Customer findOneWhoHasPaidFee(int customerId);
 }
