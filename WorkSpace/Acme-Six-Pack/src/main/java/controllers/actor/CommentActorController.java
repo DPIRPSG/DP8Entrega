@@ -32,17 +32,14 @@ public class CommentActorController extends AbstractController {
 	
 	// Services ----------------------------------------------------------
 	
-	/*@Autowired
+	@Autowired
 	private CommentService commentService;
 	
-	@Autowired
-	private GymService gymService;
+//	@Autowired
+//	private GymService gymService;
 	
-	@Autowired
-	private ServiceService serviceService;
-	
-	@Autowired
-	private ActorService actorService;
+//	@Autowired
+//	private ServiceService serviceService;
 	
 	
 	// Constructors --------------------------------------------------------
@@ -54,40 +51,53 @@ public class CommentActorController extends AbstractController {
 	
 	// Listing ------------------------------------------------------------
 	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-//	public ModelAndView list(@RequestParam(required = false) Integer gymId, @RequestParam(required = false) Integer serviceId) {
-	public ModelAndView list(@RequestParam Integer entityId) {
-		ModelAndView result;
-		Collection<Comment> comments;
-		
-		if(gymId != null){
-			gym = gymService.findOne(gymId);
-		}else if(serviceId != null){
-			service = serviceService.findOne(serviceId);
-		}
-		
-		comments = commentService.findAllByItem(item);
-		
-		result = new ModelAndView("comment/list");
-		result.addObject("comments", comments);
-		result.addObject("item", item);
-		result.addObject("requestURI", "comment/list.do");
-		
-		return result;
-	}
+//	@RequestMapping(value = "/list", method = RequestMethod.GET)
+////	public ModelAndView list(@RequestParam(required = false) Integer gymId, @RequestParam(required = false) Integer serviceId) {
+//	public ModelAndView list(@RequestParam Integer entityId) {
+//		ModelAndView result;
+//		Collection<Comment> comments;
+////		Gym gym;
+////		ServiceEntity service;
+//		String entityName;
+//		
+////		if(gymId != null){
+////			gym = gymService.findOne(gymId);
+////			comments = commentService.findAllByGym(gym);
+////			entityName = gym.getName();
+////		}else if(serviceId != null){
+////			service = serviceService.findOne(serviceId);
+////			comments = commentService.findAllByService(service);
+////			entityName = service.getName();
+////		}else{
+////			comments = null;
+////			entityName = "You must select an entity to see their comments";
+////		}
+//		
+//		comments = commentService.findAllByEntityId(entityId);
+//		entityName = commentService.getEntityNameById(entityId);
+//		
+//		result = new ModelAndView("comment/list");
+//		result.addObject("comments", comments);
+//		result.addObject("entityName", entityName);
+//		result.addObject("requestURI", "comment/list.do");
+//		
+//		return result;
+//	}
 	
 	
 	// Creating --------------------------------------------------------------
 	
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView create(@RequestParam int itemId) {
+	public ModelAndView create(@RequestParam Integer entityId) {
 		ModelAndView result;
 		Comment comment;
-		Item item;
+		String entityName;
 		
-		item = itemService.findOne(itemId);
-		comment = commentService.createByItem(item);		
-		result = createEditModelAndView(comment, item);
+		comment = commentService.create(entityId);
+		
+		entityName = commentService.getEntityNameById(entityId);
+		
+		result = createEditModelAndView(comment, entityName);
 		
 		return result;
 	}
@@ -95,44 +105,45 @@ public class CommentActorController extends AbstractController {
 	@RequestMapping(value="/create", method=RequestMethod.POST, params="save")
 	public ModelAndView save(@Valid Comment comment, BindingResult binding) {
 		ModelAndView result;
+		int entityId;
+		String entityName;
+		
+		entityId = commentService.getEntityIdByComment(comment);
+		entityName = commentService.getEntityNameById(entityId);
 		
 		if (binding.hasErrors()) {
-			result = createEditModelAndView(comment, comment.getItem());
+			result = createEditModelAndView(comment, entityName);
 		} else {
 			try {
 				commentService.save(comment);
-				result = new ModelAndView("redirect:list.do?itemId=" + comment.getItem().getId());
+				result = new ModelAndView("redirect:../list.do?entityId=" + entityId);
 			} catch (Throwable oops) {
-				result = createEditModelAndView(comment, comment.getItem(), "comment.commit.error");
+				result = createEditModelAndView(comment, entityName, "comment.commit.error");
 			}
 		}
+		
 		return result;
 	}
 	
 	
 	// Ancillary methods ---------------------------------------------------
 	
-	protected ModelAndView createEditModelAndView(Comment comment, Item item) {
+	protected ModelAndView createEditModelAndView(Comment comment, String entityName) {
 		ModelAndView result;
 		
-		result = createEditModelAndView(comment, item, null);
+		result = createEditModelAndView(comment, entityName, null);
 		
 		return result;
 	}
 	
-	protected ModelAndView createEditModelAndView(Comment comment, Item item, String message) {
+	protected ModelAndView createEditModelAndView(Comment comment, String entityName, String message) {
 		ModelAndView result;
-		if(actorService.checkAuthority("ADMIN") || actorService.checkAuthority("CONSUMER") || actorService.checkAuthority("CLERK")){
-			comment.setUserName(actorService.findByPrincipal().getName());
-		}else{
-			comment.setUserName("Anonymous");
-		}
 		
 		result = new ModelAndView("comment/create");
 		result.addObject("comment", comment);
-		result.addObject("item", item);
+		result.addObject("entityName", entityName);
 		result.addObject("message", message);
 		
 		return result;
-	}*/
+	}
 }
