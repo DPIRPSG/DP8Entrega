@@ -27,56 +27,36 @@
 		<bean class="converters.AdministratorToStringConverter" />
 		<bean class="converters.StringToAdministratorConverter" />
 		
-		<bean class="converters.CategoryToStringConverter" />
-		<bean class="converters.StringToCategoryConverter" />
-		
-		<bean class="converters.ClerkToStringConverter" />
-		<bean class="converters.StringToClerkConverter" />
-		
 		<bean class="converters.CommentToStringConverter" />
 		<bean class="converters.StringToCommentConverter" />
 		
-		<bean class="converters.ConsumerToStringConverter" />
-		<bean class="converters.StringToConsumerConverter" />
-		
-		<bean class="converters.ContentToStringConverter" />
-		<bean class="converters.StringToContentConverter" />
+		<bean class="converters.CustomerToStringConverter" />
+		<bean class="converters.StringToCustomerConverter" />
 		
 		<bean class="converters.CreditCardToStringConverter" />
 		<bean class="converters.StringToCreditCardConverter" />
 		
-		<bean class="converters.CustomizationInfoToStringConverter" />
-		<bean class="converters.StringToCustomizationInfoConverter" />
-		
-		<bean class="converters.ExchangeRateToStringConverter" />
-		<bean class="converters.StringToExchangeRateConverter" />
-		
 		<bean class="converters.FolderToStringConverter" />
 		<bean class="converters.StringToFolderConverter" />
-		
-		<bean class="converters.ItemToStringConverter" />
-		<bean class="converters.StringToItemConverter" />
 		
 		<bean class="converters.MessageToStringConverter" />
 		<bean class="converters.StringToMessageConverter" />
 		
-		<bean class="converters.OrderToStringConverter" />
-		<bean class="converters.StringToOrderConverter" />
+		<bean class="converters.SpamTermToStringConverter" />
+		<bean class="converters.StringToSpamTermConverter" />
 		
-		<bean class="converters.OrderItemToStringConverter" />
-		<bean class="converters.StringToOrderItemConverter" />
+		<bean class="converters.GymToStringConverter" />
+		<bean class="converters.StringToGymConverter" />
 		
-		<bean class="converters.ShoppingCartToStringConverter" />
-		<bean class="converters.StringToShoppingCartConverter" />
+		<bean class="converters.BookingToStringConverter" />
+		<bean class="converters.StringToBookingConverter" />
 		
-		<bean class="converters.StorageToStringConverter" />
-		<bean class="converters.StringToStorageConverter" />
+		<bean class="converters.FeePaymentToStringConverter" />
+		<bean class="converters.StringToFeePaymentConverter" />
 		
-		<bean class="converters.TaxToStringConverter" />
-		<bean class="converters.StringToTaxConverter" />
+		<bean class="converters.ServiceToStringConverter" />
+		<bean class="converters.StringToServiceConverter" />
 		
-		<bean class="converters.WareHouseToStringConverter" />
-		<bean class="converters.StringToWareHouseConverter" />
 	</util:list>
 	
 </beans>

@@ -1,5 +1,7 @@
 package controllers.administrator;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -12,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import services.CommentService;
 import controllers.AbstractController;
 import domain.Comment;
-import domain.Item;
 
 @Controller
 @RequestMapping("/comment/administrator")
@@ -33,50 +34,60 @@ public class CommentAdministratorController extends AbstractController {
 	// Deleting --------------------------------------------------------------
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam int commentId) {
+	public ModelAndView create(@RequestParam Integer commentId) {
 		ModelAndView result;
 		Comment comment;
+		int entityId;
+		String entityName;
 		
 		comment = commentService.findOne(commentId);
-		Assert.notNull(comment);
-		result = createEditModelAndView(comment, comment.getItem());
+		entityId = commentService.getEntityIdByComment(comment);
+		entityName = commentService.getEntityNameById(entityId);
+		
+		result = createEditModelAndView(comment, entityName);
 		
 		return result;
 	}
 	
-	@RequestMapping(
-			value = "/delete", method = RequestMethod.POST, params = "delete")
-	public ModelAndView delete(
-			Comment comment, BindingResult binding) {
+	@RequestMapping(value="/delete", method=RequestMethod.POST, params="delete")
+	public ModelAndView save(@Valid Comment comment, BindingResult binding) {
 		ModelAndView result;
-		int itemId;
+		int entityId;
+		String entityName;
 		
-		try {
-			itemId = comment.getItem().getId();
-			commentService.delete(comment);
-			result = new ModelAndView("redirect:/comment/list.do?itemId=" + itemId);
-		} catch (Throwable oops) {
-			result = createEditModelAndView(comment, comment.getItem(), "comment.commit.error");
+		entityId = commentService.getEntityIdByComment(comment);
+		entityName = commentService.getEntityNameById(entityId);
+		
+		if (binding.hasErrors()) {
+			result = createEditModelAndView(comment, entityName);
+		} else {
+			try {
+				commentService.delete(comment);
+				result = new ModelAndView("redirect:../list.do?entityId=" + entityId);
+			} catch (Throwable oops) {
+				result = createEditModelAndView(comment, entityName, "comment.commit.error");
+			}
 		}
+		
 		return result;
 	}
 	
 	// Ancillary methods ---------------------------------------------------
 	
-	protected ModelAndView createEditModelAndView(Comment comment, Item item) {
+	protected ModelAndView createEditModelAndView(Comment comment, String entityName) {
 		ModelAndView result;
 		
-		result = createEditModelAndView(comment, item, null);
+		result = createEditModelAndView(comment, entityName, null);
 		
 		return result;
 	}
 	
-	protected ModelAndView createEditModelAndView(Comment comment, Item item, String message) {
+	protected ModelAndView createEditModelAndView(Comment comment, String entityName, String message) {
 		ModelAndView result;
 		
 		result = new ModelAndView("comment/delete");
 		result.addObject("comment", comment);
-		result.addObject("item", item);
+		result.addObject("entityName", entityName);
 		result.addObject("message", message);
 		
 		return result;

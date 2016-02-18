@@ -145,7 +145,7 @@ public class FolderService {
 			count = 0;
 			Folder trashBox;
 
-			for(Folder folder:actor.getFolders()){
+			for(Folder folder:actor.getMessageBoxs()){
 				if(folder.getMessages().contains(m)){
 					count++;
 				}
@@ -191,6 +191,7 @@ public class FolderService {
 		names.add("Inbox");
 		names.add("OutBox");
 		names.add("TrashBox");
+		names.add("SpamBox");
 				
 		
 		for (String string : names) {
@@ -205,7 +206,7 @@ public class FolderService {
 			result.add(temp);
 		}
 		
-		actor.setFolders(result);
+		actor.setMessageBoxs(result);
 		
 		return result;
 	}

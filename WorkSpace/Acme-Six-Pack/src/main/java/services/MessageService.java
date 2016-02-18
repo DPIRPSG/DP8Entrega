@@ -31,6 +31,9 @@ public class MessageService {
 	@Autowired
 	private ActorService actorService;
 	
+	@Autowired
+	private SpamTermService spamTermService;
+	
 	//Constructors -----------------------------------------------------------
 
 	public MessageService(){
@@ -55,7 +58,7 @@ public class MessageService {
 		result.setFolders(folders);
 		result.setRecipients(recipients);
 		result.setSender(actorService.findByPrincipal());
-		result.setMoment(new Date());
+		result.setSentMoment(new Date());
 		
 		return result;	
 	}
@@ -68,7 +71,7 @@ public class MessageService {
 		Assert.notNull(message);
 		Assert.isTrue(message.getSender().equals(actorService.findByPrincipal()), "Only the sender can save the message");
 		
-		message.setMoment(new Date());
+		message.setSentMoment(new Date());
 		
 		Message result;
 		
@@ -110,16 +113,23 @@ public class MessageService {
 	 * Añade a las respectivas carpetas la primera vez que un mensaje es creado
 	 */
 	private void addMessageToFolderFirst(Message message){
+		boolean isSpam;
 		
-		for (Folder f:message.getSender().getFolders()){
+		isSpam = spamTermService.checkSpamTerm(message.getBody() + message.getSubject());
+		for (Folder f:message.getSender().getMessageBoxs()){
 			if (f.getName().equals("OutBox") && f.getIsSystem()){
 				folderService.addMessage(f, message);
 			}
 		}
 		
 		for (Actor recipient: message.getRecipients()){
-			for (Folder f:recipient.getFolders()){
-				if (f.getName().equals("InBox") && f.getIsSystem()){
+			for (Folder f:recipient.getMessageBoxs()){
+				boolean toInBox, toSpamBox;
+				
+				toInBox = f.getName().equals("InBox") && !isSpam;
+				toSpamBox = f.getName().equals("SpamBox") && isSpam;
+				
+				if ((toInBox || toSpamBox) && f.getIsSystem()){
 					folderService.addMessage(f, message);
 				}
 			}

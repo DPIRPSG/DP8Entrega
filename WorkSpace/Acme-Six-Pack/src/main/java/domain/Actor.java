@@ -13,7 +13,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import security.UserAccount;
@@ -28,7 +27,6 @@ public abstract class Actor extends DomainEntity{
 	// Attributes -------------------------------------------------------------
 	private String name;
 	private String surname;
-	private String email;
 	private String phone;
 	
 	@NotBlank
@@ -49,18 +47,8 @@ public abstract class Actor extends DomainEntity{
 		this.surname = surname;
 	}
 	
-	@Email
 	@NotBlank
 	@NotNull
-	@Valid
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	@Valid
 	public String getPhone() {
 		return phone;
 	}
@@ -69,20 +57,21 @@ public abstract class Actor extends DomainEntity{
 	}
 	
 	// Relationships ----------------------------------------------------------
-	private Collection<Folder> folders;
+	private Collection<Folder> messageBoxs;
 	private Collection<Message> sent;
 	private Collection<Message> received;
+	private Collection<Comment> comments;
 	private UserAccount userAccount;
 	
 	@NotNull
 	@Valid
 	@OneToMany(mappedBy = "actor")
-	@Size(min = 3)
-	public Collection<Folder> getFolders() {
-		return folders;
+	@Size(min = 4)
+	public Collection<Folder> getMessageBoxs() {
+		return messageBoxs;
 	}
-	public void setFolders(Collection<Folder> folders) {
-		this.folders = folders;
+	public void setMessageBoxs(Collection<Folder> folders) {
+		this.messageBoxs = folders;
 	}
 	
 	@Valid
@@ -105,6 +94,15 @@ public abstract class Actor extends DomainEntity{
 		this.received = received;
 	}
 	
+	@Valid
+	@OneToMany(mappedBy = "actor")
+	@NotNull
+	public Collection<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(Collection<Comment> sent) {
+		this.comments = sent;
+	}	
 	@NotNull
 	@Valid
 	@OneToOne(cascade = CascadeType.ALL, optional = false)	

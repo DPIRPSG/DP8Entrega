@@ -9,7 +9,15 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<h3><spring:message code="comment.itemPlural"/>: <jstl:out value="${item.name}(${item.sku})" /></h3>
+<%-- <jstl:if test="${comment.gym != null}"> --%>
+<%-- 	<h3><spring:message code="comment.gymPlural"/>: <jstl:out value="${entityName}" /></h3> --%>
+<%-- </jstl:if> --%>
+<%-- <jstl:if test="${comment.service != null}"> --%>
+<%-- 	<h3><spring:message code="comment.servicePlural"/>: <jstl:out value="${entityName}" /></h3> --%>
+<%-- </jstl:if> --%>
+
+<h3><spring:message code="comment.entityPlural"/>: <jstl:out value="${entityName}" /></h3>
+
 <!-- Listing grid -->
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="comments" requestURI="${requestURI}" id="row_Comment">
@@ -24,23 +32,16 @@
 	</security:authorize>
 	
 	<!-- Attributes -->
-	<jstl:choose>
-  		<jstl:when test="${row_Comment.userName != 'Anonymous'}">
-			<spring:message code="comment.userName" var="userNameHeader" />
-			<display:column title="${userNameHeader}"
-				sortable="true" >
-				<jstl:out value="${row_Comment.userName}"/>
-			</display:column>
-		</jstl:when>
-  		<jstl:otherwise>
-		<display:column title="${userNameHeader}" sortable="true"><spring:message code="comment.anonymous"/></display:column>
-		</jstl:otherwise>
-	</jstl:choose>
-	
-	<spring:message code="comment.title" var="titleHeader" />
-	<display:column title="${titleHeader}"
+	<spring:message code="comment.actor" var="actorHeader" />
+	<display:column title="${actorHeader}"
 		sortable="false" >
-		<jstl:out value="${row_Comment.title}"/>
+		<jstl:out value="${row_Comment.actor.userAccount.username}"/>
+	</display:column>
+	
+	<spring:message code="comment.moment" var="momentHeader" />
+	<display:column title="${momentHeader}" 
+		sortable="false" format="{0,date,yyyy/MM/dd }" >
+		<jstl:out value="${row_Comment.moment}"/>
 	</display:column>
 
 	<spring:message code="comment.text" var="textHeader" />
@@ -49,17 +50,35 @@
 		<jstl:out value="${row_Comment.text}"/>
 	</display:column>
 
-	<spring:message code="comment.rating" var="ratingHeader" />
-	<display:column title="${ratingHeader}" 
+	<spring:message code="comment.starRating" var="starRatingHeader" />
+	<display:column title="${starRatingHeader}" 
 		sortable="true" >
-		<jstl:out value="${row_Comment.rating}"/>
+		<jstl:out value="${row_Comment.starRating}"/>
 	</display:column>
 		
 </display:table>
 
 <!-- Action links -->
-<div>
-	<a href="comment/create.do?itemId=${item.id}"> <spring:message
-			code="comment.create" />
-	</a>
-</div>
+<%-- <security:authorize access="isAuthenticated()"> --%>
+<%-- 	<jstl:if test="${gym != null}"> --%>
+<!-- 		<div> -->
+<%-- 			<a href="comment/create.do?gymId=${gym.id}"> <spring:message --%>
+<%-- 					code="comment.create" /> --%>
+<!-- 			</a> -->
+<!-- 		</div> -->
+<%-- 	</jstl:if> --%>
+<%-- 	<jstl:if test="${service != null}"> --%>
+<!-- 		<div> -->
+<%-- 			<a href="comment/create.do?serviceId=${service.id}"> <spring:message --%>
+<%-- 					code="comment.create" /> --%>
+<!-- 			</a> -->
+<!-- 		</div> -->
+<%-- 	</jstl:if> --%>
+<%-- </security:authorize> --%>
+<security:authorize access="isAuthenticated()">
+	<div>
+		<a href="comment/actor/create.do?entityId=${entityId}"> <spring:message
+				code="comment.create" />
+		</a>
+	</div>
+</security:authorize>

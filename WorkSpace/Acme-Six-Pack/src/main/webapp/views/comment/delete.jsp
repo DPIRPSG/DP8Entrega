@@ -8,34 +8,47 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<h3><spring:message code="comment.item"/>: <jstl:out value="${item.name}(${item.sku})" /></h3>
-<!-- Form -->
-<form:form action="comment/administrator/delete.do" modelAttribute="comment">
-	<!-- Hidden Attributes -->
-	<form:hidden path="id"/>
-	<form:hidden path="version"/>
-	<form:hidden path="item"/>
+<security:authorize access="hasRole('ADMIN')">
+
+<%-- 	<jstl:if test="${comment.gym != null}"> --%>
+<%-- 		<h3><spring:message code="comment.gym"/>: <jstl:out value="${entityName}" /></h3> --%>
+<%-- 	</jstl:if> --%>
+<%-- 	<jstl:if test="${comment.service != null}"> --%>
+<%-- 		<h3><spring:message code="comment.service"/>: <jstl:out value="${entityName}" /></h3> --%>
+<%-- 	</jstl:if> --%>
+
+	<h3><spring:message code="comment.entity"/>: <jstl:out value="${entityName}" /></h3>
 	
-	<!-- Shown Attributes -->
-	<form:hidden path="userName"/>
-	<p><spring:message code = "comment.userName"/>: <jstl:out value="${comment.userName}" /></p>
+	<!-- Form -->
+	<form:form action="comment/administrator/delete.do" modelAttribute="comment">
+		<!-- Hidden Attributes -->
+		<form:hidden path="id"/>
+		<form:hidden path="version"/>
+		<form:hidden path="gym"/>
+		<form:hidden path="service"/>
+		
+		<!-- Shown Attributes -->
+		<form:hidden path="moment"/>
+		<p><spring:message code = "comment.moment"/>: <jstl:out value="${comment.moment}" /></p>
+		
+		<form:hidden path="actor"/>
+		<p><spring:message code = "comment.actor"/>: <jstl:out value="${comment.actor.name}" />(<jstl:out value="${comment.actor.userAccount.username}" />)</p>
+					
+		<form:hidden path="text"/>
+		<p><spring:message code = "comment.text"/>: <jstl:out value="${comment.text}" /></p>
+		
+		<form:hidden path="starRating"/>
+		<p><spring:message code = "comment.starRating"/>: <jstl:out value="${comment.starRating}" /></p>
+		
+		<!-- Action buttons -->
+		<input type="submit" name="delete"
+				value="<spring:message code="comment.delete" />"
+				onclick="return confirm('<spring:message code="comment.confirm.delete" />')" />
+		&nbsp;
+		<input type="button" name="cancel"
+			value="<spring:message code="comment.delete.cancel" />"
+			onclick="javascript: relativeRedir('/comment/list.do?entityId=${entityId}');" />
+		
+	</form:form>
 	
-	<form:hidden path="title"/>
-	<p><spring:message code = "comment.title"/>: <jstl:out value="${comment.title}" /></p>
-				
-	<form:hidden path="text"/>
-	<p><spring:message code = "comment.text"/>: <jstl:out value="${comment.text}" /></p>
-	
-	<form:hidden path="rating"/>
-	<p><spring:message code = "comment.rating"/>: <jstl:out value="${comment.rating}" /></p>
-	
-	<!-- Action buttons -->
-	<input type="submit" name="delete"
-			value="<spring:message code="comment.delete" />"
-			onclick="return confirm('<spring:message code="comment.confirm.delete" />')" />
-	&nbsp;
-	<input type="button" name="cancel"
-		value="<spring:message code="comment.delete.cancel" />"
-		onclick="javascript: relativeRedir('/comment/list.do?itemId=${item.id}');" />
-	
-</form:form>
+</security:authorize>
