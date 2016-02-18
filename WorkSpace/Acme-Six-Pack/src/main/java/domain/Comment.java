@@ -10,7 +10,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
@@ -66,8 +65,7 @@ public class Comment extends DomainEntity{
 	
 	// Relationships ----------------------------------------------------------
 	private Actor actor;
-	private Gym gym;
-	private ServiceEntity service;
+	private CommentedEntity commentedEntity;
 	
 	@Valid
 	@NotNull
@@ -79,21 +77,15 @@ public class Comment extends DomainEntity{
 		this.actor = actor;
 	}
 	
+	@NotNull
 	@Valid
-	@ManyToOne(optional=true)
-	public Gym getGym() {
-		return gym;
+	@ManyToOne(optional = false)
+	public CommentedEntity getCommentedEntity() {
+		return commentedEntity;
 	}
-	public void setGym(Gym gym) {
-		this.gym = gym;
+	public void setCommentedEntity(CommentedEntity commentedEntity) {
+		this.commentedEntity = commentedEntity;
 	}
 	
-	@Valid
-	@ManyToOne(optional=true)
-	public ServiceEntity getService() {
-		return service;
-	}
-	public void setService(ServiceEntity service) {
-		this.service = service;
-	}
+	
 }
