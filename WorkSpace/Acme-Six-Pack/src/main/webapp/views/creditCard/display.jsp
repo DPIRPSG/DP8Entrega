@@ -9,37 +9,19 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
+
 
 	<!-- Listing grid -->
 <jstl:if test="${creditCard != null}">	
 	<div>
 	<table>
-
-	<tr>
-		<th><spring:message code="creditCard.holderName" /> :</th>
-		<td><jstl:out value="${creditCard.holderName}" /></td>
-	</tr>
-	<tr>
-		<th><spring:message code="creditCard.brandName" /> :</th>
-		<td><jstl:out value="${creditCard.brandName}" /></td>
-	</tr>
-	<tr>
-		<th><spring:message code="creditCard.number" /> :</th>
-		<td><jstl:out value="${creditCard.number}" /></td>
-	</tr>
-	<tr>
-		<th><spring:message code="creditCard.expirationMonth" /> :</th>
-		<td><jstl:out value="${creditCard.expirationMonth}" /></td>
-	</tr>
-	<tr>
-		<th><spring:message code="creditCard.expirationYear" /> :</th>
-		<td><jstl:out value="${creditCard.expirationYear}" /></td>
-	</tr>
-	<tr>
-		<th><spring:message code="creditCard.cvvCode" /> :</th>
-		<td><jstl:out value="${creditCard.cvvCode}" /></td>
-	</tr>
-	
+		<acme:display code="creditCard.holderName" value="${creditCard.holderName}"/>
+		<acme:display code="creditCard.brandName" value="${creditCard.brandName}"/>
+		<acme:display code="creditCard.number" value="${creditCard.number}"/>
+		<acme:display code="creditCard.expirationMonth" value="${creditCard.expirationMonth}"/>
+		<acme:display code="creditCard.expirationYear" value="${creditCard.expirationYear}"/>
+		<acme:display code="creditCard.cvvCode" value="${creditCard.cvvCode}"/>
 	
 	</table>
 	</div>

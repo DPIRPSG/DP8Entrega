@@ -87,7 +87,7 @@ public class SocialIdentityController extends AbstractController {
 		ModelAndView result;
 
 		try {
-			socialIdentityService.delete(socialIdentity);
+			socialIdentityService.delete();
 			result = new ModelAndView("redirect:/");
 		} catch (Throwable oops) {
 			result = createEditModelAndView(socialIdentity, "socialIdentity.commit.error");

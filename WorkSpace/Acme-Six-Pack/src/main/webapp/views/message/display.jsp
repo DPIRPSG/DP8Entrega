@@ -9,8 +9,9 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<security:authorize access="hasAnyRole('ADMIN', 'CLERK', 'CONSUMER')">
+
 	<!-- Listing grid -->
 	<div>
 	<table>
@@ -30,10 +31,8 @@
 		</a></b>
 		</td>
 	</tr>
-	<tr>
-		<th><spring:message code="message.sender" /> :</th>
-		<td><jstl:out value="${messa.sender.userAccount.username}" /></td>
-	</tr>
+	<acme:display code="message.sender" value="${messa.sender.userAccount.username}"/>
+	
 	<tr>
 		<th><spring:message code="message.recipients" /> :</th>
 		<td><jstl:forEach var="temp" items="${messa.recipients}">
@@ -41,15 +40,8 @@
 		</jstl:forEach>
 		</td>
 	</tr>
-	<tr>
-		<th><spring:message code="message.subject" /> :</th>
-		<td><jstl:out value="${messa.subject}" /></td>
-	</tr>
-	<tr>
-		<th><spring:message code="message.body" /> :</th>
-		<td><jstl:out value="${messa.body}" /></td>
-	</tr>
-	
+	<acme:display code="message.subject" value="${message.subject}"/>
+	<acme:display code="message.body" value="${message.body}"/>
 	
 	</table>
 	</div>
@@ -61,4 +53,3 @@
 		</a></b>
 	</div>
 
-</security:authorize>

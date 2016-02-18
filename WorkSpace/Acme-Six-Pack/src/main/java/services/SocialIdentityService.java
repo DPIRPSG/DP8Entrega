@@ -57,12 +57,12 @@ public class SocialIdentityService {
 		return result;
 	}
 	
-	public void delete(SocialIdentity socialIdentity){
-		Assert.notNull(socialIdentity);
-		
+	public void delete(){
 		Customer customer;
+		SocialIdentity socialIdentity;
 		
 		customer = customerService.findByPrincipal();
+		socialIdentity = customer.getSocialIdentity();
 		customer.setSocialIdentity(null);
 
 		socialIdentityRepository.delete(socialIdentity);

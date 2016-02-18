@@ -76,5 +76,6 @@
 	<a href="?language=en">en</a> | <a href="?language=es">es</a>
 </div>
 
+<!-- OJO !!!! El script de cancel.tag está en el footer!!!! -->
 
 
