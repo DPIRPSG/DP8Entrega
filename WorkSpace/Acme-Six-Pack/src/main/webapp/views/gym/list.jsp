@@ -23,6 +23,16 @@
 		</display:column>
 	</security:authorize>
 
+	<security:authorize access="hasRole('CUSTOMER')">
+		<jstl:if test="${paid}">
+			<display:column>
+				<a href="feePayment/customer/list.do?gymId=${row_Gym.id}"> <spring:message
+						code="gym.feePayments" />
+				</a>
+			</display:column>
+		</jstl:if>
+	</security:authorize>
+
 	<!-- Attributes -->
 	<spring:message code="gym.name" var="nameHeader" />
 	<display:column title="${nameHeader}"

@@ -24,7 +24,13 @@
 	<ul id="jMenu">
 		<!-- Do not forget the "fNiv" class for the first level links !! -->
 		<security:authorize access="hasRole('CUSTOMER')">
-			<li><a class="fNiv" href="gym/customer/list.do?"><spring:message code="master.page.manage.gym" /></a></li>
+			<li><a class="fNiv"><spring:message	code="master.page.manage.gym" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="gym/customer/list-feepayments-not-active.do?"><spring:message code="master.page.manage.gym.not-pay" /></a></li>
+					<li><a href="gym/customer/list-feepayments-active.do?"><spring:message code="master.page.manage.gym.pay" /></a></li>
+				</ul>
+			</li>
 			<li><a class="fNiv" href="folder/actor/list.do"><spring:message code="master.page.messages" /></a></li>
 			
 		</security:authorize>

@@ -19,7 +19,7 @@ import domain.FeePayment;
 @Controller
 @RequestMapping("/feePayment/administrator")
 public class FeePaymentAdministratorController extends AbstractController {
-	/*
+	
 	// Services ----------------------------------------------------------
 	
 	@Autowired
@@ -93,5 +93,5 @@ public class FeePaymentAdministratorController extends AbstractController {
 		
 		return result;
 	}
-	*/
+	
 }
