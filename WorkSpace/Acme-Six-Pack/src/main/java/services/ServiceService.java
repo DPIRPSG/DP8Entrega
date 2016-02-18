@@ -78,6 +78,14 @@ public class ServiceService {
 		return result;
 	}
 	
+	public Collection<ServiceEntity> findMostCommented() {
+		Collection<ServiceEntity> result;
+
+		result = serviceRepository.findMostCommented();
+
+		return result;
+	}
+	
 	public Collection<String> numbersOfCustomersByService(Collection<ServiceEntity> services) {
 		Collection<String> result;
 		Integer customerNumber;

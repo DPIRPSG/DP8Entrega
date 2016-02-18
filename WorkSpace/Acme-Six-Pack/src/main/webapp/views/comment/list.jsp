@@ -9,12 +9,14 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<jstl:if test="${gym != null}">
-	<h3><spring:message code="comment.gymPlural"/>: <jstl:out value="${gym.name}" /></h3>
-</jstl:if>
-<jstl:if test="${service != null}">
-	<h3><spring:message code="comment.servicePlural"/>: <jstl:out value="${service.name}" /></h3>
-</jstl:if>
+<%-- <jstl:if test="${comment.gym != null}"> --%>
+<%-- 	<h3><spring:message code="comment.gymPlural"/>: <jstl:out value="${entityName}" /></h3> --%>
+<%-- </jstl:if> --%>
+<%-- <jstl:if test="${comment.service != null}"> --%>
+<%-- 	<h3><spring:message code="comment.servicePlural"/>: <jstl:out value="${entityName}" /></h3> --%>
+<%-- </jstl:if> --%>
+
+<h3><spring:message code="comment.entityPlural"/>: <jstl:out value="${entityName}" /></h3>
 
 <!-- Listing grid -->
 <display:table pagesize="5" class="displaytag" keepStatus="true"
@@ -57,19 +59,26 @@
 </display:table>
 
 <!-- Action links -->
+<%-- <security:authorize access="isAuthenticated()"> --%>
+<%-- 	<jstl:if test="${gym != null}"> --%>
+<!-- 		<div> -->
+<%-- 			<a href="comment/create.do?gymId=${gym.id}"> <spring:message --%>
+<%-- 					code="comment.create" /> --%>
+<!-- 			</a> -->
+<!-- 		</div> -->
+<%-- 	</jstl:if> --%>
+<%-- 	<jstl:if test="${service != null}"> --%>
+<!-- 		<div> -->
+<%-- 			<a href="comment/create.do?serviceId=${service.id}"> <spring:message --%>
+<%-- 					code="comment.create" /> --%>
+<!-- 			</a> -->
+<!-- 		</div> -->
+<%-- 	</jstl:if> --%>
+<%-- </security:authorize> --%>
 <security:authorize access="isAuthenticated()">
-	<jstl:if test="${gym != null}">
-		<div>
-			<a href="comment/create.do?gymId=${gym.id}"> <spring:message
-					code="comment.create" />
-			</a>
-		</div>
-	</jstl:if>
-	<jstl:if test="${service != null}">
-		<div>
-			<a href="comment/create.do?serviceId=${service.id}"> <spring:message
-					code="comment.create" />
-			</a>
-		</div>
-	</jstl:if>
+	<div>
+		<a href="comment/actor/create.do?entityId=${entityId}"> <spring:message
+				code="comment.create" />
+		</a>
+	</div>
 </security:authorize>
