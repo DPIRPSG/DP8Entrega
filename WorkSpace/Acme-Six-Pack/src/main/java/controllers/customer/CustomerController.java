@@ -10,11 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.CustomerService;
-import services.SocialIdentityService;
 
 import controllers.AbstractController;
 import domain.Customer;
-import domain.SocialIdentity;
 
 @Controller
 @RequestMapping(value = "/customer/customer")
@@ -47,16 +45,16 @@ public class CustomerController extends AbstractController {
 	}
 
 	// Creation ----------------------------------------------------------
-/*
+
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView create(){
+	public ModelAndView edit(){
 		ModelAndView result;
-		SocialIdentity socialIdentity;
+		Customer customer;
 		
 		// Si no la tiene debería crearla
-		socialIdentity = customerService.findByPrincipalOrCreate();
+		customer = customerService.findByPrincipal();
 		
-		result = createEditModelAndView(socialIdentity);
+		result = createEditModelAndView(customer);
 		
 		return result;
 	}
@@ -65,56 +63,57 @@ public class CustomerController extends AbstractController {
 
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid SocialIdentity socialIdentity, BindingResult binding) {
+	public ModelAndView save(@Valid Customer customer, BindingResult binding) {
 		ModelAndView result;
+		boolean bindingError;
+		Customer oldCustomer;
+		
+		if(binding.hasFieldErrors("userAccount") 
+				&& binding.hasFieldErrors("creditCard")
+				&& binding.hasFieldErrors("socialIdentity")){
+			bindingError = binding.getErrorCount() > 3;
+		}else{
+			bindingError = binding.getErrorCount() > 0;
+		}
 
-		if (binding.hasErrors()) {
-			result = createEditModelAndView(socialIdentity);
+		if (bindingError) {
+			System.out.println("Errores: " + binding.toString());
+			result = createEditModelAndView(customer);
 		} else {
 			try {
-				customerService.save(socialIdentity);
+				oldCustomer = customerService.findByPrincipal();
+				customer.setUserAccount(oldCustomer.getUserAccount());
+				customer.setCreditCard(oldCustomer.getCreditCard());
+				customer.setSocialIdentity(oldCustomer.getSocialIdentity());
+				customerService.save(customer);
 				result = new ModelAndView("redirect:display.do");
 			} catch (Throwable oops) {
-				result = createEditModelAndView(socialIdentity, "socialIdentity.commit.error");				
+				result = createEditModelAndView(customer, "customer.commit.error");				
 			}
 		}
 
 		return result;
 	}
 	
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
-	public ModelAndView delete(SocialIdentity socialIdentity, BindingResult binding) {
-		ModelAndView result;
-
-		try {
-			customerService.delete(socialIdentity);
-			result = new ModelAndView("redirect:/");
-		} catch (Throwable oops) {
-			result = createEditModelAndView(socialIdentity, "socialIdentity.commit.error");
-		}
-
-		return result;
-	}
-	
-
 	// Ancillary Methods
 	// ----------------------------------------------------------
 
-	protected ModelAndView createEditModelAndView(SocialIdentity socialIdentity) {
+	protected ModelAndView createEditModelAndView(Customer customer) {
 		ModelAndView result;
 
-		result = createEditModelAndView(socialIdentity, null);
+		result = createEditModelAndView(customer, null);
 
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndView(SocialIdentity socialIdentity, String message) {
+	protected ModelAndView createEditModelAndView(Customer customer, String message) {
 		ModelAndView result;
 
-		result = new ModelAndView("socialIdentity/edit");
-		result.addObject("socialIdentity", socialIdentity);
+		result = new ModelAndView("customer/edit");
+		result.addObject("customer", customer);
 		result.addObject("message", message);
+		result.addObject("urlAction", "customer/customer/edit.do");
 
 		return result;
-	}*/
+	}
 }

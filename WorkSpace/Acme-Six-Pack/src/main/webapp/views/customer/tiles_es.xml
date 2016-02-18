@@ -18,7 +18,12 @@
 
 	<definition name="customer/create" extends="master.page">	
 		<put-attribute name="title" value="Cliente: Registro" />
-		<put-attribute name="body" value="/views/customer/create.jsp" />
+		<put-attribute name="body" value="/views/customer/edit.jsp" />
+	</definition>
+	
+	<definition name="customer/edit" extends="master.page">	
+		<put-attribute name="title" value="Cliente: Edición" />
+		<put-attribute name="body" value="/views/customer/edit.jsp" />
 	</definition>
         
 	<definition name="customer/list" extends="master.page">	

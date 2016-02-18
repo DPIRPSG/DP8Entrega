@@ -8,13 +8,12 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<security:authorize access = "isAnonymous()">
 	<!-- Form -->
-	<form:form action="customer/create.do" modelAttribute="customer">
+	<form:form action="${urlAction}" modelAttribute="customer">
 		<!-- Hidden Attributes -->
 		<form:hidden path="id"/>
 		<form:hidden path="version"/>
-		<form:hidden path="messageBoxs"/>
+		<!-- <form:hidden path="messageBoxs"/>-->
 		<!--<form:hidden path="creditCard"/>-->
 		<!--<form:hidden path="socialIdentity"/>-->
 		<form:hidden path="feePayment"/>
@@ -23,7 +22,6 @@
 		<form:hidden path="received"/>
 		<form:hidden path="sent"/>
 		<form:hidden path="userAccount.authorities"/>
-		
 		
 		<!-- Editable Attributes -->
 		<form:label path="name">
@@ -47,21 +45,23 @@
 		<form:errors cssClass="error" path="phone"/>
 		<br />
 		
-		
-		<form:label path="userAccount.username">
-			<spring:message code="customer.username" />
-		</form:label>
-		<form:input path="userAccount.username" />	
-		<form:errors class="error" path="userAccount.username" />
-		<br />
+		<jstl:if test="${creating != null}">
+			<form:label path="userAccount.username">
+				<spring:message code="customer.username" />
+			</form:label>
+			<form:input path="userAccount.username" />	
+			<form:errors class="error" path="userAccount.username" />
+			
+			<br />
 
-		<form:label path="userAccount.password">
-			<spring:message code="customer.password" />
-		</form:label>
-		<form:password path="userAccount.password" />
-		<form:errors class="error" path="userAccount.password" />
-		<br />
+			<form:label path="userAccount.password">
+				<spring:message code="customer.password" />
+			</form:label>
+			<form:password path="userAccount.password" />
+			<form:errors class="error" path="userAccount.password" />
+		</jstl:if>
 		
+		<br />
 		
 		<!-- Action buttons -->
 		<input type="submit" name="save"
@@ -73,5 +73,3 @@
 		<br />
 		
 	</form:form>
-
-</security:authorize>

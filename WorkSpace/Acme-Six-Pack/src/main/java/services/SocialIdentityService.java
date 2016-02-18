@@ -41,11 +41,10 @@ public class SocialIdentityService {
 		Customer customer;
 		
 		customer = customerService.findByPrincipal();
+		socialIdentity = socialIdentityRepository.save(socialIdentity);
 		
 		customer.setSocialIdentity(socialIdentity);
-		
 		customerService.save(customer);
-		socialIdentityRepository.save(socialIdentity);
 	}
 	
 	public SocialIdentity findByPrincipal(){
@@ -65,7 +64,7 @@ public class SocialIdentityService {
 		
 		customer = customerService.findByPrincipal();
 		customer.setSocialIdentity(null);
-		
+
 		socialIdentityRepository.delete(socialIdentity);
 		customerService.save(customer);
 	}
