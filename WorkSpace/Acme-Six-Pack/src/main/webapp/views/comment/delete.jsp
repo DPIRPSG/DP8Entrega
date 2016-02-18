@@ -17,22 +17,21 @@
 <%-- 		<h3><spring:message code="comment.service"/>: <jstl:out value="${entityName}" /></h3> --%>
 <%-- 	</jstl:if> --%>
 
-	<h3><spring:message code="comment.entity"/>: <jstl:out value="${entityName}" /></h3>
+	<h3><spring:message code="comment.entity"/>: <jstl:out value="${commentedEntity.name}" /></h3>
 	
 	<!-- Form -->
 	<form:form action="comment/administrator/delete.do" modelAttribute="comment">
 		<!-- Hidden Attributes -->
 		<form:hidden path="id"/>
 		<form:hidden path="version"/>
-		<form:hidden path="gym"/>
-		<form:hidden path="service"/>
+		<form:hidden path="commentedEntity"/>
 		
 		<!-- Shown Attributes -->
 		<form:hidden path="moment"/>
 		<p><spring:message code = "comment.moment"/>: <jstl:out value="${comment.moment}" /></p>
 		
 		<form:hidden path="actor"/>
-		<p><spring:message code = "comment.actor"/>: <jstl:out value="${comment.actor.name}" />(<jstl:out value="${comment.actor.userAccount.username}" />)</p>
+		<p><spring:message code = "comment.actor"/>: <jstl:out value="${comment.actor.name}" /> <jstl:out value="${comment.actor.surname}" />(<jstl:out value="${comment.actor.userAccount.username}" />)</p>
 					
 		<form:hidden path="text"/>
 		<p><spring:message code = "comment.text"/>: <jstl:out value="${comment.text}" /></p>
@@ -47,7 +46,7 @@
 		&nbsp;
 		<input type="button" name="cancel"
 			value="<spring:message code="comment.delete.cancel" />"
-			onclick="javascript: relativeRedir('/comment/list.do?entityId=${entityId}');" />
+			onclick="javascript: relativeRedir('/comment/list.do?commentedEntityId=${commentedEntity.id}');" />
 		
 	</form:form>
 	
