@@ -36,10 +36,10 @@ public class DashboardAdministratorController extends AbstractController {
 	
 	// Listing ------------------------------------------------------------
 	
-		@RequestMapping(value = "/list", method = RequestMethod.GET)
-		public ModelAndView list() {
-			ModelAndView result;
-			Collection<Gym> mostPopularGyms;
+		//@RequestMapping(value = "/list", method = RequestMethod.GET)
+		//public ModelAndView list() {
+			//ModelAndView result;
+			//Collection<Gym> mostPopularGyms;
 //			Collection<Customer> consumerMoreOrders;
 //			Collection<Customer> consumerSpentMoreMoney;
 //			Collection<Item> bestSellingItem;
@@ -51,7 +51,7 @@ public class DashboardAdministratorController extends AbstractController {
 //			double ratioCancelledCurrentMonth;
 //			Collection<Item> itemMoreComment;
 			
-			mostPopularGyms = gymService.findMostPopularGyms();
+			//mostPopularGyms = gymService.findMostPopularGyms();
 //			consumerMoreOrders = consumerService.findConsumerMoreOrders();
 //			consumerSpentMoreMoney = consumerService.findConsumerSpentMoreMoney();
 //			bestSellingItem = itemService.findItemBestSelling();
@@ -63,8 +63,8 @@ public class DashboardAdministratorController extends AbstractController {
 //			ratioCancelledCurrentMonth = orderService.rateOrderCancelled();
 //			itemMoreComment = itemService.findItemMoreComments();
 			
-			result = new ModelAndView("administrator/list");
-			result.addObject("mostPopularGyms", mostPopularGyms);
+			//result = new ModelAndView("administrator/list");
+			//result.addObject("mostPopularGyms", mostPopularGyms);
 //			result.addObject("consumerMoreOrders", consumerMoreOrders);
 //			result.addObject("consumerSpentMoreMoney", consumerSpentMoreMoney);
 //			result.addObject("bestSellingItem", bestSellingItem);
@@ -75,9 +75,9 @@ public class DashboardAdministratorController extends AbstractController {
 //			result.addObject("consumerCancelledLessOrders", consumerCancelledLessOrders);
 //			result.addObject("ratioCancelledCurrentMonth", ratioCancelledCurrentMonth);
 //			result.addObject("itemMoreComment", itemMoreComment);
-			result.addObject("requestURI", "administrator/list.do");
+			//result.addObject("requestURI", "administrator/list.do");
 			
-			return result;
-		}
+			//return result;
+		//}
 	
 }
