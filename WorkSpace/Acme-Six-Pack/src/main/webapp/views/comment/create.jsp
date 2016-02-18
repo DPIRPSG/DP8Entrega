@@ -10,12 +10,14 @@
 
 <security:authorize access="isAuthenticated()">
 
-	<jstl:if test="${comment.gym != null}">
-		<h3><spring:message code="comment.gym"/>: <jstl:out value="${entityName}" /></h3>
-	</jstl:if>
-	<jstl:if test="${comment.service != null}">
-		<h3><spring:message code="comment.service"/>: <jstl:out value="${entityName}" /></h3>
-	</jstl:if>
+<%-- 	<jstl:if test="${comment.gym != null}"> --%>
+<%-- 		<h3><spring:message code="comment.gym"/>: <jstl:out value="${entityName}" /></h3> --%>
+<%-- 	</jstl:if> --%>
+<%-- 	<jstl:if test="${comment.service != null}"> --%>
+<%-- 		<h3><spring:message code="comment.service"/>: <jstl:out value="${entityName}" /></h3> --%>
+<%-- 	</jstl:if> --%>
+
+	<h3><spring:message code="comment.entity"/>: <jstl:out value="${entityName}" /></h3>
 	
 	<!-- Form -->
 	<form:form action="comment/create.do" modelAttribute="comment">
@@ -47,16 +49,19 @@
 		<input type="submit" name="save"
 			value="<spring:message code="comment.create.save"/>"/>
 		&nbsp;
-		<jstl:if test="${gym != null}">
+<%-- 		<jstl:if test="${gym != null}"> --%>
+<!-- 			<input type="button" name="cancel" -->
+<%-- 			value="<spring:message code="comment.create.cancel" />" --%>
+<%-- 			onclick="javascript: relativeRedir('/comment/list.do?gymId=${comment.gym.id}');" /> --%>
+<%-- 		</jstl:if> --%>
+<%-- 		<jstl:if test="${service != null}"> --%>
+<!-- 			<input type="button" name="cancel" -->
+<%-- 			value="<spring:message code="comment.create.cancel" />" --%>
+<%-- 			onclick="javascript: relativeRedir('/comment/list.do?serviceId=${comment.service.id}');" /> --%>
+<%-- 		</jstl:if> --%>
 			<input type="button" name="cancel"
 			value="<spring:message code="comment.create.cancel" />"
-			onclick="javascript: relativeRedir('/comment/list.do?gymId=${comment.gym.id}');" />
-		</jstl:if>
-		<jstl:if test="${service != null}">
-			<input type="button" name="cancel"
-			value="<spring:message code="comment.create.cancel" />"
-			onclick="javascript: relativeRedir('/comment/list.do?serviceId=${comment.service.id}');" />
-		</jstl:if>
+			onclick="javascript: relativeRedir('/comment/list.do?entityId=${entityId}');" />
 		
 	</form:form>
 

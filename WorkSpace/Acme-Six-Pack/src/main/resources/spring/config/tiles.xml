@@ -29,6 +29,7 @@
 		<value>/views/gym/tiles.xml</value>
 		<value>/views/booking/tiles.xml</value>
 		<value>/views/service/tiles.xml</value>
+		<value>/views/feePayment/tiles.xml</value>
 	</util:list>
 
 </beans>

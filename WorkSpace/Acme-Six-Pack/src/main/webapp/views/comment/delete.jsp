@@ -10,12 +10,14 @@
 
 <security:authorize access="hasRole('ADMIN')">
 
-	<jstl:if test="${comment.gym != null}">
-		<h3><spring:message code="comment.gym"/>: <jstl:out value="${entityName}" /></h3>
-	</jstl:if>
-	<jstl:if test="${comment.service != null}">
-		<h3><spring:message code="comment.service"/>: <jstl:out value="${entityName}" /></h3>
-	</jstl:if>
+<%-- 	<jstl:if test="${comment.gym != null}"> --%>
+<%-- 		<h3><spring:message code="comment.gym"/>: <jstl:out value="${entityName}" /></h3> --%>
+<%-- 	</jstl:if> --%>
+<%-- 	<jstl:if test="${comment.service != null}"> --%>
+<%-- 		<h3><spring:message code="comment.service"/>: <jstl:out value="${entityName}" /></h3> --%>
+<%-- 	</jstl:if> --%>
+
+	<h3><spring:message code="comment.entity"/>: <jstl:out value="${entityName}" /></h3>
 	
 	<!-- Form -->
 	<form:form action="comment/administrator/delete.do" modelAttribute="comment">
@@ -45,7 +47,7 @@
 		&nbsp;
 		<input type="button" name="cancel"
 			value="<spring:message code="comment.delete.cancel" />"
-			onclick="javascript: relativeRedir('/comment/list.do?itemId=${item.id}');" />
+			onclick="javascript: relativeRedir('/comment/list.do?entityId=${entityId}');" />
 		
 	</form:form>
 	

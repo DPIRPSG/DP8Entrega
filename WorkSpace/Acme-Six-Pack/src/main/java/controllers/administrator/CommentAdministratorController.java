@@ -63,7 +63,7 @@ public class CommentAdministratorController extends AbstractController {
 		} else {
 			try {
 				commentService.delete(comment);
-				result = new ModelAndView("redirect:list.do?entityId=" + entityId);
+				result = new ModelAndView("redirect:../list.do?entityId=" + entityId);
 			} catch (Throwable oops) {
 				result = createEditModelAndView(comment, entityName, "comment.commit.error");
 			}

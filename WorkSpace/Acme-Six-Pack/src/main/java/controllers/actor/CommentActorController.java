@@ -51,38 +51,38 @@ public class CommentActorController extends AbstractController {
 	
 	// Listing ------------------------------------------------------------
 	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-//	public ModelAndView list(@RequestParam(required = false) Integer gymId, @RequestParam(required = false) Integer serviceId) {
-	public ModelAndView list(@RequestParam Integer entityId) {
-		ModelAndView result;
-		Collection<Comment> comments;
-//		Gym gym;
-//		ServiceEntity service;
-		String entityName;
-		
-//		if(gymId != null){
-//			gym = gymService.findOne(gymId);
-//			comments = commentService.findAllByGym(gym);
-//			entityName = gym.getName();
-//		}else if(serviceId != null){
-//			service = serviceService.findOne(serviceId);
-//			comments = commentService.findAllByService(service);
-//			entityName = service.getName();
-//		}else{
-//			comments = null;
-//			entityName = "You must select an entity to see their comments";
-//		}
-		
-		comments = commentService.getCommentsByEntityId(entityId);
-		entityName = commentService.getEntityNameById(entityId);
-		
-		result = new ModelAndView("comment/list");
-		result.addObject("comments", comments);
-		result.addObject("entityName", entityName);
-		result.addObject("requestURI", "comment/list.do");
-		
-		return result;
-	}
+//	@RequestMapping(value = "/list", method = RequestMethod.GET)
+////	public ModelAndView list(@RequestParam(required = false) Integer gymId, @RequestParam(required = false) Integer serviceId) {
+//	public ModelAndView list(@RequestParam Integer entityId) {
+//		ModelAndView result;
+//		Collection<Comment> comments;
+////		Gym gym;
+////		ServiceEntity service;
+//		String entityName;
+//		
+////		if(gymId != null){
+////			gym = gymService.findOne(gymId);
+////			comments = commentService.findAllByGym(gym);
+////			entityName = gym.getName();
+////		}else if(serviceId != null){
+////			service = serviceService.findOne(serviceId);
+////			comments = commentService.findAllByService(service);
+////			entityName = service.getName();
+////		}else{
+////			comments = null;
+////			entityName = "You must select an entity to see their comments";
+////		}
+//		
+//		comments = commentService.findAllByEntityId(entityId);
+//		entityName = commentService.getEntityNameById(entityId);
+//		
+//		result = new ModelAndView("comment/list");
+//		result.addObject("comments", comments);
+//		result.addObject("entityName", entityName);
+//		result.addObject("requestURI", "comment/list.do");
+//		
+//		return result;
+//	}
 	
 	
 	// Creating --------------------------------------------------------------
@@ -116,7 +116,7 @@ public class CommentActorController extends AbstractController {
 		} else {
 			try {
 				commentService.save(comment);
-				result = new ModelAndView("redirect:list.do?entityId=" + entityId);
+				result = new ModelAndView("redirect:../list.do?entityId=" + entityId);
 			} catch (Throwable oops) {
 				result = createEditModelAndView(comment, entityName, "comment.commit.error");
 			}
