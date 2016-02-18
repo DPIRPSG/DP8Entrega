@@ -10,6 +10,7 @@ import org.springframework.util.Assert;
 
 import repositories.CommentRepository;
 import domain.Comment;
+import domain.CommentedEntity;
 import domain.Gym;
 import domain.ServiceEntity;
 
@@ -46,14 +47,18 @@ public class CommentService {
 	
 	public Comment create(int entityId){
 		Comment result;
+		CommentedEntity commentedEntity;
 		
 		result = new Comment();
 		
+//		commentedEntity = commented
+		
 //		result.setMoment(new Date());
 		result.setDeleted(false);
-		setEntityByIdAndComment(entityId, result);
+		result.setCommentedEntity(commentedEntity);
+//		setEntityByIdAndComment(entityId, result);
 		
-		Assert.isTrue(result.getGym() != null || result.getService() != null, "Cannot create a Comment without a Entity asociated.");
+		Assert.notNull(result.getCommentedEntity(), "Cannot create a Comment without a Entity asociated.");
 		
 		return result;
 	}
@@ -215,18 +220,18 @@ public class CommentService {
 //		return result;
 //	}
 	
-	public void setEntityByIdAndComment(int entityId, Comment comment) {
-		Gym gym;
-		ServiceEntity service;
-		
-		if(gymService.findOne(entityId) != null){
-			gym = gymService.findOne(entityId);
-			comment.setGym(gym);
-		}else if(serviceService.findOne(entityId) != null){
-			service = serviceService.findOne(entityId);
-			comment.setService(service);
-		}
-	}
+//	public void setEntityByIdAndComment(int entityId, Comment comment) {
+//		Gym gym;
+//		ServiceEntity service;
+//		
+//		if(gymService.findOne(entityId) != null){
+//			gym = gymService.findOne(entityId);
+//			comment.setGym(gym);
+//		}else if(serviceService.findOne(entityId) != null){
+//			service = serviceService.findOne(entityId);
+//			comment.setService(service);
+//		}
+//	}
 	
 	public Integer getEntityIdByComment(Comment comment) {
 		Integer result;
