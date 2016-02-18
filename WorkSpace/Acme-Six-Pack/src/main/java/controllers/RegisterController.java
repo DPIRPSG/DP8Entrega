@@ -50,10 +50,8 @@ public class RegisterController extends AbstractController{
 		ModelAndView result;
 		boolean bindingError;
 		
-		if(binding.hasFieldErrors("messageBoxs") 
-				&& binding.hasFieldErrors("creditCard")
-				&& binding.hasFieldErrors("socialIdentity")){
-			bindingError = binding.getErrorCount() > 3;
+		if(binding.hasFieldErrors("messageBoxs")){
+			bindingError = binding.getErrorCount() > 1;
 		}else{
 			bindingError = binding.getErrorCount() > 0;
 		}

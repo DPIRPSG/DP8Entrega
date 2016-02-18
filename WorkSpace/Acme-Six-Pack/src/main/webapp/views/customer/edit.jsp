@@ -13,7 +13,7 @@
 		<!-- Hidden Attributes -->
 		<form:hidden path="id"/>
 		<form:hidden path="version"/>
-		<form:hidden path="messageBoxs"/>
+		<!-- <form:hidden path="messageBoxs"/>-->
 		<!--<form:hidden path="creditCard"/>-->
 		<!--<form:hidden path="socialIdentity"/>-->
 		<form:hidden path="feePayment"/>
