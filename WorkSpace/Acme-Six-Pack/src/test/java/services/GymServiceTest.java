@@ -34,14 +34,11 @@ public class GymServiceTest extends AbstractTest{
 	public void testCreate1(){		
 		Gym gym;
 		Collection<Gym> gyms;
-		int gymId;
 		
 		authenticate("admin");
 		
 		gyms = gymService.findAll();
 		System.out.println(gyms);
-		
-		gymId = 33;
 		
 		System.out.println("Empezamos a crear el Gym");
 		
