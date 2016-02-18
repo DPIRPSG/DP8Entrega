@@ -53,6 +53,7 @@
 		
 		<security:intercept-url pattern="/comment/list.do" access="permitAll" /> 
 		<security:intercept-url pattern="/comment/create.do" access="permitAll" />
+		<security:intercept-url pattern="/gym/list.do" access="permitAll" />
 		<security:intercept-url pattern="/service/list.do" access="permitAll" />
 		
 		<security:intercept-url pattern="/customer/create.do" access="!hasAnyRole('CUSTOMER', 'ADMIN')" />

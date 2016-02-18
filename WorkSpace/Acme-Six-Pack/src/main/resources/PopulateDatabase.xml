@@ -694,6 +694,7 @@
 		<property name="service">
 			<list>
 				<ref bean="service1"/>
+				<ref bean="service4"/>
 			</list>
 		</property>
 		<property name="feePayment">
@@ -730,6 +731,7 @@
 		<property name="service">
 			<list>
 				<ref bean="service1"/>
+				<ref bean="service2"/>
 			</list>
 		</property>
 		<property name="feePayment">
@@ -759,6 +761,7 @@
 		<property name="service">
 			<list>
 				<ref bean="service1"/>
+				<ref bean="service3"/>
 			</list>
 		</property>
 		<property name="feePayment">
@@ -785,6 +788,8 @@
 		<property name="description" value="Servicio de Fitness"/>
 		<property name="pictures">
 			<list>
+				<value>http://guiafitness.com/wp-content/uploads/clase-zumba-fitness.jpg</value>
+				<value>https://www.clubfluviallugo.com/web/media/rokgallery/0/052c7c45-45e9-408e-ba87-3b29c88ca085/clase_fitness_1.jpg</value>
 			</list>
 		</property>
 		<property name="gyms">
@@ -816,10 +821,13 @@
 		<property name="description" value="Servicio de Spinning"/>
 		<property name="pictures">
 			<list>
+				<value>http://www.adelgazaconenriqueangel.com/wp-content/uploads/2013/10/spinning-funciona.jpg</value>
+				<value>http://blogs.okdiario.com/vida-sana/wp-content/uploads/2015/07/Spinning-Class-with-instructor.jpg</value>
 			</list>
 		</property>
 		<property name="gyms">
 			<list>
+				<ref bean="gym2"/>
 			</list>
 		</property>
 		<property name="bookings">
@@ -838,10 +846,13 @@
 		<property name="description" value="Servicio de Karate"/>
 		<property name="pictures">
 			<list>
+				<value>https://pixabay.com/static/uploads/photo/2013/07/12/15/48/kickboxing-150331_960_720.png"</value>
+				<value>http://www.quevivaeldeporte.com/wp-content/uploads/2009/03/Karate_04-1024x686-980x610-2z9rt6l25kmyvumc7p7ymi.jpg</value>
 			</list>
 		</property>
 		<property name="gyms">
 			<list>
+				<ref bean="gym3"/>
 			</list>
 		</property>
 		<property name="bookings">
@@ -860,10 +871,13 @@
 		<property name="description" value="Servicio de Natación"/>
 		<property name="pictures">
 			<list>
+				<value>http://www.entrenamiento.com/wp-content/uploads/2016/01/5-consejos-para-nadadores-principiantes.jpg</value>
+				<value>https://i.ytimg.com/vi/xL2CSFj-VwM/maxresdefault.jpg</value>
 			</list>
 		</property>
 		<property name="gyms">
 			<list>
+				<ref bean="gym1"/>
 			</list>
 		</property>
 		<property name="bookings">

@@ -57,21 +57,19 @@
 </display:table>
 
 <!-- Action links -->
-<jstl:if test="${gym != null}">
-	<security:authorize access="isAuthenticated()">
+<security:authorize access="isAuthenticated()">
+	<jstl:if test="${gym != null}">
 		<div>
 			<a href="comment/create.do?gymId=${gym.id}"> <spring:message
 					code="comment.create" />
 			</a>
 		</div>
-	</security:authorize>
-</jstl:if>
-<jstl:if test="${service != null}">
-	<security:authorize access="isAuthenticated()">
+	</jstl:if>
+	<jstl:if test="${service != null}">
 		<div>
 			<a href="comment/create.do?serviceId=${service.id}"> <spring:message
 					code="comment.create" />
 			</a>
 		</div>
-	</security:authorize>
-</jstl:if>
+	</jstl:if>
+</security:authorize>
