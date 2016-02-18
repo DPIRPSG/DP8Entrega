@@ -13,5 +13,8 @@ public interface ServiceRepository extends JpaRepository<ServiceEntity, Integer>
 
 	@Query("select s from ServiceEntity s join s.gyms g where g.id = ?1")
 	Collection<ServiceEntity> findAllByGym(int gymId);
+
+	@Query("select s from ServiceEntity s where s.name like ?1")
+	ServiceEntity findOneByName(String name);
 	
 }
