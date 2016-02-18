@@ -8,7 +8,6 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<security:authorize access = "isAnonymous()">
 	<!-- Form -->
 	<form:form action="socialIdentity/customer/edit.do" modelAttribute="socialIdentity">
 		<!-- Hidden Attributes -->
@@ -59,5 +58,3 @@
 		<br />
 		
 	</form:form>
-
-</security:authorize>
