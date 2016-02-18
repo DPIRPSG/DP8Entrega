@@ -88,6 +88,8 @@ public class RegisterController extends AbstractController{
 		result = new ModelAndView("customer/create");
 		result.addObject("customer", consumer);
 		result.addObject("message", message);
+		result.addObject("urlAction", "customer/create.do");
+		result.addObject("creating", true);
 		
 		return result;
 	}

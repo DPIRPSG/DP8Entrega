@@ -138,7 +138,7 @@
 		<property name="surname" value="Rodriguez"/>
 		<property name="phone" value="666777888"/>
 		<property name="userAccount" ref="userAccount1"/>
-		<property name="messageBox">
+		<property name="messageBoxs">
 			<list>
 				<ref bean="folder1"/>
 				<ref bean="folder2"/>
@@ -170,7 +170,7 @@
 		<property name="userAccount" ref="userAccount2"/>
 		<property name="creditCard" ref="creditCard1"/>
 		<property name="socialIdentity" ref="socialIdentity1"/>
-		<property name="messageBox">
+		<property name="messageBoxs">
 			<list>
 				<ref bean="folder5" />
 				<ref bean="folder6" />
@@ -220,7 +220,7 @@
 		<property name="phone" value="612342289"/>
 		<property name="userAccount" ref="userAccount3"/>
 		<property name="creditCard" ref="creditCard2"/>
-		<property name="messageBox">
+		<property name="messageBoxs">
 			<list>
 				<ref bean="folder9"/>
 				<ref bean="folder10"/>
@@ -262,7 +262,7 @@
 		<property name="phone" value="633422897"/>
 		<property name="userAccount" ref="userAccount4"/>
 		<property name="creditCard" ref="creditCard3"/>
-		<property name="messageBox">
+		<property name="messageBoxs">
 			<list>
 				<ref bean="folder13"/>
 				<ref bean="folder14"/>
@@ -309,7 +309,7 @@
 		<property name="phone" value="626667791"/>
 		<property name="userAccount" ref="userAccount5"/>
 		<property name="creditCard" ref="creditCard4"/>
-		<property name="messageBox">
+		<property name="messageBoxs">
 			<list>
 				<ref bean="folder17"/>
 				<ref bean="folder18"/>

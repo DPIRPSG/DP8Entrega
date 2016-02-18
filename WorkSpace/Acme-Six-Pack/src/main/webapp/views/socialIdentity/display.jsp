@@ -9,54 +9,32 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 	<!-- Listing grid -->
+<jstl:if test="${socialIdentity.id != 0}">
 	<div>
 	<table>
-	<tr>
-		<th><spring:message code="socialIdentity.sentMoment" /> :</th>
-		<td><jstl:out value="${socialIdentity.sentMoment}" /></td>
-	</tr>
-	<tr>
-		<th><spring:message code="message.folders" /> :</th>
-		<td><jstl:forEach var="temp" items="${folders}">
-			<a href="message/actor/list.do?folderId=${temp.id}">
-				<jstl:out value="${temp.name}" />
-			</a> &nbsp;
-		</jstl:forEach>
-		<b><a href="message/actor/edit.do?messageId=${messa.id}"> 
-			<spring:message code="message.addToFolder" />
-		</a></b>
-		</td>
-	</tr>
-	<tr>
-		<th><spring:message code="message.sender" /> :</th>
-		<td><jstl:out value="${messa.sender.userAccount.username}" /></td>
-	</tr>
-	<tr>
-		<th><spring:message code="message.recipients" /> :</th>
-		<td><jstl:forEach var="temp" items="${messa.recipients}">
-			<jstl:out value="${temp.userAccount.username}" /> &nbsp;
-		</jstl:forEach>
-		</td>
-	</tr>
-	<tr>
-		<th><spring:message code="message.subject" /> :</th>
-		<td><jstl:out value="${messa.subject}" /></td>
-	</tr>
-	<tr>
-		<th><spring:message code="message.body" /> :</th>
-		<td><jstl:out value="${messa.body}" /></td>
-	</tr>
-	
-	
+		<acme:display code="socialIdentity.name" value="${socialIdentity.name}"/>
+		<acme:display code="socialIdentity.homePage" value="${socialIdentity.homePage}"/>
+		<acme:display code="socialIdentity.nick" value="${socialIdentity.nick}"/>
+		<tr>
+			<th><spring:message code="socialIdentity.picture" /> :</th>
+			<td><img src="${socialIdentity.picture}" style="width:204px;height:128px;"/></td>
+		</tr>
+
 	</table>
 	</div>
-	
+</jstl:if>
+<jstl:if test="${socialIdentity.id == 0}">	
+	<b><spring:message code="socialIdentity.null" /></b>
+</jstl:if>
+	<br />
+	<br />
 	<!-- Action links -->
 	<div>
-		<b><a href="message/actor/edit.do?messageId=${messa.id}"> 
-			<spring:message code="message.addToFolder" />
+		<b><a href="socialIdentity/customer/edit.do"> 
+			<spring:message code="socialIdentity.edit" />
 		</a></b>
 	</div>
 
