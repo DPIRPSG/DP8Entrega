@@ -57,7 +57,17 @@
 		</security:authorize>
 		
 		<security:authorize access="isAuthenticated()">
-			<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" />(<security:authentication property="principal.username" />)</a></li>
+			<!-- <li><a href="j_spring_security_logout"><spring:message code="master.page.logout" />(<security:authentication property="principal.username" />)</a></li> -->
+			<li><a class="fNiv"><security:authentication property="principal.username" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<security:authorize access="hasRole('CUSTOMER')">
+						<li><a href="customer/customer/display.do"><spring:message code="master.page.customer.info" /></a></li>
+					</security:authorize>
+					
+					<li><b><a href="j_spring_security_logout"><spring:message code="master.page.logout" /></a></b></li>
+				</ul>
+			</li>
 		</security:authorize>
 	</ul>
 </div>

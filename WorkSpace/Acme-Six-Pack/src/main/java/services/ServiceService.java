@@ -98,5 +98,15 @@ public class ServiceService {
 		
 		return result;
 	}
+
+	public ServiceEntity findOneByName(String name) {
+		Assert.notNull(name);
+		
+		ServiceEntity result;
+		
+		result = serviceRepository.findOneByName(name);
+		
+		return result;
+	}
 	
 }
