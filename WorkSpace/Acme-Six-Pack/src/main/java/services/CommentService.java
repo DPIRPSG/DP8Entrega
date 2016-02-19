@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.CommentRepository;
+import domain.Actor;
 import domain.Comment;
 import domain.CommentedEntity;
 
@@ -51,16 +52,20 @@ public class CommentService {
 		
 		Comment result;
 		CommentedEntity commentedEntity;
+		Actor actor;
 		
 		result = new Comment();
 		
 		commentedEntity = commentedEntityService.findOne(entityId);
+		Assert.notNull(commentedEntity, "Cannot create a Comment without a Entity asociated.");
+		actor = actorService.findByPrincipal();
+		Assert.notNull(actor, "Cannot create a Comment without an Actor asociated.");
 		
 		result.setDeleted(false);
 		result.setCommentedEntity(commentedEntity);
+		result.setActor(actor);
+		result.setMoment(new Date()); // Se crea una fecha en este momento porque no puede ser null, pero la fecha real se fijará en el método "save"
 //		setEntityByIdAndComment(entityId, result);
-		
-		Assert.notNull(result.getCommentedEntity(), "Cannot create a Comment without a Entity asociated.");
 		
 		return result;
 	}

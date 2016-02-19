@@ -34,13 +34,13 @@
 	<!-- Attributes -->
 	<spring:message code="comment.actor" var="actorHeader" />
 	<display:column title="${actorHeader}"
-		sortable="false" >
+		sortable="true" >
 		<jstl:out value="${row_Comment.actor.name}" /> <jstl:out value="${row_Comment.actor.surname}" />(<jstl:out value="${row_Comment.actor.userAccount.username}" />)
 	</display:column>
 	
 	<spring:message code="comment.moment" var="momentHeader" />
 	<display:column title="${momentHeader}" 
-		sortable="false" format="{0,date,yyyy/MM/dd }" >
+		sortable="true" format="{0,date,yyyy/MM/dd }" >
 		<jstl:out value="${row_Comment.moment}"/>
 	</display:column>
 

@@ -67,7 +67,7 @@
 	</display:column>
 
 	<display:column>
-		<a href="comment/list.do?gymId=${row_Gym.id}"> <spring:message
+		<a href="comment/list.do?commentedEntityId=${row_Gym.id}"> <spring:message
 				code="gym.comments" />
 		</a>
 	</display:column>

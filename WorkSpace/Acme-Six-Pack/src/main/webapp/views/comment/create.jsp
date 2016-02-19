@@ -20,7 +20,7 @@
 	<h3><spring:message code="comment.entity"/>: <jstl:out value="${commentedEntity.name}" /></h3>
 	
 	<!-- Form -->
-	<form:form action="comment/create.do" modelAttribute="comment">
+	<form:form action="comment/actor/create.do" modelAttribute="comment">
 		<!-- Hidden Attributes -->
 		<form:hidden path="id"/>
 		<form:hidden path="version"/>
@@ -58,9 +58,9 @@
 <%-- 			value="<spring:message code="comment.create.cancel" />" --%>
 <%-- 			onclick="javascript: relativeRedir('/comment/list.do?serviceId=${comment.service.id}');" /> --%>
 <%-- 		</jstl:if> --%>
-			<input type="button" name="cancel"
-			value="<spring:message code="comment.create.cancel" />"
-			onclick="javascript: relativeRedir('/comment/list.do?commentedEntityId=${commentedEntity.id}');" />
+		<input type="button" name="cancel"
+		value="<spring:message code="comment.create.cancel" />"
+		onclick="javascript: relativeRedir('/comment/list.do?commentedEntityId=${commentedEntity.id}');" />
 		
 	</form:form>
 

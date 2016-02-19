@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import services.CommentService;
 import services.CommentedEntityService;
 import controllers.AbstractController;
+import domain.Actor;
 import domain.Comment;
 import domain.CommentedEntity;
 
@@ -43,10 +44,12 @@ public class CommentAdministratorController extends AbstractController {
 		Comment comment;
 		CommentedEntity commentedEntity;
 		int commentedEntityId;
+//		Actor actor;
 		
 		comment = commentService.findOne(commentId);
 		commentedEntityId = comment.getCommentedEntity().getId();
 		commentedEntity = commentedEntityService.findOne(commentedEntityId);
+//		actor = comment.getActor();
 		
 		result = createEditModelAndView(comment, commentedEntity);
 		
@@ -58,9 +61,12 @@ public class CommentAdministratorController extends AbstractController {
 		ModelAndView result;
 		CommentedEntity commentedEntity;
 		int commentedEntityId;
+//		Actor actor;
 		
-		commentedEntityId = comment.getCommentedEntity().getId();
-		commentedEntity = commentedEntityService.findOne(commentedEntityId);
+		comment = commentService.findOne(comment.getId());
+		commentedEntity = comment.getCommentedEntity();
+		commentedEntityId = commentedEntity.getId();
+//		actor = comment.getActor();
 		
 		if (binding.hasErrors()) {
 			result = createEditModelAndView(comment, commentedEntity);
@@ -92,6 +98,7 @@ public class CommentAdministratorController extends AbstractController {
 		result = new ModelAndView("comment/delete");
 		result.addObject("comment", comment);
 		result.addObject("commentedEntity", commentedEntity);
+//		result.addObject("actor", actor);
 		result.addObject("message", message);
 		
 		return result;

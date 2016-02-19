@@ -64,15 +64,15 @@ public class CommentActorController extends AbstractController {
 		CommentedEntity commentedEntity;
 		int commentedEntityId;
 		
-		commentedEntityId = comment.getCommentedEntity().getId();
-		commentedEntity = commentedEntityService.findOne(commentedEntityId);
+		commentedEntity = comment.getCommentedEntity();
+		commentedEntityId = commentedEntity.getId();
 		
 		if (binding.hasErrors()) {
 			result = createEditModelAndView(comment, commentedEntity);
 		} else {
 			try {
 				commentService.save(comment);
-				result = new ModelAndView("redirect:../list.do?commentedEntityId=" + commentedEntity);
+				result = new ModelAndView("redirect:../list.do?commentedEntityId=" + commentedEntityId);
 			} catch (Throwable oops) {
 				result = createEditModelAndView(comment, commentedEntity, "comment.commit.error");
 			}

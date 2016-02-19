@@ -1076,6 +1076,7 @@
 		<property name="text" value="Buen Gym"/>
 		<property name="moment" value="2016/02/09 18:30"/>
 		<property name="starRating" value="2"/>
+		<property name="deleted" value="false"/>
 		<property name="actor" ref="customer1"/>
 		<property name="commentedEntity" ref="gym1"/>
 	</bean>
@@ -1084,6 +1085,7 @@
 		<property name="text" value="No está mal"/>
 		<property name="moment" value="2016/02/08 18:30"/>
 		<property name="starRating" value="2"/>
+		<property name="deleted" value="false"/>
 		<property name="actor" ref="customer2"/>
 		<property name="commentedEntity" ref="gym1"/>
 	</bean>
@@ -1092,6 +1094,7 @@
 		<property name="text" value="No me gusta"/>
 		<property name="moment" value="2016/02/10 18:30"/>
 		<property name="starRating" value="0"/>
+		<property name="deleted" value="false"/>
 		<property name="actor" ref="customer3"/>
 		<property name="commentedEntity" ref="gym1"/>
 	</bean>
@@ -1100,6 +1103,7 @@
 		<property name="text" value="Es muy bueno"/>
 		<property name="moment" value="2016/02/09 18:30"/>
 		<property name="starRating" value="3"/>
+		<property name="deleted" value="false"/>
 		<property name="actor" ref="customer1"/>
 		<property name="commentedEntity" ref="gym2"/>
 	</bean>
@@ -1108,6 +1112,7 @@
 		<property name="text" value="No es malo"/>
 		<property name="moment" value="2016/02/08 18:30"/>
 		<property name="starRating" value="1"/>
+		<property name="deleted" value="false"/>
 		<property name="actor" ref="customer2"/>
 		<property name="commentedEntity" ref="gym2"/>
 	</bean>
@@ -1116,6 +1121,7 @@
 		<property name="text" value="No lo probé, pero es el mas barato"/>
 		<property name="moment" value="2016/02/08 18:30"/>
 		<property name="starRating" value="3"/>
+		<property name="deleted" value="false"/>
 		<property name="actor" ref="customer1"/>
 		<property name="commentedEntity" ref="gym3"/>
 	</bean>
@@ -1124,6 +1130,7 @@
 		<property name="text" value="Buen servicio!"/>
 		<property name="moment" value="2016/02/08 18:30"/>
 		<property name="starRating" value="2"/>
+		<property name="deleted" value="false"/>
 		<property name="actor" ref="customer1"/>
 		<property name="commentedEntity" ref="service1"/>
 	</bean>
@@ -1132,6 +1139,7 @@
 		<property name="text" value="La mejor clase de Fitness"/>
 		<property name="moment" value="2016/02/10 18:30"/>
 		<property name="starRating" value="3"/>
+		<property name="deleted" value="true"/>
 		<property name="actor" ref="customer3"/>
 		<property name="commentedEntity" ref="service1"/>
 	</bean>
@@ -1140,6 +1148,7 @@
 		<property name="text" value="Buena clase de Karate"/>
 		<property name="moment" value="2016/02/11 18:30"/>
 		<property name="starRating" value="2"/>
+		<property name="deleted" value="false"/>
 		<property name="actor" ref="customer4"/>
 		<property name="commentedEntity" ref="service3"/>
 	</bean>

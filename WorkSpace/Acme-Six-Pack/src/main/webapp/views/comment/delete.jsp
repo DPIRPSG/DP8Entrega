@@ -24,6 +24,7 @@
 		<!-- Hidden Attributes -->
 		<form:hidden path="id"/>
 		<form:hidden path="version"/>
+		<form:hidden path="deleted"/>
 		<form:hidden path="commentedEntity"/>
 		
 		<!-- Shown Attributes -->
