@@ -47,7 +47,7 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="customer/administrator/list.do"><spring:message code="master.page.list.customers" /></a></li>
-					<li><a href="order/administrator/list.do"><spring:message code="master.page.list.orders" /></a></li>
+					<li><a href="feePayment/administrator/list.do"><spring:message code="master.page.list.feePayments" /></a></li>
 					<li><a href="booking/administrator/list.do?"><spring:message code="master.page.list.booking" /></a></li>
 				</ul>
 			</li>
