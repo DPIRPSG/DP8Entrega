@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import domain.Customer;
 import domain.FeePayment;
 import repositories.FeePaymentRepository;
 
@@ -19,6 +20,9 @@ public class FeePaymentService {
 
 	@Autowired
 	private FeePaymentRepository feePaymentRepository;
+	
+	@Autowired
+	private CustomerService customerService;
 
 	// Supporting services ----------------------------------------------------
 
@@ -30,6 +34,22 @@ public class FeePaymentService {
 
 
 	// Simple CRUD methods ----------------------------------------------------
+	public FeePayment create() {
+		FeePayment result;
+		Customer customer;
+		Date moment;
+		
+		customer = customerService.findByPrincipal();
+		moment = new Date();
+		
+		result = new FeePayment();
+		
+		result.setCustomer(customer);
+		result.setPaymentMoment(moment);
+		
+		return result;
+	}
+	
 	public void save(FeePayment feePayment) {
 		Assert.notNull(feePayment);
 		
@@ -58,4 +78,7 @@ public class FeePaymentService {
 		
 		return result;
 	}
+
+
+	
 }
