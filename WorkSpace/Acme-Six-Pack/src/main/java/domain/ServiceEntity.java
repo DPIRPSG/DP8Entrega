@@ -12,37 +12,15 @@ import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 @Entity
 @Access(AccessType.PROPERTY)
 @Table(name = "serviceTable")
-public class ServiceEntity extends DomainEntity{
+public class ServiceEntity extends CommentedEntity{
 
 	// Constructors -----------------------------------------------------------
 
 	// Attributes -------------------------------------------------------------
-	private String name;
-	private String description;
 	private Collection<String> pictures;
-
-	@NotBlank
-	@NotNull
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	@NotBlank
-	@NotNull
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
 
 	@ElementCollection
 	@Valid
@@ -55,10 +33,8 @@ public class ServiceEntity extends DomainEntity{
 
 
 	// Relationships ----------------------------------------------------------
-	
 	private Collection<Gym> gyms;
 	private Collection<Booking> bookings;
-	private Collection<Comment> comments;
 	
 
 	@NotNull
@@ -87,15 +63,5 @@ public class ServiceEntity extends DomainEntity{
 	}
 	public void setBookings(Collection<Booking> bookings) {
 		this.bookings = bookings;
-	}
-	
-	@Valid
-	@NotNull
-	@OneToMany(mappedBy = "service")
-	public Collection<Comment> getComments() {
-		return comments;
-	}
-	public void setComments(Collection<Comment> comments) {
-		this.comments = comments;
 	}	
 }

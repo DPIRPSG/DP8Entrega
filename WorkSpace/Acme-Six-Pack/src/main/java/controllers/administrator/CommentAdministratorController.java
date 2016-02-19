@@ -4,7 +4,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.CommentService;
+import services.CommentedEntityService;
 import controllers.AbstractController;
+import domain.Actor;
 import domain.Comment;
+import domain.CommentedEntity;
 
 @Controller
 @RequestMapping("/comment/administrator")
@@ -23,6 +25,9 @@ public class CommentAdministratorController extends AbstractController {
 	
 	@Autowired
 	private CommentService commentService;
+	
+	@Autowired
+	private CommentedEntityService commentedEntityService;
 	
 	
 	// Constructors --------------------------------------------------------
@@ -37,14 +42,16 @@ public class CommentAdministratorController extends AbstractController {
 	public ModelAndView create(@RequestParam Integer commentId) {
 		ModelAndView result;
 		Comment comment;
-		int entityId;
-		String entityName;
+		CommentedEntity commentedEntity;
+		int commentedEntityId;
+//		Actor actor;
 		
 		comment = commentService.findOne(commentId);
-		entityId = commentService.getEntityIdByComment(comment);
-		entityName = commentService.getEntityNameById(entityId);
+		commentedEntityId = comment.getCommentedEntity().getId();
+		commentedEntity = commentedEntityService.findOne(commentedEntityId);
+//		actor = comment.getActor();
 		
-		result = createEditModelAndView(comment, entityName);
+		result = createEditModelAndView(comment, commentedEntity);
 		
 		return result;
 	}
@@ -52,20 +59,23 @@ public class CommentAdministratorController extends AbstractController {
 	@RequestMapping(value="/delete", method=RequestMethod.POST, params="delete")
 	public ModelAndView save(@Valid Comment comment, BindingResult binding) {
 		ModelAndView result;
-		int entityId;
-		String entityName;
+		CommentedEntity commentedEntity;
+		int commentedEntityId;
+//		Actor actor;
 		
-		entityId = commentService.getEntityIdByComment(comment);
-		entityName = commentService.getEntityNameById(entityId);
+		comment = commentService.findOne(comment.getId());
+		commentedEntity = comment.getCommentedEntity();
+		commentedEntityId = commentedEntity.getId();
+//		actor = comment.getActor();
 		
 		if (binding.hasErrors()) {
-			result = createEditModelAndView(comment, entityName);
+			result = createEditModelAndView(comment, commentedEntity);
 		} else {
 			try {
 				commentService.delete(comment);
-				result = new ModelAndView("redirect:../list.do?entityId=" + entityId);
+				result = new ModelAndView("redirect:../list.do?commentedEntityId=" + commentedEntityId);
 			} catch (Throwable oops) {
-				result = createEditModelAndView(comment, entityName, "comment.commit.error");
+				result = createEditModelAndView(comment, commentedEntity, "comment.commit.error");
 			}
 		}
 		
@@ -74,20 +84,21 @@ public class CommentAdministratorController extends AbstractController {
 	
 	// Ancillary methods ---------------------------------------------------
 	
-	protected ModelAndView createEditModelAndView(Comment comment, String entityName) {
+	protected ModelAndView createEditModelAndView(Comment comment, CommentedEntity commentedEntity) {
 		ModelAndView result;
 		
-		result = createEditModelAndView(comment, entityName, null);
+		result = createEditModelAndView(comment, commentedEntity, null);
 		
 		return result;
 	}
 	
-	protected ModelAndView createEditModelAndView(Comment comment, String entityName, String message) {
+	protected ModelAndView createEditModelAndView(Comment comment, CommentedEntity commentedEntity, String message) {
 		ModelAndView result;
 		
 		result = new ModelAndView("comment/delete");
 		result.addObject("comment", comment);
-		result.addObject("entityName", entityName);
+		result.addObject("commentedEntity", commentedEntity);
+//		result.addObject("actor", actor);
 		result.addObject("message", message);
 		
 		return result;

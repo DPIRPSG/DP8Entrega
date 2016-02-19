@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.CommentService;
+import services.CommentedEntityService;
 import domain.Comment;
+import domain.CommentedEntity;
 
 @Controller
 @RequestMapping("/comment")
@@ -20,6 +22,9 @@ public class CommentController {
 	
 	@Autowired
 	private CommentService commentService;
+	
+	@Autowired
+	private CommentedEntityService commentedEntityService;
 	
 	
 	// Constructors --------------------------------------------------------
@@ -33,12 +38,12 @@ public class CommentController {
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 //		public ModelAndView list(@RequestParam(required = false) Integer gymId, @RequestParam(required = false) Integer serviceId) {
-	public ModelAndView list(@RequestParam Integer entityId) {
+	public ModelAndView list(@RequestParam Integer commentedEntityId) {
 		ModelAndView result;
 		Collection<Comment> comments;
+		CommentedEntity commentedEntity;
 //			Gym gym;
 //			ServiceEntity service;
-		String entityName;
 		
 //			if(gymId != null){
 //				gym = gymService.findOne(gymId);
@@ -53,13 +58,12 @@ public class CommentController {
 //				entityName = "You must select an entity to see their comments";
 //			}
 		
-		comments = commentService.findAllByEntityId(entityId);
-		entityName = commentService.getEntityNameById(entityId);
+		comments = commentService.findAllByCommentedEntityId(commentedEntityId);
+		commentedEntity = commentedEntityService.findOne(commentedEntityId);
 		
 		result = new ModelAndView("comment/list");
 		result.addObject("comments", comments);
-		result.addObject("entityName", entityName);
-		result.addObject("entityId", entityId);
+		result.addObject("commentedEntity", commentedEntity);
 		result.addObject("requestURI", "comment/list.do");
 		
 		return result;
