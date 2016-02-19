@@ -7,11 +7,12 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <security:authorize access="hasRole('ADMIN')">
 
 	<!-- Form -->
-	<form:form action="feePayment/edit.do" modelAttribute="feePayment">
+	<form:form action="feePayment/administrator/edit.do" modelAttribute="feePayment">
 		<!-- Hidden Attributes -->
 		<form:hidden path="id"/>
 		<form:hidden path="version"/>
@@ -19,7 +20,7 @@
 		<!-- Editable Attributes -->
 		
 		<form:hidden path="customer"/>
-		<p><spring:message code = "feePayment.customer"/>: <jstl:out value="${feePayment.customer.actor.name}" />(<jstl:out value="${feePayment.customer.actor.userAccount.userName}" />)</p>
+		<p><spring:message code = "feePayment.customer"/>: <jstl:out value="${feePayment.customer.name}" />(<jstl:out value="${feePayment.customer.userAccount.username}" />)</p>
 		
 		<form:hidden path="gym"/>
 		<p><spring:message code = "feePayment.gym"/>: <jstl:out value="${feePayment.gym.name}" /></p>
@@ -27,7 +28,12 @@
 		<form:hidden path="paymentMoment"/>
 		<p><spring:message code = "feePayment.paymentMoment"/>: <jstl:out value="${feePayment.paymentMoment}" /></p>
 		
-		<form:hidden path="creditCard"/>
+		<form:hidden path="creditCard.holderName"/>
+		<form:hidden path="creditCard.brandName"/>
+		<form:hidden path="creditCard.number"/>
+		<form:hidden path="creditCard.expirationMonth"/>
+		<form:hidden path="creditCard.expirationYear"/>
+		<form:hidden path="creditCard.cvvCode"/>
 		<p><spring:message code = "feePayment.creditCard"/>: <jstl:out value="${feePayment.creditCard}" /></p>
 		
 		<form:hidden path="activeMoment"/>
@@ -44,9 +50,8 @@
 		<p><spring:message code = "feePayment.amount"/>: <jstl:out value="${feePayment.amount}" /></p>
 		
 		<!-- Action buttons -->
-		<input type="submit" name="save"
-			value="<spring:message code="feePayment.edit.save"/>"/>
-		&nbsp;
+		<acme:submit name="save" code="feePayment.edit.save"/>
+		
 		<input type="button" name="cancel"
 		value="<spring:message code="feePayment.edit.cancel" />"
 		onclick="javascript: relativeRedir('/feePayment/administrator/list.do');" />
