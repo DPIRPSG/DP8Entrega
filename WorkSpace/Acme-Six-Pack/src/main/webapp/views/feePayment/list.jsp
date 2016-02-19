@@ -28,7 +28,7 @@
 		<spring:message code="feePayment.customer" var="customerHeader" />
 		<display:column title="${customerHeader}"
 			sortable="false" >
-			<jstl:out value="${row_feePayment.customer.actor.userAccount.username}"/>
+			<jstl:out value="${row_feePayment.customer.userAccount.username}"/>
 		</display:column>
 		
 		<spring:message code="feePayment.gym" var="gymHeader" />

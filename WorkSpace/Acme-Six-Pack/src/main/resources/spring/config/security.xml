@@ -44,12 +44,17 @@
 		<security:intercept-url pattern="/dashboard/administrator/list.do" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/gym/administrator/**" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/booking/administrator/**" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/feePayment/administrator/**" access="hasRole('ADMIN')" />
+		
 		
 		
 		<security:intercept-url pattern="/booking/customer/**" access="hasRole('CUSTOMER')"/>
+		<security:intercept-url pattern="/feePayment/customer/**" access="hasRole('CUSTOMER')"/>
+		
 		<security:intercept-url pattern="/folder/actor/**" access="hasAnyRole('CUSTOMER', 'ADMIN')"/>
 		<security:intercept-url pattern="/message/actor/**" access="hasAnyRole('CUSTOMER', 'ADMIN')"/>
 		<security:intercept-url pattern="/comment/actor/create.do" access="hasAnyRole('CUSTOMER', 'ADMIN')" />
+		
 
 		<security:intercept-url pattern="/creditCard/customer/**" access="hasRole('CUSTOMER')" />
 		<security:intercept-url pattern="/customer/customer/**" access="hasRole('CUSTOMER')" />
