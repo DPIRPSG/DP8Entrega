@@ -8,6 +8,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <!-- Form -->
 <form:form action="message/actor/edit.do" modelAttribute="messa">
@@ -29,12 +30,9 @@
 	<br />
 
 	<!-- Action buttons -->
-	<input type="submit" name="save"
-		value="<spring:message code="message.save" />" />&nbsp; 
-
-	<input type="button" name="cancel"
-		value="<spring:message code="message.cancel" />"
-		onclick="javascript: relativeRedir('message/actor/display.do?messageId=${messa.id}');" />
+	<acme:submit name="save" code="message.save"/>
+	&nbsp; 
+	<acme:cancel url="message/actor/display.do?messageId=${messa.id}" code="message.cancel"/>
 	<br />
 
 </form:form>

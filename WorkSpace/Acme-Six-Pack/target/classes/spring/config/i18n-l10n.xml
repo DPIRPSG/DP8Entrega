@@ -27,15 +27,19 @@
 		<value>/views/administrator/messages</value>
 		<value>/views/customer/messages</value>
 		
+		<value>/views/socialIdentity/messages</value>
+		
 		<value>/views/comment/messages</value>
 		<value>/views/folder/messages</value>
 		<value>/views/message/messages</value>
 		<value>/views/spamTerm/messages</value>
+		
 		<value>/views/gym/messages</value>
+		<value>/views/booking/tiles.xml</value>
 		<value>/views/service/messages</value>
 		<value>/views/booking/messages</value>
-		
-		
+        <value>/views/feePayment/messages</value>
+		<value>/views/creditCard/messages</value>		
 	</util:list>
 
 </beans>

@@ -8,6 +8,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <!-- Form -->
 <form:form action="folder/actor/edit.do" modelAttribute="folder">
@@ -18,26 +19,17 @@
 	<form:hidden path="isSystem" />
 	<form:hidden path="messages" />
 	
-	
-
-	<form:label path="name">
-		<spring:message code="folder.name" />:
-	</form:label>
-	<form:input path="name" />
-	<form:errors cssClass="error" path="name" />
+	<acme:textbox code="folder.name" path="name" />
 	<br />
 	
 	<!-- Action buttons -->
-	<input type="submit" name="save"
-		value="<spring:message code="folder.save" />" />&nbsp; 
+	<acme:submit name="save" code="folder.save"/>
+	&nbsp;
 	<jstl:if test="${folder.id != 0}">
-		<input type="submit" name="delete"
-			value="<spring:message code="folder.delete" />"
-			onclick="return confirm('<spring:message code="folder.confirm.delete" />')" />&nbsp;
+		<acme:submit_confirm name="delete" code="folder.delete" codeConfirm="folder.confirm.delete" />
+		&nbsp;
 	</jstl:if>
-	<input type="button" name="cancel"
-		value="<spring:message code="folder.cancel" />"
-		onclick="javascript: relativeRedir('folder/actor/list.do');" />
+	<acme:cancel url="folder/actor/list.do" code="folder.cancel"/>
 	<br />
 
 </form:form>

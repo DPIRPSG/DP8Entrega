@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import domain.CreditCard;
 import domain.Customer;
 import domain.Folder;
 import domain.Message;
@@ -49,7 +50,7 @@ public class CustomerService {
 	
 	//Simple CRUD methods ----------------------------------------------------
 	
-	/** Devuelve consumer preparado para ser modificado. Necesita usar save para que persista en la base de datos
+	/** Devuelve customer preparado para ser modificado. Necesita usar save para que persista en la base de datos
 	 * 
 	 */
 	// req: 10.1
@@ -59,7 +60,7 @@ public class CustomerService {
 
 		result = new Customer();
 		
-		userAccount = userAccountService.create("CONSUMER");
+		userAccount = userAccountService.create("CUSTOMER");
 		result.setUserAccount(userAccount);
 		
 		return result;
@@ -69,21 +70,21 @@ public class CustomerService {
 	 * Almacena en la base de datos el cambio
 	 */
 	// req: 10.1
-	public void save(Customer consumer){
-		Assert.notNull(consumer);
+	public void save(Customer customer){
+		Assert.notNull(customer);
 		
 		Customer modify;
 		
 		boolean result = true;
-		for(Authority a: consumer.getUserAccount().getAuthorities()){
-			if(!a.getAuthority().equals("CONSUMER")){
+		for(Authority a: customer.getUserAccount().getAuthorities()){
+			if(!a.getAuthority().equals("CUSTOMER")){
 				result = false;
 				break;
 			}
 		}
-		Assert.isTrue(result, "A consumer can only be a authority.consumer");
+		Assert.isTrue(result, "A customer can only be a authority.customer");
 		
-		if(consumer.getId() == 0){
+		if(customer.getId() == 0){
 			Collection<Folder> folders;
 			Collection<Message> sent;
 			Collection<Message> received;
@@ -92,31 +93,24 @@ public class CustomerService {
 			//ShoppingCart shoppingCart;
 			
 			//Encoding password
-			auth = consumer.getUserAccount();
+			auth = customer.getUserAccount();
 			auth = userAccountService.modifyPassword(auth);
-			consumer.setUserAccount(auth);
+			customer.setUserAccount(auth);
 			
 			// Initialize folders
-			folders = folderService.initializeSystemFolder(consumer);
-			consumer.setMessageBox(folders);
+			folders = folderService.initializeSystemFolder(customer);
+			customer.setMessageBoxes(folders);
 			
 			sent = new ArrayList<Message>();
 			received = new ArrayList<Message>();
-			consumer.setSent(sent);
-			consumer.setReceived(received);
-			
-			//Initialize orders			
-			//orders = new ArrayList<Order>();
-			//consumer.setOrders(orders);
-			
-			//Initialize shoppingCart
-			//shoppingCart = shoppingCartService.create(consumer);
-			//consumer.setShoppingCart(shoppingCart);
+			customer.setSent(sent);
+			customer.setReceived(received);
+
 			
 		}
-		modify = customerRepository.save(consumer);
+		modify = customerRepository.save(customer);
 		
-		if(consumer.getId() == 0){
+		if(customer.getId() == 0){
 			Collection<Folder> folders;
 
 			folders = folderService.initializeSystemFolder(modify);
@@ -126,11 +120,11 @@ public class CustomerService {
 	}
 	
 	/**
-	 * Lista los consumers registrados
+	 * Lista los customers registrados
 	 */
 	// req: 12.5
 	public Collection<Customer> findAll(){
-		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can list consumers");
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can list customers");
 		
 		Collection<Customer> result;
 		
@@ -142,7 +136,7 @@ public class CustomerService {
 	//Other business methods -------------------------------------------------
 
 	/**
-	 * Devuelve el consumer que está realizando la operación
+	 * Devuelve el customers que está realizando la operación
 	 */
 	//req: x
 	public Customer findByPrincipal(){
@@ -157,59 +151,34 @@ public class CustomerService {
 		return result;
 	}
 	
-	/**
-	 * Lista el consumers con más orders. En caso de igualdad devuelve varios. 
-	 * Cuenta las orders canceladas y las no canceladas
-	 */
-	//req: 12.7.1
-	/*public Collection<Customer> findConsumerMoreOrders(){
-		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can list consumers");
-		Collection<Customer> result;
+	public CreditCard getOrCreateCreditCard(){
+		CreditCard result;
+		Customer custo;
 		
-		result = consumerRepository.findConsumerMoreOrders();
+		custo = this.findByPrincipal();
 		
-		return result;
-	}*/
-
-	/**
-	 * Lista el consumers que ha gastado más dinero. En caso de igualdad devuelve varios. 
-	 * Solo considera las orders no canceladas
-	 */
-	//req: 12.7.2
-	/*public Collection<Customer> findConsumerSpentMoreMoney(){
-		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can list consumers");
-		Collection<Customer> result;
-		
-		result = consumerRepository.findConsumerSpentMoreMoney();
-		
-		return result;
-	}*/
-
-	/**
-	 * Lista el/los consumer con más order canceladas
-	 */
-	//req: 17.6.3
-	/*public Collection<Customer> findConsumerMoreOrdersCancelled(){
-		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can list consumers");
-		Collection<Customer> result;
-		
-		result = consumerRepository.findConsumerMoreOrdersCancelled();
-		
-		return result;
-	}*/
+		result = custo.getCreditCard();
+		if(result == null)
+			result = new CreditCard();
+		return result;		
+	}
 	
-	/**
-	 * Lista el/los consumer con menos order canceladas
-	 */
-	//req: 17.6.4
-	/*public Collection<Customer> findConsumerLessOrdersCancelled(){
-		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can list consumers");
-		Collection<Customer> result;
+	public void saveCreditCard(CreditCard creditCard){
+		Customer custo;
 		
-		result = consumerRepository.findConsumerLessOrdersCancelled();
+		custo = this.findByPrincipal();
+		custo.setCreditCard(creditCard);
+		this.save(custo);
+	}
+	
+	public void deleteCreditCard(){
+		Customer custo;
 		
-		return result;
-	}*/
+		custo = this.findByPrincipal();
+		custo.setCreditCard(null);
+		this.save(custo);
+	}
+	
 	
 	public Integer numbersOfCustomersByGym(int gymId) {
 		Integer result;
@@ -235,5 +204,4 @@ public class CustomerService {
 		
 		return result;
 	}
-	
 }

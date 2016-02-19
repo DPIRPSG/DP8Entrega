@@ -32,7 +32,12 @@ public class ServiceService {
 	}
 
 	// Simple CRUD methods ----------------------------------------------------
-
+	public void save(ServiceEntity service) {
+		Assert.notNull(service);
+		
+		serviceRepository.save(service);		
+	}
+	
 	// Other business methods -------------------------------------------------
 	
 	/**
@@ -73,6 +78,14 @@ public class ServiceService {
 		return result;
 	}
 	
+	public Collection<ServiceEntity> findMostCommented() {
+		Collection<ServiceEntity> result;
+
+		result = serviceRepository.findMostCommented();
+
+		return result;
+	}
+	
 	public Collection<String> numbersOfCustomersByService(Collection<ServiceEntity> services) {
 		Collection<String> result;
 		Integer customerNumber;
@@ -90,5 +103,22 @@ public class ServiceService {
 		
 		return result;
 	}
+
+	public ServiceEntity findOneByName(String name) {
+		Assert.notNull(name);
+		
+		ServiceEntity result;
+		
+		result = serviceRepository.findOneByName(name);
+		
+		return result;
+	}
 	
+	public Collection<ServiceEntity> findAll2() {
+		Collection<ServiceEntity> result;
+		
+		result = serviceRepository.findAllWithoutFitness();
+		
+		return result;
+	}
 }

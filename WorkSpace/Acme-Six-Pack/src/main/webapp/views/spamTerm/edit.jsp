@@ -8,6 +8,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <!-- Form -->
 <form:form action="spamTerm/administrator/edit.do" modelAttribute="spamTerm">
@@ -15,25 +16,17 @@
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	
-
-	<form:label path="term">
-		<spring:message code="spamTerm.term" />:
-	</form:label>
-	<form:input path="term" />
-	<form:errors cssClass="error" path="term" />
+	<acme:textbox code="spamTerm.term" path="term" />
 	<br />
 	
 	<!-- Action buttons -->
-	<input type="submit" name="save"
-		value="<spring:message code="spamTerm.save" />" />&nbsp; 
+	<acme:submit name="save" code="spamTerm.save"/>
+	&nbsp;
 	<jstl:if test="${spamTerm.id != 0}">
-		<input type="submit" name="delete"
-			value="<spring:message code="spamTerm.delete" />"
-			onclick="return confirm('<spring:message code="spamTerm.confirm.delete" />')" />&nbsp;
+		<acme:submit_confirm name="delete" code="spamTerm.delete" codeConfirm="spamTerm.confirm.delete"/>
+		&nbsp;
 	</jstl:if>
-	<input type="button" name="cancel"
-		value="<spring:message code="spamTerm.cancel" />"
-		onclick="javascript: relativeRedir('spamTerm/administrator/list.do');" />
+	<acme:cancel url="spamTerm/administrator/list.do" code="spamTerm.cancel"/>
 	<br />
 
 </form:form>
