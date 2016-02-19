@@ -40,7 +40,7 @@ public class BookingAdministratorController extends AbstractController {
 		bookings = bookingService.findAll();
 
 		result = new ModelAndView("booking/list");
-		result.addObject("requestURI", "booking/list.do?");
+		result.addObject("requestURI", "booking/administrator/list.do?");
 		result.addObject("bookings", bookings);
 
 		return result;
@@ -113,7 +113,7 @@ public class BookingAdministratorController extends AbstractController {
 	protected ModelAndView createEditModelAndView(Booking booking, String message) {
 		ModelAndView result;
 
-		result = new ModelAndView("booking/edit");
+		result = new ModelAndView("booking/list");
 		result.addObject("booking", booking);
 		result.addObject("message", message);
 
