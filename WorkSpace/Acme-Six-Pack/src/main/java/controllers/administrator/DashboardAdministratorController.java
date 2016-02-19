@@ -56,6 +56,5 @@ public class DashboardAdministratorController extends AbstractController {
 		result.addObject("requestURI", "administrator/list.do");
 		
 		return result;
-	}
-	
+	}	
 }

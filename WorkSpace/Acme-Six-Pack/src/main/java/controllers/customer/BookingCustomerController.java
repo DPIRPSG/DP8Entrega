@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.BookingService;
@@ -36,7 +37,7 @@ public class BookingCustomerController extends AbstractController {
 		ModelAndView result;
 		Collection<Booking> bookings;
 
-		bookings = bookingService.findAll();
+		bookings = bookingService.findAllByCustomer();
 
 		result = new ModelAndView("booking/list");
 		result.addObject("requestURI", "booking/list.do?");
@@ -60,15 +61,21 @@ public class BookingCustomerController extends AbstractController {
 
 	// Edition ----------------------------------------------------------
 
-	@RequestMapping(value = "/cancel", method = RequestMethod.POST, params = "delete")
-	public ModelAndView delete(Booking booking, BindingResult binding) {
+	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
+	public ModelAndView cancel(@RequestParam int bookingId) {
+		
 		ModelAndView result;
+		Booking booking;
+		
+		booking = bookingService.findOne(bookingId);
 
 		try {
 			bookingService.cancel(booking);
 			result = new ModelAndView("redirect:list.do");
+			result.addObject("messageStatus", "booking.cancel.ok");
 		} catch (Throwable oops) {
-			result = createEditModelAndView(booking, "booking.commit.error");
+			result = new ModelAndView("redirect:list.do");
+			result = createEditModelAndView(booking, "booking.cancel.error");
 		}
 
 		return result;
@@ -89,7 +96,7 @@ public class BookingCustomerController extends AbstractController {
 	protected ModelAndView createEditModelAndView(Booking booking, String message) {
 		ModelAndView result;
 
-		result = new ModelAndView("booking/edit");
+		result = new ModelAndView("booking/list");
 		result.addObject("booking", booking);
 		result.addObject("message", message);
 

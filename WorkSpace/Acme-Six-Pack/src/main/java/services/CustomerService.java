@@ -50,7 +50,7 @@ public class CustomerService {
 	
 	//Simple CRUD methods ----------------------------------------------------
 	
-	/** Devuelve consumer preparado para ser modificado. Necesita usar save para que persista en la base de datos
+	/** Devuelve customer preparado para ser modificado. Necesita usar save para que persista en la base de datos
 	 * 
 	 */
 	// req: 10.1
@@ -70,13 +70,13 @@ public class CustomerService {
 	 * Almacena en la base de datos el cambio
 	 */
 	// req: 10.1
-	public void save(Customer consumer){
-		Assert.notNull(consumer);
+	public void save(Customer customer){
+		Assert.notNull(customer);
 		
 		Customer modify;
 		
 		boolean result = true;
-		for(Authority a: consumer.getUserAccount().getAuthorities()){
+		for(Authority a: customer.getUserAccount().getAuthorities()){
 			if(!a.getAuthority().equals("CUSTOMER")){
 				result = false;
 				break;
@@ -84,7 +84,7 @@ public class CustomerService {
 		}
 		Assert.isTrue(result, "A customer can only be a authority.customer");
 		
-		if(consumer.getId() == 0){
+		if(customer.getId() == 0){
 			Collection<Folder> folders;
 			Collection<Message> sent;
 			Collection<Message> received;
@@ -93,24 +93,24 @@ public class CustomerService {
 			//ShoppingCart shoppingCart;
 			
 			//Encoding password
-			auth = consumer.getUserAccount();
+			auth = customer.getUserAccount();
 			auth = userAccountService.modifyPassword(auth);
-			consumer.setUserAccount(auth);
+			customer.setUserAccount(auth);
 			
 			// Initialize folders
-			folders = folderService.initializeSystemFolder(consumer);
-			consumer.setMessageBoxs(folders);
+			folders = folderService.initializeSystemFolder(customer);
+			customer.setMessageBoxes(folders);
 			
 			sent = new ArrayList<Message>();
 			received = new ArrayList<Message>();
-			consumer.setSent(sent);
-			consumer.setReceived(received);
+			customer.setSent(sent);
+			customer.setReceived(received);
 
 			
 		}
-		modify = customerRepository.save(consumer);
+		modify = customerRepository.save(customer);
 		
-		if(consumer.getId() == 0){
+		if(customer.getId() == 0){
 			Collection<Folder> folders;
 
 			folders = folderService.initializeSystemFolder(modify);
@@ -120,7 +120,7 @@ public class CustomerService {
 	}
 	
 	/**
-	 * Lista los consumers registrados
+	 * Lista los customers registrados
 	 */
 	// req: 12.5
 	public Collection<Customer> findAll(){
@@ -136,7 +136,7 @@ public class CustomerService {
 	//Other business methods -------------------------------------------------
 
 	/**
-	 * Devuelve el consumer que está realizando la operación
+	 * Devuelve el customers que está realizando la operación
 	 */
 	//req: x
 	public Customer findByPrincipal(){
@@ -195,6 +195,13 @@ public class CustomerService {
 
 		return result;
 	}
-
-
+	
+	/* Añadido por Guillermo (Por si peta en algo, para que me lo digáis)*/
+	public Customer findOneWhoHasPaidFee(int consumerId){
+		Customer result;
+		
+		result = customerRepository.findOneWhoHasPaidFee(consumerId);
+		
+		return result;
+	}
 }

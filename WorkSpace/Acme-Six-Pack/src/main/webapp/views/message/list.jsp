@@ -11,7 +11,6 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <h3><spring:message code="message.folder"/>: <jstl:out value="${folder.name}" /></h3>
-<security:authorize access="hasAnyRole('ADMIN', 'CLERK', 'CONSUMER')">
 	<!-- Listing grid -->
 	<display:table pagesize="5" class="displaytag"
 		name="messa" requestURI="${requestURI}" id="row_messa">
@@ -52,4 +51,3 @@
 		</a></b>
 	</div>
 
-</security:authorize>

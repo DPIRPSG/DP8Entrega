@@ -43,8 +43,9 @@
 		<security:intercept-url pattern="/comment/administrator/delete.do" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/dashboard/administrator/list.do" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/gym/administrator/**" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/booking/administrator/**" access="hasRole('ADMIN')" />
 		
-		
+		<security:intercept-url pattern="/booking/customer/**" access="hasRole('CUSTOMER')"/>				
 		<security:intercept-url pattern="/folder/actor/**" access="hasAnyRole('CUSTOMER', 'ADMIN')"/>
 		<security:intercept-url pattern="/message/actor/**" access="hasAnyRole('CUSTOMER', 'ADMIN')"/>
 		<security:intercept-url pattern="/comment/actor/create.do" access="hasAnyRole('CUSTOMER', 'ADMIN')" />
@@ -58,7 +59,7 @@
 		<security:intercept-url pattern="/gym/list.do" access="permitAll" />
 		<security:intercept-url pattern="/service/list.do" access="permitAll" />
 		
-		<security:intercept-url pattern="/consumer/create.do" access="!hasAnyRole('CUSTOMER', 'ADMIN')" />
+		<security:intercept-url pattern="/customer/create.do" access="!hasAnyRole('CUSTOMER', 'ADMIN')" />
 
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 
