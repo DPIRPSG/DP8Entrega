@@ -157,7 +157,7 @@ public class CustomerService {
 		
 		custo = this.findByPrincipal();
 		
-		result = custo.getCreditCard();
+		result = custo.showCreditCard();
 		if(result == null)
 			result = new CreditCard();
 		return result;		
@@ -167,7 +167,7 @@ public class CustomerService {
 		Customer custo;
 		
 		custo = this.findByPrincipal();
-		custo.setCreditCard(creditCard);
+		custo.modifyCreditCard(creditCard);
 		this.save(custo);
 	}
 	
@@ -175,7 +175,7 @@ public class CustomerService {
 		Customer custo;
 		
 		custo = this.findByPrincipal();
-		custo.setCreditCard(null);
+		custo.modifyCreditCard(null);
 		this.save(custo);
 	}
 	
