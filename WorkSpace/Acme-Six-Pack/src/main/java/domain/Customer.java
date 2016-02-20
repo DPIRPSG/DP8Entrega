@@ -4,7 +4,6 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;

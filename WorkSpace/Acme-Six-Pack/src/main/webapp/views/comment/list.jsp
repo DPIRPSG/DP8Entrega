@@ -16,7 +16,7 @@
 <%-- 	<h3><spring:message code="comment.servicePlural"/>: <jstl:out value="${entityName}" /></h3> --%>
 <%-- </jstl:if> --%>
 
-<h3><spring:message code="comment.entityPlural"/>: <jstl:out value="${entityName}" /></h3>
+<h3><spring:message code="comment.entityPlural"/>: <jstl:out value="${commentedEntity.name}" /></h3>
 
 <!-- Listing grid -->
 <display:table pagesize="5" class="displaytag" keepStatus="true"
@@ -34,13 +34,13 @@
 	<!-- Attributes -->
 	<spring:message code="comment.actor" var="actorHeader" />
 	<display:column title="${actorHeader}"
-		sortable="false" >
-		<jstl:out value="${row_Comment.actor.userAccount.username}"/>
+		sortable="true" >
+		<jstl:out value="${row_Comment.actor.name}" /> <jstl:out value="${row_Comment.actor.surname}" />(<jstl:out value="${row_Comment.actor.userAccount.username}" />)
 	</display:column>
 	
 	<spring:message code="comment.moment" var="momentHeader" />
 	<display:column title="${momentHeader}" 
-		sortable="false" format="{0,date,yyyy/MM/dd }" >
+		sortable="true" format="{0,date,yyyy/MM/dd }" >
 		<jstl:out value="${row_Comment.moment}"/>
 	</display:column>
 
@@ -77,7 +77,7 @@
 <%-- </security:authorize> --%>
 <security:authorize access="isAuthenticated()">
 	<div>
-		<a href="comment/actor/create.do?entityId=${entityId}"> <spring:message
+		<a href="comment/actor/create.do?commentedEntityId=${commentedEntity.id}"> <spring:message
 				code="comment.create" />
 		</a>
 	</div>
