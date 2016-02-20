@@ -44,6 +44,10 @@ public class ActorService {
 		return result;
 	}
 	
+	public void save(Actor actor){
+		System.out.println("Implementar save actor!!!!! en actorservice.save");
+	}
+	
 	// Other business methods -------------------------------------------------
 
 	/**

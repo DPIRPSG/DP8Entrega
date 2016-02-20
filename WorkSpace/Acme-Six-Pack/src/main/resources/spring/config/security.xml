@@ -54,6 +54,7 @@
 		<security:intercept-url pattern="/folder/actor/**" access="hasAnyRole('CUSTOMER', 'ADMIN')"/>
 		<security:intercept-url pattern="/message/actor/**" access="hasAnyRole('CUSTOMER', 'ADMIN')"/>
 		<security:intercept-url pattern="/comment/actor/create.do" access="hasAnyRole('CUSTOMER', 'ADMIN')" />
+		<security:intercept-url pattern="/actor/actor/**" access="hasAnyRole('CUSTOMER', 'ADMIN')" />
 		
 
 		<security:intercept-url pattern="/creditCard/customer/**" access="hasRole('CUSTOMER')" />

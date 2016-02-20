@@ -15,32 +15,35 @@
 	<div>
 	<table>
 
-	<acme:display code="customer.name" value="${customer.name}"/>
-	<acme:display code="customer.surname" value="${customer.surname}"/>
-	<acme:display code="customer.phone" value="${customer.phone}"/>
-	<acme:display code="customer.username" value="${customer.userAccount.username}"/>
+	<acme:display code="actor.name" value="${actor.name}"/>
+	<acme:display code="actor.surname" value="${actor.surname}"/>
+	<acme:display code="actor.phone" value="${actor.phone}"/>
+	<acme:display code="actor.username" value="${actor.userAccount.username}"/>
+	
+	<security:authorize access="hasRole('CUSTOMER')">
 	
 	<tr>
-		<th><spring:message code="customer.creditCard" /> :</th>
+		<th><spring:message code="actor.creditCard" /> :</th>
 		<td><a href="creditCard/customer/display.do"> 
-				<spring:message code="customer.display" />
+				<spring:message code="actor.display" />
 			</a>
 		</td>
 	</tr>
 	<tr>
-		<th><spring:message code="customer.socialIdentity" /> :</th>
+		<th><spring:message code="actor.socialIdentity" /> :</th>
 		<td><a href="socialIdentity/customer/display.do"> 
-				<spring:message code="customer.display" />
+				<spring:message code="actor.display" />
 			</a>
 		</td>
 	</tr>
+	</security:authorize>
 	</table>
 	</div>
 
 	
 	<!-- Action links -->
 	<div>
-		<b><a href="customer/customer/edit.do"> 
-			<spring:message code="customer.edit" />
+		<b><a href="actor/actor/edit.do"> 
+			<spring:message code="actor.edit" />
 		</a></b>
 	</div>

@@ -11,34 +11,31 @@
 
 
 	<!-- Form -->
-	<form:form action="${urlAction}" modelAttribute="customer">
+	<form:form action="${urlAction}" modelAttribute="actor">
 		<!-- Hidden Attributes -->
 		<form:hidden path="id"/>
 		<form:hidden path="version"/>
-		<form:hidden path="feePayment"/>
-		<form:hidden path="booking"/>
-		<form:hidden path="comments"/>
 		<form:hidden path="received"/>
 		<form:hidden path="sent"/>
 		<form:hidden path="userAccount.authorities"/>
 		
 		<!-- Editable Attributes -->
-		<acme:textbox code="customer.name" path="name"/>
-		<acme:textbox code="customer.surname" path="surname"/>
-		<acme:textbox code="customer.phone" path="phone"/>
+		<acme:textbox code="actor.name" path="name"/>
+		<acme:textbox code="actor.surname" path="surname"/>
+		<acme:textbox code="actor.phone" path="phone"/>
 		
 		<jstl:if test="${creating != null}">
-			<acme:textbox code="customer.username" path="userAccount.username"/>
+			<acme:textbox code="actor.username" path="userAccount.username"/>
 			<br />
-			<acme:textbox code="customer.password" path="userAccount.password"/>
+			<acme:textbox code="actor.password" path="userAccount.password"/>
 		</jstl:if>
 		
 		<br />
 		
 		<!-- Action buttons -->
-		<acme:submit name="save" code="customer.save"/>
+		<acme:submit name="save" code="actor.save"/>
 		&nbsp;
-		<acme:cancel url="/" code="customer.cancel"/>
+		<acme:cancel url="/" code="actor.cancel"/>
 		<br />
 		
 	</form:form>
