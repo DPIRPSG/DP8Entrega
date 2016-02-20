@@ -26,12 +26,6 @@ public class CommentService {
 	@Autowired
 	private ActorService actorService;
 	
-//	@Autowired
-//	private GymService gymService;
-//	
-//	@Autowired
-//	private ServiceService serviceService;
-	
 	@Autowired
 	private CommentedEntityService commentedEntityService;
 
@@ -65,7 +59,6 @@ public class CommentService {
 		result.setCommentedEntity(commentedEntity);
 		result.setActor(actor);
 		result.setMoment(new Date()); // Se crea una fecha en este momento porque no puede ser null, pero la fecha real se fijará en el método "save"
-//		setEntityByIdAndComment(entityId, result);
 		
 		return result;
 	}
@@ -124,55 +117,10 @@ public class CommentService {
 	}
 	
 	//Other business methods -------------------------------------------------
-
-	/**
-	 * Lista todos los comentarios de un Gym
-	 */
-
-//	public Collection<Comment> findAllByGym(Gym gym){
-//		Assert.notNull(gym);
-//		Assert.isTrue(gym.getId() != 0);
-//		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can see this stats");
-//		
-//		Collection<Comment> result;
-//		
-//		result = commentRepository.findAllByGym(gym.getId());
-//		
-//		return result;
-//		
-//	}
-//	
-//	/**
-//	 * Lista todos los comentarios de un Service
-//	 */
-//	
-//	public Collection<Comment> findAllByService(ServiceEntity service){
-//		Assert.notNull(service);
-//		Assert.isTrue(service.getId() != 0);
-//		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can see this stats");
-//		
-//		Collection<Comment> result;
-//		
-//		result = commentRepository.findAllByService(service.getId());
-//		
-//		return result;
-//		
-//	}
 	
 	/**
-	 * Lista todos los comentarios no eliminados
+	 * Lista todos los comentarios de una entidad comentada concreta
 	 */
-	
-//	public Collection<Comment> findAllNotDeleted(){
-//		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can see this stats");
-//		
-//		Collection<Comment> result;
-//		
-//		result = commentRepository.findAllNotDeleted();
-//		
-//		return result;
-//		
-//	}
 	
 	public Collection<Comment> findAllByCommentedEntityId(int commentedEntityId){
 		Collection<Comment> result;
@@ -182,72 +130,4 @@ public class CommentService {
 		return result;
 	}
 	
-	// Here are the methods that have to modify in order to implement a new Entity that need to have Comments.
-	
-//	public String getEntityNameById(int entityId) {
-//		String result;
-//		Gym gym;
-//		ServiceEntity service;
-//		
-//		result = null;
-//		
-//		if(gymService.findOne(entityId) != null){
-//			gym = gymService.findOne(entityId);
-//			result = gym.getName();
-//		}else if(serviceService.findOne(entityId) != null){
-//			service = serviceService.findOne(entityId);
-//			result = service.getName();
-//		}
-//		
-//		Assert.notNull(result);
-//		
-//		return result;
-//	}
-	
-//	public Collection<Comment> getCommentsByEntityId(int entityId) {
-//		Collection<Comment> result;
-//		Gym gym;
-//		ServiceEntity service;
-//		
-//		result = null;
-//		
-//		if(gymService.findOne(entityId) != null){
-//			gym = gymService.findOne(entityId);
-//			result = gym.getComments();
-//		}else if(serviceService.findOne(entityId) != null){
-//			service = serviceService.findOne(entityId);
-//			result = service.getComments();
-//		}
-//		
-//		Assert.notNull(result);
-//		
-//		return result;
-//	}
-	
-//	public void setEntityByIdAndComment(int entityId, Comment comment) {
-//		Gym gym;
-//		ServiceEntity service;
-//		
-//		if(gymService.findOne(entityId) != null){
-//			gym = gymService.findOne(entityId);
-//			comment.setGym(gym);
-//		}else if(serviceService.findOne(entityId) != null){
-//			service = serviceService.findOne(entityId);
-//			comment.setService(service);
-//		}
-//	}
-	
-//	public Integer getEntityIdByComment(Comment comment) {
-//		Integer result;
-//		
-//		result = null;
-//		
-//		if(comment.getGym() != null){
-//			result = comment.getGym().getId();
-//		}else if(comment.getService() != null){
-//			result = comment.getService().getId();
-//		}
-//		
-//		return result;
-//	}
 }

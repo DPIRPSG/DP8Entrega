@@ -37,26 +37,10 @@ public class CommentController {
 	// Listing ------------------------------------------------------------
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-//		public ModelAndView list(@RequestParam(required = false) Integer gymId, @RequestParam(required = false) Integer serviceId) {
 	public ModelAndView list(@RequestParam Integer commentedEntityId) {
 		ModelAndView result;
 		Collection<Comment> comments;
 		CommentedEntity commentedEntity;
-//			Gym gym;
-//			ServiceEntity service;
-		
-//			if(gymId != null){
-//				gym = gymService.findOne(gymId);
-//				comments = commentService.findAllByGym(gym);
-//				entityName = gym.getName();
-//			}else if(serviceId != null){
-//				service = serviceService.findOne(serviceId);
-//				comments = commentService.findAllByService(service);
-//				entityName = service.getName();
-//			}else{
-//				comments = null;
-//				entityName = "You must select an entity to see their comments";
-//			}
 		
 		comments = commentService.findAllByCommentedEntityId(commentedEntityId);
 		commentedEntity = commentedEntityService.findOne(commentedEntityId);

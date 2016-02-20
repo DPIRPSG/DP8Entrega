@@ -8,13 +8,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
-
-<%-- <jstl:if test="${comment.gym != null}"> --%>
-<%-- 	<h3><spring:message code="comment.gymPlural"/>: <jstl:out value="${entityName}" /></h3> --%>
-<%-- </jstl:if> --%>
-<%-- <jstl:if test="${comment.service != null}"> --%>
-<%-- 	<h3><spring:message code="comment.servicePlural"/>: <jstl:out value="${entityName}" /></h3> --%>
-<%-- </jstl:if> --%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <h3><spring:message code="comment.entityPlural"/>: <jstl:out value="${commentedEntity.name}" /></h3>
 
@@ -32,11 +26,12 @@
 	</security:authorize>
 	
 	<!-- Attributes -->
-	<spring:message code="comment.actor" var="actorHeader" />
-	<display:column title="${actorHeader}"
-		sortable="true" >
-		<jstl:out value="${row_Comment.actor.name}" /> <jstl:out value="${row_Comment.actor.surname}" />(<jstl:out value="${row_Comment.actor.userAccount.username}" />)
-	</display:column>
+	<acme:displayColumn code="comment.actor" header="actorHeader" sorteable="true" value="row_Comment.actor.name"/>
+<%-- 	<spring:message code="comment.actor" var="actorHeader" /> --%>
+<%-- 	<display:column title="${actorHeader}" --%>
+<%--  		sortable="true" > --%>
+<%--  		<jstl:out value="${row_Comment.actor.name}" /> <jstl:out value="${row_Comment.actor.surname}" />(<jstl:out value="${row_Comment.actor.userAccount.username}" />) --%>
+<%--  	</display:column> --%>
 	
 	<spring:message code="comment.moment" var="momentHeader" />
 	<display:column title="${momentHeader}" 
@@ -58,23 +53,6 @@
 		
 </display:table>
 
-<!-- Action links -->
-<%-- <security:authorize access="isAuthenticated()"> --%>
-<%-- 	<jstl:if test="${gym != null}"> --%>
-<!-- 		<div> -->
-<%-- 			<a href="comment/create.do?gymId=${gym.id}"> <spring:message --%>
-<%-- 					code="comment.create" /> --%>
-<!-- 			</a> -->
-<!-- 		</div> -->
-<%-- 	</jstl:if> --%>
-<%-- 	<jstl:if test="${service != null}"> --%>
-<!-- 		<div> -->
-<%-- 			<a href="comment/create.do?serviceId=${service.id}"> <spring:message --%>
-<%-- 					code="comment.create" /> --%>
-<!-- 			</a> -->
-<!-- 		</div> -->
-<%-- 	</jstl:if> --%>
-<%-- </security:authorize> --%>
 <security:authorize access="isAuthenticated()">
 	<div>
 		<a href="comment/actor/create.do?commentedEntityId=${commentedEntity.id}"> <spring:message

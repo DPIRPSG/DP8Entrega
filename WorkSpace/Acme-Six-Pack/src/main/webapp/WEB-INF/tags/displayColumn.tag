@@ -1,5 +1,5 @@
 <%--
- * textbox.tag
+ * displayColumn.tag
  *
  * Copyright (C) 2014 Universidad de Sevilla
  * 
@@ -18,30 +18,26 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <%-- Attributes --%> 
  
-<%@ attribute name="path" required="true" %>
+<%@ attribute name="header" required="true" %>
 <%@ attribute name="code" required="true" %>
+<%@ attribute name="value" required="true" %>
 
-<%@ attribute name="readonly" required="false" %>
-<%@ attribute name="pathValue" required="false" %>
-<%@ attribute name="size" required="false" %>
+<%@ attribute name="format" required="false" %>
+<%@ attribute name="sorteable" required="false" %>
 
 <jstl:if test="${readonly == null}">
-	<jstl:set var="readonly" value="false" />
+	<jstl:set var="sorteable" value="false" />
 </jstl:if>
-<%-- <jstl:if test="${pathValue == null}"> --%>
-<%-- 	<jstl:set var="pathValue" value="${path}" /> --%>
-<%-- </jstl:if> --%>
 
 <%-- Definition --%>
 
-<div>
-	<form:label path="${path}">
-		<spring:message code="${code}" />: &nbsp;
-	</form:label>	
-	<form:input path="${path}" value="${pathValue}" readonly="${readonly}" size="${size}"/>	
-	<form:errors path="${path}" cssClass="error" />
-</div>	
+<spring:message code="${code}" var="${header}" />
+<display:column title="${header}" 
+	sortable="${sorteable}" format="${format}" >
+	<jstl:out value="${value}"/>
+</display:column>
