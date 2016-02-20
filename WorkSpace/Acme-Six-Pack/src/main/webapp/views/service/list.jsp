@@ -44,7 +44,7 @@
 	</display:column>
 
 	<display:column>
-		<a href="comment/list.do?serviceId=${row_Service.id}"> <spring:message
+		<a href="comment/list.do?commentedEntityId=${row_Service.id}"> <spring:message
 				code="service.comments" />
 		</a>
 	</display:column>

@@ -18,35 +18,15 @@ import org.hibernate.validator.constraints.URL;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Gym extends DomainEntity{
+public class Gym extends CommentedEntity{
 
 	// Constructors -----------------------------------------------------------
 
 	// Attributes -------------------------------------------------------------
-	private String name;
-	private String description;
 	private String postalAddress;
 	private double fee;
 	private String picture;
 	private String phone;
-	
-	@NotBlank
-	@NotNull
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	@NotBlank
-	@NotNull
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
 	
 	@NotBlank
 	@NotNull
@@ -89,20 +69,9 @@ public class Gym extends DomainEntity{
 
 
 	// Relationships ----------------------------------------------------------
-	private Collection<Comment> comments;
 	private Collection<ServiceEntity> service;
 	private Collection<FeePayment> feePayment;
 	private Collection<Booking> bookings;
-	
-	@Valid
-	@OneToMany(mappedBy = "gym")
-	@NotNull
-	public Collection<Comment> getComments() {
-		return comments;
-	}
-	public void setComments(Collection<Comment> comments) {
-		this.comments = comments;
-	}
 	
 	@Valid
 	@NotNull
@@ -131,6 +100,14 @@ public class Gym extends DomainEntity{
 	}
 	public void setFeePayment(Collection<FeePayment> feePayment) {
 		this.feePayment = feePayment;
+	}
+	
+	public void addFeePayment(FeePayment feePayment) {
+		this.feePayment.add(feePayment);
+	}
+
+	public void removeFeePayment(FeePayment feePayment) {
+		this.feePayment.remove(feePayment);
 	}
 	
 	@Valid

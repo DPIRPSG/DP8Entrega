@@ -17,9 +17,9 @@ public interface CommentRepository extends JpaRepository<Comment, Integer> {
 //	@Query("select c from Comment c where c.service is not null and c.service.id = ?1 and c.deleted = false")
 //	Collection<Comment> findAllByService(int serviceId);
 	
-	@Query("select c from Comment c where ((c.service is not null and c.service.id = ?1) or (c.gym is not null and c.gym.id = ?1)) and c.deleted = false")
-	Collection<Comment> findAllByEntityId(int entityId);
-	
+	@Query("select c from Comment c where c.commentedEntity.id = ?1 and c.deleted = false")
+	Collection<Comment> findAllByCommentedEntityId(int commentedEntityId);
+
 //	@Query("select c from Comment c where c.deleted = false")
 //	Collection<Comment> findAllNotDeleted();
 	

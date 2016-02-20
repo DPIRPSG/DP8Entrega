@@ -57,6 +57,9 @@
 		<bean class="converters.ServiceToStringConverter" />
 		<bean class="converters.StringToServiceConverter" />
 		
+		<bean class="converters.CommentedEntityToStringConverter" />
+		<bean class="converters.StringToCommentedEntityConverter" />
+		
 	</util:list>
 	
 </beans>

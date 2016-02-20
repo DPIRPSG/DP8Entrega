@@ -4,7 +4,6 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -50,6 +49,14 @@ public class Customer extends Actor {
 	}
 	public void setFeePayment(Collection<FeePayment> feePayment) {
 		this.feePayment = feePayment;
+	}
+	
+	public void addFeePayment(FeePayment feePayment) {
+		this.feePayment.add(feePayment);
+	}
+
+	public void removeFeePayment(FeePayment feePayment) {
+		this.feePayment.remove(feePayment);
 	}
 	
 	@Valid
