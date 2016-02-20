@@ -4,27 +4,29 @@ Level C:
 
 1) The most popular gym/s. -> TERMINADA
 
-- select g1 from Gym g1 join g1.feePayment f1 where f1.activeMoment < CURRENT_DATE AND f1.inactiveMoment > CURRENT_DATE group by g1 having count(f1.activeMoment) >= all(select count(f2.activeMoment) from Gym g2 join g2.feePayment f2 where f2.activeMoment < CURRENT_DATE AND f2.inactiveMoment > CURRENT_DATE group by g2);
+- select g1 from Gym g1 left join g1.feePayment f1 where f1.activeMoment < CURRENT_DATE AND f1.inactiveMoment > CURRENT_DATE group by g1 having count(f1.activeMoment) >= all(select count(f2.activeMoment) from Gym g2 left join g2.feePayment f2 where f2.activeMoment < CURRENT_DATE AND f2.inactiveMoment > CURRENT_DATE group by g2);
 
 2) The least popular gyms/s. -> POR TERMINAR: Los gyms sin feePayment activos no salen.
 
-- select g1 from Gym g1 join g1.feePayment f1 where f1.activeMoment < CURRENT_DATE AND f1.inactiveMoment > CURRENT_DATE group by g1 having count(f1.activeMoment) <= all(select count(f2.activeMoment) from Gym g2 join g2.feePayment f2 where f2.activeMoment < CURRENT_DATE AND f2.inactiveMoment > CURRENT_DATE group by g2);
+- select g1 from Gym g1 join g1.feePayment f1 where f1.activeMoment < CURRENT_DATE AND f1.inactiveMoment > CURRENT_DATE group by g1 having count(f1.activeMoment) <= all(select count(f2.activeMoment) from Gym g2 join g2.feePayment f2 where f2.activeMoment < CURRENT_DATE AND f2.inactiveMoment > CURRENT_DATE group by g2); -> Los gyms sin feePayment activos no salen.
 
-3) The most popular service/s.
+- select g, count(f) from Gym g left join g.feePayment f group by g; -> Query de prueba
 
-- 
+3) The most popular service/s. -> TERMINADA
 
-4) The least popular service/s.
+- select s from ServiceEntity s left join s.bookings b group by s having count(b) >= all(select count(b) from ServiceEntity s left join s.bookings b group by s);
 
-- 
+4) The least popular service/s. -> TERMINADA
+
+- select s from ServiceEntity s left join s.bookings b group by s having count(b) <= all(select count(b) from ServiceEntity s left join s.bookings b group by s);
 
 5) The customer/s who has/have paid more fees.
 
-- 
+- select c from Customer c left join c.feePayment f group by c having count(f) >= all(select count(f) from Customer c left join c.feePayment f group by c);
 
 6) The customer/s who has/have paid less fees.
 
-- 
+- select c from Customer c left join c.feePayment f group by c having count(f) <= all(select count(f) from Customer c left join c.feePayment f group by c);
 
 Level B:
 
