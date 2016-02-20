@@ -11,9 +11,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.URL;
 
 @Entity
@@ -76,7 +76,7 @@ public class Gym extends CommentedEntity{
 	@Valid
 	@NotNull
 	@ManyToMany(mappedBy = "gyms")
-	@Size(min = 1)
+	@NotEmpty
 	public Collection<ServiceEntity> getService() {
 		return service;
 	}
@@ -100,6 +100,14 @@ public class Gym extends CommentedEntity{
 	}
 	public void setFeePayment(Collection<FeePayment> feePayment) {
 		this.feePayment = feePayment;
+	}
+	
+	public void addFeePayment(FeePayment feePayment) {
+		this.feePayment.add(feePayment);
+	}
+
+	public void removeFeePayment(FeePayment feePayment) {
+		this.feePayment.remove(feePayment);
 	}
 	
 	@Valid

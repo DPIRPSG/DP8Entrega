@@ -9,26 +9,27 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<security:authorize access="hasRole('ADMIN')">
+
 
 	<!-- Listing grid -->
 	<display:table pagesize="5" class="displaytag" keepStatus="true"
 		name="feePayments" requestURI="${requestURI}" id="row_feePayment">
 		
 		<!-- Action links -->
-		
+	<security:authorize access="hasRole('ADMIN')">
 		<display:column>
 			<a href="feePayment/administrator/edit.do?feePaymentId=${row_feePayment.id}">
 				<spring:message	code="feePayment.edit" />
 			</a>
-		</display:column>		
+		</display:column>	
+	</security:authorize>	
 		
 		
 		<!-- Attributes -->
 		<spring:message code="feePayment.customer" var="customerHeader" />
 		<display:column title="${customerHeader}"
 			sortable="false" >
-			<jstl:out value="${row_feePayment.customer.actor.userAccount.username}"/>
+			<jstl:out value="${row_feePayment.customer.userAccount.username}"/>
 		</display:column>
 		
 		<spring:message code="feePayment.gym" var="gymHeader" />
@@ -69,4 +70,4 @@
 			
 	</display:table>
 
-</security:authorize>
+

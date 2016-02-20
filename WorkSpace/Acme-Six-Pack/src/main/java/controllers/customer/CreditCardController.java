@@ -39,7 +39,7 @@ public class CreditCardController extends AbstractController {
 		Customer customer;
 		
 		customer = customerService.findByPrincipal();
-		creditCard = customer.getCreditCard();
+		creditCard = customer.showCreditCard();
 		
 		result = new ModelAndView("creditCard/display");
 		result.addObject("creditCard", creditCard);

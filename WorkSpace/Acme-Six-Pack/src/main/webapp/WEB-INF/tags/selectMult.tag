@@ -1,5 +1,5 @@
 <%--
- * textbox.tag
+ * select.tag
  *
  * Copyright (C) 2014 Universidad de Sevilla
  * 
@@ -21,27 +21,22 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <%-- Attributes --%> 
- 
+
 <%@ attribute name="path" required="true" %>
 <%@ attribute name="code" required="true" %>
+<%@ attribute name="items" required="true" type="java.util.Collection" %>
+<%@ attribute name="itemLabel" required="true" %>
 
-<%@ attribute name="readonly" required="false" %>
-<%@ attribute name="pathValue" required="false" %>
-<%@ attribute name="size" required="false" %>
-
-<jstl:if test="${readonly == null}">
-	<jstl:set var="readonly" value="false" />
-</jstl:if>
-<%-- <jstl:if test="${pathValue == null}"> --%>
-<%-- 	<jstl:set var="pathValue" value="${path}" /> --%>
-<%-- </jstl:if> --%>
 
 <%-- Definition --%>
 
 <div>
 	<form:label path="${path}">
-		<spring:message code="${code}" />: &nbsp;
+		<spring:message code="${code}" />
 	</form:label>	
-	<form:input path="${path}" value="${pathValue}" readonly="${readonly}" size="${size}"/>	
+	<form:select id="${id}" path="${path}" items="${items}" itemLabel="${itemLabel}" itemValue="id" multiple="multiple">
+	</form:select>
 	<form:errors path="${path}" cssClass="error" />
-</div>	
+</div>
+
+

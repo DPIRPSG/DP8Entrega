@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.GymService;
+import services.ServiceService;
 
 import controllers.AbstractController;
 import domain.Gym;
+import domain.ServiceEntity;
 
 @Controller
 @RequestMapping(value = "/gym/administrator")
@@ -25,6 +27,9 @@ public class GymAdministratorController extends AbstractController {
 
 	@Autowired
 	private GymService gymService;
+	
+	@Autowired
+	private ServiceService serviceService;
 
 	// Constructors ----------------------------------------------------------
 
@@ -97,12 +102,18 @@ public class GymAdministratorController extends AbstractController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid Gym gym, BindingResult binding) {
 		ModelAndView result;
-
-		if (binding.hasErrors()) {
+		boolean bindingError;
+		
+		if(binding.hasFieldErrors("service")){
+			bindingError = binding.getErrorCount() > 1;
+		}else{
+			bindingError = binding.getErrorCount() > 0;
+		}
+		if (bindingError) {
 			result = createEditModelAndView(gym);
 		} else {
 			try {
-				gymService.save(gym);
+				gymService.saveToEdit(gym);
 				result = new ModelAndView("redirect:list.do?");
 			} catch (Throwable oops) {
 				result = createEditModelAndView(gym, "gym.commit.error");
@@ -139,10 +150,14 @@ public class GymAdministratorController extends AbstractController {
 
 	protected ModelAndView createEditModelAndView(Gym gym, String message) {
 		ModelAndView result;
+		Collection<ServiceEntity> services;
+		
+		services = serviceService.findAll2();
 
 		result = new ModelAndView("gym/edit");
 		result.addObject("gym", gym);
 		result.addObject("message", message);
+		result.addObject("services", services);
 
 		return result;
 	}

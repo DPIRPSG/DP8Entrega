@@ -50,7 +50,7 @@ public class RegisterController extends AbstractController{
 		ModelAndView result;
 		boolean bindingError;
 		
-		if(binding.hasFieldErrors("messageBoxs")){
+		if(binding.hasFieldErrors("messageBoxes")){
 			bindingError = binding.getErrorCount() > 1;
 		}else{
 			bindingError = binding.getErrorCount() > 0;
@@ -74,19 +74,19 @@ public class RegisterController extends AbstractController{
 	}
 	//Ancillary Methods ----------------------------------------------------------
 
-	protected ModelAndView createEditModelAndView(Customer consumer){
+	protected ModelAndView createEditModelAndView(Customer customer){
 		ModelAndView result;
 		
-		result = createEditModelAndView(consumer, null);
+		result = createEditModelAndView(customer, null);
 		
 		return result;
 	}
 	
-	protected ModelAndView createEditModelAndView(Customer consumer, String message){
+	protected ModelAndView createEditModelAndView(Customer customer, String message){
 		ModelAndView result;
 		
 		result = new ModelAndView("customer/create");
-		result.addObject("customer", consumer);
+		result.addObject("customer", customer);
 		result.addObject("message", message);
 		result.addObject("urlAction", "customer/create.do");
 		result.addObject("creating", true);

@@ -10,7 +10,6 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<security:authorize access="hasAnyRole('ADMIN', 'CLERK', 'CONSUMER')">
 	<!-- Listing grid -->
 	<display:table pagesize="5" class="displaytag" keepStatus="true"
 		name="folders" requestURI="${requestURI}" id="row_folder">
@@ -58,4 +57,3 @@
 		</a></b>
 	</div>
 
-</security:authorize>
