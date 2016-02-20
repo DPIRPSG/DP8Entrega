@@ -32,11 +32,9 @@ Level C:
 
 Level B:
 
-7) The actor/s who sends/send more spam messages. -> POR TERMINAR: Está en alpha. Tiene que salir “Mónica”
+7) The actor/s who sends/send more spam messages. -> TERMINADA
 
-- select a.name, count(b) from Actor a left join a.messageBoxes b where b.name = 'SpamBox' group by a;
-
-- select f.name, count(m), f.actor.name from Folder f left join f.messages m where f.name = 'SpamBox' group by f;
+- select m1.sender from Folder f1 left join f1.messages m1 where f1.name = 'SpamBox' group by f1 having count(m1) >= all(select count(m2) from Folder f2 left join f2.messages m2 where f2.name = 'SpamBox' group by f2);
 
 8) The average number of messages in an actor’s message boxes.
 
@@ -46,15 +44,15 @@ Level B:
 
 Level A:
 
-9) The gyms/s that has/have more comments.
+9) The gyms/s that has/have more comments. -> TERMINADA
 
-- 
+- select g from Gym g left join g.comments c group by g having count(c) >= all(select count(c) from Gym g left join g.comments c group by g);
 
-10) The service/s that has/have more comments.
+10) The service/s that has/have more comments. -> TERMINADA
 
-- 
+- select s from ServiceEntity s left join s.comments c group by s having count(c) >= all(select count(c) from ServiceEntity s left join s.comments c group by s);
 
-11) The average number of comments written by the actors, including thestandard deviation.
+11) The average number of comments written by the actors, including the standard deviation.
 
 - 
 
@@ -66,6 +64,6 @@ Level A:
 
 - 
 
-14) The customer/s who has/have been removed more comments.
+14) The customer/s who has/have been removed more comments. -> TERMINADA
 
-- 
+- select c from Customer c left join c.comments k where k.deleted IS TRUE group by c having count(k) >= all(select count(k) from Customer c left join c.comments k where k.deleted IS TRUE group by c);
