@@ -35,7 +35,7 @@
 		<jstl:if test="${!paid}">
 			<display:column>
 				<a href="feePayment/customer/create.do?gymId=${row_Gym.id}"> <spring:message
-						code="gym.feePayments" />
+						code="gym.create.feePayments" />
 				</a>
 			</display:column>
 		</jstl:if>

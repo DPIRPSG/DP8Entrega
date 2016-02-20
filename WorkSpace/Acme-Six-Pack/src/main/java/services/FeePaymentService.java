@@ -61,7 +61,18 @@ public class FeePaymentService {
 	
 	public void save(FeePayment feePayment) {
 		Assert.notNull(feePayment);
+		Date activeMomentLimit;
 		
+		activeMomentLimit = new Date();
+		
+		Calendar c = Calendar.getInstance();
+		c.setTime(feePayment.getPaymentMoment());
+		c.add(Calendar.MONTH, +6);
+		activeMomentLimit.setTime(c.getTimeInMillis());
+
+		
+		Assert.isTrue(feePayment.getActiveMoment().compareTo(feePayment.getPaymentMoment()) > 0, "La fecha de activación del pago debe ser mayor que el momento actual");
+		Assert.isTrue(feePayment.getActiveMoment().compareTo(activeMomentLimit) < 0, "La fecha de activación del pago no debe sobrepasar 6 meses el momento actual");
 		
 		if (feePayment.getId() == 0) {
 			Date paymentMoment;
@@ -74,12 +85,12 @@ public class FeePaymentService {
 			paymentMoment = new Date();
 
 			moment = feePayment.getActiveMoment();
-			Calendar c = Calendar.getInstance();
-			c.setTime(moment);
-			c.add(Calendar.DAY_OF_MONTH, +30);
+			Calendar ca = Calendar.getInstance();
+			ca.setTime(moment);
+			ca.add(Calendar.DAY_OF_MONTH, +30);
 
 			inactiveMoment = new Date();
-			inactiveMoment.setTime(c.getTimeInMillis());
+			inactiveMoment.setTime(ca.getTimeInMillis());
 
 			feePayment.setPaymentMoment(paymentMoment);
 			feePayment.setInactiveMoment(inactiveMoment);

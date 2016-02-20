@@ -54,7 +54,7 @@ public class FeePaymentServiceTest extends AbstractTest{
 		System.out.println("Empezamos a crear el Pago");
 		
 		gymId = gymsNotPaid.iterator().next().getId();
-		activeMoment = new Date("2016/02/18 00:00");
+		activeMoment = new Date("2016/05/22 00:00");
 		creditCard = new CreditCard();
 		
 		creditCard.setHolderName("Miguel");
