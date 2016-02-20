@@ -20,23 +20,29 @@ Level C:
 
 - select s from ServiceEntity s left join s.bookings b group by s having count(b) <= all(select count(b) from ServiceEntity s left join s.bookings b group by s);
 
-5) The customer/s who has/have paid more fees.
+5) The customer/s who has/have paid more fees. -> TERMINADA
 
 - select c from Customer c left join c.feePayment f group by c having count(f) >= all(select count(f) from Customer c left join c.feePayment f group by c);
 
-6) The customer/s who has/have paid less fees.
+6) The customer/s who has/have paid less fees. -> TERMINADA
 
 - select c from Customer c left join c.feePayment f group by c having count(f) <= all(select count(f) from Customer c left join c.feePayment f group by c);
 
+==========
+
 Level B:
 
-7) The actor/s who sends/send more spam messages.
+7) The actor/s who sends/send more spam messages. -> POR TERMINAR: Está en alpha. Tiene que salir “Mónica”
 
-- 
+- select a.name, count(b) from Actor a left join a.messageBoxes b where b.name = 'SpamBox' group by a;
+
+- select f.name, count(m), f.actor.name from Folder f left join f.messages m where f.name = 'SpamBox' group by f;
 
 8) The average number of messages in an actor’s message boxes.
 
--
+- 
+
+==========
 
 Level A:
 
