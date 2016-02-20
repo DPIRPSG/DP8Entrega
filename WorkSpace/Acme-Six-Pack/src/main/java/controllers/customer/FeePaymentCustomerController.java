@@ -1,5 +1,7 @@
 package controllers.customer;
 
+import java.util.Collection;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,15 +32,33 @@ public class FeePaymentCustomerController extends AbstractController {
 	}
 
 	// Listing ----------------------------------------------------------
-
+	
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView list(@RequestParam (required=false) Integer gymId) {
+		ModelAndView result;
+		Collection<FeePayment> feePayments;
+		
+		feePayments = feePaymentService.findAllByCustomer();
+		
+		if(gymId != null) {
+			feePayments = feePaymentService.findAllByCustomerAndGym(gymId);
+		}
+		
+		result = new ModelAndView("feePayment/list");
+		result.addObject("feePayments", feePayments);
+		result.addObject("requestURI", "feePayment/customer/list.do");
+		
+		return result;
+	}
+	
 	// Creation ----------------------------------------------------------
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView create() {
+	public ModelAndView create(@RequestParam int gymId) {
 		ModelAndView result;
 		FeePayment fee;
 
-		fee = feePaymentService.create();
+		fee = feePaymentService.create(gymId);
 		result = createEditModelAndView(fee);
 
 		return result;

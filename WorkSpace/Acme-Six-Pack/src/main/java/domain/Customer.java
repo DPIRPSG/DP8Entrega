@@ -51,6 +51,14 @@ public class Customer extends Actor {
 		this.feePayment = feePayment;
 	}
 	
+	public void addFeePayment(FeePayment feePayment) {
+		this.feePayment.add(feePayment);
+	}
+
+	public void removeFeePayment(FeePayment feePayment) {
+		this.feePayment.remove(feePayment);
+	}
+	
 	@Valid
 	@NotNull
 	@OneToMany(mappedBy = "customer")	
