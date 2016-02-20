@@ -113,7 +113,7 @@ public class GymAdministratorController extends AbstractController {
 			result = createEditModelAndView(gym);
 		} else {
 			try {
-				gymService.save(gym);
+				gymService.saveToEdit(gym);
 				result = new ModelAndView("redirect:list.do?");
 			} catch (Throwable oops) {
 				result = createEditModelAndView(gym, "gym.commit.error");

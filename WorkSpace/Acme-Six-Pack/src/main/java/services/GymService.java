@@ -70,8 +70,16 @@ public class GymService {
 		
 		return result;
 	}
-
+	
 	public void save(Gym gym) {
+		Assert.notNull(gym);
+		//Assert.isTrue(actorService.checkAuthority("ADMIN"),
+			//	"Only an admin can save gyms");
+		
+		gymRepository.save(gym);
+	}
+
+	public void saveToEdit(Gym gym) {
 		Assert.notNull(gym);
 		Assert.isTrue(actorService.checkAuthority("ADMIN"),
 				"Only an admin can save gyms");
