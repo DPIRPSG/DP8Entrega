@@ -58,7 +58,9 @@
 	<spring:message code="gym.postalAddress" var="postalAddressHeader" />
 	<display:column title="${postalAddressHeader}"
 		sortable="false">
-		<jstl:out value="${row_Gym.postalAddress}"/>
+		<a href="https://www.google.es/maps/place/${row_Gym.postalAddress}">
+			<jstl:out value="${row_Gym.postalAddress}"/>
+		</a>
 	</display:column>
 
 	<spring:message code="gym.phone" var="phoneHeader" />
