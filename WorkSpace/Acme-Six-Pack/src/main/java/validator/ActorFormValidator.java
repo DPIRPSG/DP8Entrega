@@ -3,7 +3,6 @@ package validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -30,32 +29,57 @@ public class ActorFormValidator implements Validator{
 		ActorForm actor = (ActorForm) target;
 		Actor actActor;
 		UserAccount uAccountUsername;
+		UserAccount actUAccount;
 		
-		actActor = actorService.findByPrincipal();
+		try{
+			actActor = actorService.findByPrincipal();
+		}catch (Exception e) {
+			actActor = null;
+			
+		}
 		
+		if(actActor == null){ // Creation moment
+			actUAccount = null;
+			if(actor.getPassword() == null){
+				errors.rejectValue("password", "javax.validation.constraints.NotNull.message");
+			}
+			if(actor.getRepeatedPassword() == null){
+				errors.rejectValue("repeatedPassword", "javax.validation.constraints.NotNull.message");
+			}
+			if(actor.getAcceptTerm() != true){
+				errors.rejectValue("acceptTerm", "acme.validation.notSelected");				
+			}	
+		}else{
+			actUAccount = actActor.getUserAccount();
+		}
+		
+		// Match passwords
 		if(actor.getPassword() != null && actor.getRepeatedPassword() != null){
-			if(! actor.getPassword().equals(actor.getRepeatedPassword())){
+			if(actor.getPassword().equals("") && actActor != null && actor.getPassword().equals(actor.getRepeatedPassword())){
+				// No error
+			}else if (actor.getPassword().length() < 5 || actor.getPassword().length() > 32) {
+				errors.rejectValue("password", "acme.validation.sizeNotMatch.standard");
+			}else if(! actor.getPassword().equals(actor.getRepeatedPassword())){
 				errors.rejectValue("password", "acme.validation.notMatch");
-				errors.rejectValue("repeatedPassword", "acme.validation.notMatch");
+				errors.rejectValue("repeatedPassword", "acme.validation.notMatch");				
 			}
 		}
 		
 		uAccountUsername = uAccountService.findByUsername(actor.getUsername());
 		
+		// Username availability
 		if(uAccountUsername != null){
-			errors.rejectValue("username", "acme.validation.usernameInUse");
+			if(!uAccountUsername.equals(actUAccount)){
+				errors.rejectValue("username", "acme.validation.usernameInUse");
+			}
 		}
 
-		/*errors.rejectValue("phone", "undefined.error");
-		errors.rejectValue("phone", "jssjerror", "Este es un error indeseado");*/
-		
-		//return errors;
 	}
 
 	@Override
 	public boolean supports(Class<?> clazz) {
 		// TODO Auto-generated method stub
-		return false;
+		return ActorForm.class.isAssignableFrom(clazz);
 	}
 
 

@@ -19,12 +19,24 @@
 		<acme:textbox code="customer.surname" path="surname"/>
 		<acme:textbox code="customer.phone" path="phone"/>
 		<acme:textbox code="customer.username" path="username"/>
-		<acme:textbox code="customer.password" path="password"/>
-		<acme:textbox code="customer.password" path="repeatedPassword"/>		
+		
+		<form:label path="password">
+			<spring:message code="customer.password" />
+		</form:label>
+		<form:password path="password" />	
+		<form:errors class="error" path="password" />
+		<br />
+		
+		<form:label path="repeatedPassword">
+			<spring:message code="customer.password" />
+		</form:label>
+		<form:password path="repeatedPassword" />	
+		<form:errors class="error" path="repeatedPassword" />
+		<br />		
 		
 		<security:authorize access="!hasAnyRole('CUSTOMER', 'ADMIN')">
 			
-			<acme:textbox code="actorForm.acceptTerm" path="acceptTerm"/>
+			<acme:checkbox code="actorForm.acceptTerm" path="acceptTerm"/>
 			
 		</security:authorize>		
 		<br />

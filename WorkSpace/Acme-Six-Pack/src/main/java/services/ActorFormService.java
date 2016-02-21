@@ -70,11 +70,18 @@ public class ActorFormService {
 		}
 		
 		public void saveForm(ActorForm input){
+			boolean isCustoOrAdmin;
+			
 			if(input.getPassword() != null){
 				Assert.isTrue(input.getPassword().equals(input.getRepeatedPassword()), "actorForm.error.passwordMismatch");
 			}
-			if(actorService.checkAuthority("CUSTOMER")
-					|| actorService.checkAuthority("ADMIN")){
+			try{
+				isCustoOrAdmin = actorService.checkAuthority("CUSTOMER")
+						|| actorService.checkAuthority("ADMIN");
+			}catch (Exception e) {
+				isCustoOrAdmin = false;
+			}
+			if(isCustoOrAdmin){
 				this.saveActor(input, actorService.checkAuthority("CUSTOMER"));
 			}else{ //Usuario registrandose
 				this.saveRegistration(input);
@@ -125,7 +132,7 @@ public class ActorFormService {
 		}
 		
 		private void saveRegistration(ActorForm input){
-			Assert.isTrue(input.isAceptTerm(), "actorForm.error.termsDenied");
+			Assert.isTrue(input.getAcceptTerm(), "actorForm.error.termsDenied");
 
 			UserAccount acount;
 			Customer result;

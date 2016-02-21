@@ -5,14 +5,17 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ActorFormService;
 import services.CustomerService;
 
 import controllers.AbstractController;
 import domain.Customer;
+import domain.form.ActorForm;
 
 @Controller
 @RequestMapping(value = "/customer/customer")
@@ -22,6 +25,12 @@ public class CustomerController extends AbstractController {
 
 	@Autowired
 	private CustomerService customerService;
+	
+	@Autowired
+	private ActorFormService actorFormService;
+	
+	@Autowired
+	private Validator actorFormValidator;
 
 	// Constructors ----------------------------------------------------------
 
@@ -49,12 +58,11 @@ public class CustomerController extends AbstractController {
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit(){
 		ModelAndView result;
-		Customer customer;
+		ActorForm actorForm;
 		
-		// Si no la tiene debería crearla
-		customer = customerService.findByPrincipal();
+		actorForm = actorFormService.createForm();
 		
-		result = createEditModelAndView(customer);
+		result = createEditModelAndView(actorForm);
 		
 		return result;
 	}
@@ -63,29 +71,19 @@ public class CustomerController extends AbstractController {
 
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid Customer customer, BindingResult binding) {
-		ModelAndView result;
-		boolean bindingError;
-		Customer oldCustomer;
+	public ModelAndView save(@Valid ActorForm customer, BindingResult binding) {
+		actorFormValidator.validate(customer, binding);
 		
-		if(binding.hasFieldErrors("userAccount") 
-				&& binding.hasFieldErrors("creditCard")
-				&& binding.hasFieldErrors("socialIdentity")){
-			bindingError = binding.getErrorCount() > 3;
-		}else{
-			bindingError = binding.getErrorCount() > 0;
-		}
-
-		if (bindingError) {
+		ModelAndView result;
+		/* boolean bindingError;
+		Customer oldCustomer;*/
+		
+		if(binding.hasErrors()) {
 			System.out.println("Errores: " + binding.toString());
 			result = createEditModelAndView(customer);
 		} else {
 			try {
-				oldCustomer = customerService.findByPrincipal();
-				customer.setUserAccount(oldCustomer.getUserAccount());
-				customer.modifyCreditCard(oldCustomer.showCreditCard());
-				customer.setSocialIdentity(oldCustomer.getSocialIdentity());
-				customerService.save(customer);
+				actorFormService.saveForm(customer);
 				result = new ModelAndView("redirect:display.do");
 			} catch (Throwable oops) {
 				result = createEditModelAndView(customer, "customer.commit.error");				
@@ -98,7 +96,7 @@ public class CustomerController extends AbstractController {
 	// Ancillary Methods
 	// ----------------------------------------------------------
 
-	protected ModelAndView createEditModelAndView(Customer customer) {
+	protected ModelAndView createEditModelAndView(ActorForm customer) {
 		ModelAndView result;
 
 		result = createEditModelAndView(customer, null);
@@ -106,11 +104,11 @@ public class CustomerController extends AbstractController {
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndView(Customer customer, String message) {
+	protected ModelAndView createEditModelAndView(ActorForm customer, String message) {
 		ModelAndView result;
 
-		result = new ModelAndView("customer/edit");
-		result.addObject("customer", customer);
+		result = new ModelAndView("actorForm/edit");
+		result.addObject("actorForm", customer);
 		result.addObject("message", message);
 		result.addObject("urlAction", "customer/customer/edit.do");
 

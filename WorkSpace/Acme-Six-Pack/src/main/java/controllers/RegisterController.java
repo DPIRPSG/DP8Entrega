@@ -5,13 +5,14 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import domain.Customer;
+import domain.form.ActorForm;
 
-import services.CustomerService;
+import services.ActorFormService;
 
 @Controller
 @RequestMapping(value = "/customer")
@@ -20,7 +21,10 @@ public class RegisterController extends AbstractController{
 	//Services ----------------------------------------------------------
 	
 	@Autowired
-	private CustomerService customerService;
+	private ActorFormService actorFormService;
+	
+	@Autowired
+	private Validator actorFormValidator;
 	
 	//Constructors ----------------------------------------------------------
 	
@@ -35,9 +39,9 @@ public class RegisterController extends AbstractController{
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create(){
 		ModelAndView result;
-		Customer consu;
+		ActorForm consu;
 		
-		consu = customerService.create();
+		consu = actorFormService.createForm();
 		result = createEditModelAndView(consu);
 		
 		return result;
@@ -46,26 +50,22 @@ public class RegisterController extends AbstractController{
 	//Edition ----------------------------------------------------------
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid Customer consu, BindingResult binding){
+	public ModelAndView save(@Valid ActorForm consu, BindingResult binding){
+		actorFormValidator.validate(consu, binding);
+		
 		ModelAndView result;
-		boolean bindingError;
 		
-		if(binding.hasFieldErrors("messageBoxes")){
-			bindingError = binding.getErrorCount() > 1;
-		}else{
-			bindingError = binding.getErrorCount() > 0;
-		}
-		
-		if(bindingError){
-			System.out.println("Errores: " + binding.toString());
+		if(binding.hasErrors()){
+			System.out.println("Errors: " + binding.toString());
 			result = createEditModelAndView(consu);
 		} else {
 			try {
-				customerService.save(consu);
+				actorFormService.saveForm(consu);
 				result = new ModelAndView("redirect:../security/login.do");
 				result.addObject("messageStatus", "customer.commit.ok");
 								
 			} catch (Throwable oops){
+				System.out.println("Oops: " + oops.toString());
 				result = createEditModelAndView(consu, "customer.commit.error");
 			}
 		}
@@ -74,7 +74,7 @@ public class RegisterController extends AbstractController{
 	}
 	//Ancillary Methods ----------------------------------------------------------
 
-	protected ModelAndView createEditModelAndView(Customer customer){
+	protected ModelAndView createEditModelAndView(ActorForm customer){
 		ModelAndView result;
 		
 		result = createEditModelAndView(customer, null);
@@ -82,14 +82,14 @@ public class RegisterController extends AbstractController{
 		return result;
 	}
 	
-	protected ModelAndView createEditModelAndView(Customer customer, String message){
+	protected ModelAndView createEditModelAndView(ActorForm customer, String message){
 		ModelAndView result;
 		
-		result = new ModelAndView("customer/create");
-		result.addObject("customer", customer);
+		result = new ModelAndView("actorForm/create");
+		result.addObject("actorForm", customer);
 		result.addObject("message", message);
 		result.addObject("urlAction", "customer/create.do");
-		result.addObject("creating", true);
+		// result.addObject("creating", true);
 		
 		return result;
 	}

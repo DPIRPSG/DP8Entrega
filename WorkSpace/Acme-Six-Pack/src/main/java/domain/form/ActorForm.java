@@ -1,6 +1,7 @@
 package domain.form;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -11,7 +12,7 @@ public class ActorForm {
 	private String username;
 	private String password;
 	private String repeatedPassword;
-	private Boolean aceptTerm;
+	private Boolean acceptTerm;
 	private boolean creditCard;
 	private boolean socialIdentity;
 	
@@ -41,6 +42,7 @@ public class ActorForm {
 	}
 	@NotNull
 	@NotBlank
+	@Size(min = 5, max = 32)
 	public String getUsername() {
 		return username;
 	}
@@ -54,7 +56,6 @@ public class ActorForm {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 	public String getRepeatedPassword() {
 		return repeatedPassword;
 	}
@@ -62,11 +63,11 @@ public class ActorForm {
 		this.repeatedPassword = repeatedPassword;
 	}
 	
-	public Boolean isAceptTerm() {
-		return aceptTerm;
+	public Boolean getAcceptTerm() {
+		return acceptTerm;
 	}
-	public void setAceptTerm(Boolean aceptTerm) {
-		this.aceptTerm = aceptTerm;
+	public void setAcceptTerm(Boolean aceptTerm) {
+		this.acceptTerm = aceptTerm;
 	}
 	public boolean isCreditCard() {
 		return creditCard;
