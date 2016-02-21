@@ -114,10 +114,18 @@ public class ServiceService {
 		return result;
 	}
 	
-	public Collection<ServiceEntity> findAll2() {
+	public Collection<ServiceEntity> findAllWithoutFitness() {
 		Collection<ServiceEntity> result;
 		
 		result = serviceRepository.findAllWithoutFitness();
+		
+		return result;
+	}
+	
+	public Collection<ServiceEntity> findAllNotBookedByCustomerId(int customerId) {
+		Collection<ServiceEntity> result;
+		
+		result = serviceRepository.findAllNotBookedByCustomerId(customerId);
 		
 		return result;
 	}
