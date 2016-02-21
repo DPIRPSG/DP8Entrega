@@ -31,6 +31,9 @@ public class AdministratorService {
 	
 	//Simple CRUD methods ----------------------------------------------------
 
+	public void save(Administrator administrator){
+		administratorRepository.save(administrator);
+	}
 	//Other business methods -------------------------------------------------
  
 	/**
