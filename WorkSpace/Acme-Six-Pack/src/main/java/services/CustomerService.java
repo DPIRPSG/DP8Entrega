@@ -8,8 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import domain.Booking;
+import domain.Comment;
 import domain.CreditCard;
 import domain.Customer;
+import domain.FeePayment;
 import domain.Folder;
 import domain.Message;
 
@@ -88,9 +91,10 @@ public class CustomerService {
 			Collection<Folder> folders;
 			Collection<Message> sent;
 			Collection<Message> received;
-			//Collection<Order> orders;
+			Collection<Comment> comments;
+			Collection<Booking> bookings;
+			Collection<FeePayment>feePayments;
 			UserAccount auth;
-			//ShoppingCart shoppingCart;
 			
 			//Encoding password
 			auth = customer.getUserAccount();
@@ -105,10 +109,20 @@ public class CustomerService {
 			received = new ArrayList<Message>();
 			customer.setSent(sent);
 			customer.setReceived(received);
+			
+			// Initialize anothers
+			
+			comments = new ArrayList<Comment>();
+			bookings = new ArrayList<Booking>();
+			feePayments = new ArrayList<FeePayment>();
+			customer.setComments(comments);
+			customer.setBooking(bookings);
+			customer.setFeePayment(feePayments);
 
 			
 		}
-		modify = customerRepository.save(customer);
+		//modify = customerRepository.saveAndFlush(customer);
+		modify = customerRepository.save(customer);		
 		
 		if(customer.getId() == 0){
 			Collection<Folder> folders;

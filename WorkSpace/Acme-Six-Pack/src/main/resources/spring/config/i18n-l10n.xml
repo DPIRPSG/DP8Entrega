@@ -39,7 +39,10 @@
 		<value>/views/service/messages</value>
 		<value>/views/booking/messages</value>
 		<value>/views/feePayment/messages</value>
-		<value>/views/creditCard/messages</value>		
+		<value>/views/creditCard/messages</value>	
+		
+		<value>/views/forms/messages</value>
+			
 	</util:list>
 
 </beans>
