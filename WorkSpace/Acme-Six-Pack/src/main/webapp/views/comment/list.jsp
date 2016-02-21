@@ -19,44 +19,23 @@
 	<!-- Action links -->
 	<security:authorize access="hasRole('ADMIN')">
 		<display:column>
-			<a href="comment/administrator/delete.do?commentId=${row_Comment.id}">
-				<spring:message	code="comment.delete" />
-			</a>
-		</display:column>		
+			<acme:link href="comment/administrator/delete.do?commentId=${row_Comment.id}" code="comment.delete"/>
+		</display:column>
 	</security:authorize>
 	
 	<!-- Attributes -->
-	<acme:displayColumn code="comment.actor" header="actorHeader" sorteable="true" value="row_Comment.actor.name"/>
-<%-- 	<spring:message code="comment.actor" var="actorHeader" /> --%>
-<%-- 	<display:column title="${actorHeader}" --%>
-<%--  		sortable="true" > --%>
-<%--  		<jstl:out value="${row_Comment.actor.name}" /> <jstl:out value="${row_Comment.actor.surname}" />(<jstl:out value="${row_Comment.actor.userAccount.username}" />) --%>
-<%--  	</display:column> --%>
+	<acme:displayColumn code="comment.actor" var="actorHeader" title="${actorHeader}" sorteable="true" value="${row_Comment.actor.name} ${row_Comment.actor.surname}(${row_Comment.actor.userAccount.username})"/>
 	
-	<spring:message code="comment.moment" var="momentHeader" />
-	<display:column title="${momentHeader}" 
-		sortable="true" format="{0,date,yyyy/MM/dd }" >
-		<jstl:out value="${row_Comment.moment}"/>
-	</display:column>
+	<acme:displayColumn code="comment.moment" var="momentHeader" title="${momentHeader}" sorteable="true" value="${row_Comment.moment}" format="{0,date,yyyy/MM/dd}"/>
 
-	<spring:message code="comment.text" var="textHeader" />
-	<display:column title="${textHeader}" 
-		sortable="false" >
-		<jstl:out value="${row_Comment.text}"/>
-	</display:column>
+	<acme:displayColumn code="comment.text" var="textHeader" title="${textHeader}" sorteable="true" value="${row_Comment.text}"/>
 
-	<spring:message code="comment.starRating" var="starRatingHeader" />
-	<display:column title="${starRatingHeader}" 
-		sortable="true" >
-		<jstl:out value="${row_Comment.starRating}"/>
-	</display:column>
+	<acme:displayColumn code="comment.starRating" var="starRatingHeader" title="${starRatingHeader}" sorteable="true" value="${row_Comment.starRating}"/>
 		
 </display:table>
 
 <security:authorize access="isAuthenticated()">
 	<div>
-		<a href="comment/actor/create.do?commentedEntityId=${commentedEntity.id}"> <spring:message
-				code="comment.create" />
-		</a>
+		<acme:link href="comment/actor/create.do?commentedEntityId=${commentedEntity.id}" code="comment.create"/>
 	</div>
 </security:authorize>
