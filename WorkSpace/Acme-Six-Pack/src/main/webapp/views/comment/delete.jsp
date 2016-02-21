@@ -7,15 +7,9 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <security:authorize access="hasRole('ADMIN')">
-
-<%-- 	<jstl:if test="${comment.gym != null}"> --%>
-<%-- 		<h3><spring:message code="comment.gym"/>: <jstl:out value="${entityName}" /></h3> --%>
-<%-- 	</jstl:if> --%>
-<%-- 	<jstl:if test="${comment.service != null}"> --%>
-<%-- 		<h3><spring:message code="comment.service"/>: <jstl:out value="${entityName}" /></h3> --%>
-<%-- 	</jstl:if> --%>
 
 	<h3><spring:message code="comment.entity"/>: <jstl:out value="${commentedEntity.name}" /></h3>
 	
@@ -28,26 +22,21 @@
 		<form:hidden path="commentedEntity"/>
 		
 		<!-- Shown Attributes -->
-		<form:hidden path="moment"/>
-		<p><spring:message code = "comment.moment"/>: <jstl:out value="${comment.moment}" /></p>
 		
-		<form:hidden path="actor"/>
-		<p><spring:message code = "comment.actor"/>: <jstl:out value="${comment.actor.name}" /> <jstl:out value="${comment.actor.surname}" />(<jstl:out value="${comment.actor.userAccount.username}" />)</p>
-					
-		<form:hidden path="text"/>
-		<p><spring:message code = "comment.text"/>: <jstl:out value="${comment.text}" /></p>
+		<acme:textbox path="moment" code="comment.moment" readonly="true"/>
+<%-- 		<form:hidden path="moment"/> --%>
+<%-- 		<p><spring:message code = "comment.moment"/>: <jstl:out value="${comment.moment}" /></p> --%>
 		
-		<form:hidden path="starRating"/>
-		<p><spring:message code = "comment.starRating"/>: <jstl:out value="${comment.starRating}" /></p>
+		<acme:textbox path="actor" pathValue="${comment.actor.name} ${comment.actor.surname}(${comment.actor.userAccount.username})" code="comment.actor" readonly="true" size="50px"/>
+		
+		<acme:textarea path="text" code="comment.text" readonly="true"/>
+		
+		<acme:textbox path="starRating" code="comment.starRating" readonly="true"/>
 		
 		<!-- Action buttons -->
-		<input type="submit" name="delete"
-				value="<spring:message code="comment.delete" />"
-				onclick="return confirm('<spring:message code="comment.confirm.delete" />')" />
+		<acme:submit_confirm name="delete" code="comment.delete" codeConfirm="comment.confirm.delete"/>
 		&nbsp;
-		<input type="button" name="cancel"
-			value="<spring:message code="comment.delete.cancel" />"
-			onclick="javascript: relativeRedir('/comment/list.do?commentedEntityId=${commentedEntity.id}');" />
+		<acme:cancel code="comment.delete.cancel" url="/comment/list.do?commentedEntityId=${commentedEntity.id}"/>
 		
 	</form:form>
 	

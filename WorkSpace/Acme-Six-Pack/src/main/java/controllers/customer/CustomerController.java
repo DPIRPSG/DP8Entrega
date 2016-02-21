@@ -83,7 +83,7 @@ public class CustomerController extends AbstractController {
 			try {
 				oldCustomer = customerService.findByPrincipal();
 				customer.setUserAccount(oldCustomer.getUserAccount());
-				customer.setCreditCard(oldCustomer.getCreditCard());
+				customer.modifyCreditCard(oldCustomer.showCreditCard());
 				customer.setSocialIdentity(oldCustomer.getSocialIdentity());
 				customerService.save(customer);
 				result = new ModelAndView("redirect:display.do");

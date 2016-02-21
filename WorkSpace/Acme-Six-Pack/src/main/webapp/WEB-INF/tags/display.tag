@@ -24,10 +24,11 @@
 
 <%@ attribute name="value" required="true" %>
 <%@ attribute name="code" required="true" %>
-<%@ attribute name="readonly" required="false" %>
 
 <%-- Definition --%>
 	<tr>
 		<th><spring:message code="${code}" /> :</th>
 		<td><jstl:out value="${value}" /></td>
 	</tr>
+	
+	
