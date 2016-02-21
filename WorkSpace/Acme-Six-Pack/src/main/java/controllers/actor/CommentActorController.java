@@ -28,12 +28,6 @@ public class CommentActorController extends AbstractController {
 	@Autowired
 	private CommentedEntityService commentedEntityService;
 	
-//	@Autowired
-//	private GymService gymService;
-	
-//	@Autowired
-//	private ServiceService serviceService;
-	
 	
 	// Constructors --------------------------------------------------------
 	
