@@ -18,11 +18,15 @@
 		<acme:textbox code="customer.name" path="name"/>
 		<acme:textbox code="customer.surname" path="surname"/>
 		<acme:textbox code="customer.phone" path="phone"/>
+		<acme:textbox code="customer.username" path="username"/>
+		<acme:textbox code="customer.password" path="password"/>
+		<acme:textbox code="customer.password" path="repeatedPassword"/>		
 		
-		<jstl:if test="${creating != null}">
-			<acme:textbox code="customer.username" path="username"/>
-		</jstl:if>
-		
+		<security:authorize access="!hasAnyRole('CUSTOMER', 'ADMIN')">
+			
+			<acme:textbox code="actorForm.acceptTerm" path="acceptTerm"/>
+			
+		</security:authorize>		
 		<br />
 		
 		<!-- Action buttons -->

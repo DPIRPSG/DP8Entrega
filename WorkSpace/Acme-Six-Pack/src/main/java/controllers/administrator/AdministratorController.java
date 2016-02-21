@@ -1,16 +1,26 @@
 package controllers.administrator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.Validator;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorFormService;
 import services.AdministratorService;
+import validator.ActorFormValidator;
 
 import controllers.AbstractController;
 import domain.Administrator;
@@ -27,6 +37,9 @@ public class AdministratorController extends AbstractController {
 	
 	@Autowired
 	private ActorFormService actorFormService;
+	
+	@Autowired
+    private Validator actorFormValidator;
 
 	// Constructors ----------------------------------------------------------
 
@@ -34,6 +47,17 @@ public class AdministratorController extends AbstractController {
 		super();
 	}
 
+     
+/*    @InitBinder
+    private void initBinder(WebDataBinder binder) {
+    	Validator[] validators;
+    	
+        //binder.setValidator(shopValidator);
+        //validators = binder.getValidators();
+        validators = actorFormValidator;
+        binder.addValidators(validators);
+        
+    }*/
 	// Listing ----------------------------------------------------------
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
@@ -55,9 +79,7 @@ public class AdministratorController extends AbstractController {
 	public ModelAndView edit(){
 		ModelAndView result;
 		ActorForm administrator;
-		System.out.println("Quiero editar !!!!");
 		
-		// Si no la tiene debería crearla
 		administrator = actorFormService.createForm();
 		
 		result = createEditModelAndView(administrator);
@@ -71,18 +93,19 @@ public class AdministratorController extends AbstractController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid ActorForm actorForm, BindingResult binding) {
 		ModelAndView result;
-		boolean bindingError;
-		Administrator oldCustomer;
+		FieldError errorCampoMio;
+		actorFormValidator.validate(actorForm, binding);
 		
-		if(binding.hasFieldErrors("userAccount")		
-				&& binding.hasFieldErrors("messageBoxes")
-				&& binding.hasFieldErrors("comments")){
-			bindingError = binding.getErrorCount() > 3;
-		}else{
-			bindingError = binding.getErrorCount() > 0;
-		}
+		/*binding.addAllErrors(binding);
+		
+		errorCampoMio = new FieldError("actorForm", "password", actorForm.getPassword(), false, null,
+				null, "Error Mio");
+		//new Fiel
+		binding.addError(errorCampoMio);
+		binding.rejectValue("name", "jssjerror", "Este es un error indeseado");
+		 */
 
-		if (bindingError) {
+		if (binding.hasErrors()) {
 			System.out.println("Errores: " + binding.toString());
 			result = createEditModelAndView(actorForm);
 		} else {
@@ -90,9 +113,19 @@ public class AdministratorController extends AbstractController {
 				actorFormService.saveForm(actorForm);
 				result = new ModelAndView("redirect:display.do");
 			} catch (Throwable oops) {
+				String errorCode;
+				
 				System.out.println("Oops: " + oops.toString());
-				System.out.println(oops.getStackTrace());
-				result = createEditModelAndView(actorForm, "actorForm.commit.error");
+				System.out.println(oops.getStackTrace().length);
+				
+				if(oops.getMessage().equals("actorForm.error.passwordMismatch")){
+					errorCode = "actorForm.error.passwordMismatch";
+				}else if (oops.getMessage().equals("actorForm.error.termsDenied")) {
+					errorCode = "actorForm.error.termsDenied";
+				}else{
+					errorCode = "actorForm.commit.error";
+				}
+				result = createEditModelAndView(actorForm, errorCode);
 			}
 		}
 

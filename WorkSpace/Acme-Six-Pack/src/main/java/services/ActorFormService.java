@@ -70,14 +70,11 @@ public class ActorFormService {
 		}
 		
 		public void saveForm(ActorForm input){
-			System.out.println("En saveForm!!!!");
 			if(input.getPassword() != null){
-				Assert.isTrue(input.getPassword().equals(input.getRepeatedPassword()), "Passwords must match");
+				Assert.isTrue(input.getPassword().equals(input.getRepeatedPassword()), "actorForm.error.passwordMismatch");
 			}
-			System.out.println("En saveForm");
 			if(actorService.checkAuthority("CUSTOMER")
 					|| actorService.checkAuthority("ADMIN")){
-				System.out.println("Ya lo chequee");
 				this.saveActor(input, actorService.checkAuthority("CUSTOMER"));
 			}else{ //Usuario registrandose
 				this.saveRegistration(input);
@@ -128,7 +125,7 @@ public class ActorFormService {
 		}
 		
 		private void saveRegistration(ActorForm input){
-			Assert.isTrue(input.isAceptTerm(), "The Terms and conditions must be accepted");
+			Assert.isTrue(input.isAceptTerm(), "actorForm.error.termsDenied");
 
 			UserAccount acount;
 			Customer result;
