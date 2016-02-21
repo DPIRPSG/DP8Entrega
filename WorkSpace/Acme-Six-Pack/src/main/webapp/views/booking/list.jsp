@@ -122,7 +122,7 @@
 <!-- Action links -->
 <security:authorize access="hasRole('CUSTOMER')">
 	<div>
-		<a href="booking/customer/create.do">
+		<a href="booking/customer/create.do?customerId=${row_Booking.customer.id}">
 			<spring:message code="booking.create" />
 		</a>
 	</div>
