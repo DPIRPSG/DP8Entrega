@@ -25,9 +25,7 @@ public class ActorFormValidator implements Validator{
 	
 	@Override
 	public void validate(Object target, Errors errors) {
-		// TODO Auto-generated method stub
-		System.out.println("Está validando los datos ! !");
-		
+
 		ActorForm actor = (ActorForm) target;
 		Actor actActor;
 		UserAccount uAccountUsername;
