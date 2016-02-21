@@ -195,13 +195,4 @@ public class CustomerService {
 
 		return result;
 	}
-	
-	/* Añadido por Guillermo (Por si peta en algo, para que me lo digáis)*/
-	public Customer findOneWhoHasPaidFee(int consumerId){
-		Customer result;
-		
-		result = customerRepository.findOneWhoHasPaidFee(consumerId);
-		
-		return result;
-	}
 }
