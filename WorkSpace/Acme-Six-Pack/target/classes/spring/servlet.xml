@@ -126,14 +126,6 @@
 		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
 		<property name="validationMessageSource" ref="messageSource" />
 	</bean>
-	
-	<!-- <import resource="config/validators.xml" />
-
-	<bean id="manualValidator"
-		class="org.springframework.validation.Validator">
-		<property name="validationMessageSource" ref="validators" />
-	</bean> -->
-
 
 	<!-- Security -->
 

@@ -30,7 +30,7 @@ public class AdministratorController extends AbstractController {
 	private ActorFormService actorFormService;
 	
 	@Autowired
-    private Validator actorFormValidator;
+	private Validator actorFormValidator;
 
 	// Constructors ----------------------------------------------------------
 
@@ -84,13 +84,13 @@ public class AdministratorController extends AbstractController {
 				result = new ModelAndView("redirect:display.do");
 			} catch (Throwable oops) {
 				String errorCode;
-				if(oops.getMessage().equals("actorForm.error.passwordMismatch")){
+				/*if(oops.getMessage().equals("actorForm.error.passwordMismatch")){
 					errorCode = "actorForm.error.passwordMismatch";
 				}else if (oops.getMessage().equals("actorForm.error.termsDenied")) {
 					errorCode = "actorForm.error.termsDenied";
-				}else{
+				}else{*/
 					errorCode = "actorForm.commit.error";
-				}
+				// }
 				result = createEditModelAndView(actorForm, errorCode);
 			}
 		}

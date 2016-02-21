@@ -16,19 +16,14 @@
       
 <tiles-definitions>
 
-	<definition name="customer/create" extends="master.page">	
+	<definition name="actorForm/create" extends="master.page">	
 		<put-attribute name="title" value="Cliente: Registro" />
-		<put-attribute name="body" value="/views/customer/edit.jsp" />
+		<put-attribute name="body" value="/views/forms/actorForm.jsp" />
 	</definition>
 	
-	<definition name="customer/edit" extends="master.page">	
-		<put-attribute name="title" value="Cliente: Edición" />
-		<put-attribute name="body" value="/views/customer/edit.jsp" />
-	</definition>
-	
-	<definition name="customer/display" extends="master.page">	
-		<put-attribute name="title" value="Cliente: Mostrar" />
-		<put-attribute name="body" value="/views/customer/display.jsp" />
+	<definition name="actorForm/edit" extends="master.page">	
+		<put-attribute name="title" value="Perfil: Edición" />
+		<put-attribute name="body" value="/views/forms/actorForm.jsp" />
 	</definition>
 	
 </tiles-definitions>

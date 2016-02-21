@@ -75,8 +75,6 @@ public class CustomerController extends AbstractController {
 		actorFormValidator.validate(customer, binding);
 		
 		ModelAndView result;
-		/* boolean bindingError;
-		Customer oldCustomer;*/
 		
 		if(binding.hasErrors()) {
 			System.out.println("Errores: " + binding.toString());

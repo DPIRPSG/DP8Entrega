@@ -13,8 +13,6 @@ public class ActorForm {
 	private String password;
 	private String repeatedPassword;
 	private Boolean acceptTerm;
-	private boolean creditCard;
-	private boolean socialIdentity;
 	
 	@NotNull
 	@NotBlank
@@ -69,42 +67,7 @@ public class ActorForm {
 	public void setAcceptTerm(Boolean aceptTerm) {
 		this.acceptTerm = aceptTerm;
 	}
-	public boolean isCreditCard() {
-		return creditCard;
-	}
-	public void setCreditCard(boolean creditCard) {
-		this.creditCard = creditCard;
-	}
-	public boolean isSocialIdentity() {
-		return socialIdentity;
-	}
-	public void setSocialIdentity(boolean socialIdentity) {
-		this.socialIdentity = socialIdentity;
-	}
 	
 	// Validator ----------
-	/*
-	@AssertTrue(message="actorForm.error.passwordMismatch")
-	public boolean paswordMismatch(){
-		boolean result;
-		
-		System.out.println("Comprobando paswordMismatch");
-		
-		result = this.getPassword() == null && this.getRepeatedPassword() == null;
-		result = result || this.getPassword().equals(this.getRepeatedPassword());
-		
-		return result;
-	}
-	
-	@AssertTrue(message="actorForm.error.termsDenied")
-	public boolean termsAccepted(){
-		boolean result;
-		
-		System.out.println("Comprobando termsAccepted");
-		
-		result = this.isAceptTerm() == null;
-		result = result || this.isAceptTerm();
-		
-		return result;
-	}*/
+
 }

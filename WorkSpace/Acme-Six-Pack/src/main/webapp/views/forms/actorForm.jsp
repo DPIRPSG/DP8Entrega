@@ -15,20 +15,20 @@
 		<!-- Hidden Attributes -->
 		
 		<!-- Editable Attributes -->
-		<acme:textbox code="customer.name" path="name"/>
-		<acme:textbox code="customer.surname" path="surname"/>
-		<acme:textbox code="customer.phone" path="phone"/>
-		<acme:textbox code="customer.username" path="username"/>
+		<acme:textbox code="actorForm.name" path="name"/>
+		<acme:textbox code="actorForm.surname" path="surname"/>
+		<acme:textbox code="actorForm.phone" path="phone"/>
+		<acme:textbox code="actorForm.username" path="username"/>
 		
 		<form:label path="password">
-			<spring:message code="customer.password" />
+			<spring:message code="actorForm.password" />
 		</form:label>
 		<form:password path="password" />	
 		<form:errors class="error" path="password" />
 		<br />
 		
 		<form:label path="repeatedPassword">
-			<spring:message code="customer.password" />
+			<spring:message code="actorForm.repeatedPassword" />
 		</form:label>
 		<form:password path="repeatedPassword" />	
 		<form:errors class="error" path="repeatedPassword" />
@@ -42,9 +42,9 @@
 		<br />
 		
 		<!-- Action buttons -->
-		<acme:submit name="save" code="customer.save"/>
+		<acme:submit name="save" code="actorForm.save"/>
 		&nbsp;
-		<acme:cancel url="/" code="customer.cancel"/>
+		<acme:cancel url="/" code="actorForm.cancel"/>
 		<br />
 		
 	</form:form>

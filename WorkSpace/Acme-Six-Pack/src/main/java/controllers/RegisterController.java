@@ -65,7 +65,6 @@ public class RegisterController extends AbstractController{
 				result.addObject("messageStatus", "customer.commit.ok");
 								
 			} catch (Throwable oops){
-				System.out.println("Oops: " + oops.toString());
 				result = createEditModelAndView(consu, "customer.commit.error");
 			}
 		}
@@ -89,7 +88,6 @@ public class RegisterController extends AbstractController{
 		result.addObject("actorForm", customer);
 		result.addObject("message", message);
 		result.addObject("urlAction", "customer/create.do");
-		// result.addObject("creating", true);
 		
 		return result;
 	}
