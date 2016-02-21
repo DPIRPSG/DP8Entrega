@@ -10,8 +10,6 @@ import org.springframework.util.Assert;
 
 import domain.Booking;
 import domain.Customer;
-import domain.Gym;
-import domain.ServiceEntity;
 
 import repositories.BookingRepository;
 
@@ -50,37 +48,9 @@ public class BookingService {
 		Assert.isTrue(actorService.checkAuthority("CUSTOMER"), "Only the customer can book a booking");
 		
 		Booking result;
-		
-		/**
-		 * Comprobar que el create esté bien hecho.
-		 * Que no falten atributos por poner.
-		 * Que no falten relaciones necesarias. --> Admin no sé si hay que ponerlo
-		 * Que los atributos que falten, verificar que se pongan los valores en las vistas.
-		 */
-		
-//		Gym gym;
-//		ServiceEntity service;
-//		Customer customer;
-//		Customer customerLogged;
-		
-//		gym = new Gym();
-//		service = new ServiceEntity();
-//		customerLogged = customerService.findByPrincipal();
-//		customer = customerService.findOneWhoHasPaidFee(customerLogged.getId());
-		
-//		Assert.notNull(customer, "The customer has not paid the fee");
 				
 		result = new Booking();
-		
-//		result.setCustomer(customer);
-//		result.setGym(gym);
-//		result.setService(service);
-//		 
-//		result.setCreationMoment(new Date());
-//		result.setApproved(false);
-//		result.setDenied(false);
-//		result.setCanceled(false);
-		
+
 		return result;
 	}
 	
@@ -95,6 +65,14 @@ public class BookingService {
 		
 		Assert.notNull(booking);
 		Assert.isTrue(actorService.checkAuthority("CUSTOMER"), "Only a customer can book services");
+		
+		Customer customerLogged;
+		Customer customer;
+		
+		customerLogged = customerService.findByPrincipal();
+		customer = customerService.findOneWhoHasPaidFee(customerLogged.getId());
+		
+		Assert.notNull(customer, "The customer has not paid the fee");
 		
 		booking.setCreationMoment(new Date());
 		booking.setApproved(false);
