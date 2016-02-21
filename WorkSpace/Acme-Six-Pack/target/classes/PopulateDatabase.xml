@@ -696,7 +696,7 @@
 	<bean id="gym1" class="domain.Gym">
 		<property name="name" value="Gym Sevilla"/>
 		<property name="description" value="Gimnasio de Sevilla"/>
-		<property name="postalAddress" value="Sevilla"/>
+		<property name="postalAddress" value="Cuesta del Rosario, 8, 41004 Sevilla"/>
 		<property name="fee" value="30"/>
 		<property name="picture" value="http://www.casacartagena.com/archivo/files/gimnasio-1.jpg"/>
 		<property name="phone" value="666444777"/>
@@ -734,7 +734,7 @@
 	<bean id="gym2" class="domain.Gym">
 		<property name="name" value="Gym Cádiz"/>
 		<property name="description" value="Gimnasio de Cádiz"/>
-		<property name="postalAddress" value="Cádiz"/>
+		<property name="postalAddress" value="Av. Alcalde Manuel de la Pinta, 24, 11011 Cádiz"/>
 		<property name="fee" value="20"/>
 		<property name="picture" value="http://www.casacartagena.com/archivo/files/gimnasio-1.jpg"/>
 		<property name="phone" value="666444766"/>
@@ -765,7 +765,7 @@
 	<bean id="gym3" class="domain.Gym">
 		<property name="name" value="Gym Dos Hermanas"/>
 		<property name="description" value="Gimnasio de Dos Hermanas"/>
-		<property name="postalAddress" value="Dos Hermanas"/>
+		<property name="postalAddress" value="Calle Dr. Fleming, 45, 41701 Dos Hermanas, Sevilla"/>
 		<property name="fee" value="15"/>
 		<property name="picture" value="http://www.casacartagena.com/archivo/files/gimnasio-1.jpg"/>
 		<property name="phone" value="654789123"/>
