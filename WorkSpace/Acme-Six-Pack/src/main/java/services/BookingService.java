@@ -231,25 +231,4 @@ public class BookingService {
 		bookingRepository.save(booking);
 		
 	}
-	
-	private boolean isDurationValid(double duration){
-		
-		Boolean result;
-		Double d;
-		Double mod;
-		
-		result = false;
-		d = 0.0;
-		mod = 0.0;
-		
-		d = duration*10.0;
-		mod = d % 5.0;
-		d = d/5.0;
-		
-		if (d - mod == 0.0){
-			result = true;
-		}
-		
-		return result;
-	}
 }

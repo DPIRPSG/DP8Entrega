@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import domain.CreditCard;
 import domain.Customer;
 import domain.FeePayment;
 import domain.Gym;
@@ -61,26 +62,29 @@ public class FeePaymentService {
 	
 	public void save(FeePayment feePayment) {
 		Assert.notNull(feePayment);
-		Date activeMomentLimit;
-		
-		activeMomentLimit = new Date();
-		
-		Calendar c = Calendar.getInstance();
-		c.setTime(feePayment.getPaymentMoment());
-		c.add(Calendar.MONTH, +6);
-		activeMomentLimit.setTime(c.getTimeInMillis());
 
-		
-		Assert.isTrue(feePayment.getActiveMoment().compareTo(feePayment.getPaymentMoment()) > 0, "La fecha de activación del pago debe ser mayor que el momento actual");
-		Assert.isTrue(feePayment.getActiveMoment().compareTo(activeMomentLimit) < 0, "La fecha de activación del pago no debe sobrepasar 6 meses el momento actual");
-		
 		if (feePayment.getId() == 0) {
+			Assert.isTrue(compruebaFecha(feePayment.getCreditCard()), "La tarjeta de credito no puede estar caducada");
+			
 			Date paymentMoment;
 			Date moment;
 			Date inactiveMoment;
 			Gym gym;
 			Customer customer;
 			FeePayment fee;
+			
+			Date activeMomentLimit;
+			
+			activeMomentLimit = new Date();
+			
+			Calendar c = Calendar.getInstance();
+			c.setTime(feePayment.getPaymentMoment());
+			c.add(Calendar.MONTH, +6);
+			activeMomentLimit.setTime(c.getTimeInMillis());
+
+			
+			Assert.isTrue(feePayment.getActiveMoment().compareTo(feePayment.getPaymentMoment()) > 0, "La fecha de activación del pago debe ser mayor que el momento actual");
+			Assert.isTrue(feePayment.getActiveMoment().compareTo(activeMomentLimit) < 0, "La fecha de activación del pago no debe sobrepasar 6 meses el momento actual");
 
 			paymentMoment = new Date();
 
@@ -158,6 +162,26 @@ public class FeePaymentService {
 		return result;
 	}
 
-
+	private boolean compruebaFecha(CreditCard creditCard) {
+		boolean result;
+		Calendar c;
+		int cMonth, cYear;
+		
+		result = false;
+		
+		c = Calendar.getInstance();
+				
+		cMonth = c.get(2) + 1; //Obtenemos numero del mes (Enero es 0)
+		cYear = c.get(1); //Obtenemos año
+		
+		if(creditCard.getExpirationYear() > cYear) {
+			result = true;
+		} else if(creditCard.getExpirationYear() == cYear) {
+			if(creditCard.getExpirationMonth() >= cMonth) {
+				result = true;
+			}
+		}
+		return result;		
+	}
 	
 }

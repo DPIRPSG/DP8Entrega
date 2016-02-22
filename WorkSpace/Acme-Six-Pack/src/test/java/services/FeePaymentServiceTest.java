@@ -60,7 +60,7 @@ public class FeePaymentServiceTest extends AbstractTest{
 		creditCard.setHolderName("Miguel");
 		creditCard.setBrandName("Miguel");
 		creditCard.setNumber("4682775285197418");
-		creditCard.setExpirationMonth(8);
+		creditCard.setExpirationMonth(2);
 		creditCard.setExpirationYear(2016);
 		creditCard.setCvvCode(158);
 		
