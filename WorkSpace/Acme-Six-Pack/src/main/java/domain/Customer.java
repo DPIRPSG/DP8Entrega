@@ -56,8 +56,8 @@ public class Customer extends Actor {
 	}
 	// Relationships ----------------------------------------------------------
 	private SocialIdentity socialIdentity;
-	private Collection<FeePayment> feePayment;
-	private Collection<Booking> booking;
+	private Collection<FeePayment> feePayments;
+	private Collection<Booking> bookings;
 	
 	@Valid
 	@OneToOne(optional = true)
@@ -71,29 +71,37 @@ public class Customer extends Actor {
 	@Valid
 	@NotNull
 	@OneToMany(mappedBy = "customer")
-	public Collection<FeePayment> getFeePayment() {
-		return feePayment;
+	public Collection<FeePayment> getFeePayments() {
+		return feePayments;
 	}
-	public void setFeePayment(Collection<FeePayment> feePayment) {
-		this.feePayment = feePayment;
+	public void setFeePayments(Collection<FeePayment> feePayment) {
+		this.feePayments = feePayment;
 	}
 	
 	public void addFeePayment(FeePayment feePayment) {
-		this.feePayment.add(feePayment);
+		this.feePayments.add(feePayment);
 	}
 
 	public void removeFeePayment(FeePayment feePayment) {
-		this.feePayment.remove(feePayment);
+		this.feePayments.remove(feePayment);
 	}
 	
 	@Valid
 	@NotNull
 	@OneToMany(mappedBy = "customer")	
-	public Collection<Booking> getBooking() {
-		return booking;
+	public Collection<Booking> getBookings() {
+		return bookings;
 	}
-	public void setBooking(Collection<Booking> booking) {
-		this.booking = booking;
+	public void setBookings(Collection<Booking> booking) {
+		this.bookings = booking;
+	}
+	
+	public void addBooking(Booking booking) {
+		this.bookings.add(booking);
+	}
+
+	public void removeBooking(Booking booking) {
+		this.bookings.remove(booking);
 	}
 
 }

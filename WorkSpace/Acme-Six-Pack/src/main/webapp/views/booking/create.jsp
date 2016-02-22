@@ -21,6 +21,9 @@
 	<form:hidden path="denied"/>
 	<form:hidden path="canceled"/>
 	
+	<form:hidden path="gym"/>
+	<form:hidden path="service"/>
+	
 	<form:hidden path="customer" />
 	<form:hidden path="administrator"/>
 	
@@ -29,10 +32,6 @@
 	<acme:textbox code="booking.requestMoment" path="requestMoment" />
 
 	<acme:textbox code="booking.duration" path="duration" />
-	
-	<acme:selectMult items="${gyms}" itemLabel="name" code="booking.gym" path="gym"/>
-	
-	<acme:selectMult items="${services}" itemLabel="name" code="booking.service" path="service"/>
 		
 	<!-- Action buttons -->
 

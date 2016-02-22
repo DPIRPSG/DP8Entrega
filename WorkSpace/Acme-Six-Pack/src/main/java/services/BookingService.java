@@ -10,6 +10,8 @@ import org.springframework.util.Assert;
 
 import domain.Booking;
 import domain.Customer;
+import domain.Gym;
+import domain.ServiceEntity;
 
 import repositories.BookingRepository;
 
@@ -30,6 +32,12 @@ public class BookingService {
 	@Autowired
 	private CustomerService customerService;
 	
+	@Autowired
+	private GymService gymService;
+	
+	@Autowired
+	private ServiceService serviceService;
+	
 	// Constructors -----------------------------------------------------------
 
 	public BookingService() {
@@ -43,13 +51,29 @@ public class BookingService {
 	 * @return Devuelve booking preparado para ser modificado. Necesita usar save para que persista en la base de datos.
 	 */
 	// Requisito 10.3
-	public Booking create(){
-		
+	public Booking create(int gymId, int serviceId){	
 		Assert.isTrue(actorService.checkAuthority("CUSTOMER"), "Only the customer can book a booking");
 		
 		Booking result;
+		Date creationMoment;
+		Gym gym;
+		ServiceEntity service;
+		Customer customer;
+		
+		creationMoment = new Date();
+		gym = gymService.findOne(gymId);
+		service = serviceService.findOne(serviceId);
+		customer = customerService.findByPrincipal();
 				
 		result = new Booking();
+		
+		result.setApproved(false);
+		result.setCanceled(false);
+		result.setDenied(false);
+		result.setCreationMoment(creationMoment);
+		result.setGym(gym);
+		result.setService(service);
+		result.setCustomer(customer);
 
 		return result;
 	}
@@ -64,23 +88,39 @@ public class BookingService {
 	public void save(Booking booking){
 		
 		Assert.notNull(booking);
-		Assert.isTrue(actorService.checkAuthority("CUSTOMER"), "Only a customer can book services");
+		Assert.isTrue(actorService.checkAuthority("CUSTOMER"), "Only a customer can book services");	
+		Assert.isTrue(booking.getCreationMoment().before(booking.getRequestMoment()), "The request moment must be after creation moment");
+		//Assert.isTrue(isDurationValid(booking.getDuration()), "The duration of the booking must be expressed in hours or half-hours");
 		
-		Customer customerLogged;
+		int duration; //Solo la parte entera
+		
+		duration = (int) booking.getDuration();
+		Assert.isTrue((booking.getDuration() - duration) == 0.5 || (booking.getDuration() - duration) == 0, "The duration of the booking must be expressed in hours or half-hours");
+		
+		Gym gym;
+		ServiceEntity service;
 		Customer customer;
 		
-		customerLogged = customerService.findByPrincipal();
-		customer = customerService.findOneWhoHasPaidFee(customerLogged.getId());
-		
-		Assert.notNull(customer, "The customer has not paid the fee");
-		
-		booking.setCreationMoment(new Date());
-		booking.setApproved(false);
-		booking.setDenied(false);
-		booking.setCanceled(false);
-		
-		bookingRepository.save(booking);
-		
+		if(booking.getId() == 0) {
+			
+			booking.setCreationMoment(new Date());
+			
+			booking = bookingRepository.save(booking);
+			
+			gym = booking.getGym();
+			service = booking.getService();
+			customer = booking.getCustomer();
+			
+			gym.addBooking(booking);
+			service.addBooking(booking);
+			customer.addBooking(booking);
+			
+			gymService.save(gym);
+			serviceService.save(service);
+			customerService.save(customer);			
+		} else {
+			bookingRepository.save(booking);
+		}	
 	}
 	
 	/**

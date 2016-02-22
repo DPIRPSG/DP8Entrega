@@ -70,7 +70,9 @@
 					<security:authorize access="hasRole('CUSTOMER')">
 						<li><a href="customer/customer/display.do"><spring:message code="master.page.customer.info" /></a></li>
 					</security:authorize>
-					
+					<security:authorize access="hasRole('ADMIN')">
+						<li><a href="admin/administrator/display.do"><spring:message code="master.page.customer.info" /></a></li>
+					</security:authorize>					
 					<li><b><a href="j_spring_security_logout"><spring:message code="master.page.logout" /></a></b></li>
 				</ul>
 			</li>

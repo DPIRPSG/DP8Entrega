@@ -3,6 +3,7 @@ package security;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,8 +15,9 @@ public class UserAccountService {
 
 	// Managed repository -----------------------------------------------------
 	
-	/*@Autowired
-	private UserAccountRepository userAccountRepository;*/
+	@Autowired
+	private UserAccountRepository userAccountRepository;
+	
 	// Supporting services ----------------------------------------------------
 
 	// Constructors -----------------------------------------------------------
@@ -67,6 +69,14 @@ public class UserAccountService {
 		input.setPassword(newPassword);
 		
 		return input;
+	}
+	
+	public UserAccount findByUsername(String username){
+		UserAccount result;
+		
+		result = userAccountRepository.findByUsername(username);
+		
+		return result;
 	}
 
 }
