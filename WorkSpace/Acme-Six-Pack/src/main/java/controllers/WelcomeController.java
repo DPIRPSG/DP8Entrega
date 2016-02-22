@@ -58,7 +58,7 @@ public class WelcomeController extends AbstractController {
 		formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		moment = formatter.format(new Date());
 		if(actorService.checkAuthority("CUSTOMER")){
-			services = serviceService.findAllNotBookedByCustomerId(actorService.findByPrincipal().getId());
+			services = serviceService.findAllPaidAndNotBookedByCustomerId(actorService.findByPrincipal().getId());
 			Random rnd = new Random();
 			int i = rnd.nextInt(services.size());
 			service = (ServiceEntity) services.toArray()[i];

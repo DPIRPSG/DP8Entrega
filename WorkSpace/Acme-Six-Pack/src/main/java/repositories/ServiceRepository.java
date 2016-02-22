@@ -20,8 +20,9 @@ public interface ServiceRepository extends JpaRepository<ServiceEntity, Integer>
 	@Query("select s from ServiceEntity s where s.name not like 'Fitness'")
 	Collection<ServiceEntity> findAllWithoutFitness();
 	//select s from ServiceEntity s group by s having s != (select distinct(s) from Customer c join c.booking b join b.service s join c.feePayment f where c.id = ?1 and f.gym in (select distinct(g) from Customer c join c.booking b join b.service s join s.gyms g where c.id = ?1))
-	@Query("select s from ServiceEntity s group by s having s != (select distinct(s) from Customer c join c.booking b join b.service s where c.id = ?1)")
-	Collection<ServiceEntity> findAllNotBookedByCustomerId(int customerId);
+	//select s from ServiceEntity s group by s having s != (select distinct(s) from Customer c join c.booking b join b.service s where c.id = ?1)")
+	@Query("select s from ServiceEntity s group by s having s != (select distinct(s) from Customer c join c.booking b join b.service s where c.id = ?1) and s in (select distinct(s) from Customer c join c.feePayment f join f.gym.service s where c.id = ?1 and f.activeMoment < CURRENT_DATE and f.inactiveMoment > CURRENT_DATE)")
+	Collection<ServiceEntity> findAllPaidAndNotBookedByCustomerId(int customerId);
 	
 	// ---------------- Dashboard ------------------
 	
