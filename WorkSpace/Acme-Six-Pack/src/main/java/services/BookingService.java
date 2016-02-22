@@ -66,18 +66,13 @@ public class BookingService {
 		Assert.notNull(booking);
 		Assert.isTrue(actorService.checkAuthority("CUSTOMER"), "Only a customer can book services");
 		
-		Customer customerLogged;
-		Customer customer;
-		
-		customerLogged = customerService.findByPrincipal();
-		customer = customerService.findOneWhoHasPaidFee(customerLogged.getId());
-		
-		Assert.notNull(customer, "The customer has not paid the fee");
-		
 		booking.setCreationMoment(new Date());
 		booking.setApproved(false);
 		booking.setDenied(false);
 		booking.setCanceled(false);
+		
+		Assert.isTrue(booking.getCreationMoment().before(booking.getRequestMoment()), "The request moment must be after creation moment");
+		Assert.isTrue(isDurationValid(booking.getDuration()), "The duration of the booking must be expressed in hours or half-hours");
 		
 		bookingRepository.save(booking);
 		
@@ -190,5 +185,26 @@ public class BookingService {
 		booking.setDenied(true);
 		bookingRepository.save(booking);
 		
+	}
+	
+	private boolean isDurationValid(double duration){
+		
+		Boolean result;
+		Double d;
+		Double mod;
+		
+		result = false;
+		d = 0.0;
+		mod = 0.0;
+		
+		d = duration*10.0;
+		mod = d % 5.0;
+		d = d/5.0;
+		
+		if (d - mod == 0.0){
+			result = true;
+		}
+		
+		return result;
 	}
 }

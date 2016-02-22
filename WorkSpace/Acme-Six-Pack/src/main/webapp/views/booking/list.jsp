@@ -120,13 +120,13 @@
 </display:table>
 
 <!-- Action links -->
-<security:authorize access="hasRole('CUSTOMER')">
-	<div>
-		<a href="booking/customer/create.do">
-			<spring:message code="booking.create" />
-		</a>
-	</div>
-</security:authorize>
+<%-- <security:authorize access="hasRole('CUSTOMER')"> --%>
+<!-- 	<div> -->
+<!-- 		<a href="booking/customer/create.do"> -->
+<%-- 			<spring:message code="booking.create" /> --%>
+<!-- 		</a> -->
+<!-- 	</div> -->
+<%-- </security:authorize> --%>
 
 <!-- Alert -->
 <jstl:if test="${messageStatus != Null && messageStatus != ''}">

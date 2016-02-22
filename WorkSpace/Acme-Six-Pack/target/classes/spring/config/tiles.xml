@@ -33,6 +33,9 @@
 		<value>/views/feePayment/tiles.xml</value>
 		<value>/views/creditCard/tiles.xml</value>
 		
+		
+		<value>/views/forms/tiles.xml</value>
+		
 	</util:list>
 
 </beans>

@@ -152,7 +152,7 @@ public class GymAdministratorController extends AbstractController {
 		ModelAndView result;
 		Collection<ServiceEntity> services;
 		
-		services = serviceService.findAll2();
+		services = serviceService.findAllWithoutFitness();
 
 		result = new ModelAndView("gym/edit");
 		result.addObject("gym", gym);

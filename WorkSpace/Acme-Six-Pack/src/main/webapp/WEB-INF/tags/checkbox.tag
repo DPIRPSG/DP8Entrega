@@ -1,5 +1,5 @@
 <%--
- * displayColumn.tag
+ * textarea.tag
  *
  * Copyright (C) 2014 Universidad de Sevilla
  * 
@@ -18,32 +18,20 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
-<%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <%-- Attributes --%> 
- 
-<%@ attribute name="var" required="true" %>
-<%@ attribute name="title" required="true" %>
+
+<%@ attribute name="path" required="true" %>
 <%@ attribute name="code" required="true" %>
-<%@ attribute name="value" required="true" %>
 
-<%@ attribute name="format" required="false" %>
-<%@ attribute name="sorteable" required="false" %>
-
-<jstl:if test="${readonly == null}">
-	<jstl:set var="sorteable" value="false" />
-</jstl:if>
-
-<%-- <jstl:set var="headerStart" value="${" /> --%>
-<%-- <jstl:set var="headerEnd" value="}" /> --%>
-
-<%-- <jstl:set var="header2" value="${headerStart}${header}${headerEnd}" /> --%>
 
 <%-- Definition --%>
 
-<spring:message code="${code}" var="${var}" />
-<display:column title="${title}"
-	sortable="${sorteable}" format="${format}" >
-	<jstl:out value="${value}"/>
-</display:column>
+<div class="form-group">
+	<form:label path="${path}">
+		<spring:message code="${code}" />
+	</form:label>
+	<form:checkbox path="${path}"/>
+	<form:errors path="${path}" cssClass="error" />
+</div>

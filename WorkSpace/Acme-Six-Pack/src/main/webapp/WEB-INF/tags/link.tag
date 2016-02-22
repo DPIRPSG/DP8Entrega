@@ -1,5 +1,5 @@
 <%--
- * displayColumn.tag
+ * link.tag
  *
  * Copyright (C) 2014 Universidad de Sevilla
  * 
@@ -7,10 +7,10 @@
  * TDG Licence, a copy of which you may download from 
  * http://www.tdg-seville.info/License.html
  --%>
-
+ 
 <%@ tag language="java" body-content="empty" %>
-
-<%-- Taglibs --%>
+ 
+ <%-- Taglibs --%>
 
 <%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -18,32 +18,15 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
-<%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <%-- Attributes --%> 
  
-<%@ attribute name="var" required="true" %>
-<%@ attribute name="title" required="true" %>
+<%@ attribute name="href" required="true" %>
 <%@ attribute name="code" required="true" %>
-<%@ attribute name="value" required="true" %>
-
-<%@ attribute name="format" required="false" %>
-<%@ attribute name="sorteable" required="false" %>
-
-<jstl:if test="${readonly == null}">
-	<jstl:set var="sorteable" value="false" />
-</jstl:if>
-
-<%-- <jstl:set var="headerStart" value="${" /> --%>
-<%-- <jstl:set var="headerEnd" value="}" /> --%>
-
-<%-- <jstl:set var="header2" value="${headerStart}${header}${headerEnd}" /> --%>
 
 <%-- Definition --%>
 
-<spring:message code="${code}" var="${var}" />
-<display:column title="${title}"
-	sortable="${sorteable}" format="${format}" >
-	<jstl:out value="${value}"/>
-</display:column>
+<a href="${href}">
+	<spring:message	code="${code}" />
+</a>

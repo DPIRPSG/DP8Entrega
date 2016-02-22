@@ -15,10 +15,15 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
       
 <tiles-definitions>
+
+	<definition name="actorForm/create" extends="master.page">	
+		<put-attribute name="title" value="Cliente: Registro" />
+		<put-attribute name="body" value="/views/forms/actorForm.jsp" />
+	</definition>
 	
-	<definition name="customer/display" extends="master.page">	
-		<put-attribute name="title" value="Cliente: Mostrar" />
-		<put-attribute name="body" value="/views/customer/display.jsp" />
+	<definition name="actorForm/edit" extends="master.page">	
+		<put-attribute name="title" value="Perfil: Edición" />
+		<put-attribute name="body" value="/views/forms/actorForm.jsp" />
 	</definition>
 	
 </tiles-definitions>

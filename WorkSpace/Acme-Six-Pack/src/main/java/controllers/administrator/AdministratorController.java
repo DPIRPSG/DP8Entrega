@@ -1,4 +1,4 @@
-package controllers.customer;
+package controllers.administrator;
 
 import javax.validation.Valid;
 
@@ -11,20 +11,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorFormService;
-import services.CustomerService;
+import services.AdministratorService;
 
 import controllers.AbstractController;
-import domain.Customer;
+import domain.Administrator;
 import domain.form.ActorForm;
 
 @Controller
-@RequestMapping(value = "/customer/customer")
-public class CustomerController extends AbstractController {
+@RequestMapping(value = "/admin/administrator")
+public class AdministratorController extends AbstractController {
 
 	// Services ----------------------------------------------------------
 
 	@Autowired
-	private CustomerService customerService;
+	private AdministratorService administratorService;
 	
 	@Autowired
 	private ActorFormService actorFormService;
@@ -34,7 +34,7 @@ public class CustomerController extends AbstractController {
 
 	// Constructors ----------------------------------------------------------
 
-	public CustomerController() {
+	public AdministratorController() {
 		super();
 	}
 
@@ -43,12 +43,12 @@ public class CustomerController extends AbstractController {
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display(){
 		ModelAndView result;
-		Customer customer;
+		Administrator administrator;
 		
-		customer = customerService.findByPrincipal();
+		administrator = administratorService.findByPrincipal();
 		
-		result = new ModelAndView("customer/display");
-		result.addObject("customer", customer);
+		result = new ModelAndView("admin/display");
+		result.addObject("administrator", administrator);
 		
 		return result;
 	}
@@ -58,11 +58,11 @@ public class CustomerController extends AbstractController {
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit(){
 		ModelAndView result;
-		ActorForm actorForm;
+		ActorForm administrator;
 		
-		actorForm = actorFormService.createForm();
+		administrator = actorFormService.createForm();
 		
-		result = createEditModelAndView(actorForm);
+		result = createEditModelAndView(administrator);
 		
 		return result;
 	}
@@ -71,20 +71,27 @@ public class CustomerController extends AbstractController {
 
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid ActorForm customer, BindingResult binding) {
-		actorFormValidator.validate(customer, binding);
+	public ModelAndView save(@Valid ActorForm actorForm, BindingResult binding) {
+		actorFormValidator.validate(actorForm, binding);
 		
 		ModelAndView result;
-		
-		if(binding.hasErrors()) {
-			System.out.println("Errors: " + binding.toString());
-			result = createEditModelAndView(customer);
+
+		if (binding.hasErrors()) {
+			result = createEditModelAndView(actorForm);
 		} else {
 			try {
-				actorFormService.saveForm(customer);
+				actorFormService.saveForm(actorForm);
 				result = new ModelAndView("redirect:display.do");
 			} catch (Throwable oops) {
-				result = createEditModelAndView(customer, "customer.commit.error");				
+				String errorCode;
+				/*if(oops.getMessage().equals("actorForm.error.passwordMismatch")){
+					errorCode = "actorForm.error.passwordMismatch";
+				}else if (oops.getMessage().equals("actorForm.error.termsDenied")) {
+					errorCode = "actorForm.error.termsDenied";
+				}else{*/
+					errorCode = "actorForm.commit.error";
+				// }
+				result = createEditModelAndView(actorForm, errorCode);
 			}
 		}
 
@@ -94,21 +101,21 @@ public class CustomerController extends AbstractController {
 	// Ancillary Methods
 	// ----------------------------------------------------------
 
-	protected ModelAndView createEditModelAndView(ActorForm customer) {
+	protected ModelAndView createEditModelAndView(ActorForm administrator) {
 		ModelAndView result;
 
-		result = createEditModelAndView(customer, null);
+		result = createEditModelAndView(administrator, null);
 
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndView(ActorForm customer, String message) {
+	protected ModelAndView createEditModelAndView(ActorForm administrator, String message) {
 		ModelAndView result;
 
 		result = new ModelAndView("actorForm/edit");
-		result.addObject("actorForm", customer);
+		result.addObject("actorForm", administrator);
 		result.addObject("message", message);
-		result.addObject("urlAction", "customer/customer/edit.do");
+		result.addObject("urlAction", "admin/administrator/edit.do");
 
 		return result;
 	}
