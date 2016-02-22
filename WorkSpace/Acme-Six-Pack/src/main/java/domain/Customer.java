@@ -95,5 +95,13 @@ public class Customer extends Actor {
 	public void setBookings(Collection<Booking> booking) {
 		this.bookings = booking;
 	}
+	
+	public void addBooking(Booking booking) {
+		this.bookings.add(booking);
+	}
+
+	public void removeBooking(Booking booking) {
+		this.bookings.remove(booking);
+	}
 
 }

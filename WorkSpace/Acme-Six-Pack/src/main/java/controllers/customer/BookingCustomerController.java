@@ -47,7 +47,7 @@ public class BookingCustomerController extends AbstractController {
 		bookings = bookingService.findAllByCustomer();
 
 		result = new ModelAndView("booking/list");
-		result.addObject("requestURI", "booking/list.do?");
+		result.addObject("requestURI", "booking/customer/list.do?");
 		result.addObject("bookings", bookings);
 
 		return result;
@@ -56,11 +56,11 @@ public class BookingCustomerController extends AbstractController {
 	// Creation ----------------------------------------------------------
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView create() {
+	public ModelAndView create(@RequestParam int gymId, @RequestParam int serviceId) {
 		ModelAndView result;
 		Booking booking;
 
-		booking = bookingService.create();
+		booking = bookingService.create(gymId, serviceId);
 		result = createEditModelAndView(booking);
 
 		return result;
