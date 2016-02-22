@@ -116,8 +116,8 @@ public class CustomerService {
 			bookings = new ArrayList<Booking>();
 			feePayments = new ArrayList<FeePayment>();
 			customer.setComments(comments);
-			customer.setBooking(bookings);
-			customer.setFeePayment(feePayments);
+			customer.setBookings(bookings);
+			customer.setFeePayments(feePayments);
 
 			
 		}

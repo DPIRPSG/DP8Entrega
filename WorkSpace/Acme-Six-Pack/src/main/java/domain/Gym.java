@@ -69,45 +69,45 @@ public class Gym extends CommentedEntity{
 
 
 	// Relationships ----------------------------------------------------------
-	private Collection<ServiceEntity> service;
-	private Collection<FeePayment> feePayment;
+	private Collection<ServiceEntity> services;
+	private Collection<FeePayment> feePayments;
 	private Collection<Booking> bookings;
 	
 	@Valid
 	@NotNull
 	@ManyToMany(mappedBy = "gyms")
 	@NotEmpty
-	public Collection<ServiceEntity> getService() {
-		return service;
+	public Collection<ServiceEntity> getServices() {
+		return services;
 	}
-	public void setService(Collection<ServiceEntity> service) {
-		this.service = service;
+	public void setServices(Collection<ServiceEntity> service) {
+		this.services = service;
 	}
 	
 	public void addService(ServiceEntity service) {
-		this.service.add(service);
+		this.services.add(service);
 	}
 
 	public void removeService(ServiceEntity service) {
-		this.service.remove(service);
+		this.services.remove(service);
 	}
 	
 	@Valid
 	@OneToMany(mappedBy = "gym")
 	@NotNull
-	public Collection<FeePayment> getFeePayment() {
-		return feePayment;
+	public Collection<FeePayment> getFeePayments() {
+		return feePayments;
 	}
-	public void setFeePayment(Collection<FeePayment> feePayment) {
-		this.feePayment = feePayment;
+	public void setFeePayments(Collection<FeePayment> feePayment) {
+		this.feePayments = feePayment;
 	}
 	
 	public void addFeePayment(FeePayment feePayment) {
-		this.feePayment.add(feePayment);
+		this.feePayments.add(feePayment);
 	}
 
 	public void removeFeePayment(FeePayment feePayment) {
-		this.feePayment.remove(feePayment);
+		this.feePayments.remove(feePayment);
 	}
 	
 	@Valid

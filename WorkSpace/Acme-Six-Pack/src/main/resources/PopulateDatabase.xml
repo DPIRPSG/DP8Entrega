@@ -201,14 +201,14 @@
 				<ref bean="comment7"/>
 			</list>
 		</property>
-		<property name="feePayment">
+		<property name="feePayments">
 			<list>
 				<ref bean="feePayment1"/>
 				<ref bean="feePayment2"/>
 				<ref bean="feePayment3"/>
 			</list>
 		</property>
-		<property name="booking">
+		<property name="bookings">
 			<list>
 				<ref bean="booking1"/>
 				<ref bean="booking2"/>
@@ -252,12 +252,12 @@
 				<ref bean="comment5"/>
 			</list>
 		</property>
-		<property name="feePayment">
+		<property name="feePayments">
 			<list>
 				<ref bean="feePayment4"/>
 			</list>
 		</property>
-		<property name="booking">
+		<property name="bookings">
 			<list>
 				<ref bean="booking5"/>
 			</list>
@@ -298,7 +298,7 @@
 				<ref bean="comment8"/>
 			</list>
 		</property>
-		<property name="feePayment">
+		<property name="feePayments">
 			<list>
 				<ref bean="feePayment5"/>
 				<ref bean="feePayment6"/>
@@ -308,7 +308,7 @@
 				<ref bean="feePayment10"/>
 			</list>
 		</property>
-		<property name="booking">
+		<property name="bookings">
 			<list>
 				<ref bean="booking6"/>
 			</list>
@@ -349,12 +349,12 @@
 				<ref bean="comment9"/>
 			</list>
 		</property>
-		<property name="feePayment">
+		<property name="feePayments">
 			<list>
 				<ref bean="feePayment11"/>
 			</list>
 		</property>
-		<property name="booking">
+		<property name="bookings">
 			<list>
 			</list>
 		</property>
@@ -707,13 +707,13 @@
 				<ref bean="comment3"/>
 			</list>
 		</property>
-		<property name="service">
+		<property name="services">
 			<list>
 				<ref bean="service1"/>
 				<ref bean="service4"/>
 			</list>
 		</property>
-		<property name="feePayment">
+		<property name="feePayments">
 			<list>
 				<ref bean="feePayment1"/>
 				<ref bean="feePayment2"/>
@@ -744,13 +744,13 @@
 				<ref bean="comment5"/>
 			</list>
 		</property>
-		<property name="service">
+		<property name="services">
 			<list>
 				<ref bean="service1"/>
 				<ref bean="service2"/>
 			</list>
 		</property>
-		<property name="feePayment">
+		<property name="feePayments">
 			<list>
 				<ref bean="feePayment4"/>
 			</list>
@@ -774,13 +774,13 @@
 				<ref bean="comment6"/>
 			</list>
 		</property>
-		<property name="service">
+		<property name="services">
 			<list>
 				<ref bean="service1"/>
 				<ref bean="service3"/>
 			</list>
 		</property>
-		<property name="feePayment">
+		<property name="feePayments">
 			<list>
 				<ref bean="feePayment5"/>
 				<ref bean="feePayment6"/>
