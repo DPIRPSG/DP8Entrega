@@ -17,8 +17,11 @@ public interface ServiceRepository extends JpaRepository<ServiceEntity, Integer>
 	@Query("select s from ServiceEntity s where s.name like ?1")
 	ServiceEntity findOneByName(String name);
 
-	@Query("Select s from ServiceEntity s where s.name not like 'Fitness'")
+	@Query("select s from ServiceEntity s where s.name not like 'Fitness'")
 	Collection<ServiceEntity> findAllWithoutFitness();
+	//select s from ServiceEntity s group by s having s != (select distinct(s) from Customer c join c.booking b join b.service s join c.feePayment f where c.id = ?1 and f.gym in (select distinct(g) from Customer c join c.booking b join b.service s join s.gyms g where c.id = ?1))
+	@Query("select s from ServiceEntity s group by s having s != (select distinct(s) from Customer c join c.booking b join b.service s where c.id = ?1)")
+	Collection<ServiceEntity> findAllNotBookedByCustomerId(int customerId);
 	
 	// ---------------- Dashboard ------------------
 	
