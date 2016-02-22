@@ -2,6 +2,8 @@ package controllers.customer;
 
 import java.util.Collection;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -11,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.BookingService;
+import services.GymService;
 
 import controllers.AbstractController;
 import domain.Booking;
+import domain.Gym;
 
 @Controller
 @RequestMapping(value = "/booking/customer")
@@ -23,6 +27,9 @@ public class BookingCustomerController extends AbstractController {
 
 	@Autowired
 	private BookingService bookingService;
+	
+	@Autowired
+	private GymService gymService;
 
 	// Constructors ----------------------------------------------------------
 
@@ -55,6 +62,25 @@ public class BookingCustomerController extends AbstractController {
 
 		booking = bookingService.create();
 		result = createEditModelAndView(booking);
+
+		return result;
+	}
+	
+	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "save")
+	public ModelAndView save(@Valid Booking booking, BindingResult binding){
+		
+		ModelAndView result;
+		
+		if (binding.hasErrors()) {
+			result = createEditModelAndView(booking);
+		} else {
+			try {
+				bookingService.save(booking);
+				result = new ModelAndView("redirect:list.do?");
+			} catch (Throwable oops) {
+				result = createEditModelAndView(booking, "booking.commit.error");
+			}
+		}
 
 		return result;
 	}
@@ -94,11 +120,16 @@ public class BookingCustomerController extends AbstractController {
 	}
 
 	protected ModelAndView createEditModelAndView(Booking booking, String message) {
+		
 		ModelAndView result;
-
-		result = new ModelAndView("booking/list");
+		Collection<Gym> gyms;
+		
+		gyms = gymService.findAllWithFeePaymentActive();
+		
+		result = new ModelAndView("booking/create");
 		result.addObject("booking", booking);
 		result.addObject("message", message);
+		result.addObject("gyms", gyms);
 
 		return result;
 	}

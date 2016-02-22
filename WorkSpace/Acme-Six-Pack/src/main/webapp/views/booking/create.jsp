@@ -30,9 +30,9 @@
 
 	<acme:textbox code="booking.duration" path="duration" />
 	
-	<acme:selectMult items="${gyms}" itemLabel="name" code="booking.gym" path="gym"/>
+	<acme:select items="${gyms}" itemLabel="name" code="booking.gym" path="gym"/>
 	
-	<acme:selectMult items="${services}" itemLabel="name" code="booking.service" path="service"/>
+	<acme:select items="${services}" itemLabel="name" code="booking.service" path="service"/>
 		
 	<!-- Action buttons -->
 
