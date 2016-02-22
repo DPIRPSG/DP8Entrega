@@ -63,5 +63,13 @@ public class ServiceEntity extends CommentedEntity{
 	}
 	public void setBookings(Collection<Booking> bookings) {
 		this.bookings = bookings;
-	}	
+	}
+	
+	public void addBooking(Booking booking) {
+		this.bookings.add(booking);
+	}
+
+	public void removeBooking(Booking booking) {
+		this.bookings.remove(booking);
+	}
 }
