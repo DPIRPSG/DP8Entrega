@@ -37,22 +37,19 @@
 <security:authorize access="hasRole('CUSTOMER')">
 	<jstl:if test="${service != null}">
 		<h3>
-			<spring:message code="customer.service.notBooked" />
-			:
+			<spring:message code="customer.service.notBooked" />:
 		</h3>
 	
 		<p>
-			<spring:message code="customer.service.name" />
-			:
+			<spring:message code="customer.service.name" />:
 			<jstl:out value="${service.name}" />
 		</p>
 		<p>
-			<spring:message code="customer.service.description" />
-			:
+			<spring:message code="customer.service.description" />:
 			<jstl:out value="${service.description}" />
 		</p>
 		
-		<spring:message code="customer.service.pictures" />
+		<spring:message code="customer.service.pictures" />:
 		<jstl:forEach items="${service.pictures}" var="picture">
 			<span><img src="${picture}" style="width:204px;height:128px;"/></span>
 		</jstl:forEach>
