@@ -51,7 +51,7 @@ public class BookingService {
 	 * @return Devuelve booking preparado para ser modificado. Necesita usar save para que persista en la base de datos.
 	 */
 	// Requisito 10.3
-	public Booking create(int gymId, int serviceId){	
+	public Booking createWithGym(int gymId, int serviceId){	
 		Assert.isTrue(actorService.checkAuthority("CUSTOMER"), "Only the customer can book a booking");
 		
 		Booking result;
@@ -72,6 +72,30 @@ public class BookingService {
 		result.setDenied(false);
 		result.setCreationMoment(creationMoment);
 		result.setGym(gym);
+		result.setService(service);
+		result.setCustomer(customer);
+
+		return result;
+	}
+	
+	public Booking createWithoutGym(int serviceId){	
+		Assert.isTrue(actorService.checkAuthority("CUSTOMER"), "Only the customer can book a booking");
+		
+		Booking result;
+		Date creationMoment;
+		ServiceEntity service;
+		Customer customer;
+		
+		creationMoment = new Date();
+		service = serviceService.findOne(serviceId);
+		customer = customerService.findByPrincipal();
+				
+		result = new Booking();
+		
+		result.setApproved(false);
+		result.setCanceled(false);
+		result.setDenied(false);
+		result.setCreationMoment(creationMoment);
 		result.setService(service);
 		result.setCustomer(customer);
 
