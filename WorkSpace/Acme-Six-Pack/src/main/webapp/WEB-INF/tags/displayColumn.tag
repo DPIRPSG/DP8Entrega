@@ -23,9 +23,7 @@
 
 <%-- Attributes --%> 
  
-<%@ attribute name="var" required="true" %>
 <%@ attribute name="title" required="true" %>
-<%@ attribute name="code" required="true" %>
 <%@ attribute name="value" required="true" %>
 
 <%@ attribute name="format" required="false" %>
@@ -35,14 +33,9 @@
 	<jstl:set var="sorteable" value="false" />
 </jstl:if>
 
-<%-- <jstl:set var="headerStart" value="${" /> --%>
-<%-- <jstl:set var="headerEnd" value="}" /> --%>
-
-<%-- <jstl:set var="header2" value="${headerStart}${header}${headerEnd}" /> --%>
 
 <%-- Definition --%>
 
-<spring:message code="${code}" var="${var}" />
 <display:column title="${title}"
 	sortable="${sorteable}" format="${format}" >
 	<jstl:out value="${value}"/>
