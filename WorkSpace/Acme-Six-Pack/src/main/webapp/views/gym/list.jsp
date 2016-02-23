@@ -82,7 +82,7 @@
 	</display:column>
 	
 	<display:column>
-		<a href="service/list.do?gymId=${row_Gym.id}"> <spring:message
+		<a href="${requestUri2}gymId=${row_Gym.id}"> <spring:message
 				code="gym.services" />
 		</a>
 	</display:column>
