@@ -58,10 +58,20 @@ public class WelcomeController extends AbstractController {
 		formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		moment = formatter.format(new Date());
 		if(actorService.checkAuthority("CUSTOMER")){
-			services = serviceService.findAllPaidAndNotBookedByCustomerId(actorService.findByPrincipal().getId());
-			Random rnd = new Random();
-			int i = rnd.nextInt(services.size());
-			service = (ServiceEntity) services.toArray()[i];
+			try{
+				services = serviceService.findAllPaidAndNotBookedByCustomerId(actorService.findByPrincipal().getId());
+				if(!services.isEmpty()){
+					Random rnd = new Random();
+					int i = rnd.nextInt(services.size());
+					service = (ServiceEntity) services.toArray()[i];
+				}else{
+					services = null;
+					service = null;
+				}
+			}catch(org.springframework.dao.DataIntegrityViolationException oops){
+				services = null;
+				service = null;
+			}
 		}else{
 			services = null;
 			service = null;

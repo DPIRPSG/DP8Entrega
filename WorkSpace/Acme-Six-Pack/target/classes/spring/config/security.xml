@@ -47,6 +47,7 @@
 		<security:intercept-url pattern="/feePayment/administrator/**" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/admin/administrator/**" access="hasRole('ADMIN')" />
 		
+		<security:intercept-url pattern="/service/customer/**" access="hasRole('CUSTOMER')"/>
 		<security:intercept-url pattern="/booking/customer/**" access="hasRole('CUSTOMER')"/>
 		<security:intercept-url pattern="/feePayment/customer/**" access="hasRole('CUSTOMER')"/>
 		

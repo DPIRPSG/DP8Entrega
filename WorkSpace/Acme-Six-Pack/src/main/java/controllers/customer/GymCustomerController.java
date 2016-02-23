@@ -62,6 +62,7 @@ public class GymCustomerController extends AbstractController {
 		result.addObject("gyms", gyms);
 		result.addObject("customers", customers);
 		result.addObject("paid", paid);
+		result.addObject("requestUri2", "service/customer/list.do?");
 
 		return result;
 	}
@@ -96,6 +97,7 @@ public class GymCustomerController extends AbstractController {
 		result.addObject("gyms", gyms);
 		result.addObject("customers", customers);
 		result.addObject("paid", paid);
+		result.addObject("requestUri2", "service/customer/list.do?");
 
 		return result;
 	}
