@@ -110,7 +110,7 @@ public class ActorFormService {
 				
 				result.setName(input.getName());
 				result.setSurname(input.getSurname());
-				result.setPhone(input.getUsername());
+				result.setPhone(input.getPhone());
 				result.setUserAccount(acount);
 				
 				customerService.save(result);
@@ -122,7 +122,7 @@ public class ActorFormService {
 				
 				result.setName(input.getName());
 				result.setSurname(input.getSurname());
-				result.setPhone(input.getUsername());
+				result.setPhone(input.getPhone());
 				result.setUserAccount(acount);
 				
 				administratorService.save(result);
