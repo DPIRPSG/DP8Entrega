@@ -24,13 +24,17 @@
 	</security:authorize>
 	
 	<!-- Attributes -->
-	<acme:displayColumn code="comment.actor" var="actorHeader" title="${actorHeader}" sorteable="true" value="${row_Comment.actor.name} ${row_Comment.actor.surname}(${row_Comment.actor.userAccount.username})"/>
+	<spring:message code="comment.actor" var="actorHeader" />
+	<acme:displayColumn title="${actorHeader}" sorteable="true" value="${row_Comment.actor.name} ${row_Comment.actor.surname}(${row_Comment.actor.userAccount.username})"/>
 	
-	<acme:displayColumn code="comment.moment" var="momentHeader" title="${momentHeader}" sorteable="true" value="${row_Comment.moment}" format="{0,date,yyyy/MM/dd}"/>
+	<spring:message code="comment.moment" var="momentHeader" />
+	<acme:displayColumn title="${momentHeader}" sorteable="true" value="${row_Comment.moment}" format="{0,date,yyyy/MM/dd}"/>
+	
+	<spring:message code="comment.text" var="textHeader" />
+	<acme:displayColumn title="${textHeader}" sorteable="true" value="${row_Comment.text}"/>
 
-	<acme:displayColumn code="comment.text" var="textHeader" title="${textHeader}" sorteable="true" value="${row_Comment.text}"/>
-
-	<acme:displayColumn code="comment.starRating" var="starRatingHeader" title="${starRatingHeader}" sorteable="true" value="${row_Comment.starRating}"/>
+	<spring:message code="comment.starRating" var="starRatingHeader" />
+	<acme:displayColumn title="${starRatingHeader}" sorteable="true" value="${row_Comment.starRating}"/>
 		
 </display:table>
 

@@ -29,6 +29,9 @@ public class FeePaymentService {
 	
 	@Autowired
 	private GymService gymService;
+	
+	@Autowired
+	private ActorService actorService;
 
 	// Supporting services ----------------------------------------------------
 
@@ -56,13 +59,14 @@ public class FeePaymentService {
 		result.setPaymentMoment(moment);
 		result.setGym(gym);
 		result.setAmount(gym.getFee());
+		result.setCreditCard(customer.showCreditCard());
 		
 		return result;
 	}
 	
 	public void save(FeePayment feePayment) {
 		Assert.notNull(feePayment);
-
+		//Los checks de quien puede realizar modificaciones están dentro del if/else
 		if (feePayment.getId() == 0) {
 			Assert.isTrue(compruebaFecha(feePayment.getCreditCard()), "La tarjeta de credito no puede estar caducada");
 			
@@ -70,10 +74,12 @@ public class FeePaymentService {
 			Date moment;
 			Date inactiveMoment;
 			Gym gym;
-			Customer customer;
+			Customer customer, actCustomer;
 			FeePayment fee;
-			
 			Date activeMomentLimit;
+			
+			actCustomer = customerService.findByPrincipal();
+			Assert.isTrue(actCustomer.getId() == feePayment.getCustomer().getId(), "feePayment.checkAuthority.create.notOwner");
 			
 			activeMomentLimit = new Date();
 			
@@ -110,7 +116,8 @@ public class FeePaymentService {
 			gymService.save(gym);
 			customerService.save(customer);
 
-		} else {	
+		} else {
+			Assert.isTrue(actorService.checkAuthority("ADMIN"), "feePayment.checkAuthority.edit.notAdmin");
 			feePaymentRepository.save(feePayment);
 		}
 	}
