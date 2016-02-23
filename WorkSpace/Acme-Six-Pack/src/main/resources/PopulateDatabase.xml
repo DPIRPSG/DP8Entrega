@@ -765,7 +765,7 @@
 	<bean id="gym3" class="domain.Gym">
 		<property name="name" value="Gym Dos Hermanas"/>
 		<property name="description" value="Gimnasio de Dos Hermanas"/>
-		<property name="postalAddress" value="Calle Dr. Fleming, 45, 41701 Dos Hermanas, Sevilla"/>
+		<property name="postalAddress" value="Calle Dr. Fleming, 45, Dos Hermanas"/>
 		<property name="fee" value="15"/>
 		<property name="picture" value="http://www.casacartagena.com/archivo/files/gimnasio-1.jpg"/>
 		<property name="phone" value="654789123"/>
