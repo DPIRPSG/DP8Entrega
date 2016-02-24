@@ -75,7 +75,7 @@ public class FeePaymentCustomerController extends AbstractController {
 		} else {
 			try {
 				feePaymentService.save(fee);
-				result = new ModelAndView("redirect:list.do?");
+				result = new ModelAndView("redirect:list.do");
 			} catch (Throwable oops) {
 				result = createEditModelAndView(fee, "feePayment.commit.error");
 			}

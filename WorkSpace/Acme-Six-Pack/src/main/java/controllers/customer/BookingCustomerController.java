@@ -1,5 +1,6 @@
 package controllers.customer;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.validation.Valid;
@@ -47,7 +48,7 @@ public class BookingCustomerController extends AbstractController {
 		bookings = bookingService.findAllByCustomer();
 
 		result = new ModelAndView("booking/list");
-		result.addObject("requestURI", "booking/list.do?");
+		result.addObject("requestURI", "booking/customer/list.do?");
 		result.addObject("bookings", bookings);
 
 		return result;
@@ -56,11 +57,15 @@ public class BookingCustomerController extends AbstractController {
 	// Creation ----------------------------------------------------------
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView create() {
+	public ModelAndView create(@RequestParam (required=false) Integer gymId, @RequestParam int serviceId) {
 		ModelAndView result;
 		Booking booking;
 
-		booking = bookingService.create();
+		if(gymId != null) {
+			booking = bookingService.createWithGym(gymId, serviceId);
+		} else {
+			booking = bookingService.createWithoutGym(serviceId);
+		}
 		result = createEditModelAndView(booking);
 
 		return result;
@@ -122,14 +127,33 @@ public class BookingCustomerController extends AbstractController {
 	protected ModelAndView createEditModelAndView(Booking booking, String message) {
 		
 		ModelAndView result;
+		Collection<Gym> gymsWithPay;
+		Collection<Gym> gymsOfService;
 		Collection<Gym> gyms;
+		Boolean muestraGyms;
 		
-		gyms = gymService.findAllWithFeePaymentActive();
+		muestraGyms = false;
+		
+		gyms = new ArrayList<Gym>();
+		
+		gymsWithPay = gymService.findAllWithFeePaymentActive();
+		gymsOfService = booking.getService().getGyms();
+		
+		for(Gym gym : gymsWithPay) {
+			if(gymsOfService.contains(gym)) {
+				gyms.add(gym);
+			}
+		}
+		
+		if(booking.getGym() == null){
+			muestraGyms = true;
+		}
 		
 		result = new ModelAndView("booking/create");
 		result.addObject("booking", booking);
 		result.addObject("message", message);
 		result.addObject("gyms", gyms);
+		result.addObject("muestraGyms", muestraGyms);
 
 		return result;
 	}

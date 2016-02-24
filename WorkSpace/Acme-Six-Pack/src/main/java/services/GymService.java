@@ -63,8 +63,8 @@ public class GymService {
 		
 		result = new Gym();
 		
-		result.setService(services);
-		result.setFeePayment(feePayments);
+		result.setServices(services);
+		result.setFeePayments(feePayments);
 		result.setComments(comments);
 		result.setBookings(bookings);		
 		
@@ -91,17 +91,17 @@ public class GymService {
 		servicesPreSave = new ArrayList<ServiceEntity>();
 		
 		fitness = serviceService.findOneByName("Fitness");
-		if(gym.getService() == null){
-			gym.setService(new ArrayList<ServiceEntity>());
+		if(gym.getServices() == null){
+			gym.setServices(new ArrayList<ServiceEntity>());
 		}
 		gym.addService(fitness);
 		
 		if(gym.getId() != 0) {
 			Gym gymPreSave;
 			gymPreSave = gymRepository.findOne(gym.getId());
-			servicesPreSave = new ArrayList<ServiceEntity>(gymPreSave.getService());
+			servicesPreSave = new ArrayList<ServiceEntity>(gymPreSave.getServices());
 		}
-		services = gym.getService();
+		services = gym.getServices();
 		
 		gym = gymRepository.save(gym);
 		
@@ -124,7 +124,7 @@ public class GymService {
 		Assert.notNull(gym);
 		Assert.isTrue(gym.getId() != 0);
 		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can delete gyms");
-		Assert.isTrue(gym.getFeePayment().isEmpty());
+		Assert.isTrue(gym.getFeePayments().isEmpty());
 		Assert.isTrue(gym.getBookings().isEmpty());
 		Assert.isTrue(gym.getComments().isEmpty());
 		

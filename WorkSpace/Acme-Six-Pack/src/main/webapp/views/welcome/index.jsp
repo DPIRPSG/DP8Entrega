@@ -40,7 +40,7 @@
 			<spring:message code="customer.service.notBooked" />
 			:
 		</h3>
-	
+
 		<p>
 			<spring:message code="customer.service.name" />
 			:
@@ -51,13 +51,20 @@
 			:
 			<jstl:out value="${service.description}" />
 		</p>
-		
-		<spring:message code="customer.service.pictures" />
+
+		<spring:message code="customer.service.pictures" />:
 		<jstl:forEach items="${service.pictures}" var="picture">
-			<span><img src="${picture}" style="width:204px;height:128px;"/></span>
+			<span><img src="${picture}"
+				style="width: 204px; height: 128px;" /></span>
 		</jstl:forEach>
-	
-<!-- 		Insertar link para reservar el Servicio -->
+
+		<!-- 		Insertar link para reservar el Servicio -->
+		<br/>
+		
+		<a
+			href="booking/customer/create.do?serviceId=${service.id}">
+			<spring:message code="booking.create" />
+		</a>
 	</jstl:if>
 	<jstl:if test="${service == null}">
 		<spring:message code="welcome.allServicesBooked"/>
