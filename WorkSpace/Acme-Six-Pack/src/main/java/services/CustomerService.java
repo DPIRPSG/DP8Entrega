@@ -209,4 +209,37 @@ public class CustomerService {
 
 		return result;
 	}
+	
+	/* Query 5 */
+	public Collection<Customer> findCustomerWhoHasPaidMoreFees(){
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can open the dashboard");
+		
+		Collection<Customer> result;
+		
+		result = customerRepository.findCustomerWhoHasPaidMoreFees();
+		
+		return result;
+	}
+	
+	/* Query 6 */
+	public Collection<Customer> findCustomerWhoHasPaidLessFees(){
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can open the dashboard");
+		
+		Collection<Customer> result;
+		
+		result = customerRepository.findCustomerWhoHasPaidLessFees();
+		
+		return result;
+	}
+	
+	/* Query 14 */
+	public Collection<Customer> findCustomerWhoHaveBeenRemovedMoreComments(){
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can open the dashboard");
+		
+		Collection<Customer> result;
+		
+		result = customerRepository.findCustomerWhoHaveBeenRemovedMoreComments();
+		
+		return result;
+	}
 }

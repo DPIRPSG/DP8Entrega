@@ -25,6 +25,9 @@ public class ServiceService {
 	@Autowired
 	private CustomerService customerService;
 	
+	@Autowired
+	private ActorService actorService;
+	
 	// Constructors -----------------------------------------------------------
 
 	public ServiceService() {
@@ -126,6 +129,39 @@ public class ServiceService {
 		Collection<ServiceEntity> result;
 		
 		result = serviceRepository.findAllPaidAndNotBookedByCustomerId(customerId);
+		
+		return result;
+	}
+	
+	/* Query 3 */
+	public Collection<ServiceEntity> findMostPopularService(){
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can open the dashboard");
+		
+		Collection<ServiceEntity> result;
+		
+		result = serviceRepository.findMostPopularService();
+		
+		return result;
+	}
+	
+	/* Query 4 */
+	public Collection<ServiceEntity> findLeastPopularService(){
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can open the dashboard");
+		
+		Collection<ServiceEntity> result;
+		
+		result = serviceRepository.findLeastPopularService();
+		
+		return result;
+	}
+	
+	/* Query 13 */
+	public Double findAverageNumberOfCommentsPerService(){
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can open the dashboard");
+		
+		Double result;
+		
+		result = serviceRepository.findAverageNumberOfCommentsPerService();
 		
 		return result;
 	}
