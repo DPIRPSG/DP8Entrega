@@ -37,5 +37,3 @@
 <br/>
 <br/>
 <spring:message code="legalTerms.Date"/> 25/02/2016
-
-
