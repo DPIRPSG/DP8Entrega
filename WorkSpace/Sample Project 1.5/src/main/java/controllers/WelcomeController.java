@@ -42,7 +42,7 @@ public class WelcomeController extends AbstractController {
 		result = new ModelAndView("welcome/index");
 		result.addObject("name", name);
 		result.addObject("moment", moment);
-
+		
 		return result;
 	}
 }

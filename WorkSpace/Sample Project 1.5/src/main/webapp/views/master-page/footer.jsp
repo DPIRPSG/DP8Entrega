@@ -12,6 +12,8 @@
 
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
+
 
 <jsp:useBean id="date" class="java.util.Date" />
 
@@ -57,13 +59,32 @@
     	}
     	return "";
 	} 
+	
+	function loadCookies(cookies){
+		// First cookie name, First cookie value
+		// ; Second cookie name, Second cookie value
+		arrayCookies = cookies.split(";");
+		for(var i=0; i<arrayCookies.length; i++){
+			var cook = arrayCookies[i].split(",");
+			var name = cook[0];
+			var value = cook[1];
+			document.cookie = name + "=" + value + "; path=/ ";
+		}
+	}
 
 	function hideInfoCookies() {
 		$("#infoCookies").hide();
-		document.cookie = "infoCookies=hide; path=/";
+		loadCookies("infoCookies,hide");
 	}
+</script>
+
+	<jstl:set var="cookiesToShow" value="${loadToCookie}"/>
+	
+<script>
+	loadCookies("${cookiesToShow}");
 	
 	if(getCookie("infoCookies")=="hide"){
 		hideInfoCookies();
 	}
+
 </script>
