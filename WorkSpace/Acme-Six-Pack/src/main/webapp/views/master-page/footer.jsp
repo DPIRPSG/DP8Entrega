@@ -31,3 +31,10 @@
 		}
 	</script>
 	
+	<div style="position: fixed; bottom: 0; width: 100%; height: 50px; background-color: #BDBDBD;" id="infoCookies"><p>Utilizamos cookies de personalización propias para mejorar nuestros servicios y mostrarle información personalizada según sus preferencias. Si continúa navegando, consideramos que acepta su uso. Puede obtener más información <a href="./legal-terms.do">aquí</a>.  <button onclick="hideInfoCookies()">Entendido</button></p></div>
+	
+	<script>
+		function hideInfoCookies(){
+			$("#infoCookies").hide();
+		}
+	</script>
