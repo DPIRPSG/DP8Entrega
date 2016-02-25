@@ -41,6 +41,7 @@
 		</security:authorize>
 		
 		<security:authorize access="isAnonymous()">
+			<li><a class="fNiv" href="customer/create.do"><spring:message code="master.page.register" /></a></li>		
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
 		</security:authorize>
 		
@@ -52,6 +53,12 @@
 				</a>
 				<ul>
 					<li class="arrow"></li>
+						<security:authorize access="hasRole('CUSTOMER')">
+							<li><a href="customer/customer/display.do"><spring:message code="master.page.profile.display" /></a></li>						
+						</security:authorize>
+						<security:authorize access="hasRole('ADMIN')">
+							<li><a href="administrator/administrator/display.do"><spring:message code="master.page.profile.display" /></a></li>						
+						</security:authorize>
 					<li><a href="profile/action-1.do"><spring:message code="master.page.profile.action.1" /></a></li>
 					<li><a href="profile/action-2.do"><spring:message code="master.page.profile.action.2" /></a></li>
 					<li><a href="profile/action-3.do"><spring:message code="master.page.profile.action.3" /></a></li>					

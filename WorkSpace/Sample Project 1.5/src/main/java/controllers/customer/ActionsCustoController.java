@@ -8,19 +8,21 @@
  * 
  */
 
-package controllers;
+package controllers.customer;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import controllers.AbstractController;
+
 @Controller
 @RequestMapping("/customer")
-public class CustomerController extends AbstractController {
+public class ActionsCustoController extends AbstractController {
 
 	// Constructors -----------------------------------------------------------
 
-	public CustomerController() {
+	public ActionsCustoController() {
 		super();
 	}
 

@@ -8,19 +8,21 @@
  * 
  */
 
-package controllers;
+package controllers.administrator;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import controllers.AbstractController;
+
 @Controller
 @RequestMapping("/administrator")
-public class AdministratorController extends AbstractController {
+public class ActionsAdminController extends AbstractController {
 
 	// Constructors -----------------------------------------------------------
 	
-	public AdministratorController() {
+	public ActionsAdminController() {
 		super();
 	}
 		
