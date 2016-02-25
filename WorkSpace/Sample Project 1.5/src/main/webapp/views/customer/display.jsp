@@ -30,3 +30,5 @@
 			<spring:message code="customer.edit" />
 		</a></b>
 	</div>
+	<br/>
+	<spring:message code="customer.delete"/>
