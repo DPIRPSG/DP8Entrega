@@ -25,5 +25,6 @@
 	<context:component-scan base-package="repositories" />
 	<context:component-scan base-package="security" />
 	<context:component-scan base-package="services" />
+	<context:component-scan base-package="validator" />
 
 </beans>
