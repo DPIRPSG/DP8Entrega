@@ -25,8 +25,6 @@ public class ActorService {
 	private ActorRepository actorRepository;
 	
 	// Supporting services ----------------------------------------------------
-
-	
 	
 	// Constructors -----------------------------------------------------------
 	
@@ -88,6 +86,50 @@ public class ActorService {
 		}
 		
 		
+		
+		return result;
+	}
+	
+	/* Query 7 */
+	public Collection<Actor> findActorWhoSendMoreSpam(){
+		Assert.isTrue(checkAuthority("ADMIN"), "Only an admin can open the dashboard");
+		
+		Collection<Actor> result;
+		
+		result = actorRepository.findActorWhoSendMoreSpam();
+		
+		return result;
+	}
+	
+	/* Query 8 */
+	public Double findAverageNumberOfMessagesInActorMessageBox(){
+		Assert.isTrue(checkAuthority("ADMIN"), "Only an admin can open the dashboard");
+		
+		Double result;
+		
+		result = actorRepository.findAverageNumberOfMessagesInActorMessageBox();
+		
+		return result;
+	}
+	
+	/* Query 11 */
+	public Double findAverageNumberOfCommentWrittenByAnActor(){
+		Assert.isTrue(checkAuthority("ADMIN"), "Only an admin can open the dashboard");
+		
+		Double result;
+		
+		result = actorRepository.findAverageNumberOfCommentWrittenByAnActor();
+		
+		return result;
+	}
+	
+	/* Query 11 */
+	public Double findStandardDeviationNumberOfCommentWrittenByAnActor(){
+		Assert.isTrue(checkAuthority("ADMIN"), "Only an admin can open the dashboard");
+		
+		Double result;
+		
+		result = actorRepository.findStandardDeviationNumberOfCommentWrittenByAnActor();
 		
 		return result;
 	}
