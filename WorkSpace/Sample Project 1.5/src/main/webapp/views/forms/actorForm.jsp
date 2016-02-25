@@ -35,8 +35,8 @@
 		<br />		
 		
 		<security:authorize access="!hasAnyRole('CUSTOMER', 'ADMIN')">
-			
-			<acme:checkbox code="actorForm.acceptTerm" path="acceptTerm"/>
+
+		<acme:checkbox code="actorForm.acceptTerm" path="acceptTerm"/>
 			
 		</security:authorize>		
 		<br />

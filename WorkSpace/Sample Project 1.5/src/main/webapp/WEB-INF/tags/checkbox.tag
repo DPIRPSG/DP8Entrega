@@ -34,4 +34,7 @@
 	</form:label>
 	<form:checkbox path="${path}"/>
 	<form:errors path="${path}" cssClass="error" />
+	
+	<a href="legal-terms/index.do"><spring:message
+				code="actorForm.legalTerms" /></a>
 </div>
