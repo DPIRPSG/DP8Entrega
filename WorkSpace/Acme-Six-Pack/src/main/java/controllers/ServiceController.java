@@ -9,11 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.GymService;
 import services.ServiceService;
-
-import controllers.AbstractController;
-import domain.Gym;
 import domain.ServiceEntity;
 
 @Controller
@@ -24,9 +20,6 @@ public class ServiceController extends AbstractController {
 
 	@Autowired
 	private ServiceService serviceService;
-	
-	@Autowired
-	private GymService gymService;
 
 	// Constructors ----------------------------------------------------------
 
