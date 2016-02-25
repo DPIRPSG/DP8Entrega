@@ -18,6 +18,7 @@
 		<value>/views/security/tiles.xml</value>
 		<value>/views/welcome/tiles.xml</value>
 		<value>/views/about-us/tiles.xml</value>
+		<value>/views/legal-terms/tiles.xml</value>
 		
 		<value>/views/administrator/tiles.xml</value>
 		<value>/views/customer/tiles.xml</value>
