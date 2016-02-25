@@ -26,7 +26,7 @@
 	
 	<!-- Action links -->
 	<div>
-		<b><a href="admin/administrator/edit.do"> 
+		<b><a href="administrator/administrator/edit.do"> 
 			<spring:message code="administrator.edit" />
 		</a></b>
 	</div>
