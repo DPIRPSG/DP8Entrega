@@ -13,6 +13,8 @@ public class ActorForm {
 	private String password;
 	private String repeatedPassword;
 	private Boolean acceptTerm;
+	private Boolean createCreditCard;
+	private Boolean createSocialIdentity;
 	
 	@NotNull
 	@NotBlank
@@ -67,6 +69,20 @@ public class ActorForm {
 	public void setAcceptTerm(Boolean aceptTerm) {
 		this.acceptTerm = aceptTerm;
 	}
+	public Boolean getCreateCreditCard() {
+		return createCreditCard;
+	}
+	public void setCreateCreditCard(Boolean createCreditCard) {
+		this.createCreditCard = createCreditCard;
+	}
+	public Boolean getCreateSocialIdentity() {
+		return createSocialIdentity;
+	}
+	public void setCreateSocialIdentity(Boolean createSocialIdentity) {
+		this.createSocialIdentity = createSocialIdentity;
+	}
+	
+	
 	
 	// Validator ----------
 

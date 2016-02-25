@@ -17,6 +17,7 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -48,7 +49,9 @@ public class WelcomeController extends AbstractController {
 
 	@RequestMapping(value = "/index")
 	public ModelAndView index(
-			@RequestParam(required = false, defaultValue = "") String messageStatus) {
+			@RequestParam(required = false, defaultValue = "") String messageStatus,
+			@CookieValue(value = "createCreditCard", required = false, defaultValue = "false") String createCreditCard,
+			@CookieValue(value = "createSocialIdentity", required = false, defaultValue = "false") String createSocialIdentity) {
 		ModelAndView result;
 		SimpleDateFormat formatter;
 		String moment;
@@ -84,7 +87,11 @@ public class WelcomeController extends AbstractController {
 		
 		if(messageStatus != ""){
 			result.addObject("messageStatus", messageStatus);
-		}		
+		}
+		
+		if(createCreditCard == "true"){
+			result = new ModelAndView("redirect:/creditCard/customer/edit.do");
+		}
 
 		return result;
 	}

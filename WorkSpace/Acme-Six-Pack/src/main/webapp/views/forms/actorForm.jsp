@@ -36,6 +36,11 @@
 		
 		<security:authorize access="!hasAnyRole('CUSTOMER', 'ADMIN')">
 			
+			<acme:checkbox code="actorForm.createCreditCard" path="createCreditCard"/>
+			<acme:checkbox code="actorForm.createSocialIdentity" path="createSocialIdentity"/>
+			
+			<br />			
+			
 			<acme:checkbox code="actorForm.acceptTerm" path="acceptTerm"/>
 			
 		</security:authorize>		
