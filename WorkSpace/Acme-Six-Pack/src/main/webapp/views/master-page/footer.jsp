@@ -12,11 +12,16 @@
 
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+
 
 <jsp:useBean id="date" class="java.util.Date" />
 
 <hr />
 <br/>
+
+<a href="about-us.do"><spring:message code="master.page.aboutUs" /></a>
 <b>Copyright &copy; <fmt:formatDate value="${date}" pattern="yyyy" /> Acme-Six-Pack Co., Inc.</b>
 
 	<script type="text/javascript">
@@ -30,4 +35,6 @@
 			window.location.replace(loc);
 		}
 	</script>
+	
+<a href="legal-terms.do"><spring:message code="master.page.legalTerms" /></a>
 	
