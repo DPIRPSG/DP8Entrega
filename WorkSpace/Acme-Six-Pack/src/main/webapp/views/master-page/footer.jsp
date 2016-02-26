@@ -12,6 +12,7 @@
 
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 
@@ -45,10 +46,38 @@
 		<button onclick="hideInfoCookies()"><spring:message code="master.page.cookies.ok"/></button>
 	</p>
 </div>
-	
+
 	<script>
-		function hideInfoCookies(){
-			$("#infoCookies").hide();
+	function getCookie(cname) {
+    	var name = cname + "=";
+    	var ca = document.cookie.split(';');
+    	for(var i=0; i<ca.length; i++) {
+        	var c = ca[i];
+        	while (c.charAt(0)==' ') c = c.substring(1);
+        	if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+    	}
+    	return "";
+	}
+	
+	function loadCookies(cookies){
+		// First cookie name, First cookie value
+		// ; Second cookie name, Second cookie value
+		arrayCookies = cookies.split(";");
+		for(var i=0; i<arrayCookies.length; i++){
+			var cook = arrayCookies[i].split(",");
+			var name = cook[0];
+			var value = cook[1];
+			document.cookie = name + "=" + value + "; path=/ ";
 		}
-	</script>
+	}
+	function hideInfoCookies() {
+		$("#infoCookies").hide();
+		loadCookies("infoCookies,hide");
+	}
+	
+	if(getCookie("infoCookies")=="hide"){
+		hideInfoCookies();
+	}
+
+</script>
 

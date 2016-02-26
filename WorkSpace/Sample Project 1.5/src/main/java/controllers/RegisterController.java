@@ -63,7 +63,7 @@ public class RegisterController extends AbstractController{
 				actorFormService.saveForm(consu);
 				result = new ModelAndView("redirect:../security/login.do");
 				result.addObject("messageStatus", "customer.commit.ok");
-								
+												
 			} catch (Throwable oops){
 				result = createEditModelAndView(consu, "customer.commit.error");
 			}

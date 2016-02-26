@@ -49,9 +49,10 @@ public class WelcomeController extends AbstractController {
 
 	@RequestMapping(value = "/index")
 	public ModelAndView index(
-			@RequestParam(required = false, defaultValue = "") String messageStatus,
-			@CookieValue(value = "createCreditCard", required = false, defaultValue = "false") String createCreditCard,
-			@CookieValue(value = "createSocialIdentity", required = false, defaultValue = "false") String createSocialIdentity) {
+			@RequestParam(required = false, defaultValue = "") String messageStatus
+			,@CookieValue(value = "createCreditCard", required = false, defaultValue = "false") String createCreditCard
+			,@CookieValue(value = "createSocialIdentity", required = false, defaultValue = "false") String createSocialIdentity
+			) {
 		ModelAndView result;
 		SimpleDateFormat formatter;
 		String moment;
@@ -89,8 +90,10 @@ public class WelcomeController extends AbstractController {
 			result.addObject("messageStatus", messageStatus);
 		}
 		
-		if(createCreditCard == "true"){
+		if(createCreditCard.equals("true") && actorService.checkAuthority("CUSTOMER")){
 			result = new ModelAndView("redirect:/creditCard/customer/edit.do");
+		}else if(createSocialIdentity.equals("true") && actorService.checkAuthority("CUSTOMER")){
+			result = new ModelAndView("redirect:/socialIdentity/customer/edit.do");			
 		}
 
 		return result;
