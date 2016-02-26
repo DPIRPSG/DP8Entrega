@@ -20,5 +20,8 @@ public interface FeePaymentRepository extends JpaRepository<FeePayment, Integer>
 
 	@Query("select f from FeePayment f where f.customer.id = ?1 and f.gym.id = ?2 order by f.paymentMoment desc")
 	Collection<FeePayment> findAllByCustomerAndGym(int customerId, int gymId);
+	
+	@Query("select f from FeePayment f where f.activeMoment < ?1 and f.inactiveMoment > ?1 and f.customer.id = ?2")
+	Collection<FeePayment> findAllActiveByCustomer(Date moment, int customerId);
 
 }

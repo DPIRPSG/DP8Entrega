@@ -24,6 +24,8 @@ public class FeePaymentService {
 	@Autowired
 	private FeePaymentRepository feePaymentRepository;
 	
+	// Supporting services ----------------------------------------------------
+
 	@Autowired
 	private CustomerService customerService;
 	
@@ -32,8 +34,6 @@ public class FeePaymentService {
 	
 	@Autowired
 	private ActorService actorService;
-
-	// Supporting services ----------------------------------------------------
 
 	// Constructors -----------------------------------------------------------
 
@@ -105,6 +105,8 @@ public class FeePaymentService {
 			feePayment.setPaymentMoment(paymentMoment);
 			feePayment.setInactiveMoment(inactiveMoment);
 			
+			Assert.isTrue(compruebaPago(feePayment), "No puede coincidir con algún pago activo");
+			
 			fee = feePaymentRepository.save(feePayment);
 			
 			gym = fee.getGym();
@@ -115,7 +117,6 @@ public class FeePaymentService {
 			
 			gymService.save(gym);
 			customerService.save(customer);
-
 		} else {
 			Assert.isTrue(actorService.checkAuthority("ADMIN"), "feePayment.checkAuthority.edit.notAdmin");
 			feePaymentRepository.save(feePayment);
@@ -156,6 +157,21 @@ public class FeePaymentService {
 		
 		return result;
 	}
+	
+	public Collection<FeePayment> findAllActiveByCustomer() {
+		Collection<FeePayment> result;
+		Date moment;
+		Customer customer;
+		
+		moment = new Date();
+		customer = customerService.findByPrincipal();
+		
+		result = feePaymentRepository.findAllActiveByCustomer(moment, customer.getId());
+		
+		
+		
+		return result;
+	}
 
 
 	public Collection<FeePayment> findAllByCustomerAndGym(int gymId) {
@@ -189,6 +205,41 @@ public class FeePaymentService {
 			}
 		}
 		return result;		
+	}
+	/**
+	 * Comprueba que al hacer un pago de un gym ya pagado no se pisen los tiempos de activacion
+	 * @param activeMoment
+	 * @return
+	 */
+	private boolean compruebaPago(FeePayment feePayment) {
+		boolean result;
+		Collection<FeePayment> fees;
+		Date activeMoment;
+		Date inactiveMoment;
+
+		result = true;
+		fees = this.findAllByCustomer();
+		if (!fees.isEmpty()) {
+			for (FeePayment fee : fees) {
+				if (feePayment.getGym() == fee.getGym()) {
+					activeMoment = fee.getActiveMoment();
+					inactiveMoment = fee.getInactiveMoment();
+
+					if (feePayment.getActiveMoment().compareTo(activeMoment) >= 0
+							&& feePayment.getActiveMoment().compareTo(
+									inactiveMoment) <= 0) {
+						result = false;
+					} else if (feePayment.getInactiveMoment().compareTo(
+							activeMoment) >= 0
+							&& feePayment.getInactiveMoment().compareTo(
+									inactiveMoment) <= 0) {
+						result = false;
+					}
+				}
+			}
+		}
+
+		return result;
 	}
 	
 }

@@ -1,0 +1,134 @@
+ OnePlus se compromete a proteger la privacidad de nuestros usuarios. No usamos, almacenamos o divulgamos la información de los usuarios más allá de lo que se describe en esta Política de Privacidad. Es importante que entienda que información recogemos y como la utilizamos ya que el acceso a este sitio implica la aceptación de nuestra política de privacidad. Para ofrecer nuestros servicios, podemos tomar la información que puede ser usada para su identificación. Nunca utilizaremos esta información de forma diferente a lo especificado en este documento. OnePlus se reserva el derecho de cambiar o modificar este documento en cualquier momento.
+Información que recopilamos y como se utiliza
+
+Recopilamos información personal y no personal para ofrecer mejores servicios a todos nuestros usuarios. La información recopilada puede incluir su nombre, dirección de correo electrónico, dirección postal y número de teléfono. La recogida de datos se lleva a cabo de las siguientes formas:
+
+    Cuando visite nuestro sitio web, su geolocalización IP es usada para presentarle las opciones de divisas y envío más relevantes.
+    Cuando se suscribe al boletín OnePlus, recogemos su dirección de correo electrónico para enviarle noticias y promociones.
+    Cuando abre una Cuenta OnePlus, recogemos su nombre y correo electrónico para validar su cuenta y enviarle notificaciones.
+    Cuando participe en nuestras promociones o pedidos de productos a través de la página web de OnePlus, recogemos su dirección postal y número de teléfono para fines logísticos.
+    Cuando enviamos su orden, su dirección postal se dará a nuestros socios de logística para facilitar la entrega.
+
+Gestión de su información personal
+
+Ocasionalmente podemos enviarle noticias sobre nuestros productos y promociones. Si desea darse de baja puede hacerlo a través de su cuenta de OnePlus. También puede modificar los datos facilitados, actualizar su perfil o enviar una solicitud a oneplus.net/contact
+Divulgación a terceros
+
+Compartimos la información pertinente con terceros para que nos puedan proveer con servicios como el correo electrónico, análisis de sitios web, las promociones específicas, procesamiento de pagos, el procesamiento de pedidos y la entrega. Estas empresas también están obligadas a proteger su privacidad según las normas legales y nunca recibirán su información completa.
+
+En orden de optimizar la experiencia de usuario, Oneplus usas un servicio provisto por terceros que ofrece cierto servicio de interacción analítico y de usuario en nuestro sitio web. Estos servicios incluyen la recaudación y control de ciertos datos e información acerca de las características y actividades de los visitantes del sitio. Nosotros podremos revelar datos de los visitantes, incluyendo información de identificación personal, a ciertos tales proveedores con el fin de obtener estos servicios.
+
+Los proveedores de servicio tercerizados incluyen, pero no se limitan a, Google Analytics, Kissmetrics, y Optimizely. La política de privacidad completa de Kissmetrics puede ser encontrada aquí. Los Visitantes pueden optar por estos servicios de interacción analíticos y de usuarios a través de la función de exclusión de Kissmetrics, la opción de la pagina de seguimiento de Optimizely, y el Add-on "Opt-out" de Google Analytics..
+Cookies
+
+Las cookies son pequeñas cantidades de información que se almacenan en el navegador utilizado por cada usuario para que el servidor recuerde cierta información que posteriormente pueda utilizar. Esta información permite identificarle a usted como un usuario concreto y permite guardar sus preferencias personales, así como las compras en línea. Aquellos usuarios que no deseen recibir cookies o quieran ser informados antes de que se almacenen en su ordenador, pueden configurar su navegador a tal efecto.
+Seguridad de la información
+
+Utilizamos medidas de seguridad estándar para garantizar que su información personal es segura. Todos los pagos en oneplus.net son manejados por PayPal; no reunimos ni guardamos datos de su tarjeta de crédito en nuestros servidores.
+Términos y condiciones
+Uso general del sitio web
+
+Estos Términos de Uso se aplican a la página web y a todos los subdominios de oneplus.net. Todo el contenido de este sitio, incluyendo pero no limitándose a texto, imágenes, código, diseño y disposición, es propiedad y está controlado por OnePlus. Ninguna parte ni contenido de este sitio puede ser reproducida, republicado o distribuido sin la autorización expresa de OnePlus. Nuestros servicios se proporcionan tal como están y sujetos a disponibilidad, sin garantía. Nos reservamos el derecho de modificar estos términos y terminar nuestros servicios en cualquier momento. Al utilizar este sitio web aceptas los términos establecidos en este documento.
+Uso del sitio
+
+Se otorga permiso a OnePlus el derecho de usar, reproducir, modificar y distribuir cualquier contenido no personal y no confidencial que publiques. No puede publicar contenido ilegal, provocativo, obsceno o amenazante en nuestro sitio. Cualquier contenido de este tipo será eliminado y las cuentas asociadas a éste serán suspendidas. No puedes acceder a partes no autorizadas de la página ni utilizarla de manera que perturbe nuestros servicios.
+Condiciones de venta
+Términos de pago
+
+Todos los pagos son procesados a través de PayPal, un proveedor líder en el sector de los pagos online. Sus datos se transmiten a través a través de canales cifrados y almacenados en sus servidores seguros. OnePlus no almacena ni tiene acceso a los datos de pago.
+Política de Garantía
+
+Los teléfonos OnePlus comprados en oneplus.net cuentan con una garantía limitada de 2 años, en conformidad con las leyes del consumidor de Unión Europea, a partir de la fecha de entrega. Algunos accesorios de OnePlus vienen con diferentes periodos de garantía, debido a la naturaleza del diseño del producto, la fabricación o el uso previsto. La garantía limitada sólo cubre defectos de los productos causados por la mano de obra o los materiales de construcción. Para presentar una reclamación, presente su comprobante de compra (factura) original, modelo y número de serie del producto, así como pruebas fotográficas de que el producto era defectuoso a su llegada, al Servicio de Atención al Cliente de OnePlus en oneplus.net/support.
+
+Cualquier servicio de reparación y reemplazo cubierto por esta garantía, junto con los gastos de envío, serán gratuitos durante dos años.
+
+OnePlus puede utilizar partes y componentes reconstruidos, reacondicionados o nuevos cuando repare cualquier producto. Alternativamente podemos reemplazar completamente el producto defectuoso por un producto OnePlus reconstruido, reacondicionado o nuevo.
+La garantía limitada no cubre:
+
+    Los defectos o daños causados por accidentes, negligencia, mal uso o uso anormal; condiciones anormales o almacenamiento inadecuado; exposición a líquidos, humedad, arena o tierra; esfuerzos físicos, eléctricos o electromecánicos inusuales.
+    Los arañazos, melladuras y daños cosméticos, a menos que sean causados por OnePlus.
+    Los defectos o daños resultantes de una fuerza excesiva o uso de objetos metálicos en la pantalla táctil.
+    Los dispositivos cuyo número de serie o número IMEI haya sido eliminado, desfigurado, dañado, alterado o hecho ilegible.
+    Deterioro por uso ordinario.
+    Los defectos o daños resultantes del uso del producto junto con los accesorios, productos o equipo auxiliar/periférico que no haya sido suministrado o aprobado por OnePlus.
+    Cualquier defecto físico o daño resultante de pruebas, operaciones, mantenimiento, instalación, servicio o ajustes inapropiados no suministrados o aprobados por OnePlus.
+    Los defectos o daños resultantes de causas externas tales como colisión con otro objeto, fuego, inundaciones, tierra, huracanes, rayos, terremotos, exposición a condiciones meteorológicas, robo, fusible quemado o uso inapropiado de cualquier fuente eléctrica.
+    Los defectos o daños resultantes de la recepción o transmisión de la señal móvil, o de virus o de otros problemas de software introducido en el producto.
+    Productos no adquiridos a través de oneplus.net.
+
+Por favor, póngase en contacto con el Servicio de Atención al Cliente de OnePlus para consultas referentes a la Garantía Limitada.
+Política de Devoluciones
+
+Los teléfonos y accesorios de OnePlus se fabrican con los mejores estándares y son sometidos a pruebas rigurosas. Pero si por alguna razón no está satisfecho con su producto OnePlus, puede solicitar una devolución durante los 15 días naturales a partir de la entrega. Una vez aceptemos su solicitud y recibamos el producto, le haremos un reembolso completo. Cualquier gasto de envío y manipulación incurrido durante el proceso de devolución no está cubierto por el reembolso.
+
+Los productos comprados directamente a OnePlus están cubiertos por una Garantía Limitada contra defectos de fabricación y averías, que empieza en la fecha de entrega del producto y tiene una duración de:
+Producto
+OnePlus One / OnePlus 2 (incl. batería)
+Tipo
+Devolución Garantía
+Tiempo
+15 Días 24 Meses
+Cargador, Cable de Datos, Cable OTG, Auriculares, Power Bank
+Devolución Garantía
+15 Días* 24 Meses
+Protector de Pantalla, Flip Cover, Carcasa, StyleSwap Cover
+Devolución Garantía
+15 Días* 15 Días
+
+*El producto debe estar intacto (sin abrir) y en su caja original.
+
+Las solicitudes de devolución realizadas fuera del período de 15 días no serán aceptadas. Así mismo, podemos decidir no aceptar devoluciones en las siguientes circunstancias:
+
+    Defectos o daños causados por un mal uso, negligencia, daño físico, alteraciones del producto, ajuste incorrecto, deterioro por uso ordinario o instalación incorrecta después de la compra.
+    Si la única razón de devolución es la fluctuación del precio.
+    Contratos de clientes personalizados.
+
+En todos los casos, se investigará el producto y verificará el fallo. Para ser admitido para realizar un reemplazo o reembolso, los dispositivos deben encontrarse en condiciones ?como si estuviera nuevo? y si es posible con el sellado original del embalaje intacto. Los accesorios deben estar herméticamente sellados en su embalaje original. Nos reservamos el derecho de rechazar un reembolso si consideramos que el producto devuelto ha sido dañado.
+
+Por favor, póngase en contacto con el Servicio de Atención al Cliente de OnePlus para solicitar una devolución. Sin una solicitud de devolución verificada, los paquetes devueltos serán rechazados. Peticiones de vuelta no se pueden cancelar una vez que han alcanzado el estatus de "enviado".
+
+Una vez haya contactado con el Servicio de Atención al Cliente de OnePlus y haya solicitado una devolución:
+
+    Recibirá y se le solicitará que presente un formulario de autorización de devolución de mercancía (RMA). Imprima el formulario RMA y sitúelo en el interior del paquete que vaya a devolver.
+    Incluya todos los elementos del envío original incluyendo dispositivos, accesorios y documentación. No envíe complementos adicionales tales como su tarjeta SIM, fundas, protectores de pantalla o auriculares.
+    Antes de devolver cualquier unidad para su revisión, asegúrese de hacer copias de seguridad de sus datos. Usted es responsable de la información personal almacenada en su teléfono ? por favor borre todos los datos personales y confidenciales presentes en el dispositivo antes de enviarlo a OnePlus. OnePlus no se hará responsable de cualquier uso o revelación de datos aún presentes en el dispositivo.
+    Durante el servicio, los datos almacenados en el dispositivo pueden ser borrados y formateados. OnePlus no es responsable de la pérdida de programas de software, datos u otra información contenida en el almacenamiento del producto. La recuperación y reinstalación de los programas de software de terceros, datos e información no están cubiertas por la garantía.
+
+Política de Envíos
+
+Una vez recibamos su orden, los pedidos se envían dentro de los 10 días laborales posteriores a la recepción del pago desde el almacén disponible más cercano en la Unión Europea. Los pedidos realizados durante periodos promocionales y eventos especiales pueden tener plazos de entrega más largos, a discreción de OnePlus. En tales casos, se informará previamente de ello a los clientes.
+
+Todos los productos son inspeccionados y sellados antes de la entrega para evitar daños.
+
+OnePlus te mantendrá informado sobre el estado del pedido por correo electrónico. Los pedidos no pueden cancelarse una vez que han alcanzado el estatus de "Preparado".
+¿Cómo se calcula la tarifa de envío?
+
+La tarifa del envío se calcula en base a la dirección de envío y la forma de envío. Las siguientes opciones pueden ser seleccionadas durante el proceso de compra:
+
+Servicio Standard (5 a 10 días hábiles de procesamiento + de 3 a 7 días hábiles)
+Servicio Priority (5 a 10 días hábiles de procesamiento + de 2 a 5 días hábiles)
+
+Por favor, tenga en cuenta que los plazos de entrega son sólo estimaciones, no podemos garantizar que los pedidos se entreguen en los plazos indicados en esta página, pero estos plazos son una buena orientación para saber el tiempo aproximado que puede tardar en llegar un pedido. Aquellas direcciones Los cargos adicionales serán necesarios para las direcciones de envío en lugares remotos.
+Devoluciones/Cambios
+
+Para devolver un producto, por favor abre un ticket en oneplus.net/support.
+Sucesos Fuera de Cualquier Control Razonable
+
+Ninguna de las partes será responsable de cualquier retraso o incumplimiento de estos términos si el retraso o incumplimiento se debe a cualquier causa fuera que esté más allá de cualquier control razonable (guerras, desastres naturales, condiciones meteorológicas extremas, etc.)
+Exenciones
+
+Nos reservamos nuestro derecho a actuar en cualquier momento en caso de incumplimiento de estos términos.
+Envíos Fuera de la Península
+
+OnePlus no envía a Ceuta, Melilla ni a las Islas Canarias.
+Marcas comerciales y copyright
+
+Ciertas marcas comerciales pertenecen a terceras partes y no pueden ser utilizadas sin autorización. Ver sus páginas web respectivas para más información.
+Aviso legal
+
+No somos responsables de ninguna pérdida o daños que puedan surgir del uso de nuestros servicios.
+Cambios a la Política de Privacidad
+
+Oneplus se reserva el derecho de cambiar, alterar o modificar esta Política de Privacidad por cualquier razón y en cualquier momento sin notificación previa.
+
+Este documento fue actualizado el 2016/01/12.
