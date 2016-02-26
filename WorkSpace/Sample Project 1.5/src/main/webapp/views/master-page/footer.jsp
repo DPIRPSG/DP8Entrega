@@ -76,12 +76,6 @@
 		$("#infoCookies").hide();
 		loadCookies("infoCookies,hide");
 	}
-</script>
-
-	<jstl:set var="cookiesToShow" value="${loadToCookie}"/>
-	
-<script>
-	loadCookies("${cookiesToShow}");
 	
 	if(getCookie("infoCookies")=="hide"){
 		hideInfoCookies();

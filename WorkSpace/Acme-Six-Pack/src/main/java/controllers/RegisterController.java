@@ -53,10 +53,7 @@ public class RegisterController extends AbstractController{
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid ActorForm consu,
-			BindingResult binding 
-			// ,@CookieValue(value = "createCreditCard", required = false) String createCreditCard
-			// ,@CookieValue(value = "createSocialIdentity", required = false) String createSocialIdentity
-			// ,@RequestParam(required = false, defaultValue = "false") String recharging
+			BindingResult binding
 			, HttpServletResponse response
 			){
 		actorFormValidator.validate(consu, binding);
