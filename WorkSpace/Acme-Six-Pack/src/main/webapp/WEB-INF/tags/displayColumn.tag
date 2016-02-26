@@ -29,7 +29,7 @@
 <%@ attribute name="format" required="false" %>
 <%@ attribute name="sorteable" required="false" %>
 
-<jstl:if test="${readonly == null}">
+<jstl:if test="${sorteable == null}">
 	<jstl:set var="sorteable" value="false" />
 </jstl:if>
 

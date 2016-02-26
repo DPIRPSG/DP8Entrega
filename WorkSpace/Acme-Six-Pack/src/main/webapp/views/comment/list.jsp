@@ -31,7 +31,7 @@
 	<acme:displayColumn title="${momentHeader}" sorteable="true" value="${row_Comment.moment}" format="{0,date,yyyy/MM/dd}"/>
 	
 	<spring:message code="comment.text" var="textHeader" />
-	<acme:displayColumn title="${textHeader}" sorteable="true" value="${row_Comment.text}"/>
+	<acme:displayColumn title="${textHeader}" sorteable="false" value="${row_Comment.text}"/>
 
 	<spring:message code="comment.starRating" var="starRatingHeader" />
 	<acme:displayColumn title="${starRatingHeader}" sorteable="true" value="${row_Comment.starRating}"/>

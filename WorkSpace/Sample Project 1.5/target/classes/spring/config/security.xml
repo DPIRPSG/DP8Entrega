@@ -42,6 +42,7 @@
 
 		<security:intercept-url pattern="/welcome/index.do" access="permitAll" /> 
 		<security:intercept-url pattern="/about-us/index.do" access="permitAll" />
+		<security:intercept-url pattern="/legal-terms/index.do" access="permitAll" />
 
 		<security:intercept-url pattern="/customer/create.do" access="!isAuthenticated()" /> 
 

@@ -36,14 +36,14 @@
 	}
 </script>
 
-<a href="legal-terms.do"><spring:message
+<a href="legal-terms/index.do"><spring:message
 		code="master.page.legalTerms" /></a>
 
 <div
 	style="position: fixed; bottom: 0; width: 100%; background-color: #BDBDBD;"
 	id="infoCookies">
 	<p> <spring:message code="master.page.cookies.message"/>
-		 <a href="./legal-terms.do"><spring:message code="master.page.cookies.here"/></a>.
+		 <a href="legal-terms/index.do"><spring:message code="master.page.cookies.here"/></a>.
 		<button onclick="hideInfoCookies()"><spring:message code="master.page.cookies.ok"/></button>
 	</p>
 </div>
