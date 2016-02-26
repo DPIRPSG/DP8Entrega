@@ -233,7 +233,48 @@ public class GymService {
 		
 		return result;
 	}
+	
+	/* Query 1 */
+	public Collection<Gym> findMostPopularGyms(){
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can open the dashboard");
+		
+		Collection<Gym> result;
+		
+		result = gymRepository.findMostPopularGyms();
+		
+		return result;
+	}
+	
+	/* Query 2 */
+	public Collection<Gym> findLeastPopularGym(){
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can open the dashboard");
+		
+		Collection<Gym> result;
+		
+		result = gymRepository.findLeastPopularGym();
+		
+		return result;
+	}
 
+	/* Query 9 */
+	public Collection<Gym> findMostCommented(){
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can open the dashboard");
+		
+		Collection<Gym> result;
+		
+		result = gymRepository.findMostCommented();
+		
+		return result;
+	}
 	
-	
+	/* Query 12 */
+	public Double findAverageNumberOfCommentsPerGym(){
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can open the dashboard");
+		
+		Double result;
+		
+		result = gymRepository.findAverageNumberOfCommentsPerGym();
+		
+		return result;
+	}
 }

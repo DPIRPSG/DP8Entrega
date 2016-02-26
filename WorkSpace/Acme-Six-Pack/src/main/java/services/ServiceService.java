@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.ServiceRepository;
+import domain.Booking;
+import domain.FeePayment;
 import domain.ServiceEntity;
 
 @Service
@@ -25,6 +27,14 @@ public class ServiceService {
 	@Autowired
 	private CustomerService customerService;
 	
+	@Autowired
+	private ActorService actorService;
+	
+	@Autowired
+	private FeePaymentService feePaymentService;
+	
+	@Autowired
+	private BookingService bookingService;
 	// Constructors -----------------------------------------------------------
 
 	public ServiceService() {
@@ -122,10 +132,71 @@ public class ServiceService {
 		return result;
 	}
 	
-	public Collection<ServiceEntity> findAllPaidAndNotBookedByCustomerId(int customerId) {
+	/*public Collection<ServiceEntity> findAllPaidAndNotBookedByCustomerId(int customerId) {
 		Collection<ServiceEntity> result;
 		
 		result = serviceRepository.findAllPaidAndNotBookedByCustomerId(customerId);
+		
+		return result;
+	}*/
+	
+	public Collection<ServiceEntity> findAllPaidAndNotBookedByCustomerId(
+			int customerId) {
+		Collection<ServiceEntity> result;
+		Collection<ServiceEntity> services;
+		Collection<FeePayment> fees;
+		Collection<Booking> bookings;
+
+		result = new ArrayList<ServiceEntity>();
+		fees = feePaymentService.findAllActiveByCustomer();
+		for(FeePayment fee : fees) {
+			services = fee.getGym().getServices();
+			for(ServiceEntity service : services) {
+				if(!result.contains(service)) {
+					result.add(service);
+				}
+			}
+		}
+
+		bookings = bookingService.findAllByCustomer();
+		for(Booking booking : bookings) {
+			if(result.contains(booking.getService())) {
+				result.remove(booking.getService());
+			}
+		}
+		
+		return result;
+	}
+	
+	/* Query 3 */
+	public Collection<ServiceEntity> findMostPopularService(){
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can open the dashboard");
+		
+		Collection<ServiceEntity> result;
+		
+		result = serviceRepository.findMostPopularService();
+		
+		return result;
+	}
+	
+	/* Query 4 */
+	public Collection<ServiceEntity> findLeastPopularService(){
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can open the dashboard");
+		
+		Collection<ServiceEntity> result;
+		
+		result = serviceRepository.findLeastPopularService();
+		
+		return result;
+	}
+	
+	/* Query 13 */
+	public Double findAverageNumberOfCommentsPerService(){
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can open the dashboard");
+		
+		Double result;
+		
+		result = serviceRepository.findAverageNumberOfCommentsPerService();
 		
 		return result;
 	}
