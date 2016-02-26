@@ -1,0 +1,85 @@
+<%--
+ * footer.jsp
+ *
+ * Copyright (C) 2014 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ --%>
+
+<%@page language="java" contentType="text/html; charset=ISO-8859-1"	pageEncoding="ISO-8859-1"%>
+
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+
+
+<jsp:useBean id="date" class="java.util.Date" />
+
+<hr />
+<security:authorize access="isAuthenticated()">
+	<script>document.write('<a href="https://' + window.location.hostname + ':443/about-us/index.do"><spring:message code="master.page.aboutUs" /></a>');</script>
+</security:authorize>
+<security:authorize access="isAnonymous()">
+	<script>document.write('<a href="http://' + window.location.hostname + ':80/about-us/index.do"><spring:message code="master.page.aboutUs" /></a>');</script>
+</security:authorize>
+<b>Copyright &copy; <fmt:formatDate value="${date}" pattern="yyyy" />
+	Sample Project 1.6 Co., Inc.
+</b>
+
+<script type="text/javascript">
+	function relativeRedir(loc) {
+		var b = document.getElementsByTagName('base');
+		if (b && b[0] && b[0].href) {
+			if (b[0].href.substr(b[0].href.length - 1) == '/'
+					&& loc.charAt(0) == '/')
+				loc = loc.substr(1);
+			loc = b[0].href + loc;
+		}
+		window.location.replace(loc);
+	}
+</script>
+
+<security:authorize access="isAuthenticated()">
+	<script>document.write('<a href="https://' + window.location.hostname + ':443/legal-terms/index.do"><spring:message code="master.page.legalTerms" /></a>');</script>
+</security:authorize>
+<security:authorize access="isAnonymous()">
+	<script>document.write('<a href="http://' + window.location.hostname + ':80/legal-terms/index.do"><spring:message code="master.page.legalTerms" /></a>');</script>
+</security:authorize>
+
+<div
+	style="position: fixed; bottom: 0; width: 100%; background-color: #BDBDBD;"
+	id="infoCookies">
+	<p> <spring:message code="master.page.cookies.message"/>
+		<security:authorize access="isAuthenticated()">
+			<script>document.write('<a href="https://' + window.location.hostname + ':443/legal-terms/index.do"><spring:message code="master.page.cookies.here"/></a>');</script>
+		</security:authorize>
+		<security:authorize access="isAnonymous()">
+			<script>document.write('<a href="http://' + window.location.hostname + ':80/legal-terms/index.do"><spring:message code="master.page.cookies.here"/></a>');</script>
+		</security:authorize>
+		.<button onclick="hideInfoCookies()"><spring:message code="master.page.cookies.ok"/></button>
+	</p>
+</div>
+
+<script>
+	function getCookie(cname) {
+    	var name = cname + "=";
+    	var ca = document.cookie.split(';');
+    	for(var i=0; i<ca.length; i++) {
+        	var c = ca[i];
+        	while (c.charAt(0)==' ') c = c.substring(1);
+        	if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+    	}
+    	return "";
+	} 
+
+	function hideInfoCookies() {
+		$("#infoCookies").hide();
+		document.cookie = "infoCookies=hide; path=/";
+	}
+	
+	if(getCookie("infoCookies")=="hide"){
+		hideInfoCookies();
+	}
+</script>
