@@ -43,7 +43,6 @@
 	<jstl:set var="jsessionid" value="${cookie['JSESSIONID'].value}"/>
 
 <script>
-document.write("a1");
 	function getCookie(cname) {
     	var name = cname + "=";
     	var ca = document.cookie.split(';');
@@ -59,14 +58,10 @@ document.write("a1");
 		// First cookie name, First cookie value
 		// ; Second cookie name, Second cookie value
 		arrayCookies = cookies.split(";");
-		document.write(cookies + "_");
 		for(var i=0; i<arrayCookies.length; i++){
 			var cook = arrayCookies[i].split(",");
 			var name = cook[0];
 			var value = cook[1];
-			var p = "${jsessionid}";
-			// document.write("·" + p + "·");
-			//document.cookie = p + "_" +name + "=" + value + "; path=/ ";
 			document.cookie = name + "=" + value + "; path=/ ";
 		}
 	}
@@ -74,27 +69,7 @@ document.write("a1");
 		$("#infoCookies").hide();
 		loadCookies("infoCookies,hide");
 	}
-	document.write("a2");
-</script>
-
-	<jstl:set var="cookiestemp" value="${loadToCookie}"/>
-	<jstl:set var="cookiestempo" value="${loadCookies}"/>
-
-<jstl:if test="${loadCookies != Null && loadCookies != ''}">
 	
-	<script>
-	document.write("b1");
-	document.write("Showing cookies! ! ->");
-	document.write("${loadToCookie}");
-	document.write("${cookiestempo}");
-	document.write("${messageStatus}");
-	document.write("<- Fin cookies");
-	loadCookies("${cookiestemp}");
-	loadCookies("${loadToCookie}");
-		
-	</script>
-</jstl:if>
-	<script>
 	if(getCookie("infoCookies")=="hide"){
 		hideInfoCookies();
 	}

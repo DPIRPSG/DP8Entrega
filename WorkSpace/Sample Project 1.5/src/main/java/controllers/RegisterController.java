@@ -1,11 +1,17 @@
 package controllers;
 
+import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import javax.xml.ws.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -44,13 +50,17 @@ public class RegisterController extends AbstractController{
 		consu = actorFormService.createForm();
 		result = createEditModelAndView(consu);
 		
+		
 		return result;
 	}
 	
 	//Edition ----------------------------------------------------------
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid ActorForm consu, BindingResult binding){
+	public ModelAndView save(@Valid ActorForm consu, BindingResult binding
+			,HttpServletResponse respose
+			,HttpServletRequest request
+			){
 		actorFormValidator.validate(consu, binding);
 		
 		ModelAndView result;
@@ -63,6 +73,15 @@ public class RegisterController extends AbstractController{
 				actorFormService.saveForm(consu);
 				result = new ModelAndView("redirect:../security/login.do");
 				result.addObject("messageStatus", "customer.commit.ok");
+				
+				Cookie cook;
+				
+				cook = new Cookie("cook5", "value5");
+				// cook.setDomain("localhost");
+				cook.setPath("/");
+				//request.getLocale();
+				respose.addCookie(cook);
+				respose.addCookie(new Cookie("cook2", "value2"));
 								
 			} catch (Throwable oops){
 				result = createEditModelAndView(consu, "customer.commit.error");

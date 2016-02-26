@@ -1,5 +1,7 @@
 package controllers;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,11 +53,12 @@ public class RegisterController extends AbstractController{
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid ActorForm consu,
-			BindingResult binding /*,
-			/*@CookieValue(value = "createCreditCard", required = false) String createCreditCard,
-			@CookieValue(value = "createSocialIdentity", required = false) String createSocialIdentity,
-			@RequestParam(required = false, defaultValue = "false") String recharging,
-			HttpServletResponse response*/){
+			BindingResult binding 
+			// ,@CookieValue(value = "createCreditCard", required = false) String createCreditCard
+			// ,@CookieValue(value = "createSocialIdentity", required = false) String createSocialIdentity
+			// ,@RequestParam(required = false, defaultValue = "false") String recharging
+			, HttpServletResponse response
+			){
 		actorFormValidator.validate(consu, binding);
 		
 		ModelAndView result;
@@ -65,16 +68,21 @@ public class RegisterController extends AbstractController{
 			result = createEditModelAndView(consu);
 		} else {
 			try {
-		
+				Cookie cook1;
+				Cookie cook2;
 				actorFormService.saveForm(consu);
 
 				result = new ModelAndView("redirect:../security/login.do");
 				result.addObject("messageStatus", "customer.commit.ok");
-
-				result.addObject("loadCookies", "createSocialIdentity,"
-						+ consu.getCreateSocialIdentity().toString()
-						+ ";createCreditCard," + consu.getCreateCreditCard().toString());
 				
+				cook1 = new Cookie("createCreditCard", consu.getCreateCreditCard().toString());
+				cook2 = new Cookie("createSocialIdentity", consu.getCreateSocialIdentity().toString());
+				
+				cook1.setPath("/");
+				cook2.setPath("/");
+				
+				response.addCookie(cook1);
+				response.addCookie(cook2);
 			
 			} catch (Throwable oops){
 				result = createEditModelAndView(consu, "customer.commit.error");
