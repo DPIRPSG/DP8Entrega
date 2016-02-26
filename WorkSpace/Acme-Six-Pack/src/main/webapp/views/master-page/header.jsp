@@ -27,20 +27,20 @@
 			<li><a class="fNiv"><spring:message	code="master.page.manage.gym" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="gym/customer/list-feepayments-not-active.do?"><spring:message code="master.page.manage.gym.not-pay" /></a></li>
-					<li><a href="gym/customer/list-feepayments-active.do?"><spring:message code="master.page.manage.gym.pay" /></a></li>
+					<li><a href="gym/customer/list-feepayments-not-active.do"><spring:message code="master.page.manage.gym.not-pay" /></a></li>
+					<li><a href="gym/customer/list-feepayments-active.do"><spring:message code="master.page.manage.gym.pay" /></a></li>
 				</ul>
 			</li>
 			<li><a class="fNiv" href="folder/actor/list.do"><spring:message code="master.page.messages" /></a></li>
-			<li><a class="fNiv" href="booking/customer/list.do?"><spring:message code="master.page.bookings" /></a>	</li>		
+			<li><a class="fNiv" href="booking/customer/list.do"><spring:message code="master.page.bookings" /></a>	</li>		
 		</security:authorize>
 		
 		<security:authorize access="hasRole('ADMIN')">
 			<li><a class="fNiv"><spring:message	code="master.page.manage" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="gym/administrator/list.do?"><spring:message code="master.page.manage.gym" /></a></li>
-					<li><a href="service/list.do?"><spring:message code="master.page.manage.service" /></a></li>
+					<li><a href="gym/administrator/list.do"><spring:message code="master.page.manage.gym" /></a></li>
+					<li><a href="service/list.do"><spring:message code="master.page.manage.service" /></a></li>
 				</ul>
 			</li>
 			<li><a class="fNiv"><spring:message	code="master.page.list" /></a>
@@ -48,7 +48,7 @@
 					<li class="arrow"></li>
 					<li><a href="customer/administrator/list.do"><spring:message code="master.page.list.customers" /></a></li>
 					<li><a href="feePayment/administrator/list.do"><spring:message code="master.page.list.feePayments" /></a></li>
-					<li><a href="booking/administrator/list.do?"><spring:message code="master.page.list.booking" /></a></li>
+					<li><a href="booking/administrator/list.do"><spring:message code="master.page.list.booking" /></a></li>
 				</ul>
 			</li>
 			<li><a class="fNiv" href="dashboard/administrator/list.do"><spring:message code="master.page.dashboard" /></a></li>
@@ -56,10 +56,14 @@
 		</security:authorize>
 		
 		<security:authorize access="isAnonymous()">
-			<li><a class="fNiv" href="gym/list.do?"><spring:message code="master.page.gym" /></a></li>
-			<li><a class="fNiv" href="service/list.do?"><spring:message code="master.page.service" /></a></li>
-			<li><a class="fNiv" href="customer/create.do"><spring:message code="master.page.register" /></a></li>
-			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
+<%-- 			<li><a class="fNiv" href="/gym/list.do"><spring:message code="master.page.gym" /></a></li> --%>
+			<li> <script>document.write('<a class="fNiv" href="http://' + window.location.hostname + ':80/gym/list.do" >');</script> <spring:message code="master.page.gym" /></a></li>
+<%-- 			<li><a class="fNiv" href="service/list.do"><spring:message code="master.page.service" /></a></li> --%>
+			<li> <script>document.write('<a class="fNiv" href="http://' + window.location.hostname + ':80/service/list.do" >');</script> <spring:message code="master.page.service" /></a></li>
+<%-- 			<li><a class="fNiv" href="customer/create.do"><spring:message code="master.page.register" /></a></li> --%>
+			<li> <script>document.write('<a class="fNiv" href="http://' + window.location.hostname + ':80/customer/create.do" >');</script> <spring:message code="master.page.register" /></a></li>
+<%-- 			<li><a class="fNiv" href="/security/login.do"><spring:message code="master.page.login" /></a></li> --%>
+			<li> <script>document.write('<a class="fNiv" href="https://' + window.location.hostname + ':443/security/login.do" >');</script> <spring:message code="master.page.login" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="isAuthenticated()">
@@ -73,7 +77,8 @@
 					<security:authorize access="hasRole('ADMIN')">
 						<li><a href="admin/administrator/display.do"><spring:message code="master.page.customer.info" /></a></li>
 					</security:authorize>					
-					<li><b><a href="j_spring_security_logout"><spring:message code="master.page.logout" /></a></b></li>
+<%-- 					<li><b><a href="j_spring_security_logout"><spring:message code="master.page.logout" /></a></b></li> --%>
+					<li><b> <script>document.write('<a class="fNiv" href="http://' + window.location.hostname + ':80/j_spring_security_logout" >');</script> <spring:message code="master.page.customer.info" /></a></b></li>
 				</ul>
 			</li>
 		</security:authorize>
