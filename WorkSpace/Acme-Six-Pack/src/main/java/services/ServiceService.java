@@ -89,6 +89,8 @@ public class ServiceService {
 	}
 	
 	public Collection<ServiceEntity> findMostCommented() {
+		Assert.isTrue(actorService.checkAuthority("ADMIN"));
+		
 		Collection<ServiceEntity> result;
 
 		result = serviceRepository.findMostCommented();

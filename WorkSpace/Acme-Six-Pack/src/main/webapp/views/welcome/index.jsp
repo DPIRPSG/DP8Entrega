@@ -63,7 +63,7 @@
 		
 		<a
 			href="booking/customer/create.do?serviceId=${service.id}">
-			<spring:message code="booking.create" />
+			<spring:message code="welcome.booking.create" />
 		</a>
 	</jstl:if>
 	<jstl:if test="${service == null}">
