@@ -119,6 +119,13 @@ public class FeePaymentService {
 			customerService.save(customer);
 		} else {
 			Assert.isTrue(actorService.checkAuthority("ADMIN"), "feePayment.checkAuthority.edit.notAdmin");
+			
+			FeePayment fee;
+			
+			fee = this.findOne(feePayment.getId());
+			
+			Assert.isTrue(feePayment.getInactiveMoment().after(fee.getInactiveMoment()), "the new inactivation moment must be after the current inactivation moment.");
+			
 			feePaymentRepository.save(feePayment);
 		}
 	}
@@ -137,15 +144,12 @@ public class FeePaymentService {
 	
 
 	// Other business methods -------------------------------------------------
-	public Collection<FeePayment> findAllActive() {
+	public Collection<FeePayment> findAll() {
 		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Solo puede hacer esto un admin");
 		
 		Collection<FeePayment> result;
-		Date moment;
 		
-		moment = new Date();
-		
-		result = feePaymentRepository.findAllActive(moment);
+		result = feePaymentRepository.findAll();
 		
 		return result;
 	}

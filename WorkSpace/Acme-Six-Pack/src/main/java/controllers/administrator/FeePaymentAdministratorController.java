@@ -42,7 +42,7 @@ public class FeePaymentAdministratorController extends AbstractController {
 		ModelAndView result;
 		Collection<FeePayment> feePayments;
 		
-		feePayments = feePaymentService.findAllActive();
+		feePayments = feePaymentService.findAll();
 		
 		result = new ModelAndView("feePayment/list");
 		result.addObject("feePayments", feePayments);
