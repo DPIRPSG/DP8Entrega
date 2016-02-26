@@ -124,6 +124,8 @@ public class FeePaymentService {
 	}
 	
 	public FeePayment findOne(int feePaymentId) {
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Solo puede hacer esto un admin");
+		
 		FeePayment result;
 		
 		result = feePaymentRepository.findOne(feePaymentId);
@@ -136,6 +138,8 @@ public class FeePaymentService {
 
 	// Other business methods -------------------------------------------------
 	public Collection<FeePayment> findAllActive() {
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Solo puede hacer esto un admin");
+		
 		Collection<FeePayment> result;
 		Date moment;
 		
@@ -167,8 +171,6 @@ public class FeePaymentService {
 		customer = customerService.findByPrincipal();
 		
 		result = feePaymentRepository.findAllActiveByCustomer(moment, customer.getId());
-		
-		
 		
 		return result;
 	}

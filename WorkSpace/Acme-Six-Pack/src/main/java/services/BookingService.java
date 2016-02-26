@@ -115,6 +115,7 @@ public class BookingService {
 		Assert.isTrue(actorService.checkAuthority("CUSTOMER"), "Only a customer can book services");	
 		Assert.isTrue(booking.getCreationMoment().before(booking.getRequestMoment()), "The request moment must be after creation moment");
 		//Assert.isTrue(isDurationValid(booking.getDuration()), "The duration of the booking must be expressed in hours or half-hours");
+		Assert.isTrue(booking.getCustomer().getId() == customerService.findByPrincipal().getId());
 		
 		int duration; //Solo la parte entera
 		
@@ -162,9 +163,10 @@ public class BookingService {
 		Assert.isTrue(booking.getApproved() == false, "The selected booking is already approved");
 		Assert.isTrue(booking.getDenied() == false, "The selected booking is already denied");
 		Assert.isTrue(booking.getCanceled() == false, "The selected booking is already canceled");
-
+		Assert.isTrue(booking.getCustomer().getId() == customerService.findByPrincipal().getId());
+		
 		booking.setCanceled(true);
-		bookingRepository.save(booking);
+		this.save(booking);
 		
 	}
 	
@@ -173,6 +175,7 @@ public class BookingService {
 	 * @return Devuelve todos los booking de la base de datos
 	 */
 	public Collection<Booking> findAll(){
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can approve a booking");
 		
 		Collection<Booking> result;
 		
@@ -204,6 +207,7 @@ public class BookingService {
 	 * @return Devuelve el booking en cuestión
 	 */
 	public Booking findOne(int bookingId){
+		Assert.isTrue(actorService.checkAuthority("ADMIN") || actorService.checkAuthority("CUSTOMER"), "Only an admin or customer can approve a booking");
 		
 		Booking result;
 		
