@@ -32,6 +32,7 @@
 
 	<!-- Editable Attributes -->
 
+	<spring:message code="booking.dateFormat" />
 	<acme:textbox code="booking.requestMoment" path="requestMoment" />
 
 	<acme:textbox code="booking.duration" path="duration" />
