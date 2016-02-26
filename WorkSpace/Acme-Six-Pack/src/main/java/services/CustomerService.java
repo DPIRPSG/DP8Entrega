@@ -88,6 +88,8 @@ public class CustomerService {
 		Assert.isTrue(result, "A customer can only be a authority.customer");
 		
 		if(customer.getId() == 0){
+			Assert.isNull(actorService.findByPrincipal());
+			
 			Collection<Folder> folders;
 			Collection<Message> sent;
 			Collection<Message> received;

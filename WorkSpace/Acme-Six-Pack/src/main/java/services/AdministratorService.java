@@ -23,6 +23,9 @@ public class AdministratorService {
 	
 	//Supporting services ----------------------------------------------------
 
+	 @Autowired
+	 private ActorService actorService;
+	
 	//Constructors -----------------------------------------------------------
 
 	public AdministratorService(){
@@ -32,6 +35,9 @@ public class AdministratorService {
 	//Simple CRUD methods ----------------------------------------------------
 
 	public void save(Administrator administrator){
+		Assert.notNull(administrator);
+		Assert.isTrue(administrator.getId() == actorService.findByPrincipal().getId());
+		
 		administratorRepository.save(administrator);
 	}
 	//Other business methods -------------------------------------------------
