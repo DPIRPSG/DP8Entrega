@@ -14,7 +14,12 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
 <div>
-	<a href=""><img src="images/logo.png" alt="Sample Project 1.5 Co., Inc." /></a>
+	<security:authorize access="isAuthenticated()">
+		<script>document.write('<a href="https://' + window.location.hostname + ':443" ><img src="images/logo.png" style="height:128px;" alt="ACME, Inc.  Your gym Company" /></a>');</script>
+	</security:authorize>
+	<security:authorize access="isAnonymous()">
+		<script>document.write('<a href="http://' + window.location.hostname + ':80" ><img src="images/logo.png" style="height:128px;" alt="ACME, Inc.  Your gym Company" /></a>');</script>
+	</security:authorize>
 </div>
 
 <div>
@@ -41,8 +46,8 @@
 		</security:authorize>
 		
 		<security:authorize access="isAnonymous()">
-			<li><a class="fNiv" href="customer/create.do"><spring:message code="master.page.register" /></a></li>		
-			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
+			<li> <script>document.write('<a class="fNiv" href="http://' + window.location.hostname + ':80/customer/create.do" >');</script> <spring:message code="master.page.register" /></a></li>
+			<li> <script>document.write('<a class="fNiv" href="https://' + window.location.hostname + ':443/security/login.do" >');</script> <spring:message code="master.page.login" /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="isAuthenticated()">
@@ -62,7 +67,7 @@
 					<li><a href="profile/action-1.do"><spring:message code="master.page.profile.action.1" /></a></li>
 					<li><a href="profile/action-2.do"><spring:message code="master.page.profile.action.2" /></a></li>
 					<li><a href="profile/action-3.do"><spring:message code="master.page.profile.action.3" /></a></li>					
-					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
+					<li><b> <script>document.write('<a class="fNiv" href="http://' + window.location.hostname + ':80/j_spring_security_logout" >');</script> <spring:message code="master.page.logout" /></a></b></li>
 				</ul>
 			</li>
 		</security:authorize>
@@ -70,6 +75,11 @@
 </div>
 
 <div>
-	<a href="?language=en">en</a> | <a href="?language=es">es</a>
+	<security:authorize access="isAuthenticated()">
+		<script>document.write('<a href="https://' + window.location.hostname + ':443?language=en" >en</a>');</script> | <script>document.write('<a href="https://' + window.location.hostname + ':443?language=es" >es</a>');</script>
+	</security:authorize>
+	<security:authorize access="isAnonymous()">
+		<script>document.write('<a href="http://' + window.location.hostname + ':80?language=en" >en</a>');</script> | <script>document.write('<a href="http://' + window.location.hostname + ':80?language=es" >es</a>');</script>
+	</security:authorize>
 </div>
 

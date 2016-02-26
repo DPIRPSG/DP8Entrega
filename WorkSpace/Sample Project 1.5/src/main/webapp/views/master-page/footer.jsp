@@ -12,11 +12,18 @@
 
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+
 
 <jsp:useBean id="date" class="java.util.Date" />
 
 <hr />
-<a href="about-us/index.do"><spring:message code="master.page.aboutUs" /></a>
+<security:authorize access="isAuthenticated()">
+	<script>document.write('<a href="https://' + window.location.hostname + ':443/about-us/index.do"><spring:message code="master.page.aboutUs" /></a>');</script>
+</security:authorize>
+<security:authorize access="isAnonymous()">
+	<script>document.write('<a href="http://' + window.location.hostname + ':80/about-us/index.do"><spring:message code="master.page.aboutUs" /></a>');</script>
+</security:authorize>
 <b>Copyright &copy; <fmt:formatDate value="${date}" pattern="yyyy" />
 	Sample Project 1.5 Co., Inc.
 </b>
@@ -34,15 +41,24 @@
 	}
 </script>
 
-<a href="legal-terms/index.do"><spring:message
-		code="master.page.legalTerms" /></a>
+<security:authorize access="isAuthenticated()">
+	<script>document.write('<a href="https://' + window.location.hostname + ':443/legal-terms/index.do"><spring:message code="master.page.legalTerms" /></a>');</script>
+</security:authorize>
+<security:authorize access="isAnonymous()">
+	<script>document.write('<a href="http://' + window.location.hostname + ':80/legal-terms/index.do"><spring:message code="master.page.legalTerms" /></a>');</script>
+</security:authorize>
 
 <div
 	style="position: fixed; bottom: 0; width: 100%; background-color: #BDBDBD;"
 	id="infoCookies">
 	<p> <spring:message code="master.page.cookies.message"/>
-		 <a href="legal-terms/index.do"><spring:message code="master.page.cookies.here"/></a>.
-		<button onclick="hideInfoCookies()"><spring:message code="master.page.cookies.ok"/></button>
+		<security:authorize access="isAuthenticated()">
+			<script>document.write('<a href="https://' + window.location.hostname + ':443/legal-terms/index.do"><spring:message code="master.page.cookies.here"/></a>');</script>
+		</security:authorize>
+		<security:authorize access="isAnonymous()">
+			<script>document.write('<a href="http://' + window.location.hostname + ':80/legal-terms/index.do"><spring:message code="master.page.cookies.here"/></a>');</script>
+		</security:authorize>
+		.<button onclick="hideInfoCookies()"><spring:message code="master.page.cookies.ok"/></button>
 	</p>
 </div>
 

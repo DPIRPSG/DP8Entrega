@@ -12,6 +12,7 @@
 
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
 
 
@@ -20,7 +21,12 @@
 <hr />
 <br/>
 
-<a href="about-us.do"><spring:message code="master.page.aboutUs" /></a>
+<security:authorize access="isAuthenticated()">
+		<script>document.write('<a href="https://' + window.location.hostname + ':443/about-us.do"><spring:message code="master.page.aboutUs" /></a>');</script>
+	</security:authorize>
+	<security:authorize access="isAnonymous()">
+		<script>document.write('<a href="http://' + window.location.hostname + ':80/about-us.do"><spring:message code="master.page.aboutUs" /></a>');</script>
+	</security:authorize>
 <b>Copyright &copy; <fmt:formatDate value="${date}" pattern="yyyy" /> Acme-Six-Pack Co., Inc.</b>
 
 	<script type="text/javascript">
@@ -35,9 +41,21 @@
 		}
 	</script>
 	
-<a href="legal-terms.do"><spring:message code="master.page.legalTerms" /></a>
+	<security:authorize access="isAuthenticated()">
+		<script>document.write('<a href="https://' + window.location.hostname + ':443/legal-terms.do"><spring:message code="master.page.legalTerms" /></a>');</script>
+	</security:authorize>
+	<security:authorize access="isAnonymous()">
+		<script>document.write('<a href="http://' + window.location.hostname + ':80/legal-terms.do"><spring:message code="master.page.legalTerms" /></a>');</script>
+	</security:authorize>
 	
-	<div style="position: fixed; bottom: 0; width: 100%; background-color: #BDBDBD;" id="infoCookies"><p>Utilizamos cookies de personalización propias para mejorar nuestros servicios y mostrarle información personalizada según sus preferencias. Si continúa navegando, consideramos que acepta su uso. Puede obtener más información <a href="./legal-terms.do">aquí</a>.  <button onclick="hideInfoCookies()">Entendido</button></p></div>
+	<div style="position: fixed; bottom: 0; width: 100%; background-color: #BDBDBD;" id="infoCookies"><p>Utilizamos cookies de personalización propias para mejorar nuestros servicios y mostrarle información personalizada según sus preferencias. Si continúa navegando, consideramos que acepta su uso. Puede obtener más información 
+	<security:authorize access="isAuthenticated()">
+		<script>document.write('<a href="https://' + window.location.hostname + ':443/legal-terms.do" >aquí</a>');</script>
+	</security:authorize>
+	<security:authorize access="isAnonymous()">
+		<script>document.write('<a href="http://' + window.location.hostname + ':80/legal-terms.do" >aquí</a>');</script>
+	</security:authorize>
+	.<button onclick="hideInfoCookies()">Entendido</button></p></div>
 	
 	<script>
 		function hideInfoCookies(){
