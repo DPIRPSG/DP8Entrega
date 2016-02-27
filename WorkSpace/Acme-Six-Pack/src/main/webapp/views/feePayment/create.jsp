@@ -26,6 +26,7 @@
 		
 		<!-- Editable Attributes -->
 		
+		<spring:message code="feePayment.dateFormat" />
 		<acme:textbox code="feePayment.activeMoment" path="activeMoment" />
 		
 		<fieldset>

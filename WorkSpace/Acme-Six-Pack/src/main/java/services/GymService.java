@@ -71,12 +71,15 @@ public class GymService {
 		return result;
 	}
 	
-	public void save(Gym gym) {
+	public Gym save(Gym gym) {
 		Assert.notNull(gym);
+		Gym result;
 		//Assert.isTrue(actorService.checkAuthority("ADMIN"),
 			//	"Only an admin can save gyms");
 		
-		gymRepository.save(gym);
+		result = gymRepository.save(gym);
+		
+		return result;
 	}
 
 	public void saveToEdit(Gym gym) {
@@ -103,7 +106,7 @@ public class GymService {
 		}
 		services = gym.getServices();
 		
-		gym = gymRepository.save(gym);
+		gym = this.save(gym);
 		
 		for(ServiceEntity service : services) {
 			if(!servicesPreSave.contains(service)){

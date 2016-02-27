@@ -23,6 +23,8 @@
 		<value>/views/misc/messages</value>
 		<value>/views/security/messages</value>		
 		<value>/views/welcome/messages</value>
+		<value>/views/about-us/messages</value>
+		<value>/views/legal-terms/messages</value>
 		
 		<value>/views/administrator/messages</value>
 		<value>/views/customer/messages</value>

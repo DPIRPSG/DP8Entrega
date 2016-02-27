@@ -39,6 +39,7 @@
 		<form:hidden path="activeMoment"/>
 		<p><spring:message code = "feePayment.activeMoment"/>: <jstl:out value="${feePayment.activeMoment}" /></p>
 		
+		<spring:message code="feePayment.dateFormat" />
 		<form:label path="inactiveMoment">
 			<spring:message code = "feePayment.inactiveMoment"/>
 		</form:label>

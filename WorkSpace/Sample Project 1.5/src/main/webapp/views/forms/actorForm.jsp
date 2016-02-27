@@ -37,6 +37,9 @@
 		<security:authorize access="!hasAnyRole('CUSTOMER', 'ADMIN')">
 
 		<acme:checkbox code="actorForm.acceptTerm" path="acceptTerm"/>
+		<a href="legal-terms/index.do"><spring:message
+				code="actorForm.legalTerms" /></a>
+		<br/>
 			
 		</security:authorize>		
 		<br />

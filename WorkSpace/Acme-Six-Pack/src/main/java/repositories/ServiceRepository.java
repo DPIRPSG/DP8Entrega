@@ -22,8 +22,8 @@ public interface ServiceRepository extends JpaRepository<ServiceEntity, Integer>
 
 	//select s from ServiceEntity s group by s having s != (select distinct(s) from Customer c join c.booking b join b.service s join c.feePayment f where c.id = ?1 and f.gym in (select distinct(g) from Customer c join c.booking b join b.service s join s.gyms g where c.id = ?1))
 	//select s from ServiceEntity s group by s having s != (select distinct(s) from Customer c join c.booking b join b.service s where c.id = ?1)")
-	@Query("select s from ServiceEntity s group by s having s != (select distinct(b.service) from Customer c join c.bookings b where c.id = ?1) and s in (select distinct(s) from Customer c join c.feePayments f join f.gym.services s where c.id = ?1 and f.activeMoment < CURRENT_DATE and f.inactiveMoment > CURRENT_DATE)")
-	Collection<ServiceEntity> findAllPaidAndNotBookedByCustomerId(int customerId);
+	/*@Query("select s from ServiceEntity s group by s having s != (select distinct(b.service) from Customer c join c.bookings b where c.id = ?1) and s in (select distinct(s) from Customer c join c.feePayments f join f.gym.services s where c.id = ?1 and f.activeMoment < CURRENT_DATE and f.inactiveMoment > CURRENT_DATE)")
+	Collection<ServiceEntity> findAllPaidAndNotBookedByCustomerId(int customerId);*/
 	
 	/* == DASHBOARD == */
 	
