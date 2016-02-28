@@ -1024,7 +1024,9 @@
 		<property name="creationMoment" value="2016/02/14 19:00"/>
 		<property name="requestMoment" value="2016/02/15 17:00"/>
 		<property name="duration" value="1"/>
-<!-- 		<property name="approved" value="true"/> -->
+ 		<property name="approved" value="false"/>
+ 		<property name="denied" value="false"/>
+ 		<property name="canceled" value="false"/>
 		<property name="administrator" ref="administrator1"/>
 		<property name="customer" ref="customer1"/>
 		<property name="gym" ref="gym1"/>

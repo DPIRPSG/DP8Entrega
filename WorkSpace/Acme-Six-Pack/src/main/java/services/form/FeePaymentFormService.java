@@ -1,9 +1,11 @@
-package services;
+package services.form;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+
+import services.FeePaymentService;
 
 import domain.FeePayment;
 import domain.form.FeePaymentForm;

@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.ActorFormService;
 import services.AdministratorService;
+import services.form.ActorFormService;
 
 import controllers.AbstractController;
 import domain.Administrator;

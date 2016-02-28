@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.FeePaymentFormService;
 import services.FeePaymentService;
+import services.form.FeePaymentFormService;
 import controllers.AbstractController;
 import domain.FeePayment;
 import domain.form.FeePaymentForm;

@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import domain.form.ActorForm;
 
-import services.ActorFormService;
+import services.form.ActorFormService;
 
 @Controller
 @RequestMapping(value = "/customer")
