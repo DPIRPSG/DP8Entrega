@@ -81,6 +81,27 @@ public class ServiceService {
 		Assert.isTrue(actorService.checkAuthority("ADMIN"),
 				"Only an admin can save services");
 		
+		if(service.getId() != 0) {			
+			ServiceEntity servicePreSave;
+			Collection<Booking> bookings;
+			Collection<Gym> gyms;
+			Collection<Comment> comments;
+			
+			servicePreSave = serviceRepository.findOne(service.getId());
+			
+			if(servicePreSave.getName().equals("Fitness")) {
+				Assert.isTrue(service.getName().equals("Fitness"), "El servicio siempre debe llamarse Fitness");
+			}
+			
+			bookings = servicePreSave.getBookings();
+			gyms = servicePreSave.getGyms();
+			comments = servicePreSave.getComments();
+			
+			Assert.isTrue(service.getBookings().containsAll(bookings) && service.getBookings().size() == bookings.size());
+			Assert.isTrue(service.getGyms().containsAll(gyms) && service.getGyms().size() == gyms.size());
+			Assert.isTrue(service.getComments().containsAll(comments) && service.getComments().size() == comments.size());
+		}
+		
 		serviceRepository.save(service);
 	}
 	
@@ -91,6 +112,7 @@ public class ServiceService {
 		Assert.isTrue(service.getGyms().isEmpty());
 		Assert.isTrue(service.getBookings().isEmpty());
 		Assert.isTrue(service.getComments().isEmpty());
+		Assert.isTrue(service.getName() != "Fitness", "El servicio de Fitness lo pueden tener todos los gimnasios, luego no se deberá borrar");
 		
 		serviceRepository.delete(service);
 	}
