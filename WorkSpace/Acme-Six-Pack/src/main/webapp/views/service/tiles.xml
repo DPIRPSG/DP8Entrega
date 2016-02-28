@@ -9,4 +9,9 @@
 		<put-attribute name="body" value="/views/service/list.jsp" />
 	</definition>
 	
+	<definition name="service/edit" extends="master.page">	
+		<put-attribute name="title" value="Edit a Service" />
+		<put-attribute name="body" value="/views/service/edit.jsp" />
+	</definition>
+	
 </tiles-definitions>

@@ -106,8 +106,8 @@ public class GymAdministratorController extends AbstractController {
 		ModelAndView result;
 		boolean bindingError;
 		
-		if(binding.hasFieldErrors("service")){
-			bindingError = binding.getErrorCount() > 1;
+		if(binding.hasFieldErrors("services")){
+			bindingError = binding.getErrorCount() > 2;
 		}else{
 			bindingError = binding.getErrorCount() > 0;
 		}

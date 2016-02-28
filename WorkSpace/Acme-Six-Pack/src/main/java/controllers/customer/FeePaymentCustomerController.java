@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.FeePaymentFormService;
 import services.FeePaymentService;
 import controllers.AbstractController;
 import domain.FeePayment;
+import domain.form.FeePaymentForm;
 
 @Controller
 @RequestMapping(value = "/feePayment/customer")
@@ -24,6 +26,9 @@ public class FeePaymentCustomerController extends AbstractController {
 
 	@Autowired
 	private FeePaymentService feePaymentService;
+	
+	@Autowired
+	private FeePaymentFormService feePaymentFormService;
 
 	// Constructors ----------------------------------------------------------
 
@@ -56,10 +61,10 @@ public class FeePaymentCustomerController extends AbstractController {
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create(@RequestParam int gymId) {
 		ModelAndView result;
-		FeePayment fee;
+		FeePaymentForm feePaymentForm;
 
-		fee = feePaymentService.create(gymId);
-		result = createEditModelAndView(fee);
+		feePaymentForm = feePaymentFormService.create(gymId);
+		result = createEditModelAndView(feePaymentForm);
 
 		return result;
 	}
@@ -67,17 +72,21 @@ public class FeePaymentCustomerController extends AbstractController {
 	// Edition ----------------------------------------------------------
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid FeePayment fee, BindingResult binding) {
+	public ModelAndView save(@Valid FeePaymentForm feePaymentForm, BindingResult binding) {
 		ModelAndView result;
-		
+
+		FeePayment fee;
+	
 		if (binding.hasErrors()) {
-			result = createEditModelAndView(fee);
+			result = createEditModelAndView(feePaymentForm);
 		} else {
 			try {
+				fee = feePaymentFormService.reconstruct(feePaymentForm);
 				feePaymentService.save(fee);
 				result = new ModelAndView("redirect:list.do");
 			} catch (Throwable oops) {
-				result = createEditModelAndView(fee, "feePayment.commit.error");
+				System.out.println(oops);
+				result = createEditModelAndView(feePaymentForm, "feePayment.commit.error");
 			}
 		}
 
@@ -87,19 +96,19 @@ public class FeePaymentCustomerController extends AbstractController {
 	// Ancillary Methods
 	// ----------------------------------------------------------
 
-	protected ModelAndView createEditModelAndView(FeePayment fee) {
+	protected ModelAndView createEditModelAndView(FeePaymentForm feePaymentForm) {
 		ModelAndView result;
 
-		result = createEditModelAndView(fee, null);
+		result = createEditModelAndView(feePaymentForm, null);
 
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndView(FeePayment fee, String message) {
+	protected ModelAndView createEditModelAndView(FeePaymentForm feePaymentForm, String message) {
 		ModelAndView result;
 		
-		result = new ModelAndView("feePayment/create");
-		result.addObject("feePayment", fee);
+		result = new ModelAndView("feePaymentForm/create");
+		result.addObject("feePaymentForm", feePaymentForm);
 		result.addObject("message", message);
 
 		return result;
