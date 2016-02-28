@@ -2,6 +2,7 @@ package controllers.customer;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.validation.Valid;
 
@@ -45,12 +46,16 @@ public class BookingCustomerController extends AbstractController {
 	public ModelAndView list() {
 		ModelAndView result;
 		Collection<Booking> bookings;
+		Date moment;
+		
+		moment = new Date();
 
 		bookings = bookingService.findAllByCustomer();
 
 		result = new ModelAndView("booking/list");
 		result.addObject("requestURI", "booking/customer/list.do?");
 		result.addObject("bookings", bookings);
+		result.addObject("moment", moment);
 
 		return result;
 	}

@@ -11,43 +11,43 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <!-- Form -->
-<form:form action="gym/administrator/edit.do" modelAttribute="gym">
+<form:form action="service/administrator/edit.do" modelAttribute="service">
 	<!-- Hidden Attributes -->
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="comments" />
-	<form:hidden path="feePayments" />
 	<form:hidden path="bookings"/>
+	<form:hidden path="gyms"/>
 	
 	
 	<!-- Editable Attributes -->
 	
 
-	<acme:textbox code="gym.name" path="name" />
+	<acme:textbox code="service.name" path="name" />
 
-	<acme:textbox code="gym.description" path="description" />
+	<acme:textbox code="service.description" path="description" />
+	
+	<br />
+	<spring:message code="service.picture.addPicture"/>
+	<br />
+	<spring:message code="service.picture.editPicture"/>
+	<br />
+	<spring:message code="service.picture.deletePicture"/>
+	<br /> <br />
 
-	<acme:textbox code="gym.postalAddress" path="postalAddress" />
-	
-	<acme:textbox code="gym.phone" path="phone" />
-
-	<acme:textbox code="gym.fee" path="fee" />
-	
-	<acme:textbox code="gym.picture" path="picture" />
-	
-	<acme:selectMult items="${services}" itemLabel="name" code="gym.services" path="services"/>
+	<acme:textarea code="service.pictures" path="pictures" />
 	
 	
 	<!-- Action buttons -->
 
-	<acme:submit name="save" code="gym.save"/>	
+	<acme:submit name="save" code="service.save"/>	
 
-	<jstl:if test="${gym.id != 0}">
+	<jstl:if test="${service.id != 0}">
 		<input type="submit" name="delete"
-			value="<spring:message code="gym.delete" />"
-			onclick="return confirm('<spring:message code="gym.confirm.delete" />')" />&nbsp;
+			value="<spring:message code="service.delete" />"
+			onclick="return confirm('<spring:message code="service.confirm.delete" />')" />&nbsp;
 	</jstl:if>
 	
-	<acme:cancel code="gym.cancel" url="gym/administrator/list.do?"/>
+	<acme:cancel code="service.cancel" url="service/administrator/list.do?"/>
 
 </form:form>

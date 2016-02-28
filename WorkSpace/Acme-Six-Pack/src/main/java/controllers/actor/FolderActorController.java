@@ -96,6 +96,7 @@ public class FolderActorController extends AbstractController{
 			result = createEditModelAndView(folder);
 		} else {
 			try {
+				folder = this.refactorFolderEdit(folder);
 				folderService.save(folder);
 				result = new ModelAndView("redirect:list.do");
 			} catch (Throwable oops) {
@@ -127,6 +128,20 @@ public class FolderActorController extends AbstractController{
 	}
 
 	// Ancillary Methods ----------------------------------------------------------
+	
+	private Folder refactorFolderEdit(Folder input){
+		Folder result;
+		
+		if(input.getId()!=0){
+			result = folderService.findOne(input.getId());
+		}else{
+			result = folderService.create();
+		}
+		result.setName(input.getName());
+		
+		return result;
+	}
+	
 	
 	protected ModelAndView createEditModelAndView(Folder folder) {
 		ModelAndView result;
