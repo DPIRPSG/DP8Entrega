@@ -120,6 +120,11 @@ public class BookingService {
 		int duration; //Solo la parte entera
 		
 		duration = (int) booking.getDuration();
+		
+		Assert.isTrue(compruebaReserva(booking));
+		Assert.isTrue(booking.getApproved() == false);
+		Assert.isTrue(booking.getDenied() == false);
+		Assert.isTrue(booking.getCanceled() == false);
 		Assert.isTrue((booking.getDuration() - duration) == 0.5 || (booking.getDuration() - duration) == 0, "The duration of the booking must be expressed in hours or half-hours");
 		
 		Gym gym;
@@ -172,7 +177,7 @@ public class BookingService {
 		Assert.isTrue(booking.getRequestMoment().compareTo(moment) > 0);
 		
 		booking.setCanceled(true);
-		this.save(booking);
+		bookingRepository.save(booking);
 		
 	}
 	
@@ -276,5 +281,25 @@ public class BookingService {
 		booking.setDenied(true);
 		bookingRepository.save(booking);
 		
+	}
+	
+	private boolean compruebaReserva(Booking booking) {
+		boolean result;
+		Collection<Gym> gyms;
+		
+		result = false;
+		
+		gyms = gymService.findAllWithFeePaymentActive();
+		
+		for(Gym gym : gyms) {
+			if(gym.getId() == booking.getGym().getId()) {
+				if(gym.getServices().contains(booking.getService())) {
+					result = true;
+					break;
+				}
+			}
+		}
+				
+		return result;
 	}
 }
