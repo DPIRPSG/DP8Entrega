@@ -10,7 +10,9 @@ import org.springframework.util.Assert;
 
 import repositories.ServiceRepository;
 import domain.Booking;
+import domain.Comment;
 import domain.FeePayment;
+import domain.Gym;
 import domain.ServiceEntity;
 
 @Service
@@ -42,10 +44,55 @@ public class ServiceService {
 	}
 
 	// Simple CRUD methods ----------------------------------------------------
+	public ServiceEntity create() {
+		Assert.isTrue(actorService.checkAuthority("ADMIN"),
+				"Only an admin can create services");
+		
+		ServiceEntity result;
+		Collection<Gym> gyms;
+		Collection<Comment> comments;
+		Collection<String> pictures;
+		Collection<Booking> bookings;
+		
+		gyms = new ArrayList<>();
+		pictures = new ArrayList<>();
+		comments = new ArrayList<>();
+		bookings = new ArrayList<>();
+		
+		
+		result = new ServiceEntity();
+		
+		result.setGyms(gyms);
+		result.setPictures(pictures);
+		result.setComments(comments);
+		result.setBookings(bookings);		
+		
+		return result;
+	}
+	
 	public void save(ServiceEntity service) {
 		Assert.notNull(service);
 		
 		serviceRepository.save(service);		
+	}
+	
+	public void saveToEdit(ServiceEntity service) {
+		Assert.notNull(service);
+		Assert.isTrue(actorService.checkAuthority("ADMIN"),
+				"Only an admin can save services");
+		
+		serviceRepository.save(service);
+	}
+	
+	public void delete(ServiceEntity service) {
+		Assert.notNull(service);
+		Assert.isTrue(service.getId() != 0);
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can delete services");
+		Assert.isTrue(service.getGyms().isEmpty());
+		Assert.isTrue(service.getBookings().isEmpty());
+		Assert.isTrue(service.getComments().isEmpty());
+		
+		serviceRepository.delete(service);
 	}
 	
 	// Other business methods -------------------------------------------------
