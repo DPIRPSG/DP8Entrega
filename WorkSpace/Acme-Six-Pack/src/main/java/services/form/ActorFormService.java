@@ -1,4 +1,4 @@
-package services;
+package services.form;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +12,9 @@ import domain.form.ActorForm;
 
 import security.UserAccount;
 import security.UserAccountService;
+import services.ActorService;
+import services.AdministratorService;
+import services.CustomerService;
 
 @Service
 @Transactional
