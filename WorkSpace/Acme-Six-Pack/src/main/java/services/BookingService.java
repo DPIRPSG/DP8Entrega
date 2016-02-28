@@ -165,6 +165,12 @@ public class BookingService {
 		Assert.isTrue(booking.getCanceled() == false, "The selected booking is already canceled");
 		Assert.isTrue(booking.getCustomer().getId() == customerService.findByPrincipal().getId());
 		
+		Date moment;
+		
+		moment = new Date();
+		
+		Assert.isTrue(booking.getRequestMoment().compareTo(moment) > 0);
+		
 		booking.setCanceled(true);
 		this.save(booking);
 		
@@ -234,6 +240,12 @@ public class BookingService {
 		Assert.isTrue(!booking.getDenied(), "The selected booking is already denied");
 		Assert.isTrue(!booking.getCanceled(), "The selected booking is already canceled");
 		
+		Date moment;
+		
+		moment = new Date();
+		
+		Assert.isTrue(booking.getRequestMoment().compareTo(moment) > 0);
+		
 		booking.setApproved(true);
 		bookingRepository.save(booking);
 		
@@ -254,6 +266,12 @@ public class BookingService {
 		Assert.isTrue(!booking.getApproved(), "The selected booking is already approved");
 		Assert.isTrue(!booking.getDenied(), "The selected booking is already denied");
 		Assert.isTrue(!booking.getCanceled(), "The selected booking is already canceled");
+		
+		Date moment;
+		
+		moment = new Date();
+		
+		Assert.isTrue(booking.getRequestMoment().compareTo(moment) > 0);
 		
 		booking.setDenied(true);
 		bookingRepository.save(booking);

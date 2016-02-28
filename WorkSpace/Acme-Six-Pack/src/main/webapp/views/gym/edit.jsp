@@ -16,7 +16,7 @@
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="comments" />
-	<form:hidden path="feePayment" />
+	<form:hidden path="feePayments" />
 	<form:hidden path="bookings"/>
 	
 	
@@ -35,7 +35,7 @@
 	
 	<acme:textbox code="gym.picture" path="picture" />
 	
-	<acme:selectMult items="${services}" itemLabel="name" code="gym.services" path="service"/>
+	<acme:selectMult items="${services}" itemLabel="name" code="gym.services" path="services"/>
 	
 	
 	<!-- Action buttons -->

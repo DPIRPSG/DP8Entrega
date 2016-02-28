@@ -17,16 +17,22 @@
 	<!-- Action links -->
 	<security:authorize access="hasRole('CUSTOMER')">
 		<spring:message code="booking.cancel" var="cancelHeader" />
-		
-		<jstl:if test="${row_Booking.approved == false && row_Booking.denied == false && row_Booking.canceled == false}">
-			<display:column title="${cancelHeader}" sortable="false" >
-				<a href="booking/customer/cancel.do?bookingId=${row_Booking.id}"
-				onclick = "return confirm('<spring:message code="booking.cancel.advise" />')"> <spring:message
-					code="booking.cancel2" />
-				</a>
-			</display:column>	
+
+
+		<jstl:if
+			test="${row_Booking.approved == false && row_Booking.denied == false && row_Booking.canceled == false}">
+			<display:column title="${cancelHeader}" sortable="false">
+				<jstl:if test="${row_Booking.requestMoment > moment}">
+					<a href="booking/customer/cancel.do?bookingId=${row_Booking.id}"
+						onclick="return confirm('<spring:message code="booking.cancel.advise" />')">
+						<spring:message code="booking.cancel2" />		
+					</a>	
+				</jstl:if>
+				
+			</display:column>
 		</jstl:if>
-		
+
+
 		<jstl:if test="${row_Booking.approved == true || row_Booking.denied == true || row_Booking.canceled == true}">
 			<display:column title="${cancelHeader}"
 				sortable="false" />
@@ -77,13 +83,15 @@
 		
 		<security:authorize access="hasRole('ADMIN')">
 			<display:column title="${approvedHeader}" sortable="false">
+			<jstl:if test="${row_Booking.requestMoment > moment}">
 			<jstl:if test="${row_Booking.approved == false && row_Booking.denied == false && row_Booking.canceled == false}">
 				<a href="booking/administrator/approve.do?bookingId=${row_Booking.id}"
 				onclick = "return confirm('<spring:message code="booking.approve.advise" />')"> <spring:message
 					code="booking.approve" />
 				</a>
 			</jstl:if>
-			<jstl:if test="${row_Booking.approved != false || row_Booking.denied != false || row_Booking.canceled != false}">
+			</jstl:if>
+			<jstl:if test="${row_Booking.approved != false || row_Booking.denied != false || row_Booking.canceled != false || row_Booking.requestMoment <= moment}">
 				<jstl:out value="${row_Booking.approved}"/>
 			</jstl:if>
 			</display:column>
@@ -99,13 +107,15 @@
 
 		<security:authorize access="hasRole('ADMIN')">
 			<display:column title="${deniedHeader}" sortable="false">
+			<jstl:if test="${row_Booking.requestMoment > moment}">
 			<jstl:if test="${row_Booking.approved == false && row_Booking.denied == false && row_Booking.canceled == false}">
 				<a href="booking/administrator/deny.do?bookingId=${row_Booking.id}"
 				onclick = "return confirm('<spring:message code="booking.deny.advise" />')"> <spring:message
 					code="booking.deny" />
 				</a>
 			</jstl:if>
-			<jstl:if test="${row_Booking.approved != false || row_Booking.denied != false || row_Booking.canceled != false}">
+			</jstl:if>
+			<jstl:if test="${row_Booking.approved != false || row_Booking.denied != false || row_Booking.canceled != false || row_Booking.requestMoment <= moment}">
 				<jstl:out value="${row_Booking.denied}"/>
 			</jstl:if>
 			</display:column>	

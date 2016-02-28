@@ -1,6 +1,7 @@
 package controllers.administrator;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,12 +37,16 @@ public class BookingAdministratorController extends AbstractController {
 	public ModelAndView list() {
 		ModelAndView result;
 		Collection<Booking> bookings;
+		Date moment;
+		
+		moment = new Date();
 
 		bookings = bookingService.findAll();
 
 		result = new ModelAndView("booking/list");
 		result.addObject("requestURI", "booking/administrator/list.do?");
 		result.addObject("bookings", bookings);
+		result.addObject("moment", moment);
 
 		return result;
 	}
