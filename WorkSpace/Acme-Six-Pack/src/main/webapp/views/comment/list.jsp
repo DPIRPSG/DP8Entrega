@@ -19,7 +19,10 @@
 	<!-- Action links -->
 	<security:authorize access="hasRole('ADMIN')">
 		<display:column>
-			<acme:link href="comment/administrator/delete.do?commentId=${row_Comment.id}" code="comment.delete"/>
+			<!--<acme:link href="comment/administrator/delete.do?commentId=${row_Comment.id}" code="comment.delete" />-->
+			<a href="comment/administrator/delete.do?commentId=${row_Comment.id}" onclick="return confirm('<spring:message code="comment.confirm.delete" />')" >
+				<spring:message	code="comment.delete" />
+			</a>
 		</display:column>
 	</security:authorize>
 	

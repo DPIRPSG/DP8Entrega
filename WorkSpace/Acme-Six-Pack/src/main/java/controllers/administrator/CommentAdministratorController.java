@@ -41,14 +41,13 @@ public class CommentAdministratorController extends AbstractController {
 	public ModelAndView create(@RequestParam Integer commentId) {
 		ModelAndView result;
 		Comment comment;
-		CommentedEntity commentedEntity;
 		int commentedEntityId;
 		
 		comment = commentService.findOne(commentId);
 		commentedEntityId = comment.getCommentedEntity().getId();
-		commentedEntity = commentedEntityService.findOne(commentedEntityId);
 		
-		result = createEditModelAndView(comment, commentedEntity);
+		commentService.delete(comment);
+		result = new ModelAndView("redirect:../list.do?commentedEntityId=" + commentedEntityId);
 		
 		return result;
 	}
@@ -64,6 +63,7 @@ public class CommentAdministratorController extends AbstractController {
 		commentedEntityId = commentedEntity.getId();
 		
 		if (binding.hasErrors()) {
+			System.out.println("Errores: " + binding.toString());
 			result = createEditModelAndView(comment, commentedEntity);
 		} else {
 			try {
