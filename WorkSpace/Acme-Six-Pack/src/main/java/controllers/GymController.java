@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 
@@ -36,7 +37,7 @@ public class GymController extends AbstractController {
 	public ModelAndView list(@RequestParam(required=false, defaultValue="") String keyword, @RequestParam(required=false) Integer serviceId) {
 		ModelAndView result;
 		Collection<Gym> gyms;
-		Collection<String> customers;
+		Collection<ArrayList<Integer>> customers;
 		String keywordToFind;
 
 		gyms = gymService.findAll();

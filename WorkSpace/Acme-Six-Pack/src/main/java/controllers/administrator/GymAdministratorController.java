@@ -63,7 +63,8 @@ public class GymAdministratorController extends AbstractController {
 			}
 		}
 		
-		customers = gymService.numbersOfCustomersByGym(gyms);
+		customers = null;
+		gymService.numbersOfCustomersByGym(gyms);
 
 		result = new ModelAndView("gym/list");
 		result.addObject("requestURI", "gym/administrator/list.do?");

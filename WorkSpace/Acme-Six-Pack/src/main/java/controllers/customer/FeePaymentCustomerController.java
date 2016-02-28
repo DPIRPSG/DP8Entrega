@@ -69,7 +69,7 @@ public class FeePaymentCustomerController extends AbstractController {
 	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid FeePayment fee, BindingResult binding) {
 		ModelAndView result;
-	
+		
 		if (binding.hasErrors()) {
 			result = createEditModelAndView(fee);
 		} else {

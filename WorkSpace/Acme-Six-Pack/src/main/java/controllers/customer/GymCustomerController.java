@@ -55,7 +55,8 @@ public class GymCustomerController extends AbstractController {
 			}
 		}
 		
-		customers = gymService.numbersOfCustomersByGym(gyms);
+		customers = null;
+		gymService.numbersOfCustomersByGym(gyms);
 
 		result = new ModelAndView("gym/list");
 		result.addObject("requestURI", "gym/customer/list-feepayments-active.do?");
@@ -90,7 +91,9 @@ public class GymCustomerController extends AbstractController {
 			}
 		}
 		
-		customers = gymService.numbersOfCustomersByGym(gyms);
+		customers = null;
+		
+		gymService.numbersOfCustomersByGym(gyms);
 
 		result = new ModelAndView("gym/list");
 		result.addObject("requestURI", "gym/customer/list-feepayments-not-active.do?");
