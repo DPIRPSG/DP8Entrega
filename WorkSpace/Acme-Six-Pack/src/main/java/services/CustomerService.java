@@ -88,7 +88,9 @@ public class CustomerService {
 		Assert.isTrue(result, "A customer can only be a authority.customer");
 		
 		if(customer.getId() == 0){
-			Assert.isNull(actorService.findByPrincipal());
+			result = true && !actorService.checkAuthority("ADMIN");
+			result = result && !actorService.checkAuthority("CUSTOMER");
+			Assert.isTrue(result, "customer.create.permissionDenied");
 			
 			Collection<Folder> folders;
 			Collection<Message> sent;
