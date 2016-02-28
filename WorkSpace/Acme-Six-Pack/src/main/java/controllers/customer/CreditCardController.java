@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,6 +27,9 @@ public class CreditCardController extends AbstractController {
 
 	@Autowired
 	private CustomerService customerService;
+	
+	@Autowired
+	private Validator creditCardValidator;
 
 	// Constructors ----------------------------------------------------------
 
@@ -77,6 +81,7 @@ public class CreditCardController extends AbstractController {
 			) {
 		ModelAndView result;
 
+		creditCardValidator.validate(creditCard, binding);
 		if (binding.hasErrors()) {
 			result = createEditModelAndView(creditCard);
 		} else {
