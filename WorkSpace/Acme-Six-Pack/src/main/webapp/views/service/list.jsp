@@ -14,6 +14,13 @@
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="services" requestURI="${requestURI}" id="row_Service">
 	<!-- Action links -->
+	<security:authorize access="hasRole('ADMIN')">
+		<display:column>
+			<a href="service/administrator/edit.do?serviceId=${row_Service.id}"> <spring:message
+					code="service.edit" />
+			</a>
+		</display:column>
+	</security:authorize>
 
 
 	<!-- Attributes -->
@@ -75,6 +82,13 @@
 
 
 <!-- Action links -->
+<security:authorize access="hasRole('ADMIN')">
+	<div>
+		<a href="service/administrator/create.do"> <spring:message
+				code="service.create" />
+		</a>
+	</div>
+</security:authorize>
 
 <!-- Alert -->
 <jstl:if test="${messageStatus != Null && messageStatus != ''}">
