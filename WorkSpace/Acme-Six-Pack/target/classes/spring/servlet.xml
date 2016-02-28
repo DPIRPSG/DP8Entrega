@@ -122,11 +122,13 @@
 
 	<!-- Validator -->
 
-	<bean name="validator"
-		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
-		<property name="validationMessageSource" ref="messageSource" />
-	</bean>
-
+		<bean name="validator"
+			class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+			<property name="validationMessageSource" ref="messageSource" />
+		</bean>
+		
+	
+	
 	<!-- Security -->
 
 	<import resource="config/security.xml" />

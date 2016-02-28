@@ -74,6 +74,7 @@ public class FeePaymentCustomerController extends AbstractController {
 	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid FeePaymentForm feePaymentForm, BindingResult binding) {
 		ModelAndView result;
+
 		FeePayment fee;
 	
 		if (binding.hasErrors()) {

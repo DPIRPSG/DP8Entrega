@@ -1,5 +1,6 @@
 package controllers.administrator;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.validation.Valid;
@@ -43,7 +44,7 @@ public class GymAdministratorController extends AbstractController {
 	public ModelAndView list(@RequestParam(required=false, defaultValue="") String keyword, @RequestParam(required=false) Integer serviceId) {
 		ModelAndView result;
 		Collection<Gym> gyms;
-		Collection<String> customers;
+		Collection<ArrayList<Integer>> customers;
 		String keywordToFind;
 
 		gyms = gymService.findAll();
