@@ -170,19 +170,19 @@ public class GymService {
 		return result;
 	}
 	
-	public Collection<String> numbersOfCustomersByGym(Collection<Gym> gyms) {
-		Collection<String> result;
+	public Collection<ArrayList<Integer>> numbersOfCustomersByGym(Collection<Gym> gyms) {
+		Collection<ArrayList<Integer>> result;
 		Integer customerNumber;
-		String numberOfCustomerInGym;
+		ArrayList<Integer> result2;
 		
-		result = new ArrayList<>();
-		customerNumber = 0;
-		numberOfCustomerInGym = null;
+		result = new ArrayList<ArrayList<Integer>>();
 		
 		for(Gym gym : gyms) {
+			result2 = new ArrayList<Integer>();
 			customerNumber = customerService.numbersOfCustomersByGym(gym.getId());
-			numberOfCustomerInGym = gym.getName() + ": " + customerNumber;
-			result.add(numberOfCustomerInGym);
+			result2.add(gym.getId());
+			result2.add(customerNumber);
+			result.add(result2);
 		}
 		
 		return result;

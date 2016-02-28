@@ -5,7 +5,7 @@
 <tiles-definitions>
 
 	<definition name="folder/list" extends="master.page">	
-		<put-attribute name="title" value="Your message boxs" />
+		<put-attribute name="title" value="Your message boxes" />
 		<put-attribute name="body" value="/views/folder/list.jsp" />
 	</definition>
 	

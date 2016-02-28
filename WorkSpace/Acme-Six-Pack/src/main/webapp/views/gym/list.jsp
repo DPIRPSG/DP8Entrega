@@ -54,6 +54,16 @@
 		<jstl:out value="${row_Gym.description}"/>
 	</display:column>
 	
+	<spring:message code="gym.customers" var="customersHeader" />	
+	<display:column title="${customersHeader}"
+		sortable="true" >
+		<jstl:forEach var="gyms" items="${customers }">
+			<jstl:if test="${gyms[0] == row_Gym.id}">
+				<jstl:out value="${gyms[1]}" />
+			</jstl:if>
+		</jstl:forEach>
+	</display:column>
+	
 	<spring:message code="gym.postalAddress" var="postalAddressHeader" />
 	<display:column title="${postalAddressHeader}"
 		sortable="false">
@@ -92,13 +102,8 @@
 		</a>
 	</display:column>
 
-</display:table>
 
-<spring:message code="gym.customers" />:
-<jstl:forEach var="customer" items="${customers }">
-	<br />
-	<jstl:out value="${customer}" />
-</jstl:forEach>
+</display:table>
 
 <br/>
 <br/>

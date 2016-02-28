@@ -72,6 +72,9 @@ public class CommentService {
 
 		Assert.notNull(comment);
 		
+		/* Añadido por Guillermo */
+		Assert.isTrue(comment.getActor().getId() == actorService.findByPrincipal().getId(), "The actor must be the one logged");
+		
 		comment.setMoment(new Date());
 		
 		commentRepository.save(comment);

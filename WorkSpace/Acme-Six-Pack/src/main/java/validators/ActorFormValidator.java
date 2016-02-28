@@ -1,4 +1,4 @@
-package validator;
+package validators;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,7 @@ import services.ActorService;
 import domain.Actor;
 import domain.form.ActorForm;
 
+
 @Component
 public class ActorFormValidator implements Validator{
 
@@ -21,7 +22,6 @@ public class ActorFormValidator implements Validator{
 	
 	@Autowired
 	private ActorService actorService;
-	
 	
 	@Override
 	public void validate(Object target, Errors errors) {
