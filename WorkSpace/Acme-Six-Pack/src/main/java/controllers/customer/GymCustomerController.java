@@ -1,5 +1,6 @@
 package controllers.customer;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 
@@ -36,7 +37,7 @@ public class GymCustomerController extends AbstractController {
 	public ModelAndView listFeePaymentsActive(@RequestParam(required=false, defaultValue="") String keyword) {
 		ModelAndView result;
 		Collection<Gym> gyms;
-		Collection<String> customers;
+		Collection<ArrayList<Integer>> customers;
 		String keywordToFind;
 		Boolean paid;
 		
@@ -55,8 +56,7 @@ public class GymCustomerController extends AbstractController {
 			}
 		}
 		
-		customers = null;
-		gymService.numbersOfCustomersByGym(gyms);
+		customers = gymService.numbersOfCustomersByGym(gyms);
 
 		result = new ModelAndView("gym/list");
 		result.addObject("requestURI", "gym/customer/list-feepayments-active.do?");
@@ -72,7 +72,7 @@ public class GymCustomerController extends AbstractController {
 	public ModelAndView listFeePaymentsNotActive(@RequestParam(required=false, defaultValue="") String keyword) {
 		ModelAndView result;
 		Collection<Gym> gyms;
-		Collection<String> customers;
+		Collection<ArrayList<Integer>> customers;
 		String keywordToFind;
 		Boolean paid;
 		
@@ -91,9 +91,7 @@ public class GymCustomerController extends AbstractController {
 			}
 		}
 		
-		customers = null;
-		
-		gymService.numbersOfCustomersByGym(gyms);
+		customers = gymService.numbersOfCustomersByGym(gyms);
 
 		result = new ModelAndView("gym/list");
 		result.addObject("requestURI", "gym/customer/list-feepayments-not-active.do?");
