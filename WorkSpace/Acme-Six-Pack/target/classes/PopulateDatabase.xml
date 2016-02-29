@@ -698,7 +698,7 @@
 		<property name="description" value="Gimnasio de Sevilla"/>
 		<property name="postalAddress" value="Cuesta del Rosario, 8, 41004 Sevilla"/>
 		<property name="fee" value="30"/>
-		<property name="picture" value="http://www.casacartagena.com/archivo/files/gimnasio-1.jpg"/>
+		<property name="picture" value="https://lh3.googleusercontent.com/-THfMW4dmLiM/VtK22RuU7AI/AAAAAAAAAR0/2auPpPghcEE/s720-Ic42/Fitness%252520Center.jpg"/>
 		<property name="phone" value="666444777"/>
 		<property name="comments">
 			<list>
@@ -736,7 +736,7 @@
 		<property name="description" value="Gimnasio de Cádiz"/>
 		<property name="postalAddress" value="Av. Alcalde Manuel de la Pinta, 24, 11011 Cádiz"/>
 		<property name="fee" value="20"/>
-		<property name="picture" value="http://www.casacartagena.com/archivo/files/gimnasio-1.jpg"/>
+		<property name="picture" value="https://farm9.staticflickr.com/8432/7849510248_f91c54f757_k.jpg"/>
 		<property name="phone" value="666444766"/>
 		<property name="comments">
 			<list>
@@ -767,7 +767,7 @@
 		<property name="description" value="Gimnasio de Dos Hermanas"/>
 		<property name="postalAddress" value="Calle Dr. Fleming, 45, Dos Hermanas"/>
 		<property name="fee" value="15"/>
-		<property name="picture" value="http://www.casacartagena.com/archivo/files/gimnasio-1.jpg"/>
+		<property name="picture" value="https://farm9.staticflickr.com/8113/8656538618_23bb697410_h.jpg"/>
 		<property name="phone" value="654789123"/>
 		<property name="comments">
 			<list>
@@ -804,7 +804,7 @@
 		<property name="description" value="Servicio de Fitness"/>
 		<property name="pictures">
 			<list>
-				<value>http://guiafitness.com/wp-content/uploads/clase-zumba-fitness.jpg</value>
+				<value>https://www.clubfluviallugo.com/web/media/rokgallery/1/1902b722-85e5-4d2c-e3c5-d4b96e055fc1/clase_fitness_4.jpg</value>
 				<value>https://www.clubfluviallugo.com/web/media/rokgallery/0/052c7c45-45e9-408e-ba87-3b29c88ca085/clase_fitness_1.jpg</value>
 			</list>
 		</property>
@@ -837,8 +837,8 @@
 		<property name="description" value="Servicio de Spinning"/>
 		<property name="pictures">
 			<list>
-				<value>http://www.adelgazaconenriqueangel.com/wp-content/uploads/2013/10/spinning-funciona.jpg</value>
-				<value>http://blogs.okdiario.com/vida-sana/wp-content/uploads/2015/07/Spinning-Class-with-instructor.jpg</value>
+				<value>https://www.clubfluviallugo.com/web/media/rokgallery/8/8e0ae1e4-720f-4291-d8c8-07872f3f26fa/clase_fitness_3.jpg</value>
+				<value>https://www.deporteysaludfisica.com/wp-content/uploads/2011/01/2849_gal_04_big1.jpg</value>
 			</list>
 		</property>
 		<property name="gyms">
@@ -863,7 +863,7 @@
 		<property name="pictures">
 			<list>
 				<value>https://pixabay.com/static/uploads/photo/2013/07/12/15/48/kickboxing-150331_960_720.png"</value>
-				<value>http://www.quevivaeldeporte.com/wp-content/uploads/2009/03/Karate_04-1024x686-980x610-2z9rt6l25kmyvumc7p7ymi.jpg</value>
+				<value>https://upload.wikimedia.org/wikipedia/en/a/a8/JJS_Dojo.jpg</value>
 			</list>
 		</property>
 		<property name="gyms">
@@ -887,7 +887,7 @@
 		<property name="description" value="Servicio de Natación"/>
 		<property name="pictures">
 			<list>
-				<value>http://www.entrenamiento.com/wp-content/uploads/2016/01/5-consejos-para-nadadores-principiantes.jpg</value>
+				<value>https://farm8.staticflickr.com/7524/15261549134_e0a0ea2703_k.jpg</value>
 				<value>https://i.ytimg.com/vi/xL2CSFj-VwM/maxresdefault.jpg</value>
 			</list>
 		</property>

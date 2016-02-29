@@ -101,8 +101,20 @@ public class GymService {
 		
 		if(gym.getId() != 0) {
 			Gym gymPreSave;
+			Collection<Booking> bookings;
+			Collection<FeePayment> feePayments;
+			Collection<Comment> comments;
+			
 			gymPreSave = gymRepository.findOne(gym.getId());
+			
+			bookings = gymPreSave.getBookings();
+			feePayments = gymPreSave.getFeePayments();
+			comments = gymPreSave.getComments();
 			servicesPreSave = new ArrayList<ServiceEntity>(gymPreSave.getServices());
+			
+			Assert.isTrue(gym.getBookings().containsAll(bookings) && gym.getBookings().size() == bookings.size());
+			Assert.isTrue(gym.getFeePayments().containsAll(feePayments) && gym.getFeePayments().size() == feePayments.size());
+			Assert.isTrue(gym.getComments().containsAll(comments) && gym.getComments().size() == comments.size());
 		}
 		services = gym.getServices();
 		
