@@ -120,16 +120,25 @@ public class FeePaymentService {
 		} else {
 			Assert.isTrue(actorService.checkAuthority("ADMIN"), "feePayment.checkAuthority.edit.notAdmin");
 			
-			FeePayment fee;
+			FeePayment feePreSave;
 			
-			fee = this.findOne(feePayment.getId());
+			feePreSave = this.findOne(feePayment.getId());
 			
-			Assert.isTrue(feePayment.getInactiveMoment().after(fee.getInactiveMoment()), "the new inactivation moment must be after the current inactivation moment.");
+			//Los datos de los Hidden son iguales, para evitar el POST Hacking
+			Assert.isTrue(feePayment.getCustomer().getId() == feePreSave.getCustomer().getId());
+			Assert.isTrue(feePayment.getGym().getId() == feePreSave.getGym().getId());
+			Assert.isTrue(feePayment.getPaymentMoment().compareTo(feePreSave.getPaymentMoment()) == 0);
+			Assert.isTrue(compruebaCreditCard(feePayment.getCreditCard(),feePreSave.getCreditCard()));
+			Assert.isTrue(feePayment.getActiveMoment().compareTo(feePreSave.getActiveMoment()) == 0);
+			Assert.isTrue(feePayment.getAmount() == feePreSave.getAmount());
+			
+			Assert.isTrue(feePayment.getInactiveMoment().after(feePreSave.getInactiveMoment()), "the new inactivation moment must be after the current inactivation moment.");
 			
 			feePaymentRepository.save(feePayment);
 		}
 	}
-	
+
+
 	public FeePayment findOne(int feePaymentId) {
 		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Solo puede hacer esto un admin");
 		
@@ -245,6 +254,39 @@ public class FeePaymentService {
 			}
 		}
 
+		return result;
+	}
+	
+	/**
+	 * Comprueba que sea la misma creditCard
+	 * @param creditCard
+	 * @param creditCard2
+	 * @return
+	 */
+	private boolean compruebaCreditCard(CreditCard creditCard1,
+			CreditCard creditCard2) {
+		boolean result;		
+		result = true;
+		
+		if(!creditCard1.getBrandName().equals(creditCard2.getBrandName())) {
+			result = false;
+		}
+		if(!creditCard1.getHolderName().equals(creditCard2.getHolderName())) {
+			result = false;
+		}
+		if(!creditCard1.getNumber().equals(creditCard2.getNumber())) {
+			result = false;
+		}
+		if(creditCard1.getExpirationMonth() != creditCard2.getExpirationMonth()) {
+			result = false;
+		}
+		if(creditCard1.getExpirationYear() != creditCard2.getExpirationYear()) {
+			result = false;
+		}
+		if(creditCard1.getCvvCode() != creditCard2.getCvvCode()) {
+			result = false;
+		}
+		
 		return result;
 	}
 	
