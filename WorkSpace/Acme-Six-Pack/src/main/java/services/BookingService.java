@@ -1,6 +1,7 @@
 package services;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import domain.Booking;
+import domain.Customer;
+import domain.Gym;
+import domain.ServiceEntity;
 
 import repositories.BookingRepository;
 
@@ -19,10 +23,20 @@ public class BookingService {
 	
 	@Autowired
 	private BookingRepository bookingRepository;
-
+	
 	// Supporting services ----------------------------------------------------
 
+	@Autowired
 	private ActorService actorService;
+	
+	@Autowired
+	private CustomerService customerService;
+	
+	@Autowired
+	private GymService gymService;
+	
+	@Autowired
+	private ServiceService serviceService;
 	
 	// Constructors -----------------------------------------------------------
 
@@ -37,14 +51,54 @@ public class BookingService {
 	 * @return Devuelve booking preparado para ser modificado. Necesita usar save para que persista en la base de datos.
 	 */
 	// Requisito 10.3
-	public Booking create(){
+	public Booking createWithGym(int gymId, int serviceId){	
+		Assert.isTrue(actorService.checkAuthority("CUSTOMER"), "Only the customer can book a booking");
 		
 		Booking result;
+		Date creationMoment;
+		Gym gym;
+		ServiceEntity service;
+		Customer customer;
 		
+		creationMoment = new Date();
+		gym = gymService.findOne(gymId);
+		service = serviceService.findOne(serviceId);
+		customer = customerService.findByPrincipal();
+				
 		result = new Booking();
 		
-		// Faltan por poner más valores por defecto a los atributos
+		result.setApproved(false);
+		result.setCanceled(false);
+		result.setDenied(false);
+		result.setCreationMoment(creationMoment);
+		result.setGym(gym);
+		result.setService(service);
+		result.setCustomer(customer);
+
+		return result;
+	}
+	
+	public Booking createWithoutGym(int serviceId){	
+		Assert.isTrue(actorService.checkAuthority("CUSTOMER"), "Only the customer can book a booking");
 		
+		Booking result;
+		Date creationMoment;
+		ServiceEntity service;
+		Customer customer;
+		
+		creationMoment = new Date();
+		service = serviceService.findOne(serviceId);
+		customer = customerService.findByPrincipal();
+				
+		result = new Booking();
+		
+		result.setApproved(false);
+		result.setCanceled(false);
+		result.setDenied(false);
+		result.setCreationMoment(creationMoment);
+		result.setService(service);
+		result.setCustomer(customer);
+
 		return result;
 	}
 	
@@ -58,10 +112,45 @@ public class BookingService {
 	public void save(Booking booking){
 		
 		Assert.notNull(booking);
-		Assert.isTrue(actorService.checkAuthority("CUSTOMER"), "Only a customer can book services");
+		Assert.isTrue(actorService.checkAuthority("CUSTOMER"), "Only a customer can book services");	
+		Assert.isTrue(booking.getCreationMoment().before(booking.getRequestMoment()), "The request moment must be after creation moment");
+		//Assert.isTrue(isDurationValid(booking.getDuration()), "The duration of the booking must be expressed in hours or half-hours");
+		Assert.isTrue(booking.getCustomer().getId() == customerService.findByPrincipal().getId());
 		
-		bookingRepository.save(booking);
+		int duration; //Solo la parte entera
 		
+		duration = (int) booking.getDuration();
+		
+		Assert.isTrue(compruebaReserva(booking));
+		Assert.isTrue(booking.getApproved() == false);
+		Assert.isTrue(booking.getDenied() == false);
+		Assert.isTrue(booking.getCanceled() == false);
+		Assert.isTrue((booking.getDuration() - duration) == 0.5 || (booking.getDuration() - duration) == 0, "The duration of the booking must be expressed in hours or half-hours");
+		
+		Gym gym;
+		ServiceEntity service;
+		Customer customer;
+		
+		if(booking.getId() == 0) {
+			
+			booking.setCreationMoment(new Date());
+			
+			booking = bookingRepository.save(booking);
+			
+			gym = booking.getGym();
+			service = booking.getService();
+			customer = booking.getCustomer();
+			
+			gym.addBooking(booking);
+			service.addBooking(booking);
+			customer.addBooking(booking);
+			
+			gymService.save(gym);
+			serviceService.save(service);
+			customerService.save(customer);			
+		} else {
+			bookingRepository.save(booking);
+		}	
 	}
 	
 	/**
@@ -76,13 +165,19 @@ public class BookingService {
 		Assert.notNull(booking);
 		Assert.isTrue(booking.getId() != 0);
 		Assert.isTrue(actorService.checkAuthority("CUSTOMER"), "Only a customer can cancel a booking");
-		Assert.isTrue(!booking.getApproved(), "The selected booking is already approved");
-		Assert.isTrue(!booking.getDenied(), "The selected booking is already denied");
+		Assert.isTrue(booking.getApproved() == false, "The selected booking is already approved");
+		Assert.isTrue(booking.getDenied() == false, "The selected booking is already denied");
+		Assert.isTrue(booking.getCanceled() == false, "The selected booking is already canceled");
+		Assert.isTrue(booking.getCustomer().getId() == customerService.findByPrincipal().getId());
+		
+		Date moment;
+		
+		moment = new Date();
+		
+		Assert.isTrue(booking.getRequestMoment().compareTo(moment) > 0);
 		
 		booking.setCanceled(true);
-		this.save(booking);
-		
-		// En el código de borrar items de Acme Supermarket se hace alusión a un borrado completo. Falta por hacerlo.
+		bookingRepository.save(booking);
 		
 	}
 	
@@ -91,6 +186,7 @@ public class BookingService {
 	 * @return Devuelve todos los booking de la base de datos
 	 */
 	public Collection<Booking> findAll(){
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can approve a booking");
 		
 		Collection<Booking> result;
 		
@@ -101,10 +197,28 @@ public class BookingService {
 	
 	/**
 	 * 
+	 * @return Devuelve todos los booking de un customer en concreto
+	 */
+	public Collection<Booking> findAllByCustomer(){
+		
+		Collection<Booking> result;
+		Customer customer;
+		
+		customer = customerService.findByPrincipal();
+		Assert.notNull(customer);
+		
+		result = bookingRepository.findAllByCustomer(customer.getId());
+		
+		return result;
+	}
+	
+	/**
+	 * 
 	 * @param bookingId Id del Booking en cuestión
 	 * @return Devuelve el booking en cuestión
 	 */
 	public Booking findOne(int bookingId){
+		Assert.isTrue(actorService.checkAuthority("ADMIN") || actorService.checkAuthority("CUSTOMER"), "Only an admin or customer can approve a booking");
 		
 		Booking result;
 		
@@ -131,8 +245,14 @@ public class BookingService {
 		Assert.isTrue(!booking.getDenied(), "The selected booking is already denied");
 		Assert.isTrue(!booking.getCanceled(), "The selected booking is already canceled");
 		
+		Date moment;
+		
+		moment = new Date();
+		
+		Assert.isTrue(booking.getRequestMoment().compareTo(moment) > 0);
+		
 		booking.setApproved(true);
-		this.save(booking);
+		bookingRepository.save(booking);
 		
 	}
 	
@@ -152,8 +272,34 @@ public class BookingService {
 		Assert.isTrue(!booking.getDenied(), "The selected booking is already denied");
 		Assert.isTrue(!booking.getCanceled(), "The selected booking is already canceled");
 		
-		booking.setDenied(true);
-		this.save(booking);
+		Date moment;
 		
+		moment = new Date();
+		
+		Assert.isTrue(booking.getRequestMoment().compareTo(moment) > 0);
+		
+		booking.setDenied(true);
+		bookingRepository.save(booking);
+		
+	}
+	
+	private boolean compruebaReserva(Booking booking) {
+		boolean result;
+		Collection<Gym> gyms;
+		
+		result = false;
+		
+		gyms = gymService.findAllWithFeePaymentActive();
+		
+		for(Gym gym : gyms) {
+			if(gym.getId() == booking.getGym().getId()) {
+				if(gym.getServices().contains(booking.getService())) {
+					result = true;
+					break;
+				}
+			}
+		}
+				
+		return result;
 	}
 }

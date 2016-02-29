@@ -25,18 +25,14 @@
 		<br />
 		
 		<!-- Action buttons -->
-		<input type="submit" name="save"
-			value="<spring:message code="creditCard.save"/>"/>
+		<acme:submit name="save" code="creditCard.save"/>
 		&nbsp;
 		<jstl:if test="${customer != null}">
-			<input type="submit" name="delete"
-				value="<spring:message code="creditCard.delete"/>"/>
+			<acme:submit name="delete" code="creditCard.delete"/>
 			&nbsp;
 		</jstl:if>
 		
-		<input type="button" name="cancel"
-			value="<spring:message code="creditCard.cancel" />"
-			onclick="javascript: relativeRedir('${urlReturn}');" />
+		<acme:cancel url="${urlReturn}" code="creditCard.cancel"/>
 		<br />
 		
 	</form:form>

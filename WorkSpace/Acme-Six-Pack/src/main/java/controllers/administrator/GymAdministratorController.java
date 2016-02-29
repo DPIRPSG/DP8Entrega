@@ -1,5 +1,6 @@
 package controllers.administrator;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.validation.Valid;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.GymService;
+import services.ServiceService;
 
 import controllers.AbstractController;
 import domain.Gym;
+import domain.ServiceEntity;
 
 @Controller
 @RequestMapping(value = "/gym/administrator")
@@ -25,6 +28,9 @@ public class GymAdministratorController extends AbstractController {
 
 	@Autowired
 	private GymService gymService;
+	
+	@Autowired
+	private ServiceService serviceService;
 
 	// Constructors ----------------------------------------------------------
 
@@ -38,7 +44,7 @@ public class GymAdministratorController extends AbstractController {
 	public ModelAndView list(@RequestParam(required=false, defaultValue="") String keyword, @RequestParam(required=false) Integer serviceId) {
 		ModelAndView result;
 		Collection<Gym> gyms;
-		Collection<String> customers;
+		Collection<ArrayList<Integer>> customers;
 		String keywordToFind;
 
 		gyms = gymService.findAll();
@@ -64,6 +70,7 @@ public class GymAdministratorController extends AbstractController {
 		result.addObject("requestURI", "gym/administrator/list.do?");
 		result.addObject("gyms", gyms);
 		result.addObject("customers", customers);
+		result.addObject("requestUri2", "service/list.do?");
 
 		return result;
 	}
@@ -97,12 +104,18 @@ public class GymAdministratorController extends AbstractController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid Gym gym, BindingResult binding) {
 		ModelAndView result;
-
-		if (binding.hasErrors()) {
+		boolean bindingError;
+		
+		if(binding.hasFieldErrors("services")){
+			bindingError = binding.getErrorCount() > 2;
+		}else{
+			bindingError = binding.getErrorCount() > 0;
+		}
+		if (bindingError) {
 			result = createEditModelAndView(gym);
 		} else {
 			try {
-				gymService.save(gym);
+				gymService.saveToEdit(gym);
 				result = new ModelAndView("redirect:list.do?");
 			} catch (Throwable oops) {
 				result = createEditModelAndView(gym, "gym.commit.error");
@@ -139,10 +152,14 @@ public class GymAdministratorController extends AbstractController {
 
 	protected ModelAndView createEditModelAndView(Gym gym, String message) {
 		ModelAndView result;
+		Collection<ServiceEntity> services;
+		
+		services = serviceService.findAllWithoutFitness();
 
 		result = new ModelAndView("gym/edit");
 		result.addObject("gym", gym);
 		result.addObject("message", message);
+		result.addObject("services", services);
 
 		return result;
 	}

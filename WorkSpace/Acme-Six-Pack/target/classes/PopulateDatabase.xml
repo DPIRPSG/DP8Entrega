@@ -138,7 +138,7 @@
 		<property name="surname" value="Rodriguez"/>
 		<property name="phone" value="666777888"/>
 		<property name="userAccount" ref="userAccount1"/>
-		<property name="messageBoxs">
+		<property name="messageBoxes">
 			<list>
 				<ref bean="folder1"/>
 				<ref bean="folder2"/>
@@ -168,9 +168,13 @@
 		<property name="surname" value="Lopez"/>
 		<property name="phone" value="612345789"/>
 		<property name="userAccount" ref="userAccount2"/>
-		<property name="creditCard" ref="creditCard1"/>
+		<property name="creditCards">
+			<list>
+				<ref bean="creditCard1"/>
+			</list>
+		</property>
 		<property name="socialIdentity" ref="socialIdentity1"/>
-		<property name="messageBoxs">
+		<property name="messageBoxes">
 			<list>
 				<ref bean="folder5" />
 				<ref bean="folder6" />
@@ -197,14 +201,14 @@
 				<ref bean="comment7"/>
 			</list>
 		</property>
-		<property name="feePayment">
+		<property name="feePayments">
 			<list>
 				<ref bean="feePayment1"/>
 				<ref bean="feePayment2"/>
 				<ref bean="feePayment3"/>
 			</list>
 		</property>
-		<property name="booking">
+		<property name="bookings">
 			<list>
 				<ref bean="booking1"/>
 				<ref bean="booking2"/>
@@ -219,8 +223,12 @@
 		<property name="surname" value="Sanchez"/>
 		<property name="phone" value="612342289"/>
 		<property name="userAccount" ref="userAccount3"/>
-		<property name="creditCard" ref="creditCard2"/>
-		<property name="messageBoxs">
+		<property name="creditCards">
+			<list>
+				<ref bean="creditCard2"/>
+			</list>
+		</property>
+		<property name="messageBoxes">
 			<list>
 				<ref bean="folder9"/>
 				<ref bean="folder10"/>
@@ -244,12 +252,12 @@
 				<ref bean="comment5"/>
 			</list>
 		</property>
-		<property name="feePayment">
+		<property name="feePayments">
 			<list>
 				<ref bean="feePayment4"/>
 			</list>
 		</property>
-		<property name="booking">
+		<property name="bookings">
 			<list>
 				<ref bean="booking5"/>
 			</list>
@@ -261,8 +269,12 @@
 		<property name="surname" value="Alcala"/>
 		<property name="phone" value="633422897"/>
 		<property name="userAccount" ref="userAccount4"/>
-		<property name="creditCard" ref="creditCard3"/>
-		<property name="messageBoxs">
+		<property name="creditCards">
+			<list>
+				<ref bean="creditCard3"/>
+			</list>
+		</property>
+		<property name="messageBoxes">
 			<list>
 				<ref bean="folder13"/>
 				<ref bean="folder14"/>
@@ -286,7 +298,7 @@
 				<ref bean="comment8"/>
 			</list>
 		</property>
-		<property name="feePayment">
+		<property name="feePayments">
 			<list>
 				<ref bean="feePayment5"/>
 				<ref bean="feePayment6"/>
@@ -296,7 +308,7 @@
 				<ref bean="feePayment10"/>
 			</list>
 		</property>
-		<property name="booking">
+		<property name="bookings">
 			<list>
 				<ref bean="booking6"/>
 			</list>
@@ -308,8 +320,12 @@
 		<property name="surname" value="Ordóñez"/>
 		<property name="phone" value="626667791"/>
 		<property name="userAccount" ref="userAccount5"/>
-		<property name="creditCard" ref="creditCard4"/>
-		<property name="messageBoxs">
+		<property name="creditCards">
+			<list>
+				<ref bean="creditCard4"/>
+			</list>
+		</property>		
+		<property name="messageBoxes">
 			<list>
 				<ref bean="folder17"/>
 				<ref bean="folder18"/>
@@ -333,12 +349,12 @@
 				<ref bean="comment9"/>
 			</list>
 		</property>
-		<property name="feePayment">
+		<property name="feePayments">
 			<list>
 				<ref bean="feePayment11"/>
 			</list>
 		</property>
-		<property name="booking">
+		<property name="bookings">
 			<list>
 			</list>
 		</property>
@@ -680,9 +696,9 @@
 	<bean id="gym1" class="domain.Gym">
 		<property name="name" value="Gym Sevilla"/>
 		<property name="description" value="Gimnasio de Sevilla"/>
-		<property name="postalAddress" value="Sevilla"/>
+		<property name="postalAddress" value="Cuesta del Rosario, 8, 41004 Sevilla"/>
 		<property name="fee" value="30"/>
-		<property name="picture" value="http://www.casacartagena.com/archivo/files/gimnasio-1.jpg"/>
+		<property name="picture" value="https://lh3.googleusercontent.com/-THfMW4dmLiM/VtK22RuU7AI/AAAAAAAAAR0/2auPpPghcEE/s720-Ic42/Fitness%252520Center.jpg"/>
 		<property name="phone" value="666444777"/>
 		<property name="comments">
 			<list>
@@ -691,13 +707,13 @@
 				<ref bean="comment3"/>
 			</list>
 		</property>
-		<property name="service">
+		<property name="services">
 			<list>
 				<ref bean="service1"/>
 				<ref bean="service4"/>
 			</list>
 		</property>
-		<property name="feePayment">
+		<property name="feePayments">
 			<list>
 				<ref bean="feePayment1"/>
 				<ref bean="feePayment2"/>
@@ -718,9 +734,9 @@
 	<bean id="gym2" class="domain.Gym">
 		<property name="name" value="Gym Cádiz"/>
 		<property name="description" value="Gimnasio de Cádiz"/>
-		<property name="postalAddress" value="Cádiz"/>
+		<property name="postalAddress" value="Av. Alcalde Manuel de la Pinta, 24, 11011 Cádiz"/>
 		<property name="fee" value="20"/>
-		<property name="picture" value="http://www.casacartagena.com/archivo/files/gimnasio-1.jpg"/>
+		<property name="picture" value="https://farm9.staticflickr.com/8432/7849510248_f91c54f757_k.jpg"/>
 		<property name="phone" value="666444766"/>
 		<property name="comments">
 			<list>
@@ -728,13 +744,13 @@
 				<ref bean="comment5"/>
 			</list>
 		</property>
-		<property name="service">
+		<property name="services">
 			<list>
 				<ref bean="service1"/>
 				<ref bean="service2"/>
 			</list>
 		</property>
-		<property name="feePayment">
+		<property name="feePayments">
 			<list>
 				<ref bean="feePayment4"/>
 			</list>
@@ -749,22 +765,22 @@
 	<bean id="gym3" class="domain.Gym">
 		<property name="name" value="Gym Dos Hermanas"/>
 		<property name="description" value="Gimnasio de Dos Hermanas"/>
-		<property name="postalAddress" value="Dos Hermanas"/>
+		<property name="postalAddress" value="Calle Dr. Fleming, 45, Dos Hermanas"/>
 		<property name="fee" value="15"/>
-		<property name="picture" value="http://www.casacartagena.com/archivo/files/gimnasio-1.jpg"/>
+		<property name="picture" value="https://farm9.staticflickr.com/8113/8656538618_23bb697410_h.jpg"/>
 		<property name="phone" value="654789123"/>
 		<property name="comments">
 			<list>
 				<ref bean="comment6"/>
 			</list>
 		</property>
-		<property name="service">
+		<property name="services">
 			<list>
 				<ref bean="service1"/>
 				<ref bean="service3"/>
 			</list>
 		</property>
-		<property name="feePayment">
+		<property name="feePayments">
 			<list>
 				<ref bean="feePayment5"/>
 				<ref bean="feePayment6"/>
@@ -788,7 +804,7 @@
 		<property name="description" value="Servicio de Fitness"/>
 		<property name="pictures">
 			<list>
-				<value>http://guiafitness.com/wp-content/uploads/clase-zumba-fitness.jpg</value>
+				<value>https://www.clubfluviallugo.com/web/media/rokgallery/1/1902b722-85e5-4d2c-e3c5-d4b96e055fc1/clase_fitness_4.jpg</value>
 				<value>https://www.clubfluviallugo.com/web/media/rokgallery/0/052c7c45-45e9-408e-ba87-3b29c88ca085/clase_fitness_1.jpg</value>
 			</list>
 		</property>
@@ -821,8 +837,8 @@
 		<property name="description" value="Servicio de Spinning"/>
 		<property name="pictures">
 			<list>
-				<value>http://www.adelgazaconenriqueangel.com/wp-content/uploads/2013/10/spinning-funciona.jpg</value>
-				<value>http://blogs.okdiario.com/vida-sana/wp-content/uploads/2015/07/Spinning-Class-with-instructor.jpg</value>
+				<value>https://www.clubfluviallugo.com/web/media/rokgallery/8/8e0ae1e4-720f-4291-d8c8-07872f3f26fa/clase_fitness_3.jpg</value>
+				<value>https://www.deporteysaludfisica.com/wp-content/uploads/2011/01/2849_gal_04_big1.jpg</value>
 			</list>
 		</property>
 		<property name="gyms">
@@ -847,7 +863,7 @@
 		<property name="pictures">
 			<list>
 				<value>https://pixabay.com/static/uploads/photo/2013/07/12/15/48/kickboxing-150331_960_720.png"</value>
-				<value>http://www.quevivaeldeporte.com/wp-content/uploads/2009/03/Karate_04-1024x686-980x610-2z9rt6l25kmyvumc7p7ymi.jpg</value>
+				<value>https://upload.wikimedia.org/wikipedia/en/a/a8/JJS_Dojo.jpg</value>
 			</list>
 		</property>
 		<property name="gyms">
@@ -871,7 +887,7 @@
 		<property name="description" value="Servicio de Natación"/>
 		<property name="pictures">
 			<list>
-				<value>http://www.entrenamiento.com/wp-content/uploads/2016/01/5-consejos-para-nadadores-principiantes.jpg</value>
+				<value>https://farm8.staticflickr.com/7524/15261549134_e0a0ea2703_k.jpg</value>
 				<value>https://i.ytimg.com/vi/xL2CSFj-VwM/maxresdefault.jpg</value>
 			</list>
 		</property>
@@ -1008,7 +1024,9 @@
 		<property name="creationMoment" value="2016/02/14 19:00"/>
 		<property name="requestMoment" value="2016/02/15 17:00"/>
 		<property name="duration" value="1"/>
-		<property name="approved" value="true"/>
+ 		<property name="approved" value="false"/>
+ 		<property name="denied" value="false"/>
+ 		<property name="canceled" value="false"/>
 		<property name="administrator" ref="administrator1"/>
 		<property name="customer" ref="customer1"/>
 		<property name="gym" ref="gym1"/>
@@ -1030,7 +1048,7 @@
 		<property name="creationMoment" value="2016/02/14 19:10"/>
 		<property name="requestMoment" value="2016/02/17 17:00"/>
 		<property name="duration" value="1"/>
-		<property name="approved" value="true"/>
+		<property name="denied" value="true"/>
 		<property name="administrator" ref="administrator1"/>
 		<property name="customer" ref="customer1"/>
 		<property name="gym" ref="gym1"/>
@@ -1041,7 +1059,7 @@
 		<property name="creationMoment" value="2016/02/14 20:00"/>
 		<property name="requestMoment" value="2016/02/18 17:00"/>
 		<property name="duration" value="1"/>
-		<property name="approved" value="true"/>
+		<property name="canceled" value="true"/>
 		<property name="administrator" ref="administrator1"/>
 		<property name="customer" ref="customer1"/>
 		<property name="gym" ref="gym1"/>
@@ -1076,72 +1094,81 @@
 		<property name="text" value="Buen Gym"/>
 		<property name="moment" value="2016/02/09 18:30"/>
 		<property name="starRating" value="2"/>
+		<property name="deleted" value="false"/>
 		<property name="actor" ref="customer1"/>
-		<property name="gym" ref="gym1"/>
+		<property name="commentedEntity" ref="gym1"/>
 	</bean>
 	
 	<bean id="comment2" class="domain.Comment">
 		<property name="text" value="No está mal"/>
 		<property name="moment" value="2016/02/08 18:30"/>
 		<property name="starRating" value="2"/>
+		<property name="deleted" value="false"/>
 		<property name="actor" ref="customer2"/>
-		<property name="gym" ref="gym1"/>
+		<property name="commentedEntity" ref="gym1"/>
 	</bean>
 	
 	<bean id="comment3" class="domain.Comment">
 		<property name="text" value="No me gusta"/>
 		<property name="moment" value="2016/02/10 18:30"/>
 		<property name="starRating" value="0"/>
+		<property name="deleted" value="false"/>
 		<property name="actor" ref="customer3"/>
-		<property name="gym" ref="gym1"/>
+		<property name="commentedEntity" ref="gym1"/>
 	</bean>
 	
 	<bean id="comment4" class="domain.Comment">
 		<property name="text" value="Es muy bueno"/>
 		<property name="moment" value="2016/02/09 18:30"/>
 		<property name="starRating" value="3"/>
+		<property name="deleted" value="false"/>
 		<property name="actor" ref="customer1"/>
-		<property name="gym" ref="gym2"/>
+		<property name="commentedEntity" ref="gym2"/>
 	</bean>
 	
 	<bean id="comment5" class="domain.Comment">
 		<property name="text" value="No es malo"/>
 		<property name="moment" value="2016/02/08 18:30"/>
 		<property name="starRating" value="1"/>
+		<property name="deleted" value="false"/>
 		<property name="actor" ref="customer2"/>
-		<property name="gym" ref="gym2"/>
+		<property name="commentedEntity" ref="gym2"/>
 	</bean>
 	
 	<bean id="comment6" class="domain.Comment">
 		<property name="text" value="No lo probé, pero es el mas barato"/>
 		<property name="moment" value="2016/02/08 18:30"/>
 		<property name="starRating" value="3"/>
+		<property name="deleted" value="false"/>
 		<property name="actor" ref="customer1"/>
-		<property name="gym" ref="gym3"/>
+		<property name="commentedEntity" ref="gym3"/>
 	</bean>
 	
 	<bean id="comment7" class="domain.Comment">
 		<property name="text" value="Buen servicio!"/>
 		<property name="moment" value="2016/02/08 18:30"/>
 		<property name="starRating" value="2"/>
+		<property name="deleted" value="false"/>
 		<property name="actor" ref="customer1"/>
-		<property name="service" ref="service1"/>
+		<property name="commentedEntity" ref="service1"/>
 	</bean>
 	
 	<bean id="comment8" class="domain.Comment">
 		<property name="text" value="La mejor clase de Fitness"/>
 		<property name="moment" value="2016/02/10 18:30"/>
 		<property name="starRating" value="3"/>
+		<property name="deleted" value="true"/>
 		<property name="actor" ref="customer3"/>
-		<property name="service" ref="service1"/>
+		<property name="commentedEntity" ref="service1"/>
 	</bean>
 	
 	<bean id="comment9" class="domain.Comment">
 		<property name="text" value="Buena clase de Karate"/>
 		<property name="moment" value="2016/02/11 18:30"/>
 		<property name="starRating" value="2"/>
+		<property name="deleted" value="false"/>
 		<property name="actor" ref="customer4"/>
-		<property name="service" ref="service3"/>
+		<property name="commentedEntity" ref="service3"/>
 	</bean>
 
 </beans>

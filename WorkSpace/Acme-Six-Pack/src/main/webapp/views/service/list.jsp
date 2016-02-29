@@ -14,6 +14,13 @@
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="services" requestURI="${requestURI}" id="row_Service">
 	<!-- Action links -->
+	<security:authorize access="hasRole('ADMIN')">
+		<display:column>
+			<a href="service/administrator/edit.do?serviceId=${row_Service.id}"> <spring:message
+					code="service.edit" />
+			</a>
+		</display:column>
+	</security:authorize>
 
 
 	<!-- Attributes -->
@@ -36,7 +43,18 @@
 			<img src="${picture}" style="width:204px;height:128px;"/>
 		</jstl:forEach>
 	</display:column>
-	
+
+	<jstl:if test="${hayGymId}">
+		<security:authorize access="hasRole('CUSTOMER')">
+			<display:column>
+				<a
+					href="booking/customer/create.do?gymId=${gymId}&serviceId=${row_Service.id}">
+					<spring:message code="booking.create" />
+				</a>
+			</display:column>
+		</security:authorize>
+	</jstl:if>
+
 	<display:column>
 		<a href="gym/list.do?serviceId=${row_Service.id}"> <spring:message
 				code="service.gyms" />
@@ -44,7 +62,7 @@
 	</display:column>
 
 	<display:column>
-		<a href="comment/list.do?serviceId=${row_Service.id}"> <spring:message
+		<a href="comment/list.do?commentedEntityId=${row_Service.id}"> <spring:message
 				code="service.comments" />
 		</a>
 	</display:column>
@@ -64,6 +82,13 @@
 
 
 <!-- Action links -->
+<security:authorize access="hasRole('ADMIN')">
+	<div>
+		<a href="service/administrator/create.do"> <spring:message
+				code="service.create" />
+		</a>
+	</div>
+</security:authorize>
 
 <!-- Alert -->
 <jstl:if test="${messageStatus != Null && messageStatus != ''}">

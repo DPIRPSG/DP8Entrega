@@ -2,6 +2,8 @@ package controllers.administrator;
 
 import java.util.Collection;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -19,7 +21,7 @@ import domain.FeePayment;
 @Controller
 @RequestMapping("/feePayment/administrator")
 public class FeePaymentAdministratorController extends AbstractController {
-	/*
+	
 	// Services ----------------------------------------------------------
 	
 	@Autowired
@@ -40,9 +42,9 @@ public class FeePaymentAdministratorController extends AbstractController {
 		ModelAndView result;
 		Collection<FeePayment> feePayments;
 		
-		feePayments = feePaymentService.findAllActive();
+		feePayments = feePaymentService.findAll();
 		
-		result = new ModelAndView("comment/list");
+		result = new ModelAndView("feePayment/list");
 		result.addObject("feePayments", feePayments);
 		result.addObject("requestURI", "feePayment/administrator/list.do");
 		
@@ -62,14 +64,18 @@ public class FeePaymentAdministratorController extends AbstractController {
 	}
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView edit(FeePayment feePayment, BindingResult binding) {
+	public ModelAndView save(@Valid FeePayment feePayment, BindingResult binding) {
 		ModelAndView result;
 		
+		if (binding.hasErrors()) {
+			result = createEditModelAndView(feePayment);
+		} else {
 		try {
 			feePaymentService.save(feePayment);
 			result = new ModelAndView("redirect:/feePayment/administrator/list.do");
 		} catch (Throwable oops) {
 			result = createEditModelAndView(feePayment, "feePayment.commit.error");
+		}
 		}
 		return result;
 	}
@@ -93,5 +99,5 @@ public class FeePaymentAdministratorController extends AbstractController {
 		
 		return result;
 	}
-	*/
+	
 }

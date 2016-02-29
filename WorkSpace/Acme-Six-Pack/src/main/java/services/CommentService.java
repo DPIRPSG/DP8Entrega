@@ -9,9 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.CommentRepository;
+import domain.Actor;
 import domain.Comment;
-import domain.Gym;
-import domain.ServiceEntity;
+import domain.CommentedEntity;
 
 @Service
 @Transactional
@@ -27,10 +27,7 @@ public class CommentService {
 	private ActorService actorService;
 	
 	@Autowired
-	private GymService gymService;
-	
-	@Autowired
-	private ServiceService serviceService;
+	private CommentedEntityService commentedEntityService;
 
 	//Constructors -----------------------------------------------------------
 	
@@ -45,15 +42,23 @@ public class CommentService {
 	 */
 	
 	public Comment create(int entityId){
+		Assert.isTrue(actorService.checkAuthority("ADMIN") || actorService.checkAuthority("CUSTOMER"), "Only an admin or a customer can create comments");
+		
 		Comment result;
+		CommentedEntity commentedEntity;
+		Actor actor;
 		
 		result = new Comment();
 		
-//		result.setMoment(new Date());
-		result.setDeleted(false);
-		setEntityByIdAndComment(entityId, result);
+		commentedEntity = commentedEntityService.findOne(entityId);
+		Assert.notNull(commentedEntity, "Cannot create a Comment without a Entity asociated.");
+		actor = actorService.findByPrincipal();
+		Assert.notNull(actor, "Cannot create a Comment without an Actor asociated.");
 		
-		Assert.isTrue(result.getGym() != null || result.getService() != null, "Cannot create a Comment without a Entity asociated.");
+		result.setDeleted(false);
+		result.setCommentedEntity(commentedEntity);
+		result.setActor(actor);
+		result.setMoment(new Date()); // Se crea una fecha en este momento porque no puede ser null, pero la fecha real se fijará en el método "save"
 		
 		return result;
 	}
@@ -63,13 +68,16 @@ public class CommentService {
 	 */
 	
 	public void save(Comment comment){
+		Assert.isTrue(actorService.checkAuthority("ADMIN") || actorService.checkAuthority("CUSTOMER"), "Only an admin or a customer can save comments");
+
 		Assert.notNull(comment);
-		Assert.isTrue((comment.getGym() != null) ^ (comment.getService() != null), "You can only comment on a Gym OR a Service.");
+		
+		/* Añadido por Guillermo */
+		Assert.isTrue(comment.getActor().getId() == actorService.findByPrincipal().getId(), "The actor must be the one logged");
 		
 		comment.setMoment(new Date());
 		
 		commentRepository.save(comment);
-		
 	}
 
 	
@@ -82,14 +90,9 @@ public class CommentService {
 		Assert.isTrue(comment.getId() != 0);
 		Assert.isTrue(comment.getDeleted() == false);
 		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can delete comments");
-		
 
 		comment.setDeleted(true);
 	}
-	
-	
-	
-	//Other business methods -------------------------------------------------
 	
 	/**
 	 * Lista un comment concreto
@@ -115,130 +118,19 @@ public class CommentService {
 		
 		return result;
 	}
-
-	/**
-	 * Lista todos los comentarios de un Gym
-	 */
-
-//	public Collection<Comment> findAllByGym(Gym gym){
-//		Assert.notNull(gym);
-//		Assert.isTrue(gym.getId() != 0);
-//		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can see this stats");
-//		
-//		Collection<Comment> result;
-//		
-//		result = commentRepository.findAllByGym(gym.getId());
-//		
-//		return result;
-//		
-//	}
-//	
-//	/**
-//	 * Lista todos los comentarios de un Service
-//	 */
-//	
-//	public Collection<Comment> findAllByService(ServiceEntity service){
-//		Assert.notNull(service);
-//		Assert.isTrue(service.getId() != 0);
-//		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can see this stats");
-//		
-//		Collection<Comment> result;
-//		
-//		result = commentRepository.findAllByService(service.getId());
-//		
-//		return result;
-//		
-//	}
+	
+	//Other business methods -------------------------------------------------
 	
 	/**
-	 * Lista todos los comentarios no eliminados
+	 * Lista todos los comentarios de una entidad comentada concreta
 	 */
 	
-//	public Collection<Comment> findAllNotDeleted(){
-//		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can see this stats");
-//		
-//		Collection<Comment> result;
-//		
-//		result = commentRepository.findAllNotDeleted();
-//		
-//		return result;
-//		
-//	}
-	
-	public Collection<Comment> findAllByEntityId(int entityId){
+	public Collection<Comment> findAllByCommentedEntityId(int commentedEntityId){
 		Collection<Comment> result;
 		
-		result = commentRepository.findAllByEntityId(entityId);
+		result = commentRepository.findAllByCommentedEntityId(commentedEntityId);
 		
 		return result;
 	}
 	
-	// Here are the methods that have to modify in order to implement a new Entity that need to have Comments.
-	
-	public String getEntityNameById(int entityId) {
-		String result;
-		Gym gym;
-		ServiceEntity service;
-		
-		result = null;
-		
-		if(gymService.findOne(entityId) != null){
-			gym = gymService.findOne(entityId);
-			result = gym.getName();
-		}else if(serviceService.findOne(entityId) != null){
-			service = serviceService.findOne(entityId);
-			result = service.getName();
-		}
-		
-		Assert.notNull(result);
-		
-		return result;
-	}
-	
-//	public Collection<Comment> getCommentsByEntityId(int entityId) {
-//		Collection<Comment> result;
-//		Gym gym;
-//		ServiceEntity service;
-//		
-//		result = null;
-//		
-//		if(gymService.findOne(entityId) != null){
-//			gym = gymService.findOne(entityId);
-//			result = gym.getComments();
-//		}else if(serviceService.findOne(entityId) != null){
-//			service = serviceService.findOne(entityId);
-//			result = service.getComments();
-//		}
-//		
-//		Assert.notNull(result);
-//		
-//		return result;
-//	}
-	
-	public void setEntityByIdAndComment(int entityId, Comment comment) {
-		Gym gym;
-		ServiceEntity service;
-		
-		if(gymService.findOne(entityId) != null){
-			gym = gymService.findOne(entityId);
-			comment.setGym(gym);
-		}else if(serviceService.findOne(entityId) != null){
-			service = serviceService.findOne(entityId);
-			comment.setService(service);
-		}
-	}
-	
-	public Integer getEntityIdByComment(Comment comment) {
-		Integer result;
-		
-		result = null;
-		
-		if(comment.getGym() != null){
-			result = comment.getGym().getId();
-		}else if(comment.getService() != null){
-			result = comment.getService().getId();
-		}
-		
-		return result;
-	}
 }

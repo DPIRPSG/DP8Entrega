@@ -23,6 +23,24 @@
 		</display:column>
 	</security:authorize>
 
+	<security:authorize access="hasRole('CUSTOMER')">
+		<jstl:if test="${paid}">
+			<display:column>
+				<a href="feePayment/customer/list.do?gymId=${row_Gym.id}"> <spring:message
+						code="gym.feePayments" />
+				</a>
+			</display:column>
+		</jstl:if>
+		
+		
+			<display:column>
+				<a href="feePayment/customer/create.do?gymId=${row_Gym.id}"> <spring:message
+						code="gym.create.feePayments" />
+				</a>
+			</display:column>
+		
+	</security:authorize>
+
 	<!-- Attributes -->
 	<spring:message code="gym.name" var="nameHeader" />
 	<display:column title="${nameHeader}"
@@ -36,10 +54,22 @@
 		<jstl:out value="${row_Gym.description}"/>
 	</display:column>
 	
+	<spring:message code="gym.customers" var="customersHeader" />	
+	<display:column title="${customersHeader}"
+		sortable="true" >
+		<jstl:forEach var="gyms" items="${customers }">
+			<jstl:if test="${gyms[0] == row_Gym.id}">
+				<jstl:out value="${gyms[1]}" />
+			</jstl:if>
+		</jstl:forEach>
+	</display:column>
+	
 	<spring:message code="gym.postalAddress" var="postalAddressHeader" />
 	<display:column title="${postalAddressHeader}"
 		sortable="false">
-		<jstl:out value="${row_Gym.postalAddress}"/>
+		<a href="https://www.google.es/maps/place/${row_Gym.postalAddress}">
+			<jstl:out value="${row_Gym.postalAddress}"/>
+		</a>
 	</display:column>
 
 	<spring:message code="gym.phone" var="phoneHeader" />
@@ -61,24 +91,19 @@
 	</display:column>
 	
 	<display:column>
-		<a href="service/list.do?gymId=${row_Gym.id}"> <spring:message
+		<a href="${requestUri2}gymId=${row_Gym.id}"> <spring:message
 				code="gym.services" />
 		</a>
 	</display:column>
 
 	<display:column>
-		<a href="comment/list.do?gymId=${row_Gym.id}"> <spring:message
+		<a href="comment/list.do?commentedEntityId=${row_Gym.id}"> <spring:message
 				code="gym.comments" />
 		</a>
 	</display:column>
 
-</display:table>
 
-<spring:message code="gym.customers" />:
-<jstl:forEach var="customer" items="${customers }">
-	<br />
-	<jstl:out value="${customer}" />
-</jstl:forEach>
+</display:table>
 
 <br/>
 <br/>

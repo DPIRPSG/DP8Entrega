@@ -25,8 +25,6 @@ public class ActorService {
 	private ActorRepository actorRepository;
 	
 	// Supporting services ----------------------------------------------------
-
-	
 	
 	// Constructors -----------------------------------------------------------
 	
@@ -64,8 +62,8 @@ public class ActorService {
 
 	/**
 	 * Comprueba si el usuario que está ejecutando tiene la AuthoritySolicitada
-	 * @return boolean -> false si no es consumer
-	 * @param authority [ADMIN, CONSUMER]
+	 * @return boolean -> false si no es customer
+	 * @param authority [ADMIN, CUSTOMER]
 	 */
 	public boolean checkAuthority(String authority){
 		boolean result;
@@ -88,6 +86,50 @@ public class ActorService {
 		}
 		
 		
+		
+		return result;
+	}
+	
+	/* Query 7 */
+	public Collection<Actor> findActorWhoSendMoreSpam(){
+		Assert.isTrue(checkAuthority("ADMIN"), "Only an admin can open the dashboard");
+		
+		Collection<Actor> result;
+		
+		result = actorRepository.findActorWhoSendMoreSpam();
+		
+		return result;
+	}
+	
+	/* Query 8 */
+	public Double findAverageNumberOfMessagesInActorMessageBox(){
+		Assert.isTrue(checkAuthority("ADMIN"), "Only an admin can open the dashboard");
+		
+		Double result;
+		
+		result = actorRepository.findAverageNumberOfMessagesInActorMessageBox();
+		
+		return result;
+	}
+	
+	/* Query 11 */
+	public Double findAverageNumberOfCommentWrittenByAnActor(){
+		Assert.isTrue(checkAuthority("ADMIN"), "Only an admin can open the dashboard");
+		
+		Double result;
+		
+		result = actorRepository.findAverageNumberOfCommentWrittenByAnActor();
+		
+		return result;
+	}
+	
+	/* Query 11 */
+	public Double findStandardDeviationNumberOfCommentWrittenByAnActor(){
+		Assert.isTrue(checkAuthority("ADMIN"), "Only an admin can open the dashboard");
+		
+		Double result;
+		
+		result = actorRepository.findStandardDeviationNumberOfCommentWrittenByAnActor();
 		
 		return result;
 	}

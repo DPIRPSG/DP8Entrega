@@ -11,42 +11,22 @@ import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.URL;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Gym extends DomainEntity{
+public class Gym extends CommentedEntity{
 
 	// Constructors -----------------------------------------------------------
 
 	// Attributes -------------------------------------------------------------
-	private String name;
-	private String description;
 	private String postalAddress;
 	private double fee;
 	private String picture;
 	private String phone;
-	
-	@NotBlank
-	@NotNull
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	@NotBlank
-	@NotNull
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
 	
 	@NotBlank
 	@NotNull
@@ -89,48 +69,45 @@ public class Gym extends DomainEntity{
 
 
 	// Relationships ----------------------------------------------------------
-	private Collection<Comment> comments;
-	private Collection<ServiceEntity> service;
-	private Collection<FeePayment> feePayment;
+	private Collection<ServiceEntity> services;
+	private Collection<FeePayment> feePayments;
 	private Collection<Booking> bookings;
-	
-	@Valid
-	@OneToMany(mappedBy = "gym")
-	@NotNull
-	public Collection<Comment> getComments() {
-		return comments;
-	}
-	public void setComments(Collection<Comment> comments) {
-		this.comments = comments;
-	}
 	
 	@Valid
 	@NotNull
 	@ManyToMany(mappedBy = "gyms")
-	@Size(min = 1)
-	public Collection<ServiceEntity> getService() {
-		return service;
+	@NotEmpty
+	public Collection<ServiceEntity> getServices() {
+		return services;
 	}
-	public void setService(Collection<ServiceEntity> service) {
-		this.service = service;
+	public void setServices(Collection<ServiceEntity> service) {
+		this.services = service;
 	}
 	
 	public void addService(ServiceEntity service) {
-		this.service.add(service);
+		this.services.add(service);
 	}
 
 	public void removeService(ServiceEntity service) {
-		this.service.remove(service);
+		this.services.remove(service);
 	}
 	
 	@Valid
 	@OneToMany(mappedBy = "gym")
 	@NotNull
-	public Collection<FeePayment> getFeePayment() {
-		return feePayment;
+	public Collection<FeePayment> getFeePayments() {
+		return feePayments;
 	}
-	public void setFeePayment(Collection<FeePayment> feePayment) {
-		this.feePayment = feePayment;
+	public void setFeePayments(Collection<FeePayment> feePayment) {
+		this.feePayments = feePayment;
+	}
+	
+	public void addFeePayment(FeePayment feePayment) {
+		this.feePayments.add(feePayment);
+	}
+
+	public void removeFeePayment(FeePayment feePayment) {
+		this.feePayments.remove(feePayment);
 	}
 	
 	@Valid
@@ -143,5 +120,11 @@ public class Gym extends DomainEntity{
 		this.bookings = bookings;
 	}
 	
-	
+	public void addBooking(Booking booking) {
+		this.bookings.add(booking);
+	}
+
+	public void removeBooking(Booking booking) {
+		this.bookings.remove(booking);
+	}
 }

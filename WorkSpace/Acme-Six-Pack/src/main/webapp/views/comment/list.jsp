@@ -8,15 +8,9 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<%-- <jstl:if test="${comment.gym != null}"> --%>
-<%-- 	<h3><spring:message code="comment.gymPlural"/>: <jstl:out value="${entityName}" /></h3> --%>
-<%-- </jstl:if> --%>
-<%-- <jstl:if test="${comment.service != null}"> --%>
-<%-- 	<h3><spring:message code="comment.servicePlural"/>: <jstl:out value="${entityName}" /></h3> --%>
-<%-- </jstl:if> --%>
-
-<h3><spring:message code="comment.entityPlural"/>: <jstl:out value="${entityName}" /></h3>
+<h3><spring:message code="comment.entityPlural"/>: <jstl:out value="${commentedEntity.name}" /></h3>
 
 <!-- Listing grid -->
 <display:table pagesize="5" class="displaytag" keepStatus="true"
@@ -25,60 +19,41 @@
 	<!-- Action links -->
 	<security:authorize access="hasRole('ADMIN')">
 		<display:column>
-			<a href="comment/administrator/delete.do?commentId=${row_Comment.id}">
+			<a href="comment/administrator/delete.do?commentId=${row_Comment.id}" onclick="return confirm('<spring:message code="comment.confirm.delete" />')" >
 				<spring:message	code="comment.delete" />
 			</a>
-		</display:column>		
+		</display:column>
 	</security:authorize>
 	
 	<!-- Attributes -->
 	<spring:message code="comment.actor" var="actorHeader" />
-	<display:column title="${actorHeader}"
-		sortable="false" >
-		<jstl:out value="${row_Comment.actor.userAccount.username}"/>
-	</display:column>
+	<acme:displayColumn title="${actorHeader}" sorteable="true" value="${row_Comment.actor.name} ${row_Comment.actor.surname}(${row_Comment.actor.userAccount.username})"/>
 	
 	<spring:message code="comment.moment" var="momentHeader" />
-	<display:column title="${momentHeader}" 
-		sortable="false" format="{0,date,yyyy/MM/dd }" >
-		<jstl:out value="${row_Comment.moment}"/>
-	</display:column>
-
+	<acme:displayColumn title="${momentHeader}" sorteable="true" value="${row_Comment.moment}" format="{0,date,yyyy/MM/dd}"/>
+	
 	<spring:message code="comment.text" var="textHeader" />
-	<display:column title="${textHeader}" 
-		sortable="false" >
-		<jstl:out value="${row_Comment.text}"/>
-	</display:column>
+	<acme:displayColumn title="${textHeader}" sorteable="false" value="${row_Comment.text}"/>
 
 	<spring:message code="comment.starRating" var="starRatingHeader" />
-	<display:column title="${starRatingHeader}" 
-		sortable="true" >
-		<jstl:out value="${row_Comment.starRating}"/>
-	</display:column>
+	<acme:displayColumn title="${starRatingHeader}" sorteable="true" value="${row_Comment.starRating}"/>
 		
 </display:table>
 
-<!-- Action links -->
-<%-- <security:authorize access="isAuthenticated()"> --%>
-<%-- 	<jstl:if test="${gym != null}"> --%>
-<!-- 		<div> -->
-<%-- 			<a href="comment/create.do?gymId=${gym.id}"> <spring:message --%>
-<%-- 					code="comment.create" /> --%>
-<!-- 			</a> -->
-<!-- 		</div> -->
-<%-- 	</jstl:if> --%>
-<%-- 	<jstl:if test="${service != null}"> --%>
-<!-- 		<div> -->
-<%-- 			<a href="comment/create.do?serviceId=${service.id}"> <spring:message --%>
-<%-- 					code="comment.create" /> --%>
-<!-- 			</a> -->
-<!-- 		</div> -->
-<%-- 	</jstl:if> --%>
-<%-- </security:authorize> --%>
 <security:authorize access="isAuthenticated()">
 	<div>
-		<a href="comment/actor/create.do?entityId=${entityId}"> <spring:message
-				code="comment.create" />
-		</a>
+		<acme:link href="comment/actor/create.do?commentedEntityId=${commentedEntity.id}" code="comment.create"/>
 	</div>
 </security:authorize>
+
+<!-- Alert -->
+<jstl:if test="${messageStatus != Null && messageStatus != ''}">
+	<spring:message code="${messageStatus}" var="showAlert" />
+			<script>
+				document.ready(function(){
+		    		alert("${showAlert}");
+				});
+			</script>
+</jstl:if>	
+
+

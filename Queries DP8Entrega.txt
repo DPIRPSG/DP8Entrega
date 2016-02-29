@@ -1,0 +1,78 @@
+Queries DP8Entrega
+
+Level C:
+
+1) The most popular gym/s. -> TERMINADA (Interpretación: se toma el gym con mayor número de feePayment activos a fecha de hoy.)
+
+- select g1 from Gym g1 left join g1.feePayment f1 where f1.activeMoment < CURRENT_DATE AND f1.inactiveMoment > CURRENT_DATE group by g1 having count(f1.activeMoment) >= all(select count(f2.activeMoment) from Gym g2 left join g2.feePayment f2 where f2.activeMoment < CURRENT_DATE AND f2.inactiveMoment > CURRENT_DATE group by g2);
+
+2) The least popular gyms/s. -> REPASAR (Interpretación: se toma el gym con el menor número de feePayment activos a fecha de hoy. Si el gym no tiene actualmente ningún feePayment activo, no se contará como el menos popular)
+
+- select g1 from Gym g1 join g1.feePayment f1 where f1.activeMoment < CURRENT_DATE AND f1.inactiveMoment > CURRENT_DATE group by g1 having count(f1.activeMoment) <= all(select count(f2.activeMoment) from Gym g2 join g2.feePayment f2 where f2.activeMoment < CURRENT_DATE AND f2.inactiveMoment > CURRENT_DATE group by g2);
+	- Si tienes al menos un feePayment activo, muestra el que tiene menos.
+
+- select g from Gym g left join g.feePayment f where g NOT IN (select g from Gym g left join g.feePayment f where f.activeMoment < CURRENT_DATE AND f.inactiveMoment > CURRENT_DATE) group by g;
+	- Si no tiene feePayment activos, muestra los que no tengan.
+
+- select g.name, count(f) from Gym g left join g.feePayment f group by g; -> Query de prueba
+
+- select g1 from Gym g1 left join g1.feePayment f1 where g1 NOT IN (select g2 from Gym g2 left join g2.feePayment f2 where f2.activeMoment < CURRENT_DATE AND f2.inactiveMoment > CURRENT_DATE) OR (f1.activeMoment < CURRENT_DATE AND f1.inactiveMoment > CURRENT_DATE) group by g1;
+	- Con esta salen todos porque todos cumplen alguna restricción
+
+3) The most popular service/s. -> TERMINADA
+
+- select s from ServiceEntity s left join s.bookings b group by s having count(b) >= all(select count(b) from ServiceEntity s left join s.bookings b group by s);
+
+4) The least popular service/s. -> TERMINADA
+
+- select s from ServiceEntity s left join s.bookings b group by s having count(b) <= all(select count(b) from ServiceEntity s left join s.bookings b group by s);
+
+5) The customer/s who has/have paid more fees. -> TERMINADA
+
+- select c from Customer c left join c.feePayment f group by c having count(f) >= all(select count(f) from Customer c left join c.feePayment f group by c);
+
+6) The customer/s who has/have paid less fees. -> TERMINADA
+
+- select c from Customer c left join c.feePayment f group by c having count(f) <= all(select count(f) from Customer c left join c.feePayment f group by c);
+
+==========
+
+Level B:
+
+7) The actor/s who sends/send more spam messages. -> TERMINADA
+
+- select m1.sender from Folder f1 left join f1.messages m1 where f1.name = 'SpamBox' group by f1 having count(m1) >= all(select count(m2) from Folder f2 left join f2.messages m2 where f2.name = 'SpamBox' group by f2);
+
+8) The average number of messages in an actor’s message boxes. -> TERMINADA (Interpretación: media de todos los mensajes enviados por todos los actores del sistema)
+
+- select avg(a.sent.size) from Actor a;
+
+==========
+
+Level A:
+
+9) The gyms/s that has/have more comments. -> TERMINADA
+
+- select g from Gym g left join g.comments c group by g having count(c) >= all(select count(c) from Gym g left join g.comments c group by g);
+
+10) The service/s that has/have more comments. -> TERMINADA
+
+- select s from ServiceEntity s left join s.comments c group by s having count(c) >= all(select count(c) from ServiceEntity s left join s.comments c group by s);
+
+11) The average number of comments written by the actors, including the standard deviation. -> TERMINADA
+
+- select avg(a.comments.size) from Actor a;
+
+- select stddev(a.comments.size) from Actor a;
+
+12) The average number of comments per gym. -> TERMINADA
+
+- select avg(g.comments.size) from Gym g;
+
+13) The average number of comments per service. -> TERMINADA
+
+- select avg(s.comments.size) from ServiceEntity s;
+
+14) The customer/s who has/have been removed more comments. -> TERMINADA
+
+- select c from Customer c left join c.comments k where k.deleted IS TRUE group by c having count(k) >= all(select count(k) from Customer c left join c.comments k where k.deleted IS TRUE group by c);

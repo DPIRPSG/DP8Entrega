@@ -1,17 +1,20 @@
 package controllers;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import domain.Customer;
+import domain.form.ActorForm;
 
-import services.CustomerService;
+import services.form.ActorFormService;
 
 @Controller
 @RequestMapping(value = "/customer")
@@ -20,7 +23,10 @@ public class RegisterController extends AbstractController{
 	//Services ----------------------------------------------------------
 	
 	@Autowired
-	private CustomerService customerService;
+	private ActorFormService actorFormService;
+	
+	@Autowired
+	private Validator actorFormValidator;
 	
 	//Constructors ----------------------------------------------------------
 	
@@ -35,9 +41,9 @@ public class RegisterController extends AbstractController{
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create(){
 		ModelAndView result;
-		Customer consu;
+		ActorForm consu;
 		
-		consu = customerService.create();
+		consu = actorFormService.createForm();
 		result = createEditModelAndView(consu);
 		
 		return result;
@@ -46,25 +52,35 @@ public class RegisterController extends AbstractController{
 	//Edition ----------------------------------------------------------
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid Customer consu, BindingResult binding){
+	public ModelAndView save(@Valid ActorForm consu,
+			BindingResult binding
+			, HttpServletResponse response
+			){
+		actorFormValidator.validate(consu, binding);
+		
 		ModelAndView result;
-		boolean bindingError;
 		
-		if(binding.hasFieldErrors("messageBoxs")){
-			bindingError = binding.getErrorCount() > 1;
-		}else{
-			bindingError = binding.getErrorCount() > 0;
-		}
-		
-		if(bindingError){
-			System.out.println("Errores: " + binding.toString());
+		if(binding.hasErrors()){
+			System.out.println("Errors: " + binding.toString());
 			result = createEditModelAndView(consu);
 		} else {
 			try {
-				customerService.save(consu);
+				Cookie cook1;
+				Cookie cook2;
+				actorFormService.saveForm(consu);
+
 				result = new ModelAndView("redirect:../security/login.do");
 				result.addObject("messageStatus", "customer.commit.ok");
-								
+				
+				cook1 = new Cookie("createCreditCard", consu.getCreateCreditCard().toString());
+				cook2 = new Cookie("createSocialIdentity", consu.getCreateSocialIdentity().toString());
+				
+				cook1.setPath("/");
+				cook2.setPath("/");
+				
+				response.addCookie(cook1);
+				response.addCookie(cook2);
+			
 			} catch (Throwable oops){
 				result = createEditModelAndView(consu, "customer.commit.error");
 			}
@@ -74,22 +90,22 @@ public class RegisterController extends AbstractController{
 	}
 	//Ancillary Methods ----------------------------------------------------------
 
-	protected ModelAndView createEditModelAndView(Customer consumer){
+
+	protected ModelAndView createEditModelAndView(ActorForm customer){
 		ModelAndView result;
 		
-		result = createEditModelAndView(consumer, null);
+		result = createEditModelAndView(customer, null);
 		
 		return result;
 	}
 	
-	protected ModelAndView createEditModelAndView(Customer consumer, String message){
+	protected ModelAndView createEditModelAndView(ActorForm customer, String message){
 		ModelAndView result;
 		
-		result = new ModelAndView("customer/create");
-		result.addObject("customer", consumer);
+		result = new ModelAndView("actorForm/create");
+		result.addObject("actorForm", customer);
 		result.addObject("message", message);
 		result.addObject("urlAction", "customer/create.do");
-		result.addObject("creating", true);
 		
 		return result;
 	}

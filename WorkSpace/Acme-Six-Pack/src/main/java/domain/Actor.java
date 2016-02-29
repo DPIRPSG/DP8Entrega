@@ -57,7 +57,7 @@ public abstract class Actor extends DomainEntity{
 	}
 	
 	// Relationships ----------------------------------------------------------
-	private Collection<Folder> messageBoxs;
+	private Collection<Folder> messageBoxes;
 	private Collection<Message> sent;
 	private Collection<Message> received;
 	private Collection<Comment> comments;
@@ -67,11 +67,11 @@ public abstract class Actor extends DomainEntity{
 	@Valid
 	@OneToMany(mappedBy = "actor")
 	@Size(min = 4)
-	public Collection<Folder> getMessageBoxs() {
-		return messageBoxs;
+	public Collection<Folder> getMessageBoxes() {
+		return messageBoxes;
 	}
-	public void setMessageBoxs(Collection<Folder> folders) {
-		this.messageBoxs = folders;
+	public void setMessageBoxes(Collection<Folder> folders) {
+		this.messageBoxes = folders;
 	}
 	
 	@Valid

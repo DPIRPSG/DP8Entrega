@@ -1,10 +1,14 @@
 package controllers.customer;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,6 +27,9 @@ public class CreditCardController extends AbstractController {
 
 	@Autowired
 	private CustomerService customerService;
+	
+	@Autowired
+	private Validator creditCardValidator;
 
 	// Constructors ----------------------------------------------------------
 
@@ -39,7 +46,7 @@ public class CreditCardController extends AbstractController {
 		Customer customer;
 		
 		customer = customerService.findByPrincipal();
-		creditCard = customer.getCreditCard();
+		creditCard = customer.showCreditCard();
 		
 		result = new ModelAndView("creditCard/display");
 		result.addObject("creditCard", creditCard);
@@ -68,15 +75,31 @@ public class CreditCardController extends AbstractController {
 
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid CreditCard creditCard, BindingResult binding) {
+	public ModelAndView save(@Valid CreditCard creditCard, BindingResult binding
+			,@CookieValue(value = "createSocialIdentity", required = false, defaultValue = "false") String createSocialIdentity
+			, HttpServletResponse response			
+			) {
 		ModelAndView result;
 
+		creditCardValidator.validate(creditCard, binding);
 		if (binding.hasErrors()) {
 			result = createEditModelAndView(creditCard);
 		} else {
 			try {
+				Cookie cook1;
+				
 				customerService.saveCreditCard(creditCard);
-				result = new ModelAndView("redirect:display.do");
+				
+				cook1 = new Cookie("createCreditCard", "false");
+				cook1.setPath("/");
+			
+				response.addCookie(cook1);
+				
+				if(createSocialIdentity.equals("true")){
+					result = new ModelAndView("redirect:/socialIdentity/customer/edit.do");					
+				}else{
+					result = new ModelAndView("redirect:display.do");					
+				}
 			} catch (Throwable oops) {
 				result = createEditModelAndView(creditCard, "creditCard.commit.error");				
 			}

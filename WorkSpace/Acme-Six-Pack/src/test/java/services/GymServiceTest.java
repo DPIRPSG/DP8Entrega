@@ -50,7 +50,7 @@ public class GymServiceTest extends AbstractTest{
 		gym.setPhone("666333123");
 		gym.setFee(10);
 		
-		gymService.save(gym);
+		gymService.saveToEdit(gym);
 		
 		System.out.println("Ya se ha creado?");
 		gyms = gymService.findAll();

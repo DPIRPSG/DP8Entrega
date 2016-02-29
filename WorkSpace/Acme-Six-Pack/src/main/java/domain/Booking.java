@@ -10,11 +10,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -51,8 +51,8 @@ public class Booking extends DomainEntity{
 		this.requestMoment = requestMoment;
 	}
 	
-	@Min(0)
-	@Range(min = (long) 0.5, max = 4)
+	@DecimalMin("0.5")
+	@DecimalMax("4.0")
 	@Digits(integer = 1, fraction = 1)	
 	public double getDuration() {
 		return duration;

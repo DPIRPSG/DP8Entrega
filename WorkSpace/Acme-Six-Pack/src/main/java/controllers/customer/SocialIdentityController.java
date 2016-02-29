@@ -1,10 +1,13 @@
 package controllers.customer;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -63,14 +66,28 @@ public class SocialIdentityController extends AbstractController {
 
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid SocialIdentity socialIdentity, BindingResult binding) {
+	public ModelAndView save(@Valid SocialIdentity socialIdentity, BindingResult binding
+			,@CookieValue(value = "createCreditCard", required = false, defaultValue = "false") String createCreditCard
+			, HttpServletResponse response			
+			) {
 		ModelAndView result;
 
 		if (binding.hasErrors()) {
 			result = createEditModelAndView(socialIdentity);
 		} else {
 			try {
-				socialIdentityService.save(socialIdentity);
+				Cookie cook1;
+				
+				cook1 = new Cookie("createSocialIdentity", "false");
+				cook1.setPath("/");
+			
+				response.addCookie(cook1);
+				
+				if(createCreditCard.equals("true")){
+					result = new ModelAndView("redirect:/creditCard/customer/edit.do");					
+				}else{				
+					socialIdentityService.save(socialIdentity);
+				}
 				result = new ModelAndView("redirect:display.do");
 			} catch (Throwable oops) {
 				System.out.println("Error!!!!");
@@ -87,7 +104,7 @@ public class SocialIdentityController extends AbstractController {
 		ModelAndView result;
 
 		try {
-			socialIdentityService.delete(socialIdentity);
+			socialIdentityService.delete();
 			result = new ModelAndView("redirect:/");
 		} catch (Throwable oops) {
 			result = createEditModelAndView(socialIdentity, "socialIdentity.commit.error");

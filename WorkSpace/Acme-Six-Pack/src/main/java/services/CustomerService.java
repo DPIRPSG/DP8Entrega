@@ -8,8 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import domain.Booking;
+import domain.Comment;
 import domain.CreditCard;
 import domain.Customer;
+import domain.FeePayment;
 import domain.Folder;
 import domain.Message;
 
@@ -50,7 +53,7 @@ public class CustomerService {
 	
 	//Simple CRUD methods ----------------------------------------------------
 	
-	/** Devuelve consumer preparado para ser modificado. Necesita usar save para que persista en la base de datos
+	/** Devuelve customer preparado para ser modificado. Necesita usar save para que persista en la base de datos
 	 * 
 	 */
 	// req: 10.1
@@ -70,13 +73,13 @@ public class CustomerService {
 	 * Almacena en la base de datos el cambio
 	 */
 	// req: 10.1
-	public void save(Customer consumer){
-		Assert.notNull(consumer);
+	public void save(Customer customer){
+		Assert.notNull(customer);
 		
 		Customer modify;
 		
 		boolean result = true;
-		for(Authority a: consumer.getUserAccount().getAuthorities()){
+		for(Authority a: customer.getUserAccount().getAuthorities()){
 			if(!a.getAuthority().equals("CUSTOMER")){
 				result = false;
 				break;
@@ -84,33 +87,48 @@ public class CustomerService {
 		}
 		Assert.isTrue(result, "A customer can only be a authority.customer");
 		
-		if(consumer.getId() == 0){
+		if(customer.getId() == 0){
+			result = true && !actorService.checkAuthority("ADMIN");
+			result = result && !actorService.checkAuthority("CUSTOMER");
+			Assert.isTrue(result, "customer.create.permissionDenied");
+			
 			Collection<Folder> folders;
 			Collection<Message> sent;
 			Collection<Message> received;
-			//Collection<Order> orders;
+			Collection<Comment> comments;
+			Collection<Booking> bookings;
+			Collection<FeePayment>feePayments;
 			UserAccount auth;
-			//ShoppingCart shoppingCart;
 			
 			//Encoding password
-			auth = consumer.getUserAccount();
+			auth = customer.getUserAccount();
 			auth = userAccountService.modifyPassword(auth);
-			consumer.setUserAccount(auth);
+			customer.setUserAccount(auth);
 			
 			// Initialize folders
-			folders = folderService.initializeSystemFolder(consumer);
-			consumer.setMessageBoxs(folders);
+			folders = folderService.initializeSystemFolder(customer);
+			customer.setMessageBoxes(folders);
 			
 			sent = new ArrayList<Message>();
 			received = new ArrayList<Message>();
-			consumer.setSent(sent);
-			consumer.setReceived(received);
+			customer.setSent(sent);
+			customer.setReceived(received);
+			
+			// Initialize anothers
+			
+			comments = new ArrayList<Comment>();
+			bookings = new ArrayList<Booking>();
+			feePayments = new ArrayList<FeePayment>();
+			customer.setComments(comments);
+			customer.setBookings(bookings);
+			customer.setFeePayments(feePayments);
 
 			
 		}
-		modify = customerRepository.save(consumer);
+		//modify = customerRepository.saveAndFlush(customer);
+		modify = customerRepository.save(customer);		
 		
-		if(consumer.getId() == 0){
+		if(customer.getId() == 0){
 			Collection<Folder> folders;
 
 			folders = folderService.initializeSystemFolder(modify);
@@ -120,7 +138,7 @@ public class CustomerService {
 	}
 	
 	/**
-	 * Lista los consumers registrados
+	 * Lista los customers registrados
 	 */
 	// req: 12.5
 	public Collection<Customer> findAll(){
@@ -136,7 +154,7 @@ public class CustomerService {
 	//Other business methods -------------------------------------------------
 
 	/**
-	 * Devuelve el consumer que está realizando la operación
+	 * Devuelve el customers que está realizando la operación
 	 */
 	//req: x
 	public Customer findByPrincipal(){
@@ -157,7 +175,7 @@ public class CustomerService {
 		
 		custo = this.findByPrincipal();
 		
-		result = custo.getCreditCard();
+		result = custo.showCreditCard();
 		if(result == null)
 			result = new CreditCard();
 		return result;		
@@ -167,7 +185,7 @@ public class CustomerService {
 		Customer custo;
 		
 		custo = this.findByPrincipal();
-		custo.setCreditCard(creditCard);
+		custo.modifyCreditCard(creditCard);
 		this.save(custo);
 	}
 	
@@ -175,7 +193,7 @@ public class CustomerService {
 		Customer custo;
 		
 		custo = this.findByPrincipal();
-		custo.setCreditCard(null);
+		custo.modifyCreditCard(null);
 		this.save(custo);
 	}
 	
@@ -195,6 +213,37 @@ public class CustomerService {
 
 		return result;
 	}
-
-
+	
+	/* Query 5 */
+	public Collection<Customer> findCustomerWhoHasPaidMoreFees(){
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can open the dashboard");
+		
+		Collection<Customer> result;
+		
+		result = customerRepository.findCustomerWhoHasPaidMoreFees();
+		
+		return result;
+	}
+	
+	/* Query 6 */
+	public Collection<Customer> findCustomerWhoHasPaidLessFees(){
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can open the dashboard");
+		
+		Collection<Customer> result;
+		
+		result = customerRepository.findCustomerWhoHasPaidLessFees();
+		
+		return result;
+	}
+	
+	/* Query 14 */
+	public Collection<Customer> findCustomerWhoHaveBeenRemovedMoreComments(){
+		Assert.isTrue(actorService.checkAuthority("ADMIN"), "Only an admin can open the dashboard");
+		
+		Collection<Customer> result;
+		
+		result = customerRepository.findCustomerWhoHaveBeenRemovedMoreComments();
+		
+		return result;
+	}
 }
