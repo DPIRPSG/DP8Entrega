@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +27,9 @@ public class ServiceAdministratorController extends AbstractController {
 
 	@Autowired
 	private ServiceService serviceService;
+	
+	@Autowired
+	private Validator serviceEntityValidator;
 
 	// Constructors ----------------------------------------------------------
 
@@ -87,6 +91,8 @@ public class ServiceAdministratorController extends AbstractController {
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid ServiceEntity service, BindingResult binding) {
+		serviceEntityValidator.validate(service, binding);
+		
 		ModelAndView result;
 
 		if (binding.hasErrors()) {
