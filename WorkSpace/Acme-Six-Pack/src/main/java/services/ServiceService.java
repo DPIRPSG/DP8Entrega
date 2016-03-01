@@ -167,19 +167,19 @@ public class ServiceService {
 		return result;
 	}
 	
-	public Collection<String> numbersOfCustomersByService(Collection<ServiceEntity> services) {
-		Collection<String> result;
+	public Collection<ArrayList<Integer>> numbersOfCustomersByService(Collection<ServiceEntity> services) {
+		Collection<ArrayList<Integer>> result;
 		Integer customerNumber;
-		String numberOfCustomerInService;
+		ArrayList<Integer> result2;
 		
-		result = new ArrayList<>();
-		customerNumber = 0;
-		numberOfCustomerInService = null;
+		result = new ArrayList<ArrayList<Integer>>();
 		
 		for(ServiceEntity service : services) {
+			result2 = new ArrayList<Integer>();
 			customerNumber = customerService.numbersOfCustomersByService(service.getId());
-			numberOfCustomerInService = service.getName() + ": " + customerNumber;
-			result.add(numberOfCustomerInService);
+			result2.add(service.getId());
+			result2.add(customerNumber);
+			result.add(result2);
 		}
 		
 		return result;
