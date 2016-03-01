@@ -1,5 +1,6 @@
 package controllers.administrator;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.validation.Valid;
@@ -38,7 +39,7 @@ public class ServiceAdministratorController extends AbstractController {
 	public ModelAndView list(@RequestParam(required=false) Integer gymId) {
 		ModelAndView result;
 		Collection<ServiceEntity> services;
-		Collection<String> customers;
+		Collection<ArrayList<Integer>> customers;
 				
 		result = new ModelAndView("service/list");
 		result.addObject("requestURI", "service/administrator/list.do?");
