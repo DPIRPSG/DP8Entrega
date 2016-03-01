@@ -132,7 +132,7 @@ public class ServiceAdministratorController extends AbstractController {
 		ModelAndView result;
 
 		result = new ModelAndView("service/edit");
-		result.addObject("service", service);
+		result.addObject("serviceEntity", service);
 		result.addObject("message", message);
 
 		return result;

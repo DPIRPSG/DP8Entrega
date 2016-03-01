@@ -11,7 +11,7 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <!-- Form -->
-<form:form action="service/administrator/edit.do" modelAttribute="service">
+<form:form action="service/administrator/edit.do" modelAttribute="serviceEntity">
 	<!-- Hidden Attributes -->
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -25,7 +25,7 @@
 
 	<acme:textbox code="service.name" path="name" />
 
-	<acme:textbox code="service.description" path="description" />
+	<acme:textarea code="service.description" path="description" />
 	
 	<br />
 	<spring:message code="service.picture.addPicture"/>
