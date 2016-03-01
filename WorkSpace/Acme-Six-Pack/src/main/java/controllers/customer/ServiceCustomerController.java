@@ -1,5 +1,6 @@
 package controllers.customer;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class ServiceCustomerController {
 	public ModelAndView list(@RequestParam(required = false) Integer gymId) {
 		ModelAndView result;
 		Collection<ServiceEntity> services;
-		Collection<String> customers;
+		Collection<ArrayList<Integer>> customers;
 		Boolean hayGymId;
 		Gym gym;
 		Collection<Gym> paidGyms;

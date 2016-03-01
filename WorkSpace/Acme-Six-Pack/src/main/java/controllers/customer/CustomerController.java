@@ -77,7 +77,6 @@ public class CustomerController extends AbstractController {
 		ModelAndView result;
 		
 		if(binding.hasErrors()) {
-			System.out.println("Errors: " + binding.toString());
 			result = createEditModelAndView(customer);
 		} else {
 			try {

@@ -35,6 +35,16 @@
 		sortable="false">
 		<jstl:out value="${row_Service.description}"/>
 	</display:column>
+	
+	<spring:message code="service.customers" var="customersHeader" />	
+	<display:column title="${customersHeader}"
+		sortable="true" >
+		<jstl:forEach var="services" items="${customers }">
+			<jstl:if test="${services[0] == row_Service.id}">
+				<jstl:out value="${services[1]}" />
+			</jstl:if>
+		</jstl:forEach>
+	</display:column>
 
 	<spring:message code="service.pictures" var="pictureHeader" />
 	<display:column title="${pictureHeader}"
@@ -69,14 +79,6 @@
 
 </display:table>
 
-<spring:message code="service.customers" />:
-<jstl:forEach var="customer" items="${customers }">
-	<br />
-	<jstl:out value="${customer}" />
-</jstl:forEach>
-
-<br/>
-<br/>
 <br/>
 <br/>
 
