@@ -1,0 +1,22 @@
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="feePayment/list" extends="master.page">	
+		<put-attribute name="title" value="Lista de pagos de las cuotas" />
+		<put-attribute name="body" value="/views/feePayment/list.jsp" />
+	</definition>
+	
+	<definition name="feePayment/edit" extends="master.page">	
+		<put-attribute name="title" value="Editar el pago de una cuota" />
+		<put-attribute name="body" value="/views/feePayment/edit.jsp" />
+	</definition>
+	
+	<definition name="feePayment/create" extends="master.page">	
+		<put-attribute name="title" value="Crear un pago de una cuota" />
+		<put-attribute name="body" value="/views/feePayment/create.jsp" />
+	</definition>
+	
+</tiles-definitions>
