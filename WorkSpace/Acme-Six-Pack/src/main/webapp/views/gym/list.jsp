@@ -107,8 +107,6 @@
 
 <br/>
 <br/>
-<br/>
-<br/>
 
 
 <form action="${requestURI}">
