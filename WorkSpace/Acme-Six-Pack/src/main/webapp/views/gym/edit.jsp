@@ -33,7 +33,7 @@
 
 	<acme:textbox code="gym.fee" path="fee" />
 	
-	<acme:textbox code="gym.picture" path="picture" />
+	<acme:textbox code="gym.picture" path="picture" info="gym.picture.info"/>
 	
 	<acme:selectMult items="${services}" itemLabel="name" code="gym.services" path="services"/>
 	

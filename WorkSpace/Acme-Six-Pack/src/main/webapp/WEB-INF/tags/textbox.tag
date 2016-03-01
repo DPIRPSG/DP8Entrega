@@ -26,6 +26,7 @@
 <%@ attribute name="code" required="true" %>
 
 <%@ attribute name="readonly" required="false" %>
+<%@ attribute name="info" required="false" %>
 <%@ attribute name="pathValue" required="false" %>
 <%@ attribute name="size" required="false" %>
 
@@ -42,6 +43,6 @@
 	<form:label path="${path}">
 		<spring:message code="${code}" />: &nbsp;
 	</form:label>	
-	<form:input path="${path}" value="${pathValue}" readonly="${readonly}" size="${size}"/>	
+	<form:input path="${path}" value="${pathValue}" readonly="${readonly}" size="${size}"/><jstl:if test="${info != null}"><spring:message code="${info}"/></jstl:if>
 	<form:errors path="${path}" cssClass="error" />
 </div>	

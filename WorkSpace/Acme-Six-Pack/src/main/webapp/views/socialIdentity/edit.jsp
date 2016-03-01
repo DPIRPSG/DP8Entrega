@@ -20,7 +20,7 @@
 		<acme:textbox code="socialIdentity.nick" path="nick" />
 		<acme:textbox code="socialIdentity.name" path="name" />
 		<acme:textbox code="socialIdentity.homePage" path="homePage" />
-		<acme:textbox code="socialIdentity.picture" path="picture" />
+		<acme:textbox code="socialIdentity.picture" path="picture" info="gym.picture.info"/>
 		<br />
 		
 		<!-- Action buttons -->
