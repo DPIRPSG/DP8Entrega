@@ -400,7 +400,11 @@ CREATE TABLE `servicetable` (
 -- Dumping data for table `servicetable`
 --
 
-
+LOCK TABLES `servicetable` WRITE;
+/*!40000 ALTER TABLE `servicetable` DISABLE KEYS */;
+INSERT INTO `servicetable` VALUES (17,0,'Servicio de Fitness','Fitness');
+/*!40000 ALTER TABLE `servicetable` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `servicetable_gym`

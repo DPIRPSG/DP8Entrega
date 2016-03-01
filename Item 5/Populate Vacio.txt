@@ -156,6 +156,29 @@
 	<!-- Gym -->
 	
 	<!-- Services -->
+
+	<bean id="service1" class="domain.ServiceEntity">
+		<property name="name" value="Fitness"/>
+		<property name="description" value="Servicio de Fitness"/>
+		<property name="pictures">
+			<list>
+				<value>https://www.clubfluviallugo.com/web/media/rokgallery/1/1902b722-85e5-4d2c-e3c5-d4b96e055fc1/clase_fitness_4.jpg</value>
+				<value>https://www.clubfluviallugo.com/web/media/rokgallery/0/052c7c45-45e9-408e-ba87-3b29c88ca085/clase_fitness_1.jpg</value>
+			</list>
+		</property>
+		<property name="gyms">
+			<list>
+			</list>
+		</property>
+		<property name="bookings">
+			<list>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+			</list>
+		</property>
+	</bean>
 	
 	<!-- FeePayment -->
 	
