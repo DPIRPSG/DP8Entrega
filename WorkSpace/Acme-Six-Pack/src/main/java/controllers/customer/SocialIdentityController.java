@@ -90,8 +90,6 @@ public class SocialIdentityController extends AbstractController {
 				}
 				result = new ModelAndView("redirect:display.do");
 			} catch (Throwable oops) {
-				System.out.println("Error!!!!");
-				System.out.println(oops);
 				result = createEditModelAndView(socialIdentity, "socialIdentity.commit.error");				
 			}
 		}

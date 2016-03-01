@@ -61,7 +61,6 @@ public class RegisterController extends AbstractController{
 		ModelAndView result;
 		
 		if(binding.hasErrors()){
-			System.out.println("Errors: " + binding.toString());
 			result = createEditModelAndView(consu);
 		} else {
 			try {
