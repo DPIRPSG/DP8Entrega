@@ -51,7 +51,7 @@ public class Gym extends CommentedEntity{
 	
 	@URL
 	@Valid
-	@Pattern(regexp = "^(https)")
+	@Pattern(regexp = "^(https).*$")
 	public String getPicture() {
 		return picture;
 	}

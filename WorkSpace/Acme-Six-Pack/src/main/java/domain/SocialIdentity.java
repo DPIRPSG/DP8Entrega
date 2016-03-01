@@ -44,7 +44,7 @@ public class SocialIdentity extends DomainEntity{
 	@NotBlank
 	@NotNull
 	@URL
-	@Pattern(regexp = "^(https)")
+	@Pattern(regexp = "^(https).*$")
 	public String getPicture() {
 		return picture;
 	}
