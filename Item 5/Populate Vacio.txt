@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ * PopulateDatabase.xml
+ *
+ * Copyright (C) 2014 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+	
+	<!-- User accounts -->
+
+	<bean id="userAccount1" class="security.UserAccount">
+		<property name="username" value="admin" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Other domain beans come here -->
+	
+	<!-- SpamTerm -->
+	
+	<bean id="spamTerm1" class="domain.SpamTerm">
+		<property name="term" value="viagra"/>
+	</bean>
+	
+	<bean id="spamTerm2" class="domain.SpamTerm">
+		<property name="term" value="cialis"/>
+	</bean>
+	
+	<bean id="spamTerm3" class="domain.SpamTerm">
+		<property name="term" value="sex"/>
+	</bean>
+	
+	<bean id="spamTerm4" class="domain.SpamTerm">
+		<property name="term" value="scort"/>
+	</bean>
+	
+	<bean id="spamTerm5" class="domain.SpamTerm">
+		<property name="term" value="money transfer"/>
+	</bean>
+	
+	<bean id="spamTerm6" class="domain.SpamTerm">
+		<property name="term" value="lottery"/>
+	</bean>
+	
+	<bean id="spamTerm7" class="domain.SpamTerm">
+		<property name="term" value="green card"/>
+	</bean>
+	
+	<bean id="spamTerm8" class="domain.SpamTerm">
+		<property name="term" value="email quota"/>
+	</bean>
+	
+	<bean id="spamTerm9" class="domain.SpamTerm">
+		<property name="term" value="click here"/>
+	</bean>
+	
+	<bean id="spamTerm10" class="domain.SpamTerm">
+		<property name="term" value="spam"/>
+	</bean>
+	
+	<!-- SocialIdentity -->
+	
+	<!-- Administradores: -->
+	
+	<bean id="administrator1" class="domain.Administrator">
+		<property name="name" value="Miguel"/>
+		<property name="surname" value="Rodriguez"/>
+		<property name="phone" value="666777888"/>
+		<property name="userAccount" ref="userAccount1"/>
+		<property name="messageBoxes">
+			<list>
+				<ref bean="folder1"/>
+				<ref bean="folder2"/>
+				<ref bean="folder3"/>
+				<ref bean="folder4"/>
+			</list>
+		</property>
+		<property name="sent">
+			<list>
+			</list>
+		</property>
+		<property name="received">
+			<list>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Consumidores -->
+	
+	<!-- Mensajes -->
+	
+	<!-- Folders -->
+	
+	<bean id="folder1" class="domain.Folder">
+		<property name="name" value="InBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="administrator1"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder2" class="domain.Folder">
+		<property name="name" value="OutBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="administrator1"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder3" class="domain.Folder">
+		<property name="name" value="TrashBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="administrator1"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="folder4" class="domain.Folder">
+		<property name="name" value="SpamBox"/>
+		<property name="isSystem" value="true"/>
+		<property name="actor" ref="administrator1"/>
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- CreditCard -->
+	
+	<!-- Gym -->
+	
+	<!-- Services -->
+
+	<bean id="service1" class="domain.ServiceEntity">
+		<property name="name" value="Fitness"/>
+		<property name="description" value="Servicio de Fitness"/>
+		<property name="pictures">
+			<list>
+				<value>https://www.clubfluviallugo.com/web/media/rokgallery/1/1902b722-85e5-4d2c-e3c5-d4b96e055fc1/clase_fitness_4.jpg</value>
+				<value>https://www.clubfluviallugo.com/web/media/rokgallery/0/052c7c45-45e9-408e-ba87-3b29c88ca085/clase_fitness_1.jpg</value>
+			</list>
+		</property>
+		<property name="gyms">
+			<list>
+			</list>
+		</property>
+		<property name="bookings">
+			<list>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- FeePayment -->
+	
+	<!-- Booking -->
+	
+	<!-- Comments -->
+	
+
+</beans>

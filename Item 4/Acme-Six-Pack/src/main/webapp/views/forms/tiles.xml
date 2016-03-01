@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+
+	<definition name="actorForm/create" extends="master.page">	
+		<put-attribute name="title" value="Customer: Register" />
+		<put-attribute name="body" value="/views/forms/actorForm.jsp" />
+	</definition>
+	
+	<definition name="actorForm/edit" extends="master.page">	
+		<put-attribute name="title" value="Profile: Edit" />
+		<put-attribute name="body" value="/views/forms/actorForm.jsp" />
+	</definition>
+	
+	<definition name="feePaymentForm/create" extends="master.page">	
+		<put-attribute name="title" value="Create a Fee Payment" />
+		<put-attribute name="body" value="/views/forms/feePaymentForm.jsp" />
+	</definition>
+	
+</tiles-definitions>

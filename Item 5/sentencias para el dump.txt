@@ -1,0 +1,5 @@
+mysqldump -uroot -pV3rY=$tR0nG=P@$$w0rd$ Acme-Six-Pack > C:\Temp\Create-Acme-Six-Pack.sql
+
+mysql -uroot -pV3rY=$tR0nG=P@$$w0rd$ < c:\temp\create-acme-six-pack.sql
+
+mysql -uroot -pV3rY=$tR0nG=P@$$w0rd$ < c:\temp\delete-acme-six-pack.sql
