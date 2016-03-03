@@ -119,7 +119,7 @@ public class CustomerService {
 			comments = new ArrayList<Comment>();
 			bookings = new ArrayList<Booking>();
 			feePayments = new ArrayList<FeePayment>();
-			customer.setComments(comments);
+			customer.setCommentss(comments);
 			customer.setBookings(bookings);
 			customer.setFeePayments(feePayments);
 

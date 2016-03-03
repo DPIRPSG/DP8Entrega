@@ -155,6 +155,10 @@
 			<list>
 			</list>
 		</property>
+		<property name="commentss">
+			<list>
+			</list>
+		</property>
 		<property name="comments">
 			<list>
 			</list>
@@ -193,7 +197,7 @@
 				<ref bean="message3"/>
 			</list>
 		</property>
-		<property name="comments">
+		<property name="commentss">
 			<list>
 				<ref bean="comment1"/>
 				<ref bean="comment4"/>
@@ -214,6 +218,10 @@
 				<ref bean="booking2"/>
 				<ref bean="booking3"/>
 				<ref bean="booking4"/>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
 			</list>
 		</property>
 	</bean>
@@ -246,7 +254,7 @@
 				<ref bean="message1"/>
 			</list>
 		</property>
-		<property name="comments">
+		<property name="commentss">
 			<list>
 				<ref bean="comment2"/>
 				<ref bean="comment5"/>
@@ -260,6 +268,10 @@
 		<property name="bookings">
 			<list>
 				<ref bean="booking5"/>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
 			</list>
 		</property>
 	</bean>
@@ -292,7 +304,7 @@
 				<ref bean="message4"/>
 			</list>
 		</property>
-		<property name="comments">
+		<property name="commentss">
 			<list>
 				<ref bean="comment3"/>
 				<ref bean="comment8"/>
@@ -311,6 +323,10 @@
 		<property name="bookings">
 			<list>
 				<ref bean="booking6"/>
+			</list>
+		</property>
+		<property name="comments">
+			<list>
 			</list>
 		</property>
 	</bean>
@@ -344,7 +360,7 @@
 				<ref bean="message1"/>
 			</list>
 		</property>
-		<property name="comments">
+		<property name="commentss">
 			<list>
 				<ref bean="comment9"/>
 			</list>
@@ -355,6 +371,10 @@
 			</list>
 		</property>
 		<property name="bookings">
+			<list>
+			</list>
+		</property>
+		<property name="comments">
 			<list>
 			</list>
 		</property>

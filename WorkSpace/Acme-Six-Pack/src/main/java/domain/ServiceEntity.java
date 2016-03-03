@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
 @Access(AccessType.PROPERTY)
 @Table(name = "serviceTable")
@@ -21,6 +23,27 @@ public class ServiceEntity extends CommentedEntity{
 
 	// Attributes -------------------------------------------------------------
 	private Collection<String> pictures;
+	
+	private String name;
+	private String description;
+	
+	@NotBlank
+	@NotNull
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	@NotBlank
+	@NotNull
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	@ElementCollection
 	@Valid

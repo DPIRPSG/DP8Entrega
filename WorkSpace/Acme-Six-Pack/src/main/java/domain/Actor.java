@@ -20,7 +20,7 @@ import security.UserAccount;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public abstract class Actor extends DomainEntity{
+public abstract class Actor extends CommentedEntity{
 
 	// Constructors -----------------------------------------------------------
 
@@ -60,7 +60,7 @@ public abstract class Actor extends DomainEntity{
 	private Collection<Folder> messageBoxes;
 	private Collection<Message> sent;
 	private Collection<Message> received;
-	private Collection<Comment> comments;
+	private Collection<Comment> commentss;
 	private UserAccount userAccount;
 	
 	@NotNull
@@ -97,11 +97,11 @@ public abstract class Actor extends DomainEntity{
 	@Valid
 	@OneToMany(mappedBy = "actor")
 	@NotNull
-	public Collection<Comment> getComments() {
-		return comments;
+	public Collection<Comment> getCommentss() {
+		return commentss;
 	}
-	public void setComments(Collection<Comment> sent) {
-		this.comments = sent;
+	public void setCommentss(Collection<Comment> sent) {
+		this.commentss = sent;
 	}	
 	@NotNull
 	@Valid

@@ -25,10 +25,10 @@ public interface ActorRepository extends JpaRepository<Actor, Integer> {
 	Double findAverageNumberOfMessagesInActorMessageBox();
 	
 	/* Query 11 */
-	@Query("select avg(a.comments.size) from Actor a")
+	@Query("select avg(a.commentss.size) from Actor a")
 	Double findAverageNumberOfCommentWrittenByAnActor();
 	
 	/* Query 11 */
-	@Query("select stddev(a.comments.size) from Actor a")
+	@Query("select stddev(a.commentss.size) from Actor a")
 	Double findStandardDeviationNumberOfCommentWrittenByAnActor();
 }

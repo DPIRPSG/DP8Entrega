@@ -28,6 +28,27 @@ public class Gym extends CommentedEntity{
 	private String picture;
 	private String phone;
 	
+	private String name;
+	private String description;
+	
+	@NotBlank
+	@NotNull
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	@NotBlank
+	@NotNull
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 	@NotBlank
 	@NotNull
 	public String getPostalAddress() {
